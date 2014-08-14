@@ -1,0 +1,2367 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/container"
+    android:background="@drawable/bg"
+    android:scrollbars="vertical"
+    android:visibility="visible"
+    tools:context="com.fourfoureight.lolhelper.PlayerStats"
+    tools:ignore="TooManyViews" >
+
+    <FrameLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="#001F7A"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbars="vertical" >
+    </FrameLayout>
+    
+     <TextView
+        android:id="@+id/SummonerName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText1"
+        android:gravity="center" 
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#ffffff"
+        android:textSize="36sp" />
+     
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="344dp"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/SummonerName"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:overScrollMode="ifContentScrolls"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollbars="vertical" >
+
+<!-- === START RANKED STATS ROWS === -->
+
+                <TableRow
+                    android:id="@+id/tableRow1_RankedHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#000062"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/textView1_RankedHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Ranked_Solo_5v5"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="28sp"
+                        android:textColor="#ffffff" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow2_RankedWins"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/tableRow5_RankedWins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/textView2_RankedWins"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Wins"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow6_RankedWins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/wins5v5_Ranked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+                
+                                <TableRow
+                    android:id="@+id/tableRow2_RankedLosses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/tableRow5_RankedLosses"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/textView2_RankedLosses"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Losses"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow6_RankedLosses"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/losses5v5_Ranked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow03_RankedKills"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow02_RankedKills"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView03_RankedKills"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow01_RankedKills"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/kills5v5_Ranked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow09_RankedAssists"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow08_RankedAssists"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView01_RankedAssists"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Assists"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow07_RankedAssists"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/assists5v5_Ranked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow13_RankedMinionKills"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow15_RankedMinionKills"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView09_RankedMinionKills"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow14_RankedMinionKills"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/minionkills5v5_Ranked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow10_RankedNeutralMinionKills"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow11_RankedNeutralMinionKills"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView08_RankedNeutralMinionKills"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Neutral_Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow12_RankedNeutralMinionKills"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/neutralminionkills5v5_Ranked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow06_RankedTurretsDestroyed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow04_RankedTurretsDestroyed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView06_RankedTurretsDestroyed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Turrets_Destroyed"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow05_RankedTurretsDestroyed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/turretsdestroyed5v5_Ranked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+<!-- === END RANKED STATS ROWS === -->
+
+<!-- === START NORMAL STATS ROWS === -->
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#000062"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Normal_5v5"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="28sp"
+                        android:textColor="#ffffff" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/tableRow5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Wins"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/wins5v5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow02"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView03"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow01"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/kills5v5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow09"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow08"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView01"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Assists"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow07"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/assists5v5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView09"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/minionkills5v5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView08"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Neutral_Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/neutralminionkills5v5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow06"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow04"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView06"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Turrets_Destroyed"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow05"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/turretsdestroyed5v5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+<!-- === END NORMAL STATS ROWS === -->
+
+<!-- === START DOMINION STATS ROWS === -->
+
+                <TableRow
+                    android:id="@+id/TableRow16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#000062"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/TextView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Dominion"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="28sp"
+                        android:textColor="#ffffff" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow31"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Wins"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/winsdom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView23"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/killsdom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView21"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Most_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/mostkillsdom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Assists"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow34"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/assistsdom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Most_Assists"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow29"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/mostassistsdom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Highest_Score"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/highestscoredom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow50"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow49"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView30"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Nodes_Captured"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow48"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/nodescaptureddom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow40"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow35"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView35"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Most_Nodes_Captured"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow36"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/mostnodescaptureddom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow41"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow42"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView33"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Nodes_Neutralized"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow43"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/nodesneutralizeddom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow46"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow51"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Most_Nodes_Neutralized"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow52"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/mostnodesneutralizeddom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+<!-- === END DOMINION STATS ROWS === -->
+                
+<!-- === START 3V3 STATS ROWS === -->
+                <TableRow
+                    android:id="@+id/TableRow70"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#000062"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/TextView43"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Normal_3v3"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="28sp"
+                        android:textColor="#ffffff" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow68"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow67"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView42"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Wins"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow66"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/wins3v3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow58"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow53"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView48"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow54"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/kills3v3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow59"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow60"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView46"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Assists"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow61"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/assists3v3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow64"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow69"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView36"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow71"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/minionkills3v3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow63"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow62"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView37"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Neutral_Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow65"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/neutralminionkills3v3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow55"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow57"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView39"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Turrets_Destroyed"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow56"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/turretsdestroyed3v3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+<!-- END 3V3 ROWS -->                
+                
+<!-- START ONE FOR ALL ROWS -->
+                <TableRow
+                    android:id="@+id/TableRow70_ofa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#000062"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/TextView43_ofa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/One_For_All"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="28sp"
+                        android:textColor="#ffffff" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow68_ofa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow67_ofa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView42_ofa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Wins"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow66_ofa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/winsofa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow58_ofa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow53_ofa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView48_ofa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow54_ofa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/killsofa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow59_ofa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow60_ofa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView46_ofa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Assists"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow61_ofa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/assistsofa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow64_ofa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow69_ofa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView36_ofa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow71_ofa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/minionkillsofa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow63_ofa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow62_ofa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView37_ofa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Neutral_Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow65_ofa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/neutralminionkillsofa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow55_ofa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow57_ofa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView39_ofa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Turrets_Destroyed"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow56_ofa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/turretsdestroyedofa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+                
+<!-- END ONE FOR ALL ROWS -->
+
+<!-- START FIRST BLOOD 1V1 ROWS -->
+                <TableRow
+                    android:id="@+id/TableRow70_fb1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#000062"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/TextView43_fb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/First_Blood_1v1"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="28sp"
+                        android:textColor="#ffffff" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow68_fb1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow67_fb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView42_fb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Wins"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow66_fb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/winsfb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow58_fb1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow53_fb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView48_fb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow54_fb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/killsfb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow59_fb1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow60_fb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView46_fb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Assists"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow61_fb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/assistsfb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow64_fb1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow69_fb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView36_fb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow71_fb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/minionkillsfb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow63_fb1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow62_fb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView37_fb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Neutral_Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow65_fb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/neutralminionkillsfb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow55_fb1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow57_fb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView39_fb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Turrets_Destroyed"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow56_fb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/turretsdestroyedfb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+                
+<!-- END FIRST BLOOD 1V1 ROWS -->
+
+<!-- START FIRST BLOOD 2V2 ROWS -->
+                <TableRow
+                    android:id="@+id/TableRow70_fb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#000062"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/TextView43_fb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/First_Blood_2v2"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="28sp"
+                        android:textColor="#ffffff" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow68_fb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow67_fb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView42_fb2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Wins"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow66_fb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/winsfb2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow58_fb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow53_fb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView48_fb2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow54_fb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/killsfb2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow59_fb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow60_fb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView46_fb2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Assists"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow61_fb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/assistsfb2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow64_fb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow69_fb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView36_fb2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow71_fb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/minionkillsfb2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow63_fb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow62_fb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView37_fb2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Neutral_Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow65_fb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/neutralminionkillsfb2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow55_fb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow57_fb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView39_fb2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Turrets_Destroyed"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow56_fb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/turretsdestroyedfb2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+                
+<!-- END FIRST BLOOD 2V2 ROWS -->
+
+<!-- START HEXAKILL ROWS -->
+                <TableRow
+                    android:id="@+id/TableRow70_hex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#000062"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/TextView43_hex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Hexakill"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="28sp"
+                        android:textColor="#ffffff" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow68_hex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow67_hex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView42_hex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Wins"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow66_hex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/winshex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow58_hex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow53_hex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView48_hex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow54_hex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/killshex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow59_hex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow60_hex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView46_hex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Assists"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow61_hex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/assistshex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow64_hex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow69_hex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView36_hex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow71_hex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/minionkillshex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow63_hex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow62_hex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView37_hex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Neutral_Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow65_hex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/neutralminionkillshex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow55_hex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow57_hex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView39_hex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Turrets_Destroyed"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow56_hex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/turretsdestroyedhex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+                
+<!-- END HEXAKILL ROWS -->
+
+<!-- START URF ROWS -->
+                <TableRow
+                    android:id="@+id/TableRow70_urf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#000062"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/TextView43_urf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/URF"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="28sp"
+                        android:textColor="#ffffff" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow68_urf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow67_urf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView42_urf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Wins"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow66_urf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/winsurf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow58_urf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow53_urf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView48_urf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow54_urf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/killsurf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow59_urf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow60_urf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView46_urf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Assists"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow61_urf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/assistsurf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow64_urf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow69_urf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView36_urf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow71_urf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/minionkillsurf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow63_urf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow62_urf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView37_urf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Neutral_Minion_Kills"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow65_urf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/neutralminionkillsurf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow55_urf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TableRow
+                        android:id="@+id/TableRow57_urf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/TextView39_urf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Turrets_Destroyed"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#5FBFFF" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow56_urf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/turretsdestroyedurf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#E6B800" />
+
+                    </TableRow>
+                </TableRow>
+                
+<!-- END URF ROWS -->
+
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:background="#99999D"
+        android:ems="10"
+        android:imeActionLabel="Enter"
+        android:hint="@string/Summoner_Name"
+        android:singleLine="true"
+        android:inputType="textNoSuggestions"
+        android:textColor="#ffffff" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/enter"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/frameLayout1"
+        android:layout_alignTop="@+id/editText1"
+        android:layout_toRightOf="@+id/editText1"
+        android:background="#ffffff"
+        android:onClick="pullStats"
+        android:text="@string/Button_Enter" />
+
+</RelativeLayout>

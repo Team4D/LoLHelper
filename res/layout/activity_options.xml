@@ -1,0 +1,165 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+	        android:id="@+id/scrollView1"
+	        android:layout_width="match_parent"
+	        android:layout_height="fill_parent"
+	        android:background="@drawable/bg"
+		    android:layout_marginTop="0dp"
+	        android:layout_alignParentBottom="true"
+	        android:scrollbars="none" >
+	
+		<RelativeLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:scrollbars="vertical"
+		    android:visibility="visible"
+		    tools:context="com.fourfoureight.lolhelper.Options"
+		    tools:ignore="MergeRootFrame" >
+		    
+		    <TextView
+		        android:id="@+id/textView1"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+		        android:textSize="20sp"
+		        android:layout_alignParentTop="true"
+		        android:layout_marginTop="10dp"
+		        android:textColor="#ffffff"
+		        android:text="Summoner Name:" />
+		   
+		
+		        <EditText
+		        android:id="@+id/editText1"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentTop="true"
+		        android:layout_centerHorizontal="true"
+		        android:layout_marginTop="39dp"
+		        android:background="#99999D"
+		        android:ems="10"
+		        android:imeActionLabel="Enter"
+		        android:hint="@string/Summoner_Name"
+		        android:singleLine="true"
+		        android:inputType="textNoSuggestions"
+		        android:textColor="#ffffff" >
+		    </EditText>
+		
+			    <Button
+	        android:id="@+id/enter"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignTop="@+id/editText1"
+	        android:layout_toRightOf="@+id/editText1"
+	        android:background="#ffffff"
+	        android:onClick="summonerName"
+	        android:text="@string/Button_Enter" />
+			    
+		    <TextView
+	        android:id="@+id/textView2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerHorizontal="true"
+	        android:layout_below="@+id/editText1"
+	        android:textSize="20sp"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginTop="85dp"
+	        android:textColor="#ffffff"
+	        android:text="Language:" />
+		
+		    <Button
+		        android:id="@+id/button1"
+		        android:layout_alignLeft="@id/button4"
+    			android:layout_alignRight="@id/button4"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@+id/editText1"
+		        android:layout_centerHorizontal="true"
+		        android:layout_marginTop="65dp"
+		        android:onClick="english"
+		        android:text="English" />
+		
+		    <Button
+		        android:id="@+id/button2"
+		        android:layout_alignLeft="@id/button4"
+    			android:layout_alignRight="@id/button4"
+    			android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+		        android:layout_below="@+id/button1"
+		        android:layout_marginTop="30dp"
+		        android:onClick="german"
+		        android:text="Deutsch" />
+		    
+		    <Button
+		        android:id="@+id/button3"
+		        android:layout_alignLeft="@id/button4"
+    			android:layout_alignRight="@id/button4"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+		        android:layout_below="@+id/button2"
+		        android:layout_marginTop="30dp"
+		        android:onClick="spanish"
+		        android:text="Español" />
+		    
+		    <Button
+		        android:id="@+id/button4"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+		        android:layout_below="@+id/button3"
+		        android:layout_marginTop="30dp"
+		        android:onClick="french"
+		        android:text="Français" />
+		    
+		    <Button
+		        android:id="@+id/button5"
+		        android:layout_alignLeft="@id/button4"
+    			android:layout_alignRight="@id/button4"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+		        android:layout_below="@+id/button4"
+		        android:layout_marginTop="30dp"
+		        android:onClick="italian"
+		        android:text="Italiano" />
+		    
+		    <TextView
+	        android:id="@+id/textView3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerHorizontal="true"
+	        android:layout_below="@+id/button5"
+	        android:textSize="20sp"
+	        android:layout_marginTop="35dp"
+	        android:textColor="#ffffff"
+	        android:text="Skin:" />
+		
+		    <Button
+		        android:id="@+id/button6"
+		        android:layout_alignLeft="@id/button4"
+    			android:layout_alignRight="@id/button4"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@+id/textView3"
+		        android:layout_centerHorizontal="true"
+		        android:layout_marginTop="25dp"
+		        android:onClick="beta"
+		        android:text="Beta" />
+		    
+		    <Button
+		        android:id="@+id/button7"
+		        android:layout_alignLeft="@id/button4"
+    			android:layout_alignRight="@id/button4"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@+id/button6"
+		        android:layout_centerHorizontal="true"
+		        android:layout_marginTop="30dp"
+		        android:onClick="release1"
+		        android:text="Release" />
+		    
+		</RelativeLayout>
+	
+</ScrollView>

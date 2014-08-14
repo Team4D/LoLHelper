@@ -1,0 +1,836 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg"
+    tools:context="com.example.GeneralInfo"
+    tools:ignore="MergeRootFrame" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" >
+            
+            <RelativeLayout
+                android:layout_width="fill_parent"
+        		android:layout_height="fill_parent"
+        		android:layout_alignParentRight="true"
+	        	android:layout_alignParentTop="true"  >
+	        	
+    <TextView
+        android:id="@+id/nameDis"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="165dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#FFFFFF"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    
+    
+    <TextView
+        android:id="@+id/primaryDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="165dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/secondaryDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/primaryDis"
+        android:layout_marginLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/attackDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/secondaryDis"
+        android:layout_marginLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/defenseDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/attackDis"
+        android:layout_marginLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/difficultyDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/defenseDis"
+        android:layout_marginLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/magicAbilityDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/difficultyDis"
+        android:layout_marginLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/healthDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/magicAbilityDis"
+        android:layout_marginLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/healthRegenDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/healthDis"
+        android:layout_marginLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/manaDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="165dp"
+        android:layout_marginLeft="180dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/manaRegenDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/manaDis"
+        android:layout_marginLeft="180dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/rangeDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/manaRegenDis"
+        android:layout_marginLeft="180dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/attackDamDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/rangeDis"
+        android:layout_marginLeft="180dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/attackSpeedDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/attackDamDis"
+        android:layout_marginLeft="180dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/armorDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/attackSpeedDis"
+        android:layout_marginLeft="180dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/magicResDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/armorDis"
+        android:layout_marginLeft="180dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/titleDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/nameDis"
+        android:layout_below="@+id/nameDis"
+        android:textColor="#FFFFFF"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/movespeedDis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/magicResDis"
+        android:layout_marginLeft="180dp"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+     <ImageView
+         android:id="@+id/icon"
+         android:layout_width="120dp"
+        android:layout_height="120dp"
+         android:layout_marginTop="20dp"
+         android:layout_marginLeft="20dp"
+         android:src="@drawable/clotharmor" />
+
+     <ImageView
+         android:id="@+id/spell0"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/icon"     
+         android:layout_marginTop="210dp"    
+         android:layout_marginLeft="10dp"
+         android:src="@drawable/blitzcrank0" />
+
+      <ImageView
+         android:id="@+id/spell1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="10dp"
+         android:layout_marginLeft="10dp"
+         android:layout_below="@+id/spellStatsPerLevel0Dis"        
+         android:src="@drawable/clotharmor" />
+     
+     
+     <ImageView
+         android:id="@+id/spell2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="10dp"
+         android:layout_marginLeft="10dp"
+         android:layout_below="@+id/spellStatsPerLevel1Dis"
+         android:src="@drawable/clotharmor" />
+
+     <ImageView
+         android:id="@+id/spell3"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="10dp"
+         android:layout_marginLeft="10dp"
+         android:layout_below="@+id/spellStatsPerLevel2Dis"
+         android:src="@drawable/clotharmor" />
+
+     <ImageView
+         android:id="@+id/spell4"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="10dp"
+         android:layout_marginLeft="10dp"
+         android:layout_below="@+id/spellStatsPerLevel3Dis"
+         android:src="@drawable/clotharmor" />
+     
+     <ImageView
+         android:id="@+id/spell5"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="10dp"
+         android:layout_marginLeft="10dp"
+         android:layout_below="@+id/spellStatsPerLevel4Dis"
+         android:src="@drawable/clotharmor" />
+
+     <ImageView
+         android:id="@+id/spell6"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="10dp"
+         android:layout_marginLeft="10dp"
+         android:layout_below="@+id/spellStatsPerLevel5Dis"
+         android:src="@drawable/clotharmor" />
+     
+     <ImageView
+         android:id="@+id/spell7"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="10dp"
+         android:layout_marginLeft="10dp"
+         android:layout_below="@+id/spellStatsPerLevel6Dis"
+         android:src="@drawable/clotharmor" />
+     
+      <ImageView
+         android:id="@+id/spell8"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="10dp"
+         android:layout_marginLeft="10dp"
+         android:layout_below="@+id/spellStatsPerLevel7Dis"
+         android:src="@drawable/clotharmor" />
+
+     
+     
+     <TextView
+        android:id="@+id/spellName0Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_toRightOf="@+id/spell0"
+        android:layout_marginTop="210dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/icon"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellName1Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/spell1"
+        android:layout_below="@+id/spellStatsPerLevel0Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellName2Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/spell2"
+        android:layout_below="@+id/spellStatsPerLevel1Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellName3Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/spell3"
+        android:layout_below="@+id/spellStatsPerLevel2Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellName4Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/spell4"
+        android:layout_below="@+id/spellStatsPerLevel3Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellName5Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/spell5"
+        android:layout_below="@+id/spellStatsPerLevel4Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellName6Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/spell6"
+        android:layout_below="@+id/spellStatsPerLevel5Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellName7Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/spell7"
+        android:layout_below="@+id/spellStatsPerLevel6Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellName8Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/spell8"
+        android:layout_below="@+id/spellStatsPerLevel7Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     
+     
+     <TextView
+        android:id="@+id/spellCost0Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellName0Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCost1Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellName1Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCost2Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellName2Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCost3Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellName3Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCost4Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellName4Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCost5Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellName5Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCost6Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellName6Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCost7Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellName7Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCost8Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellName8Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     
+     
+     
+     <TextView
+        android:id="@+id/spellCooldown0Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCost0Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCooldown1Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCost1Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCooldown2Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCost2Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCooldown3Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCost3Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCooldown4Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCost4Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCooldown5Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCost5Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCooldown6Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCost6Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCooldown7Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCost7Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellCooldown8Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCost8Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     
+     
+     
+     <TextView
+        android:id="@+id/spellRange0Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCooldown0Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellRange1Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCooldown1Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellRange2Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCooldown2Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellRange3Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCooldown3Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellRange4Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCooldown4Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellRange5Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCooldown5Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellRange6Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCooldown6Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellRange7Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCooldown7Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellRange8Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellCooldown8Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     
+     
+     
+     <TextView
+        android:id="@+id/spellDescription0Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellRange0Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellDescription1Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellRange1Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellDescription2Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellRange2Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellDescription3Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellRange3Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellDescription4Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellRange4Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellDescription5Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellRange5Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellDescription6Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellRange6Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellDescription7Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellRange7Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellDescription8Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellRange8Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     
+     
+     
+     <TextView
+        android:id="@+id/spellStatsPerLevel0Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellDescription0Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellStatsPerLevel1Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellDescription1Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellStatsPerLevel2Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellDescription2Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellStatsPerLevel3Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellDescription3Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellStatsPerLevel4Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellDescription4Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellStatsPerLevel5Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellDescription5Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellStatsPerLevel6Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellDescription6Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellStatsPerLevel7Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellDescription7Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     <TextView
+        android:id="@+id/spellStatsPerLevel8Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/spellDescription8Dis"
+        android:textColor="#FFFFFF"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+   
+</RelativeLayout>
+</ScrollView>     
+</RelativeLayout>
+</FrameLayout>

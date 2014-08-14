@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    tools:context="com.fourfoureight.lolhelper.Build_Guides.BuildAdditional"
+    tools:ignore="MergeRootFrame" >
+
+ <LinearLayout 
+       android:id="@+id/container0"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_margin="30dp">
+       <ImageView
+           android:id="@+id/championpic"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/aatrox" />
+
+       <TextView
+           android:id="@+id/championrole"
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           android:layout_marginLeft="25dp"
+           android:gravity="center"
+           android:text="role"
+           android:textColor="#FFFFFF"
+           android:textSize="25dp" />
+   </LinearLayout>
+
+</LinearLayout>
+
