@@ -65,7 +65,6 @@ public class BuildScreen extends ActionBarActivity {
                                      @Override
                                      public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
                                              EXTRA_MESSAGE = adapter.getItemAtPosition(i).toString();
-                                             System.out.println(EXTRA_MESSAGE);
                                              int resID = getResources().getIdentifier(EXTRA_MESSAGE.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", getPackageName());
                                              icon.setImageResource(resID);
                                 

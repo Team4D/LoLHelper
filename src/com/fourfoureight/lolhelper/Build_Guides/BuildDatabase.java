@@ -43,14 +43,13 @@ public class BuildDatabase {
 	private void buildtop(){
 		int i=0;
 		
-		/**
-		 * Build for Scrolling Test
+		/* ADDITIONAL BUILDS EXAMPLE
+		database[i][1].setName("Custom Build");
+		database[i][1].setStart("wardingtotem", "rejuvenationbead", "healthpotion", "stealthward");
+		database[i][1].setRush("vampiricscepter", "mercurytreads", "ravenoushydra");
+		database[i][1].setAsNeeded("warmogsarmor", "randuinsomen", "spiritvisage", "bladeoftheruinedking");
+		numBuilds[i]++;
 		 */
-		database[0][1].setName("Custom Build");
-		database[0][1].setStart("wardingtotem", "rejuvenationbead", "healthpotion", "stealthward");
-		database[0][1].setRush("vampiricscepter", "mercurytreads", "ravenoushydra");
-		database[0][1].setAsNeeded("warmogsarmor", "randuinsomen", "spiritvisage", "bladeoftheruinedking");
-		numBuilds[0]++;
 		
 		//Aatrox
 		database[i][0] = new BuildInfo();
@@ -111,6 +110,12 @@ public class BuildDatabase {
 		database[i][0].setStart("wardingtotem", "doransring", "healthpotion");
 		database[i][0].setRush("rylaiscrystalscepter", "sorcerersshoes", "liandrystorment");
 		database[i][0].setAsNeeded("rabadonsdeathcap", "zhonyashourglass", "voidstaff");
+		
+		//Braum
+		database[++i][0] = new BuildInfo();
+		database[i][0].setStart("wardingtotem", "doransshield", "healthpotion");
+		database[i][0].setRush("sunfirecape", "spiritvisage", "mercurytreads");
+		database[i][0].setAsNeeded("trinityforce", "randuinsomen", "thornmail", "warmogsarmor");
 		
 		//Caitlyn
 		database[++i][0] = new BuildInfo();
@@ -213,6 +218,12 @@ public class BuildDatabase {
 		database[i][0].setStart("wardingtotem", "clotharmor", "healthpotion");
 		database[i][0].setRush("sunfirecape", "theblackcleaver", "randuinsomen");
 		database[i][0].setAsNeeded("mercurytreads", "lastwhisper", "guardianangel", "mawofmalmortius");
+		
+		//Gnar
+		database[++i][0] = new BuildInfo();
+		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
+		database[i][0].setRush("vampiricscepter", "bladeoftheruinedking", "ninjatabi");
+		database[i][0].setAsNeeded("trinityforce", "randuinsomen", "mawofmalmortius", "lastwhisper");
 		
 		//Gragas
 		database[++i][0] = new BuildInfo();
@@ -816,6 +827,12 @@ public class BuildDatabase {
 		database[i][0].setRush("rabadonsdeathcap", "sorcerersshoes", "athenesunholygrail", "voidstaff");
 		database[i][0].setAsNeeded("liandrystorment", "zhonyashourglass", "guardianangel");
 
+		//Braum
+		database[++i][0] = new BuildInfo();
+		database[i][0].setStart("wardingtotem", "rubycrystal", "healthpotion");
+		database[i][0].setRush("bladeoftheruinedking", "mercurytreads", "trinityforce");
+		database[i][0].setAsNeeded("warmogsarmor", "sunfirecape", "spiritvisage", "frozenmallet");
+		
 		//Caitlyn
 		database[++i][0] = new BuildInfo();
 		numBuilds[i]--;
@@ -900,6 +917,12 @@ public class BuildDatabase {
 		database[++i][0] = new BuildInfo();
 		numBuilds[i]--;
 
+		//Gnar
+		database[++i][0] = new BuildInfo();
+		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
+		database[i][0].setRush("vampiricscepter", "ionianbootsoflucidity", "thebloodthirster", "trinityforce");
+		database[i][0].setAsNeeded("bladeoftheruinedking", "infinityedge", "lastwhisper", "youmuusghostblade");
+		
 		//Gragas
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransring", "healthpotion");
@@ -1426,6 +1449,10 @@ public class BuildDatabase {
 		database[i][0].setRush("berserkergreaves", "thebloodthirster", "phantomdancer", "infinityedge");
 		database[i][0].setAsNeeded("guardianangel", "lastwhisper", "bansheesveil");
 		
+		//Braum
+		database[++i][0] = new BuildInfo();
+		numBuilds[i]--;
+		
 		//Caitlyn
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
@@ -1527,6 +1554,12 @@ public class BuildDatabase {
 		database[i][0].setStart("wardingtotem", "bootsofspeed", "healthpotion");
 		database[i][0].setRush("berserkergreaves", "thebloodthirster", "phantomdancer", "infinityedge");
 		database[i][0].setAsNeeded("guardianangel", "lastwhisper", "randuinsomen", "frozenmallet");
+	
+		//Gnar
+		database[++i][0] = new BuildInfo();
+		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
+		database[i][0].setRush("berserkergreaves", "bladeoftheruinedking", "lastwhisper");
+		database[i][0].setAsNeeded("infinityedge", "phantomdancer", "guardianangel", "trinityforce");
 	
 		//Gragas
 		database[++i][0] = new BuildInfo();
@@ -2136,6 +2169,12 @@ public class BuildDatabase {
 		database[i][0].setRush("rubysightstone", "frostqueensclaim", "rylaiscrystalscepter", "bootsofmobility");
 		database[i][0].setAsNeeded("rabadonsdeathcap", "voidstaff", "randuinsomen", "liandrystorment", "locketoftheironsolari");
 		
+		//Braum
+		database[++i][0] = new BuildInfo();
+		database[i][0].setStart("wardingtotem", "relicshield", "healthpotion");
+		database[i][0].setRush("rubysightstone", "mercurytreads", "faceofthemountain");
+		database[i][0].setAsNeeded("randuinsomen", "locketoftheironsolari", "bansheesveil", "frozenheart", "mikaelscrucible");
+	
 		//Caitlyn
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "ancientcoin", "stealthward", "healthpotion");
@@ -2230,6 +2269,10 @@ public class BuildDatabase {
 		database[i][0].setRush("avariceblade", "ninjatabi", "sunfirecape", "rubysightstone");
 		database[i][0].setAsNeeded("warmogsarmor", "talismanofascension", "atmasimpaler");
 
+		//Gnar
+		database[++i][0] = new BuildInfo();
+		numBuilds[i]--;
+		
 		//Gragas
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "spellthiefsedge", "stealthward");
@@ -2778,6 +2821,12 @@ public class BuildDatabase {
 		database[i][0].setRush("spiritofthespectralwraith", "bootsofmobility", "liandrystorment");
 		database[i][0].setAsNeeded("rabadonsdeathcap", "rylaiscrystalscepter", "voidstaff", "abyssalscepter");
 		
+		//Braum
+		database[++i][0] = new BuildInfo();
+		database[i][0].setStart("sweepinglens", "huntersmachete", "healthpotion");
+		database[i][0].setRush("spiritoftheancientgolem", "bootsofswiftness", "phage", "tiamat");
+		database[i][0].setAsNeeded("ravenoushydra", "randuinsomen", "trinityforce", "frozenmallet", "mercurialscimitar");
+		
 		//Caitlyn
 		database[++i][0] = new BuildInfo();
 		numBuilds[i]--;
@@ -2879,6 +2928,12 @@ public class BuildDatabase {
 		database[i][0].setRush("mercurytreads", "spiritoftheancientgolem", "spiritvisage", "sunfirecape");
 		database[i][0].setAsNeeded("locketoftheironsolari", "randuinsomen", "thornmail", "zekesherald");
 
+		//Gnar
+		database[++i][0] = new BuildInfo();
+		database[i][0].setStart("sweepinglens", "huntersmachete", "healthpotion");
+		database[i][0].setRush("wriggleslantern", "ninjatabi", "youmuusghostblade", "trinityforce");
+		database[i][0].setAsNeeded("randuinsomen", "bladeoftheruinedking", "thebloodthirster", "spiritvisage", "warmogsarmor");
+		
 		//Gragas
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "huntersmachete", "healthpotion");
