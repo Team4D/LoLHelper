@@ -30,6 +30,54 @@
            android:textColor="#FFFFFF"
            android:textSize="25dp" />
    </LinearLayout>
+   
+  <LinearLayout 
+       android:id="@+id/container1"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_margin="10dp">
+
+       <TextView
+           android:id="@+id/order"
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           android:text="Skill Order"
+           android:textColor="#FFFFFF"
+           android:textStyle="bold"
+           android:textSize="25dp" />
+   </LinearLayout>
+   
+  <LinearLayout 
+       android:id="@+id/container2"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_margin="10dp">
+       <ImageView
+           android:id="@+id/skill1"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/aatrox1" />
+       <ImageView
+           android:id="@+id/skill2"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="5dp"
+           android:src="@drawable/aatrox2" />
+       <ImageView
+           android:id="@+id/skill3"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="5dp"
+           android:src="@drawable/aatrox3" />
+       <ImageView
+           android:id="@+id/skill4"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="5dp"
+           android:src="@drawable/aatrox4" />
+   </LinearLayout>
 
 </LinearLayout>
 

@@ -1,5 +1,6 @@
 package com.fourfoureight.lolhelper.Build_Guides;
 
+import com.fourfoureight.lolhelper.GlobalVariables;
 import com.fourfoureight.lolhelper.R;
 
 import android.content.Intent;
@@ -19,10 +20,16 @@ public class BuildAdditional extends ActionBarActivity {
 		String champ = intent.getStringExtra("CHAMP");
 		String type = intent.getStringExtra("TYPE");
 		int mNum = intent.getIntExtra("MNUM", 0);
+		int i = ((GlobalVariables) this.getApplication()).getChampionInt(champ.replaceAll("[^a-zA-Z]+","").toLowerCase());
+		String packageName = getPackageName();
 		
 		//Find views
 		ImageView pic = (ImageView) findViewById(R.id.championpic);
 		TextView role = (TextView) findViewById(R.id.championrole);
+		ImageView[] skills = {(ImageView) findViewById(R.id.skill1),
+								(ImageView) findViewById(R.id.skill2),
+								(ImageView) findViewById(R.id.skill3),
+								(ImageView) findViewById(R.id.skill4)};
 		
 		//Set picture and text displayed
 		role.setText(champ + " " + type + " Additional Info:");
@@ -31,5 +38,12 @@ public class BuildAdditional extends ActionBarActivity {
         
 		//Build proper database
 		BuildDatabase database = new BuildDatabase(type);
+		
+		//Set skill order pictures
+		int resID;
+		for(int j=0; j<4; j++){
+			resID = getResources().getIdentifier(champ.replaceAll("[^a-zA-Z]+","").toLowerCase() + Integer.toString(database.getDatabase()[i][mNum].getSkillOrder()[j]), "drawable", packageName);
+			skills[j].setImageResource(resID);
+		}
 	}
 }

@@ -18,6 +18,7 @@ public class BuildInfo {
 			"total_transparent",
 			"total_transparent",
 			"total_transparent"};
+	private int[] skillOrder = {1, 2, 3, 4};
 	
 	private boolean exists = false;
 	private String name = "";
@@ -35,6 +36,15 @@ public class BuildInfo {
 	}
 	public String getName(){
 		return name;
+	}
+	public void setSkillOrder(int s1, int s2, int s3, int s4){
+		skillOrder[0]=s1;
+		skillOrder[1]=s2;
+		skillOrder[2]=s3;
+		skillOrder[3]=s4;
+	}
+	public int[] getSkillOrder(){
+		return skillOrder;
 	}
 	public void setStart(String set){
 		exists = true;
