@@ -7,13 +7,17 @@
     tools:context="com.fourfoureight.lolhelper.UltimateBravery"
     tools:ignore="MergeRootFrame" >
 
-
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
 
     <Button
         android:id="@+id/btnRandom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="375dp"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@+id/iitem6"
+        android:layout_marginTop="30dp"
         android:text="Randomize" />
 
 
@@ -29,7 +33,8 @@
         android:id="@+id/iitem2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
+        android:layout_below="@+id/iitem1"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/headofkhazix" />
 
@@ -37,7 +42,8 @@
         android:id="@+id/iitem3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_below="@+id/iitem2"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/headofkhazix" />
 
@@ -45,7 +51,8 @@
         android:id="@+id/iitem4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="190dp"
+        android:layout_below="@+id/iitem3"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/headofkhazix" />
 
@@ -53,15 +60,17 @@
         android:id="@+id/iitem5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/iitem4"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/headofkhazix" />
 
     <ImageView
         android:id="@+id/iitem6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="290dp"
+        android:layout_below="@+id/iitem5"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/headofkhazix" />
     
@@ -70,39 +79,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="200dp"
+        android:layout_marginLeft="250dp"
         android:src="@drawable/headofkhazix" />    
         
     <ImageView
         android:id="@+id/ispell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="200dp"
+        android:layout_below="@+id/ichampname"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="250dp"
         android:src="@drawable/headofkhazix" />
     
     <ImageView
         android:id="@+id/isummspell1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="150dp"
+        android:layout_below="@+id/ispell"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/headofkhazix" />
 
     <ImageView
         android:id="@+id/isummspell2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="200dp"
+        android:layout_below="@+id/isummspell1"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="250dp"
         android:src="@drawable/headofkhazix" />
 
     <TextView
         android:id="@+id/item1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="70dp"
+        android:layout_toRightOf="@+id/iitem1"
+        android:layout_alignBottom="@+id/iitem1"
+        android:layout_marginLeft="10dp"
         android:textColor="#FFFFFF"
         android:text="item" />
     
@@ -110,8 +123,9 @@
         android:id="@+id/item2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
-        android:layout_marginLeft="70dp"
+        android:layout_toRightOf="@+id/iitem2"
+        android:layout_alignBottom="@+id/iitem2"
+        android:layout_marginLeft="10dp"
         android:textColor="#FFFFFF"
         android:text="item" />
     
@@ -119,8 +133,9 @@
         android:id="@+id/item3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:layout_marginLeft="70dp"
+        android:layout_toRightOf="@+id/iitem3"
+        android:layout_alignBottom="@+id/iitem3"
+        android:layout_marginLeft="10dp"
         android:textColor="#FFFFFF"
         android:text="item" />
     
@@ -128,8 +143,9 @@
         android:id="@+id/item4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="190dp"
-        android:layout_marginLeft="70dp"
+        android:layout_toRightOf="@+id/iitem4"
+        android:layout_alignBottom="@+id/iitem4"
+        android:layout_marginLeft="10dp"
         android:textColor="#FFFFFF"
         android:text="item" />
     
@@ -137,8 +153,9 @@
         android:id="@+id/item5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
-        android:layout_marginLeft="70dp"
+        android:layout_toRightOf="@+id/iitem5"
+        android:layout_alignBottom="@+id/iitem5"
+        android:layout_marginLeft="10dp"
         android:textColor="#FFFFFF"
         android:text="item" />
     
@@ -146,8 +163,9 @@
         android:id="@+id/item6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="290dp"
-        android:layout_marginLeft="70dp"
+        android:layout_toRightOf="@+id/iitem6"
+        android:layout_alignBottom="@+id/iitem6"
+        android:layout_marginLeft="10dp"
         android:textColor="#FFFFFF"
         android:text="item" />
     
@@ -155,8 +173,9 @@
         android:id="@+id/champname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="240dp"
+        android:layout_toRightOf="@+id/ichampname"
+        android:layout_alignBottom="@+id/ichampname"
+        android:layout_marginLeft="10dp"
         android:textColor="#FFFFFF"
         android:text="TextView" />
     
@@ -164,8 +183,9 @@
         android:id="@+id/mastery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
-        android:layout_marginLeft="200dp"
+        android:layout_toRightOf="@+id/isummspell1"
+        android:layout_alignBottom="@+id/iitem6"
+        android:layout_marginLeft="10dp"
         android:textColor="#FFFFFF"
         android:text="TextView" /> 
         
@@ -173,8 +193,9 @@
         android:id="@+id/summspell1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="240dp"
+        android:layout_toRightOf="@+id/isummspell1"
+        android:layout_alignBottom="@+id/isummspell1"
+        android:layout_marginLeft="10dp"
         android:textColor="#FFFFFF"
         android:text="TextView" />
     
@@ -182,8 +203,9 @@
         android:id="@+id/summspell2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="240dp"
+        android:layout_toRightOf="@+id/isummspell2"
+        android:layout_alignBottom="@+id/isummspell2"
+        android:layout_marginLeft="10dp"
         android:textColor="#FFFFFF"
         android:text="TextView" /> 
         
@@ -191,8 +213,9 @@
         android:id="@+id/spell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="200dp"
+        android:layout_toRightOf="@+id/ispell"
+        android:layout_alignBottom="@+id/ispell"
+        android:layout_marginLeft="10dp"
         android:shadowColor="#000000"
         android:shadowDx="1"
         android:shadowDy="1"
@@ -201,6 +224,7 @@
         android:textColor="#FFFFFF"
         android:text="TextView" /> 
     
+    </RelativeLayout>
     
 </FrameLayout>
 

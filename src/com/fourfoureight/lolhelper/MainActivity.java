@@ -77,11 +77,11 @@ public class MainActivity extends ActionBarActivity {
             	{
             		playerStats(v);
             	}
-            	else if (groupPosition == 4) // If Options is pressed, no expansion is necessary, go directly to screen
-            	{
-            		options(v);
-            	}
-            	else if (groupPosition == 5) // If About is pressed, no expansion is necessary, go directly to screen
+            	//else if (groupPosition == 4) // If Options is pressed, no expansion is necessary, go directly to screen
+            	//{
+            	//	options(v);
+            	//}
+            	else if (groupPosition == 4) // If About is pressed, no expansion is necessary, go directly to screen
             	{
             		about(v);
             	}
@@ -138,6 +138,7 @@ public class MainActivity extends ActionBarActivity {
         adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER);
         adView.setAdUnitId(AD_UNIT_ID);
+        adView.setBottom(0);
 
         // Add the AdView to the view hierarchy. The view will have no size
         // until the ad is loaded.
@@ -152,6 +153,7 @@ public class MainActivity extends ActionBarActivity {
 
         // Start loading the ad in the background.
         adView.loadAd(adRequest);
+        
     }
     
     private void prepareListData() {
@@ -180,7 +182,7 @@ public class MainActivity extends ActionBarActivity {
         listDataHeader.add(inGameString);
         listDataHeader.add(playerStatsString);
         listDataHeader.add(generalInfoString);
-        listDataHeader.add(optionsString);
+        //listDataHeader.add(optionsString);
         listDataHeader.add(aboutString);
  
         // Subbutton names
@@ -208,8 +210,8 @@ public class MainActivity extends ActionBarActivity {
         listDataChild.put(listDataHeader.get(1), inGame);
         listDataChild.put(listDataHeader.get(2), playerStats);
         listDataChild.put(listDataHeader.get(3), generalInfo);
-        listDataChild.put(listDataHeader.get(4), options);
-        listDataChild.put(listDataHeader.get(5), about);
+        //listDataChild.put(listDataHeader.get(4), options);
+        listDataChild.put(listDataHeader.get(4), about);
     }
 
     @Override
