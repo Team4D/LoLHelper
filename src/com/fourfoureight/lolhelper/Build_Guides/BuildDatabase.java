@@ -145,289 +145,337 @@ public class BuildDatabase {
 		database[i][0].setStart("wardingtotem", "doransring", "healthpotion");
 		database[i][0].setRush("rylaiscrystalscepter", "sorcerersshoes", "liandrystorment");
 		database[i][0].setAsNeeded("rabadonsdeathcap", "zhonyashourglass", "voidstaff");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Cho'Gath
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransring", "healthpotion");
 		database[i][0].setRush("rodofages", "mercurytreads", "spiritvisage");
 		database[i][0].setAsNeeded("rylaiscrystalscepter", "randuinsomen", "warmogsarmor");
+		database[i][0].setSkillOrder(r, w, q, e);
 		
 		//Corki
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
-		database[i][0].setRush("trinityforce", "berserkergreaves", "infinityedge");
-		database[i][0].setAsNeeded("lastwhisper", "phantomdancer", "guardianangel", "thebloodthirster");
+		database[i][0].setRush("manamune", "berserkergreaves", "theblackcleaver");
+		database[i][0].setAsNeeded("infinityedge", "guardianangel", "thebloodthirster");
+		database[i][0].setSkillOrder(r, q, e, w);
 		
 		//Darius
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
 		database[i][0].setRush("ravenoushydra", "mercurytreads", "sunfirecape");
 		database[i][0].setAsNeeded("frozenheart", "trinityforce", "guardianangel", "mawofmalmortius");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Diana
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "clotharmor", "healthpotion", "stealthward");
 		database[i][0].setRush("zhonyashourglass", "sorcerersshoes", "rabadonsdeathcap");
 		database[i][0].setAsNeeded("nashorstooth", "lichbane", "abyssalscepter", "voidstaff");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Dr. Mundo
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransshield", "healthpotion");
 		database[i][0].setRush("sunfirecape", "ninjatabi", "spiritvisage");
 		database[i][0].setAsNeeded("thornmail", "warmogsarmor", "randuinsomen", "bansheesveil");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Draven
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
 		database[i][0].setRush("thebloodthirster", "berserkergreaves", "infinityedge");
 		database[i][0].setAsNeeded("lastwhisper", "phantomdancer", "guardianangel", "zephyr");
+		database[i][0].setSkillOrder(r, q, e, w);
 		
 		//Elise
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
 		database[i][0].setRush("sunfirecape", "sorcerersshoes", "liandrystorment");
 		database[i][0].setAsNeeded("abyssalscepter", "iceborngauntlet", "warmogsarmor", "rylaiscrystalscepter");	
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Evelynn
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
 		database[i][0].setRush("zhonyashourglass", "sorcerersshoes", "trinityforce");
 		database[i][0].setAsNeeded("lichbane", "iceborngauntlet", "deathfiregrasp", "liandrystorment");
+		database[i][0].setSkillOrder(r, q, e, w);
 		
 		//Ezreal
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
 		database[i][0].setRush("trinityforce", "berserkergreaves", "infinityedge");
 		database[i][0].setAsNeeded("lastwhisper", "phantomdancer", "guardianangel", "thebloodthirster");
+		database[i][0].setSkillOrder(r, q, e, w);
 		
 		//Fiddlesticks
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransring", "healthpotion");
 		database[i][0].setRush("zhonyashourglass", "sorcerersshoes", "rabadonsdeathcap");
 		database[i][0].setAsNeeded("rodofages", "lichbane", "abyssalscepter", "voidstaff");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Fiora
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
 		database[i][0].setRush("ravenoushydra", "mercurytreads", "youmuusghostblade");
 		database[i][0].setAsNeeded("lastwhisper", "bladeoftheruinedking", "thebloodthirster", "infinityedge");
+		database[i][0].setSkillOrder(r, w, q, e);
 		
 		//Fizz
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "clotharmor", "healthpotion", "stealthward");
 		database[i][0].setRush("lichbane", "sorcerersshoes", "rabadonsdeathcap");
 		database[i][0].setAsNeeded("nashorstooth", "zhonyashourglass", "abyssalscepter", "voidstaff");
+		database[i][0].setSkillOrder(r, w, e, q);
 		
 		//Galio
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
 		database[i][0].setRush("athenesunholygrail", "abyssalscepter", "bansheesveil");
 		database[i][0].setAsNeeded("mercurytreads", "spiritvisage", "rabadonsshield", "zhonyashourglass");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Gangplank
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
 		database[i][0].setRush("ravenoushydra", "mercurytreads", "iceborngauntlet");
 		database[i][0].setAsNeeded("sunfirecape", "statikkshiv", "spiritvisage", "trinityforce");
+		database[i][0].setSkillOrder(r, e, w, q);
 		
 		//Garen
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "clotharmor", "healthpotion");
 		database[i][0].setRush("sunfirecape", "theblackcleaver", "randuinsomen");
 		database[i][0].setAsNeeded("mercurytreads", "lastwhisper", "guardianangel", "mawofmalmortius");
+		database[i][0].setSkillOrder(r, e, q, w);
 		
 		//Gnar
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
 		database[i][0].setRush("vampiricscepter", "bladeoftheruinedking", "ninjatabi");
 		database[i][0].setAsNeeded("trinityforce", "randuinsomen", "mawofmalmortius", "lastwhisper");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Gragas
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "bootsofspeed", "healthpotion");
 		database[i][0].setRush("sunfirecape", "spiritvisage", "randuinsomen");
 		database[i][0].setAsNeeded("mercurytreads", "abyssalscepter", "randuinsomen", "warmogsarmor");		
+		database[i][0].setSkillOrder(r, e, w, q);
 		
 		//Graves
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
 		database[i][0].setRush("thebloodthirster", "berserkergreaves", "infinityedge");
 		database[i][0].setAsNeeded("lastwhisper", "phantomdancer", "guardianangel", "zephyr");
+		database[i][0].setSkillOrder(r, q, e, w);
 		
 		//Hecarim
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
 		database[i][0].setRush("ravenoushydra", "mercurytreads", "iceborngauntlet");
 		database[i][0].setAsNeeded("sunfirecape", "statikkshiv", "spiritvisage", "trinityforce");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Heimerdinger
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransring", "healthpotion");
 		database[i][0].setRush("zhonyashourglass", "sorcerersshoes", "rabadonsdeathcap");
 		database[i][0].setAsNeeded("rodofages", "lichbane", "abyssalscepter", "voidstaff");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Irelia
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "clotharmor", "healthpotion");
 		database[i][0].setRush("trinityforce", "mercurytreads", "randuinsomen");
 		database[i][0].setAsNeeded("frozenheart", "bansheesveil", "ravenoushydra", "guardianangel");
+		database[i][0].setSkillOrder(r, w, e, q);
 		
 		//Janna
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransring", "healthpotion");
 		database[i][0].setRush("seraphsembrace", "sorcerersshoes", "rabadonsdeathcap");
 		database[i][0].setAsNeeded("zhonyashourglass", "liandrystorment", "rodofages", "voidstaff");
-
+		database[i][0].setSkillOrder(r, w, e, q);
+		
 		//J4
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "clotharmor", "healthpotion");
 		database[i][0].setRush("sunfirecape", "mercurytreads", "randuinsomen");
 		database[i][0].setAsNeeded("frozenheart", "bansheesveil", "trinityforce", "guardianangel");
+		database[i][0].setSkillOrder(r, q, e, w);
 		
 		//Jax
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
 		database[i][0].setRush("trinityforce", "mercurytreads", "bladeoftheruinedking");
 		database[i][0].setAsNeeded("randuinsomen", "bansheesveil", "warmogsarmor", "guardianangel");
+		database[i][0].setSkillOrder(r, w, q, e);
 		
 		//Jayce
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
 		database[i][0].setRush("manamune", "mercurytreads", "thebloodthirster");
 		database[i][0].setAsNeeded("bladeoftheruinedking", "mawofmalmortius", "guardianangel", "lastwhisper");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Jinx
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
 		database[i][0].setRush("thebloodthirster", "berserkergreaves", "infinityedge");
 		database[i][0].setAsNeeded("lastwhisper", "phantomdancer", "guardianangel", "zephyr");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Karma
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransring", "healthpotion");
 		database[i][0].setRush("deathfiregrasp", "sorcerersshoes", "rabadonsdeathcap");
 		database[i][0].setAsNeeded("zhonyashourglass", "rylaiscrystalscepter", "liandrystorment","voidstaff");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Karthus
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransring", "healthpotion");
 		database[i][0].setRush("archangelsstaff", "sorcerersshoes", "rabadonsdeathcap");
 		database[i][0].setAsNeeded("zhonyashourglass", "rylaiscrystalscepter", "liandrystorment","voidstaff");
+		database[i][0].setSkillOrder(r, q, e, w);
 		
 		//Kassadin
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
 		database[i][0].setRush("zhonyashourglass", "sorcerersshoes", "rabadonsdeathcap");
 		database[i][0].setAsNeeded("deathfiregrasp", "rylaiscrystalscepter", "liandrystorment","voidstaff");
+		database[i][0].setSkillOrder(r, q, e, w);
 		
 		//Katarina
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "bootsofspeed", "healthpotion");
 		database[i][0].setRush("zhonyashourglass", "sorcerersshoes", "rabadonsdeathcap");
 		database[i][0].setAsNeeded("voidstaff", "rylaiscrystalscepter", "liandrystorment","voidstaff");
+		database[i][0].setSkillOrder(r, w, q, e);
 		
 		//Kayle
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
 		database[i][0].setRush("nashorstooth", "berserkergreaves", "lichbane");
 		database[i][0].setAsNeeded("rabadonsdeathcap", "guinsoosrageblade", "liandrystorment","iceborngauntlet");
+		database[i][0].setSkillOrder(r, q, e, w);
 		
 		//Kennen
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "bootsofspeed", "healthpotion");
 		database[i][0].setRush("zhonyashourglass", "sorcerersshoes", "rabadonsdeathcap");
 		database[i][0].setAsNeeded("voidstaff", "rylaiscrystalscepter", "liandrystorment","voidstaff");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Kha'Zix
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
 		database[i][0].setRush("thebloodthirster", "mercurytreads", "lastwhisper");
 		database[i][0].setAsNeeded("mawofmalmortius", "randuinsomen", "theblackcleaver","ravenoushydra");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Kog'Maw
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
 		database[i][0].setRush("bladeoftheruinedking", "berserkergreaves", "infinityedge");
 		database[i][0].setAsNeeded("guardianangel", "lastwhisper", "phantomdancer","mercurialscimitar");
+		database[i][0].setSkillOrder(r, w, e, q);
 		
 		//LeBlanc
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransring", "healthpotion");
 		database[i][0].setRush("deathfiregrasp", "sorcerersshoes", "rabadonsdeathcap");
 		database[i][0].setAsNeeded("zhonyashourglass", "rylaiscrystalscepter", "liandrystorment","voidstaff");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Lee Sin
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
 		database[i][0].setRush("ravenoushydra", "mercurytreads", "mawofmalmortius");
 		database[i][0].setAsNeeded("trinityforce", "rubysightstone", "theblackcleaver","frozenmallet");
+		database[i][0].setSkillOrder(r, q, e, w);
 		
 		//Leona
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
 		database[i][0].setRush("sunfirecape", "mercurytreads", "iceborngauntlet");
 		database[i][0].setAsNeeded("frozenheart", "bansheesveil", "liandrystorment", "guardianangel");
+		database[i][0].setSkillOrder(r, w, q, e);
 		
 		//Lissandra
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
 		database[i][0].setRush("seraphsembrace", "sorcerersshoes", "rabadonsdeathcap");
 		database[i][0].setAsNeeded("zhonyashourglass", "liandrystorment", "rodofages", "voidstaff");
-
+		database[i][0].setSkillOrder(r, q, w, e);
+		
 		//Lucian
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
 		database[i][0].setRush("thebloodthirster", "berserkergreaves", "infinityedge");
 		database[i][0].setAsNeeded("lastwhisper", "phantomdancer", "guardianangel", "zephyr");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Lulu
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransring", "healthpotion");
 		database[i][0].setRush("zhonyashourglass", "sorcerersshoes", "rabadonsdeathcap");
 		database[i][0].setAsNeeded("lichbane", "rylaiscrystalscepter", "liandrystorment","voidstaff");
+		database[i][0].setSkillOrder(r, q, e, w);
 		
 		//Lux
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransring", "healthpotion");
 		database[i][0].setRush("zhonyashourglass", "sorcerersshoes", "rabadonsdeathcap");
 		database[i][0].setAsNeeded("archangelsstaff", "rylaiscrystalscepter", "liandrystorment","voidstaff");
+		database[i][0].setSkillOrder(r, q, e, w);
 		
 		//Malphite
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
 		database[i][0].setRush("sunfirecape", "mercurytreads", "randuinsomen");
 		database[i][0].setAsNeeded("frozenheart", "bansheesveil", "trinityforce", "guardianangel");
+		database[i][0].setSkillOrder(r, e, q, w);
 		
 		//Malzahar
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransring", "healthpotion");
 		database[i][0].setRush("zhonyashourglass", "sorcerersshoes", "rabadonsdeathcap");
 		database[i][0].setAsNeeded("archangelsstaff", "rylaiscrystalscepter", "liandrystorment","voidstaff");
+		database[i][0].setSkillOrder(r, e, q, w);
 		
 		//Maokai
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
 		database[i][0].setRush("sunfirecape", "mercurytreads", "iceborngauntlet");
 		database[i][0].setAsNeeded("frozenheart", "bansheesveil", "liandrystorment", "guardianangel");
+		database[i][0].setSkillOrder(r, q, e, w);
 		
 		//Master Yi
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "longsword", "healthpotion");
 		database[i][0].setRush("bladeoftheruinedking", "berserkergreaves", "infinityedge");
 		database[i][0].setAsNeeded("phantomdancer", "ravenoushydra", "warmogsarmor", "mawofmalmortius");
+		database[i][0].setSkillOrder(r, q, e, w);
 		
 		//Miss Fortune
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
 		database[i][0].setRush("thebloodthirster", "berserkergreaves", "infinityedge");
 		database[i][0].setAsNeeded("lastwhisper", "phantomdancer", "guardianangel", "zephyr");
+		database[i][0].setSkillOrder(r, q, w, e);
 		
 		//Mordekaiser
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransshield", "healthpotion");
 		database[i][0].setRush("hextechgunblade", "sorcerersshoes", "zhonyashourglass");
 		database[i][0].setAsNeeded("deathfiregrasp", "rabadonsdeathcap", "voidstaff", "guardianangel");
-
+		database[i][0].setSkillOrder(r, e, q, w);
+		
 		//Morgana
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "doransring", "healthpotion");
