@@ -3,7 +3,7 @@ package com.fourfoureight.lolhelper;
 import com.fourfoureight.lolhelper.General_Info.ChampionAttributes;
 
 // Description:
-// Utitlity class for Team Builder, contains all the data processing methods.
+// Utility class for Team Builder, contains all the data processing methods.
 // Caller: TeamBuilder.java
 public class TeamBuilderData{
 
@@ -56,7 +56,7 @@ public class TeamBuilderData{
 		int[] AsheAttributes = {20, 20, 20, 20, 10, 0, 0, 0, 10, 10};
 		int[] BlitzcrankAttributes = {20, 0, 10, 20, 10, 0, 0, 0, 10, 10};
 		int[] BrandAttributes = {10, 10, 20, 20, 20, 0, 0, 0, 10, 10};
-		int[] BraumAttributes = {20, 0, 0, 0, 0, 10, 0, 0, 20, 20};
+		int[] BraumAttributes = {10, 20, 20, 20, 20, 0, 0, 0, 10, 10};
 		int[] CaitlynAttributes = {0, 10, 20, 10, 0, 0, 0, 0, 20, 10};
 		int[] CassiopeiaAttributes = {10, 20, 20, 20, 20, 0, 0, 0, 10, 10};
 		int[] ChoGathAttributes = {20, 20, 20, 20, 10, 0, 0, 0, 10, 10};
@@ -74,7 +74,7 @@ public class TeamBuilderData{
 		int[] GalioAttributes = {10, 20, 20, 20, 20, 0, 0, 0, 10, 10};
 		int[] GangplankAttributes = {10, 0, 20, 20, 10, 0, 0, 0, 10, 10};
 		int[] GarenAttributes = {10, 10, 0, 10, 10, 20, 0, 0, 20, 10};
-		int[] GnarAttributes = {20, 10, 10, 10, 20, 20, 20, 10, 0, 0};
+		int[] GnarAttributes = {20, 20, 20, 10, 20, 10, 20, 0, 10, 10};
 		int[] GragasAttributes = {20, 20, 20, 20, 10, 0, 0, 0, 10, 10};
 		int[] GravesAttributes = {10, 10, 20, 20, 10, 0, 0, 0, 10, 10};
 		int[] HecarimAttributes = {20, 10, 0, 10, 10, 0, 0, 0, 10, 10};
@@ -196,7 +196,7 @@ public class TeamBuilderData{
 		int[] GalioPositions = {0, 0, 1, 0, 1};
 		int[] GangplankPositions = {1, 0, 0, 0, 0};
 		int[] GarenPositions = {1, 0, 0, 0, 0};
-		int[] GnarPositions = {1, 1, 1, 1, 0};
+		int[] GnarPositions = {1, 0, 0, 0, 0};
 		int[] GragasPositions = {0, 1, 1, 0, 0};
 		int[] GravesPositions = {0, 0, 0, 1, 0};
 		int[] HecarimPositions = {0, 1, 0, 0, 0};
@@ -211,7 +211,7 @@ public class TeamBuilderData{
 		int[] KarthusPositions = {0, 0, 1, 0, 0};
 		int[] KassadinPositions = {0, 0, 1, 0, 0};
 		int[] KatarinaPositions = {0, 0, 1, 0, 0};
-		int[] KaylePositions = {0, 0, 1, 0, 1};
+		int[] KaylePositions = {1, 0, 1, 0, 0};
 		int[] KennenPositions = {1, 0, 1, 0, 0};
 		int[] KhaZixPositions = {0, 1, 1, 0, 0};
 		int[] KogMawPositions = {0, 0, 1, 1, 0};
@@ -220,7 +220,7 @@ public class TeamBuilderData{
 		int[] LeonaPositions = {0, 0, 0, 0, 1};
 		int[] LissandraPositions = {0, 0, 1, 0, 0};
 		int[] LucianPositions = {0, 0, 0, 1, 0};
-		int[] LuluPositions = {0, 0, 1, 0, 1};
+		int[] LuluPositions = {1, 0, 0, 0, 1};
 		int[] LuxPositions = {0, 0, 1, 0, 1};
 		int[] MalphitePositions = {1, 1, 0, 0, 0};
 		int[] MalzaharPositions = {0, 0, 1, 0, 0};
