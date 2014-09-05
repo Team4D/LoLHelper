@@ -2,6 +2,8 @@ package com.fourfoureight.lolhelper;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +26,7 @@ import com.fourfoureight.lolhelper.General_Info.ChampionAttributes;
 // Description:
 // This is the main Team Builder class.
 // It deals with the user interface for the team builder page.
+
 public class TeamBuilder extends ActionBarActivity {
     
 	// Create an instance for the data storage class.
@@ -285,11 +288,33 @@ public class TeamBuilder extends ActionBarActivity {
 				
 				// Table to display all available champions
 				table.removeAllViews();
-				int buttonInRow = 5;
+				
+				// Calculate the screen diagonal in inches to identify it's a tablet or a phone.
+				DisplayMetrics dm = new DisplayMetrics();
+				getWindowManager().getDefaultDisplay().getMetrics(dm);
+				int width=dm.widthPixels;
+				int height=dm.heightPixels;
+				int dens=dm.densityDpi;
+				double wi=(double)width/(double)dens;
+				double hi=(double)height/(double)dens;
+				double x = Math.pow(wi,2);
+				double y = Math.pow(hi,2);
+				double screenInches = Math.sqrt(x+y);
+				
+				// Set the max num of buttons in a row according to the device size.
+				int maxButtonInRow;
+				if (screenInches < 6)
+					maxButtonInRow = 5;		// A phone is less than 6 inches.
+				else if (screenInches < 9)
+					maxButtonInRow = 8;		// Small tablets are considered between 6 to 9 inches.
+				else
+					maxButtonInRow = 11;		// For big tablets (larger than 9 inches).
+				
+				int buttonInRow = maxButtonInRow;
 				TableRow currentRow = null;
 				ChampionAttributes[] allAvailableChampions = teambuilder.getAllAvailableChampions();
 				for (int i = 0; i < allAvailableChampions.length; i++){
-					if (buttonInRow == 5){
+					if (buttonInRow == maxButtonInRow){
 						buttonInRow = 0;
 						TableRow newRow = new TableRow(TeamBuilder.this);
 						newRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 60));
@@ -475,10 +500,14 @@ public class TeamBuilder extends ActionBarActivity {
     
 	// Initialization method for automatically generated imagebuttons.
     private ImageButton initializeButton(ImageButton icon, ChampionAttributes champion){
-    	icon.setMaxHeight(180);
-    	icon.setMaxWidth(180);
-    	icon.setMinimumHeight(150);
-    	icon.setMinimumWidth(150);
+    	// First calculate how many pixels is 60 dip, which is the size of all imagebuttons.
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        float dpInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, dm);
+        
+    	icon.setMaxHeight((int)dpInPx);
+    	icon.setMaxWidth((int)dpInPx);
+    	icon.setMinimumHeight((int)dpInPx);
+    	icon.setMinimumWidth((int)dpInPx);
     	icon.setAdjustViewBounds(true);
     	icon.setScaleType(ScaleType.CENTER);
     	String message = champion.getName();
