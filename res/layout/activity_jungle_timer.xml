@@ -25,6 +25,7 @@
         android:id="@+id/imageButton1"
         android:layout_width="wrap_content"
         android:layout_height="125dp"
+        android:layout_alignLeft="@+id/ImageButton3"
         android:layout_alignRight="@+id/relativeLayout1"
         android:adjustViewBounds="true"
         android:background="#7A1F00"
@@ -39,6 +40,7 @@
         android:layout_height="125dp"
         android:layout_alignLeft="@+id/relativeLayout1"
         android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/tableRow2"
         android:background="#7A1F00"
         android:contentDescription="@id/imageButton2"
         android:onClick="RedLizard"
@@ -49,6 +51,7 @@
         android:id="@+id/ImageButton3"
         android:layout_width="wrap_content"
         android:layout_height="125dp"
+        android:layout_alignLeft="@+id/ImageButton5"
         android:layout_alignRight="@+id/relativeLayout1"
         android:layout_below="@id/imageButton1"
         android:adjustViewBounds="true"
@@ -63,6 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="125dp"
         android:layout_alignLeft="@+id/relativeLayout1"
+        android:layout_alignRight="@+id/tableRow4"
         android:layout_below="@id/imageButton2"
         android:background="#001F3D"
         android:contentDescription="@id/ImageButton4"
@@ -80,7 +84,7 @@
         android:background="#3C3C3C"
         android:contentDescription="@id/ImageButton5"
         android:onClick="Dragon"
-        android:scaleType="fitStart"
+        android:scaleType="fitCenter"
         android:src="@drawable/dragon" />
 
     <ImageButton
