@@ -7,15 +7,17 @@ import java.io.OutputStream;
 
 import android.content.Context;
 import android.database.SQLException;
-import android.database.sqlite.*;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBcounters extends SQLiteOpenHelper
 {
 
 	// The Android's default system path of your application database.
-	private static String DB_PATH = "/data/data/com.fourfoureight.lolhelper/databases/";
+	private final String DB_PATH;
 
-	private static String DB_NAME = "countersdb";
+	private static final String DB_NAME = "countersdb";
 
 	private SQLiteDatabase myDataBase;
 
@@ -29,18 +31,17 @@ public class DBcounters extends SQLiteOpenHelper
 	 */
 	public DBcounters(Context context)
 	{
-
 		super(context, DB_NAME, null, 1);
 		this.myContext = context;
+		this.DB_PATH = context.getFilesDir().getParentFile().getPath() + "/databases/";
 	}
 
 	/**
 	 * Creates a empty database on the system and rewrites it with your own
 	 * database.
-	 * */
+	 */
 	public void createDataBase() throws IOException
 	{
-
 		boolean dbExist = checkDataBase();
 
 		if (dbExist)
@@ -64,7 +65,6 @@ public class DBcounters extends SQLiteOpenHelper
 			{
 
 				throw new Error("Error copying database");
-
 			}
 		}
 
@@ -78,7 +78,6 @@ public class DBcounters extends SQLiteOpenHelper
 	 */
 	private boolean checkDataBase()
 	{
-
 		SQLiteDatabase checkDB = null;
 
 		try
@@ -108,7 +107,7 @@ public class DBcounters extends SQLiteOpenHelper
 	 * Copies your database from your local assets-folder to the just created
 	 * empty database in the system folder, from where it can be accessed and
 	 * handled. This is done by transfering bytestream.
-	 * */
+	 */
 	private void copyDataBase() throws IOException
 	{
 

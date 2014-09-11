@@ -2,23 +2,17 @@ package com.fourfoureight.lolhelper;
 
 import java.io.IOException;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.os.Build;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.database.sqlite.*;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class Leaguecounters extends ActionBarActivity
 {
@@ -27,16 +21,16 @@ public class Leaguecounters extends ActionBarActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_leaguecounters);
-		
-        RelativeLayout layout = (RelativeLayout)findViewById(R.id.container);
-        if (((GlobalVariables) this.getApplication()).getskin() == 1)
-    	{
-    		layout.setBackgroundResource(R.drawable.bg);
-    	}
-    	if (((GlobalVariables) this.getApplication()).getskin() == 2)
-    	{
-    		layout.setBackgroundResource(R.drawable.bg2);
-    	}
+
+		RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
+		if (((GlobalVariables) this.getApplication()).getskin() == 1)
+		{
+			layout.setBackgroundResource(R.drawable.bg);
+		}
+		if (((GlobalVariables) this.getApplication()).getskin() == 2)
+		{
+			layout.setBackgroundResource(R.drawable.bg2);
+		}
 
 		DBcounters myDbHelper = new DBcounters(this);
 

@@ -30,6 +30,15 @@ public class LOLSQLiteHelper extends SQLiteOpenHelper
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
+	public static synchronized LOLSQLiteHelper getInstance(Context context)
+	{
+		if (instance == null)
+		{
+			instance = new LOLSQLiteHelper(context);
+		}
+		return instance;
+	}
+
 	@Override
 	public SQLiteDatabase getWritableDatabase()
 	{
@@ -57,15 +66,6 @@ public class LOLSQLiteHelper extends SQLiteOpenHelper
 		}
 
 		return db;
-	}
-
-	public static synchronized LOLSQLiteHelper getInstance(Context context)
-	{
-		if (instance == null)
-		{
-			instance = new LOLSQLiteHelper(context);
-		}
-		return instance;
 	}
 
 	@Override

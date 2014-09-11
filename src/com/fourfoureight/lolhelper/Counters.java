@@ -1,25 +1,18 @@
 package com.fourfoureight.lolhelper;
 
-import com.fourfoureight.lolhelper.General_Info.SpellDatabase;
-
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.os.Build;
+
+import com.fourfoureight.lolhelper.General_Info.SpellDatabase;
 
 public class Counters extends ActionBarActivity
 {
@@ -32,25 +25,23 @@ public class Counters extends ActionBarActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_counters);
-		
-        LinearLayout layout = (LinearLayout)findViewById(R.id.container);
-        if (((GlobalVariables) this.getApplication()).getskin() == 1)
-    	{
-    		layout.setBackgroundResource(R.drawable.bg);
-    	}
-    	if (((GlobalVariables) this.getApplication()).getskin() == 2)
-    	{
-    		layout.setBackgroundResource(R.drawable.bg2);
-    	}
+
+		LinearLayout layout = (LinearLayout) findViewById(R.id.container);
+		if (((GlobalVariables) this.getApplication()).getskin() == 1)
+		{
+			layout.setBackgroundResource(R.drawable.bg);
+		}
+		if (((GlobalVariables) this.getApplication()).getskin() == 2)
+		{
+			layout.setBackgroundResource(R.drawable.bg2);
+		}
 
 		SpellDatabase.makeSpellDatabase();
-
 
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 				this, R.array.champion_array, R.layout.spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		final ImageView icon = (ImageView) findViewById(R.id.icon);
-		int i = 0;
 
 		Spinner s = (Spinner) findViewById(R.id.spinner1);
 		s.setAdapter(adapter);
@@ -58,20 +49,24 @@ public class Counters extends ActionBarActivity
 		{
 
 			@Override
-			public void onItemSelected(AdapterView adapter, View v, int i,	long lng)
+			public void onItemSelected(AdapterView adapter, View v, int i, long lng)
 			{
 				EXTRA_MESSAGE = adapter.getItemAtPosition(i).toString();
-				
-		    		icon.setImageResource(getResources().getIdentifier(
-		    			EXTRA_MESSAGE.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", getPackageName()));
 
-		    		if (EXTRA_MESSAGE.equals("Cho Gath")){
+				icon.setImageResource(getResources().getIdentifier(
+						EXTRA_MESSAGE.replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable", getPackageName()));
+
+				if (EXTRA_MESSAGE.equals("Cho Gath"))
+				{
 					EXTRA_MESSAGE = "Cho'Gath";
-				} else if (EXTRA_MESSAGE.equals("Kha Zix")){
+				} else if (EXTRA_MESSAGE.equals("Kha Zix"))
+				{
 					EXTRA_MESSAGE = "Kha'Zix";
-				} else if (EXTRA_MESSAGE.equals("Kog Maw")){
+				} else if (EXTRA_MESSAGE.equals("Kog Maw"))
+				{
 					EXTRA_MESSAGE = "Kog'Maw";
-				} else if (EXTRA_MESSAGE.equals("Vel Koz")){
+				} else if (EXTRA_MESSAGE.equals("Vel Koz"))
+				{
 					EXTRA_MESSAGE = "Vel'Koz";
 				}
 			}
@@ -83,14 +78,14 @@ public class Counters extends ActionBarActivity
 			}
 		});
 	}
-	
+
 	public void leaguecounters(View view)
 	{
 		Intent intent = new Intent(this, Leaguecounters.class);
 		intent.putExtra("champion", EXTRA_MESSAGE);
 		startActivity(intent);
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
