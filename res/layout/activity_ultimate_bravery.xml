@@ -241,7 +241,7 @@
         android:layout_alignBaseline="@+id/item5"
         android:layout_alignBottom="@+id/item5"
         android:layout_alignLeft="@+id/isummspell2"
-        android:text="Mastery:"
+        android:text="Masteries:"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF" />
 
