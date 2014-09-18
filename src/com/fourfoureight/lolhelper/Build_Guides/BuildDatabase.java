@@ -906,7 +906,7 @@ public class BuildDatabase
 		// Azir
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
-		database[i][0].setRush("sorcerersshoes", "rodofages", "athenesholygrail");
+		database[i][0].setRush("sorcerersshoes", "rodofages", "athenesunholygrail");
 		database[i][0].setAsNeeded("rabadonsdeathcap", "lichbane", "nashorstooth");
 		database[i][0].setSkillOrder(r, w, q, e);
 
