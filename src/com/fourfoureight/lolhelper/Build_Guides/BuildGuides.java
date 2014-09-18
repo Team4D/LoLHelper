@@ -297,7 +297,7 @@ public class BuildGuides extends ActionBarActivity
 					}
 				});
 			}
-			// Runes Button
+	/*		// Runes Button
 			Button button = (Button) v.findViewById(R.id.additionalInfo);
 
 			button.setOnClickListener(new OnClickListener()
@@ -312,7 +312,7 @@ public class BuildGuides extends ActionBarActivity
 					v.getContext().startActivity(intent);
 				}
 
-			});
+			});*/
 
 			return v;
 		}
