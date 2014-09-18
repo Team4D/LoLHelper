@@ -4,7 +4,7 @@ public class BuildDatabase
 {
 	private final BuildInfo database[][];
 	private final int numBuilds[];
-	private final int numChamps = 120;
+	private final int numChamps = 121;
 	private final int maxBuilds = 10;
 	private final int q = 1;
 	private final int w = 2;
@@ -123,6 +123,13 @@ public class BuildDatabase
 		database[i][0].setStart("wardingtotem", "doransblade", "healthpotion");
 		database[i][0].setRush("statikkshiv", "berserkergreaves", "infinityedge");
 		database[i][0].setAsNeeded("lastwhisper", "phantomdancer", "guardianangel", "zephyr");
+		database[i][0].setSkillOrder(r, w, q, e);
+		
+		// Azir
+		database[++i][0] = new BuildInfo();
+		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
+		database[i][0].setRush("sorcerersshoes", "rodofages", "nashorstooth");
+		database[i][0].setAsNeeded("rylaiscrystalscepter", "hextechgunblade", "zhonyashourglass");
 		database[i][0].setSkillOrder(r, w, q, e);
 
 		// Blitzcrank
@@ -895,6 +902,13 @@ public class BuildDatabase
 		// Ashe
 		database[++i][0] = new BuildInfo();
 		numBuilds[i]--;
+		
+		// Azir
+		database[++i][0] = new BuildInfo();
+		database[i][0].setStart("wardingtotem", "crystallineflask", "healthpotion");
+		database[i][0].setRush("sorcerersshoes", "rodofages", "athenesholygrail");
+		database[i][0].setAsNeeded("rabadonsdeathcap", "lichbane", "nashorstooth");
+		database[i][0].setSkillOrder(r, w, q, e);
 
 		// Blitzcrank
 		database[++i][0] = new BuildInfo();
@@ -1517,6 +1531,10 @@ public class BuildDatabase
 		database[i][0].setRush("berserkergreaves", "infinityedge", "thebloodthirster", "phantomdancer");
 		database[i][0].setAsNeeded("guardianangel", "lastwhisper", "bansheesveil", "statikkshiv");
 
+		// Azir
+		database[++i][0] = new BuildInfo();
+		numBuilds[i]--;
+		
 		// Blitzcrank
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "bootsofspeed", "healthpotion");
@@ -2243,6 +2261,13 @@ public class BuildDatabase
 		database[i][0].setRush("tearofthegoddess", "talismanofascension", "berserkergreaves");
 		database[i][0].setAsNeeded("manamune", "locketoftheironsolari", "theblackcleaver", "infinityedge");
 
+		// Azir
+		database[++i][0] = new BuildInfo();
+		database[i][0].setStart("wardingtotem", "spellthiefsedge", "healthpotion");
+		database[i][0].setRush("bootsofmobility", "frostqueensclaim", "rubysightstone");
+		database[i][0].setAsNeeded("mikaelscrucible", "zhonyashourglass", "voidstaff");
+		database[i][0].setSkillOrder(r, w, q, e);
+		
 		// Blitzcrank
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("wardingtotem", "relicshield", "stealthward", "healthpotion");
@@ -2945,6 +2970,13 @@ public class BuildDatabase
 		database[i][0].setAsNeeded("iceborngauntlet", "theblackcleaver", "mawofmalmortius", "guinsoosrageblade",
 				"zekesherald");
 
+		// Azir
+		database[++i][0] = new BuildInfo();
+		database[i][0].setStart("wardingtotem", "huntersmachete", "healthpotion");
+		database[i][0].setRush("spiritofthespectralwraith", "nashorstooth", "bootsofmobility");
+		database[i][0].setAsNeeded("rylaiscrystalscepter", "randuinsomen", "spiritvisage", "rabadonsdeathcap");
+		database[i][0].setSkillOrder(r, w, q, e);
+		
 		// Blitzcrank
 		database[++i][0] = new BuildInfo();
 		database[i][0].setStart("sweepinglens", "huntersmachete", "healthpotion");

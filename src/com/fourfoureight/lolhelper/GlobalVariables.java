@@ -457,7 +457,7 @@ public class GlobalVariables extends Application
 
 	public int getChampionInt(String name)
 	{
-		String champions[] = { "aatrox", "ahri", "akali", "alistar", "amumu", "anivia", "annie", "ashe",
+		String champions[] = { "aatrox", "ahri", "akali", "alistar", "amumu", "anivia", "annie", "ashe", "azir",
 				"blitzcrank", "brand", "caitlyn", "cassiopeia", "chogath", "corki",
 				"darius", "diana", "drmundo", "draven", "elise", "evelynn", "ezreal",
 				"fiddlesticks", "fiora", "fizz", "galio", "gangplank", "garen", "gragas", "graves",
