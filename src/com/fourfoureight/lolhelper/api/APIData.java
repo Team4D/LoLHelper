@@ -1,5 +1,6 @@
 package com.fourfoureight.lolhelper.api;
 
+import com.fourfoureight.lolhelper.api.dto.*;
 
 public class APIData
 {
@@ -8,8 +9,13 @@ public class APIData
 	{
 	}
 
-	public Champion GetChampionByName(String name)
+	public static Champion GetChampionByName(String name)
 	{
 
+	}
+	
+	public static Champion Get ChampionByKey(String key)
+	{
+		
 	}
 }
