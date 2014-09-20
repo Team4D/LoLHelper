@@ -1,4 +1,4 @@
-package lolapi.dto.Stats;
+package com.fourfoureight.lolhelper.api.dto.Stats;
 
 import java.util.List;
 

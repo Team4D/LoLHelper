@@ -1,4 +1,4 @@
-package lolapi.dto.staticdata;
+package com.fourfoureight.lolhelper.api.dto.staticdata;
 
 public class Image {
 	private String full;

@@ -1,13 +1,13 @@
 /**
  * 
  */
-package lolapi.dto.staticdata.Champion;
+package com.fourfoureight.lolhelper.api.dto.staticdata.Champion;
 
 import java.util.List;
 
-import lolapi.dto.staticdata.Image;
-import lolapi.dto.staticdata.LevelTip;
-import lolapi.dto.staticdata.SpellVars;
+import com.fourfoureight.lolhelper.api.dto.staticdata.Image;
+import com.fourfoureight.lolhelper.api.dto.staticdata.LevelTip;
+import com.fourfoureight.lolhelper.api.dto.staticdata.SpellVars;
 
 /**
  * @author Shyos

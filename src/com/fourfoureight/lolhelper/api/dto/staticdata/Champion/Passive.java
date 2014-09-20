@@ -1,9 +1,9 @@
 /**
  * 
  */
-package lolapi.dto.staticdata.Champion;
+package com.fourfoureight.lolhelper.api.dto.staticdata.Champion;
 
-import lolapi.dto.staticdata.Image;
+import com.fourfoureight.lolhelper.api.dto.staticdata.Image;
 
 /**
  * @author Shyos

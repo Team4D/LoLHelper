@@ -1,4 +1,4 @@
-package lolapi.dto.Game;
+package com.fourfoureight.lolhelper.api.dto.Game;
 
 public class Player {
 	private int championId;			//	Champion id associated with player.

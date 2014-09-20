@@ -1,4 +1,4 @@
-package lolapi.dto.Stats;
+package com.fourfoureight.lolhelper.api.dto.Stats;
 
 public class ChampionStats {
 	private int id;		//Champion id.

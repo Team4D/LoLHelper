@@ -1,10 +1,10 @@
-package lolapi.dto.staticdata.SummonerSpell;
+package com.fourfoureight.lolhelper.api.dto.staticdata.SummonerSpell;
 
 import java.util.List;
 
-import lolapi.dto.staticdata.Image;
-import lolapi.dto.staticdata.LevelTip;
-import lolapi.dto.staticdata.SpellVars;
+import com.fourfoureight.lolhelper.api.dto.staticdata.Image;
+import com.fourfoureight.lolhelper.api.dto.staticdata.LevelTip;
+import com.fourfoureight.lolhelper.api.dto.staticdata.SpellVars;
 
 public class SummonerSpell {
 	private List<Integer> cooldown;

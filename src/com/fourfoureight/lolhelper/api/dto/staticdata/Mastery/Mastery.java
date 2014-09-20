@@ -1,11 +1,11 @@
 /**
  * 
  */
-package lolapi.dto.staticdata.Mastery;
+package com.fourfoureight.lolhelper.api.dto.staticdata.Mastery;
 
 import java.util.List;
 
-import lolapi.dto.staticdata.Image;
+import com.fourfoureight.lolhelper.api.dto.staticdata.Image;
 
 /**
  * @author Shyos

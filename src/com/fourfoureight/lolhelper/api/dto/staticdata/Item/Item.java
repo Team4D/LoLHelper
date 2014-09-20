@@ -1,12 +1,12 @@
-package lolapi.dto.staticdata.Item;
+package com.fourfoureight.lolhelper.api.dto.staticdata.Item;
 
 import java.util.List;
 import java.util.Map;
 
-import lolapi.dto.staticdata.BasicDataStats;
-import lolapi.dto.staticdata.Gold;
-import lolapi.dto.staticdata.Image;
-import lolapi.dto.staticdata.Metadata;
+import com.fourfoureight.lolhelper.api.dto.staticdata.BasicDataStats;
+import com.fourfoureight.lolhelper.api.dto.staticdata.Gold;
+import com.fourfoureight.lolhelper.api.dto.staticdata.Image;
+import com.fourfoureight.lolhelper.api.dto.staticdata.Metadata;
 
 public class Item {
 			

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package lolapi.dto.staticdata.SummonerSpell;
+package com.fourfoureight.lolhelper.api.dto.staticdata.SummonerSpell;
 
 import java.util.Map;
 

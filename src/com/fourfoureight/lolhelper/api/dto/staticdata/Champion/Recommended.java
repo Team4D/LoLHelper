@@ -1,4 +1,4 @@
-package lolapi.dto.staticdata.Champion;
+package com.fourfoureight.lolhelper.api.dto.staticdata.Champion;
 
 import java.util.List;
 

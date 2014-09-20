@@ -1,4 +1,4 @@
-package lolapi.dto.Summoner;
+package com.fourfoureight.lolhelper.api.dto.Summoner;
 
 import java.util.ArrayList;
 

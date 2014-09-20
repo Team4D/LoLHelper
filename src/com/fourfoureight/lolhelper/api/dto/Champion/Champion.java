@@ -1,6 +1,6 @@
-package lolapi.dto.Champion;
+package com.fourfoureight.lolhelper.api.dto.Champion;
 
-import lolapi.constants.Version;
+import lolapi.constants.Version; //  where is this?
 
 public class Champion {
 	private	boolean active;						//Indicates if the champion is active.

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package lolapi.dto.staticdata.Realm;
+package com.fourfoureight.lolhelper.api.dto.staticdata.Realm;
 
 import java.util.Map;
 

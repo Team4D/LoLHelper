@@ -1,4 +1,4 @@
-package lolapi.dto.Stats;
+package com.fourfoureight.lolhelper.api.dto.Stats;
 
 public class PlayerStatsSummary {
 	private AggregatedStats aggregatedStats;	// Aggregated stats.

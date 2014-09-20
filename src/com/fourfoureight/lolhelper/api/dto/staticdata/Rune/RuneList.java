@@ -1,11 +1,11 @@
 /**
  * 
  */
-package lolapi.dto.staticdata.Rune;
+package com.fourfoureight.lolhelper.api.dto.staticdata.Rune;
 
 import java.util.Map;
 
-import lolapi.dto.staticdata.BasicData;
+import com.fourfoureight.lolhelper.api.dto.staticdata.BasicData;
 
 /**
  * @author Shyos

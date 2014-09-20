@@ -1,7 +1,7 @@
 /**
  * 
  */
-package lolapi.dto.staticdata.Mastery;
+package com.fourfoureight.lolhelper.api.dto.staticdata.Mastery;
 
 /**
  * @author Shyos

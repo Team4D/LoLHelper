@@ -1,4 +1,4 @@
-package lolapi.dto.Game;
+package com.fourfoureight.lolhelper.api.dto.Game;
 
 import java.util.ArrayList;
 

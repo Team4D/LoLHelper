@@ -1,7 +1,7 @@
 /**
  * 
  */
-package lolapi.dto.staticdata.Champion;
+package com.fourfoureight.lolhelper.api.dto.staticdata.Champion;
 
 /**
  * @author Shyos

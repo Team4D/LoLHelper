@@ -1,4 +1,4 @@
-package lolapi.dto.League;
+package com.fourfoureight.lolhelper.api.dto.League;
 
 import java.util.List;
 

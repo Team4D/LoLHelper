@@ -1,12 +1,12 @@
 /**
  * 
  */
-package lolapi.dto.staticdata.Item;
+package com.fourfoureight.lolhelper.api.dto.staticdata.Item;
 
 import java.util.List;
 import java.util.Map;
 
-import lolapi.dto.staticdata.BasicData;
+import com.fourfoureight.lolhelper.api.dto.staticdata.BasicData;
 
 /**
  * @author Shyos

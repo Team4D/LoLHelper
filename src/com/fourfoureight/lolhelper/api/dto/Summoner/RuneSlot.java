@@ -1,4 +1,4 @@
-package lolapi.dto.Summoner;
+package com.fourfoureight.lolhelper.api.dto.Summoner;
 
 public class RuneSlot {
 	private Rune rune;	//	Rune associated with the rune slot.

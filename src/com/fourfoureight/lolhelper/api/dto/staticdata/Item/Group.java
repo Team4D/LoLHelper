@@ -1,4 +1,4 @@
-package lolapi.dto.staticdata.Item;
+package com.fourfoureight.lolhelper.api.dto.staticdata.Item;
 
 public class Group {
 	private String MaxGroupOwnable;

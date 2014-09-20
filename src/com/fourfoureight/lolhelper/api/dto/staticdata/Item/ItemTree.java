@@ -1,7 +1,7 @@
 /**
  * 
  */
-package lolapi.dto.staticdata.Item;
+package com.fourfoureight.lolhelper.api.dto.staticdata.Item;
 
 import java.util.List;
 

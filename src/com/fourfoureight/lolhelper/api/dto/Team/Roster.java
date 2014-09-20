@@ -1,4 +1,4 @@
-package lolapi.dto.Team;
+package com.fourfoureight.lolhelper.api.dto.Team;
 
 import java.util.ArrayList;
 

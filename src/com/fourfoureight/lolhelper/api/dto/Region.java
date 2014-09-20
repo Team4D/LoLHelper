@@ -1,4 +1,4 @@
-package lolapi.dto;
+package com.fourfoureight.lolhelper.api.dto;
 
 public enum Region {
     BR ("br"),
