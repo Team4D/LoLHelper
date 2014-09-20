@@ -1,5 +1,7 @@
 package com.fourfoureight.lolhelper;
 
+import com.fourfoureight.lolhelper.General_Info.SpellDatabase;
+import com.fourfoureight.lolhelper.General_Info.SpellInfo;
 import java.util.Random;
 
 import android.os.Bundle;
@@ -65,6 +67,7 @@ public class UltimateBravery extends ActionBarActivity
 				TextView textView9 = (TextView) findViewById(R.id.summspell1);
 				TextView textView10 = (TextView) findViewById(R.id.summspell2); // Summoner Spells
 				TextView textView11 = (TextView) findViewById(R.id.spell); // Spell Button (Q W or E)
+				TextView textView12 = (TextView) findViewById(R.id.text_spell_name);
 
 				ImageView imageView1 = (ImageView) findViewById(R.id.iitem1);
 				ImageView imageView2 = (ImageView) findViewById(R.id.iitem2);
@@ -80,7 +83,8 @@ public class UltimateBravery extends ActionBarActivity
 				/*
 				 * Set champion, items
 				 */
-				champIcon = getChampionName(getChampionIcon());
+				int champID = getChampionIcon();
+				champIcon = getChampionName(champID);
 				item1 = getBootsName(getBoots());
 
 				/*
@@ -256,6 +260,12 @@ public class UltimateBravery extends ActionBarActivity
 				iconID = getResources().getIdentifier(champSpell.replaceAll("[^a-zA-Z0-9]+", "").toLowerCase(),
 						"drawable", getPackageName());
 				imageView8.setImageResource(iconID);
+				
+				// Text for spell
+				SpellDatabase spellData = new SpellDatabase();
+				SpellDatabase.makeSpellDatabase();
+				SpellInfo spells [][] = spellData.getSpellArray();
+				textView12.setText(spells[champID][intSpellNum].getSpellName());
 
 				/*
 				 * New stuff here: Random masteries. If you look at my method, it's horribly long. I needed to randomly
@@ -311,7 +321,7 @@ public class UltimateBravery extends ActionBarActivity
 	}
 
 	// Method to get random champion. High must be 1 higher than the desired index
-	// VALID INDEXES ARE 0 TO 117
+	// VALID INDEXES ARE 0 TO 1
 	public static int getChampionIcon()
 	{
 		Random r = new Random();
