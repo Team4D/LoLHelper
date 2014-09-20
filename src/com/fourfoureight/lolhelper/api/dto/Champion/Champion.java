@@ -1,6 +1,5 @@
 package com.fourfoureight.lolhelper.api.dto.Champion;
 
-import lolapi.constants.Version; //  where is this?
 
 public class Champion {
 	private	boolean active;						//Indicates if the champion is active.
@@ -14,11 +13,7 @@ public class Champion {
 	private	int	magicRank;						//Champion magic rank.
 	private	String name;						//Champion name.
 	private	boolean rankedPlayEnabled;			//Ranked play enabled flag.
-	
-	public String championQuery(String region, long summonerId)
-	{	
-		return "/api/lol/" + region + "/" + Version.championQVersion + "/champion";
-	}
+
 
 	/**
 	 * @return the active
