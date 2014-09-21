@@ -8,8 +8,12 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -147,6 +151,43 @@ public class Leaguecounters extends ActionBarActivity
 		tv5.setText(result.getString(result.getColumnIndex("GA3")));
 
 		result.close();
+		
+		// Calculate the screen diagonal in inches.
+		DisplayMetrics dm = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(dm);
+		int width=dm.widthPixels;
+		int height=dm.heightPixels;
+		int dens=dm.densityDpi;
+		double wi=(double)width/(double)dens;
+		double hi=(double)height/(double)dens;
+		double x = Math.pow(wi,2);
+		double y = Math.pow(hi,2);
+		double screenInches = Math.sqrt(x+y);
+		
+    	// Calculate how many pixels is 20 sp, which is the screen margin.
+        dm = getResources().getDisplayMetrics();
+        float dpInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 20, dm);
+
+		// Set the layout
+		if (screenInches < 6){
+			MarginLayoutParams marginParams = new MarginLayoutParams(iv.getLayoutParams());
+		    marginParams.setMargins((int)((width - 4 * dpInPx - 120) / 2), 20, 0, 0);
+		    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(marginParams);
+		    iv.setLayoutParams(layoutParams);		// A phone is less than 6 inches.
+		    
+		}
+		else if (screenInches < 9){
+			MarginLayoutParams marginParams = new MarginLayoutParams(iv.getLayoutParams());
+		    marginParams.setMargins((int)((width - 3 * dpInPx - 120) / 2), 300, 0, 0);
+		    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(marginParams);
+		    iv.setLayoutParams(layoutParams);		// Small tablets are considered between 6 to 9 inches.
+		}
+		else{
+			MarginLayoutParams marginParams = new MarginLayoutParams(iv.getLayoutParams());
+		    marginParams.setMargins((int)((width - 4 * dpInPx - 120) / 2), 500, 0, 0);
+		    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(marginParams);
+		    iv.setLayoutParams(layoutParams);		// For big tablets (larger than 9 inches).
+		}
 	}
 
 	@Override

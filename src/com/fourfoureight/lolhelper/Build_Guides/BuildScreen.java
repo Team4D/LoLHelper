@@ -3,6 +3,8 @@ package com.fourfoureight.lolhelper.Build_Guides;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +24,9 @@ public class BuildScreen extends ActionBarActivity
 	public static String TYPE = "";
 	public static int arrayValue = 0;
 
+	// Screen Size
+	public static double screenInches;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -37,6 +42,8 @@ public class BuildScreen extends ActionBarActivity
 		{
 			layout.setBackgroundResource(R.drawable.bg2);
 		}
+		
+		
 
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 				this, R.array.champion_array, R.layout.spinner_item);
@@ -64,7 +71,39 @@ public class BuildScreen extends ActionBarActivity
 				// do something else
 			}
 		});
-
+		
+		// Calculate the screen diagonal in inches.
+		DisplayMetrics dm = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(dm);
+		int width=dm.widthPixels;
+		int height=dm.heightPixels;
+		int dens=dm.densityDpi;
+		double wi=(double)width/(double)dens;
+		double hi=(double)height/(double)dens;
+		double x = Math.pow(wi,2);
+		double y = Math.pow(hi,2);
+		screenInches = Math.sqrt(x+y);
+		
+    	// Calculate how many pixels is 180 dp, which is the size of championIcon.
+        dm = getResources().getDisplayMetrics();
+        float dpInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 180, dm);
+        float dpInPx2 = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, dm);
+		
+		// Set the layout
+		ImageView championIcon = (ImageView) findViewById(R.id.icon);
+		if (screenInches < 6){
+			championIcon.getLayoutParams().height = ((int) (1 * dpInPx));		// A phone is less than 6 inches.
+			s.getLayoutParams().height = ((int) (1 * dpInPx2));
+		}
+		else if (screenInches < 9){
+			championIcon.getLayoutParams().height = ((int) (1.8 * dpInPx));		// Small tablets are considered between 6 to 9 inches.
+			s.getLayoutParams().height = ((int) (1.5 * dpInPx2));
+		}
+		else{
+			championIcon.getLayoutParams().height = ((int) (2.2 * dpInPx));		// For big tablets (larger than 9 inches).
+			s.getLayoutParams().height = ((int) (2 * dpInPx2));
+		}
+		
 	}
 
 	public void viewtop(View view)

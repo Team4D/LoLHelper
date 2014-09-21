@@ -3,6 +3,8 @@ package com.fourfoureight.lolhelper;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -77,6 +79,33 @@ public class Counters extends ActionBarActivity
 				// do something else
 			}
 		});
+		
+		// Calculate the screen diagonal in inches.
+		DisplayMetrics dm = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(dm);
+		int width=dm.widthPixels;
+		int height=dm.heightPixels;
+		int dens=dm.densityDpi;
+		double wi=(double)width/(double)dens;
+		double hi=(double)height/(double)dens;
+		double x = Math.pow(wi,2);
+		double y = Math.pow(hi,2);
+		double screenInches = Math.sqrt(x+y);
+		
+    	// Calculate how many pixels is 180 dp, which is the size of champion icon.
+        dm = getResources().getDisplayMetrics();
+        float dpInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 180, dm);
+		
+		// Set the layout
+		if (screenInches < 6){
+			icon.getLayoutParams().height = ((int) (1 * dpInPx));		// A phone is less than 6 inches.
+		}
+		else if (screenInches < 9){
+			icon.getLayoutParams().height = ((int) (1.8 * dpInPx));		// Small tablets are considered between 6 to 9 inches.
+		}
+		else{
+			icon.getLayoutParams().height = ((int) (2.2 * dpInPx));		// For big tablets (larger than 9 inches).
+		}
 	}
 
 	public void leaguecounters(View view)

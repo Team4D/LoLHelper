@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.ImageView.ScaleType;
 
 import com.fourfoureight.lolhelper.GlobalVariables;
 import com.fourfoureight.lolhelper.ItemInfo;
@@ -38,6 +41,9 @@ public class BuildGuides extends ActionBarActivity
 	static String packageName;
 	static String champ;
 	static String type;
+	
+	// Screen Size
+	public static double screenInches;
 
 	/** The view to show the ad. */
 	private AdView adView;
@@ -69,12 +75,37 @@ public class BuildGuides extends ActionBarActivity
 		Intent intent = getIntent();
 		champ = intent.getStringExtra(BuildScreen.EXTRA_MESSAGE);
 		type = intent.getStringExtra(BuildScreen.TYPE);
+		
+		// Calculate the screen diagonal in inches.
+		DisplayMetrics dm = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(dm);
+		int width=dm.widthPixels;
+		int height=dm.heightPixels;
+		int dens=dm.densityDpi;
+		double wi=(double)width/(double)dens;
+		double hi=(double)height/(double)dens;
+		double x = Math.pow(wi,2);
+		double y = Math.pow(hi,2);
+		screenInches = Math.sqrt(x+y);
+		
+    	// Calculate how many pixels is 120 dp, which is the size of championpic.
+        dm = getResources().getDisplayMetrics();
+        float dpInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 120, dm);
 
 		// Set picture and text displayed
 		role.setText(champ + " " + type + " Guide:");
 		int champID = getResources().getIdentifier(champ.replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable",
 				getPackageName());
 		pic.setImageResource(champID);
+		
+		// Set the layout depends on the screen
+		if (screenInches < 6)
+			pic.getLayoutParams().height = ((int) (1 * dpInPx));		// A phone is less than 6 inches.
+		else if (screenInches < 9)
+			pic.getLayoutParams().height = ((int) (1.6 * dpInPx));		// Small tablets are considered between 6 to 9 inches.
+		else
+			pic.getLayoutParams().height = ((int) (1.9 * dpInPx));		// For big tablets (larger than 9 inches).
+		
 		// Build proper database
 		database = new BuildDatabase(type);
 
@@ -214,6 +245,21 @@ public class BuildGuides extends ActionBarActivity
 					(ImageView) v.findViewById(R.id.imageViewAsNeeded3),
 					(ImageView) v.findViewById(R.id.imageViewAsNeeded4),
 					(ImageView) v.findViewById(R.id.imageViewAsNeeded5) };
+			
+			// Set the separation between three rows of items.
+	        DisplayMetrics dm = getResources().getDisplayMetrics();
+	        float dpInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, dm);
+    		int size;
+			if (screenInches < 6){
+				size = (int)dpInPx;
+			}
+			else if (screenInches < 9){
+				size = (int)(3 * dpInPx);
+			}
+			else{
+				size = (int)(4 * dpInPx);
+			}
+	        
 			int resID;
 			// Necessary because OnClickListener is weird about the
 			// information it can see / use
@@ -238,6 +284,8 @@ public class BuildGuides extends ActionBarActivity
 				resID = getResources().getIdentifier(database.getDatabase()[i][mNum].getStart()[j], "drawable",
 						packageName);
 				views[j].setImageResource(resID);
+				views[j].getLayoutParams().height = size;
+								
 				// Sets to open item info page
 				final Info info = new Info();
 				info.setMessage(database.getDatabase()[i][mNum].getStart()[j]);
@@ -260,6 +308,8 @@ public class BuildGuides extends ActionBarActivity
 				resID = getResources().getIdentifier(database.getDatabase()[i][mNum].getRush()[j], "drawable",
 						packageName);
 				views[j + 4].setImageResource(resID);
+				views[j + 4].getLayoutParams().height = size;
+	    		
 				// Sets to open item info page
 				final Info info = new Info();
 				info.setMessage(database.getDatabase()[i][mNum].getRush()[j]);
@@ -282,6 +332,8 @@ public class BuildGuides extends ActionBarActivity
 				resID = getResources().getIdentifier(database.getDatabase()[i][mNum].getAsNeeded()[j], "drawable",
 						packageName);
 				views[j + 8].setImageResource(resID);
+				views[j + 8].getLayoutParams().height = size;
+	    						
 				// Sets to open item info page
 				final Info info = new Info();
 				info.setMessage(database.getDatabase()[i][mNum].getAsNeeded()[j]);
