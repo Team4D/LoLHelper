@@ -1,5 +1,6 @@
 package com.fourfoureight.lolhelper;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.DisplayMetrics;
@@ -129,7 +130,17 @@ public class TeamBuilder extends ActionBarActivity {
 						if (suggestedTop[i].getName().equals("NONAME")){
 							newButton.setVisibility(View.GONE);
 						}
-						scroll1.addView(newButton);
+						
+						TableRow.LayoutParams tableLayoutParams = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
+
+						// New Cell
+						LinearLayout cell = new LinearLayout(getBaseContext());
+						cell.setBackgroundColor(Color.TRANSPARENT);
+						cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
+						cell.addView(newButton);
+						
+						scroll1.addView(cell);
 						final ChampionAttributes currentChampion = suggestedTop[i];
 						newButton.setOnClickListener(new View.OnClickListener(){
 							@Override
@@ -162,7 +173,17 @@ public class TeamBuilder extends ActionBarActivity {
 						if (suggestedJungle[i].getName().equals("NONAME")){
 							newButton.setVisibility(View.GONE);
 						}
-						scroll2.addView(newButton);
+						
+						TableRow.LayoutParams tableLayoutParams = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
+
+						// New Cell
+						LinearLayout cell = new LinearLayout(getBaseContext());
+						cell.setBackgroundColor(Color.TRANSPARENT);
+						cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
+						cell.addView(newButton);
+						
+						scroll2.addView(cell);
 						final ChampionAttributes currentChampion = suggestedJungle[i];
 						newButton.setOnClickListener(new View.OnClickListener(){
 							@Override
@@ -195,7 +216,17 @@ public class TeamBuilder extends ActionBarActivity {
 						if (suggestedMid[i].getName().equals("NONAME")){
 							newButton.setVisibility(View.GONE);
 						}
-						scroll3.addView(newButton);
+						
+						TableRow.LayoutParams tableLayoutParams = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
+
+						// New Cell
+						LinearLayout cell = new LinearLayout(getBaseContext());
+						cell.setBackgroundColor(Color.TRANSPARENT);
+						cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
+						cell.addView(newButton);
+						
+						scroll3.addView(cell);
 						final ChampionAttributes currentChampion = suggestedMid[i];
 						newButton.setOnClickListener(new View.OnClickListener(){
 							@Override
@@ -228,7 +259,17 @@ public class TeamBuilder extends ActionBarActivity {
 						if (suggestedADC[i].getName().equals("NONAME")){
 							newButton.setVisibility(View.GONE);
 						}
-						scroll4.addView(newButton);
+						
+						TableRow.LayoutParams tableLayoutParams = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
+
+						// New Cell
+						LinearLayout cell = new LinearLayout(getBaseContext());
+						cell.setBackgroundColor(Color.TRANSPARENT);
+						cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
+						cell.addView(newButton);
+						
+						scroll4.addView(cell);
 						final ChampionAttributes currentChampion = suggestedADC[i];
 						newButton.setOnClickListener(new View.OnClickListener(){
 							@Override
@@ -261,7 +302,17 @@ public class TeamBuilder extends ActionBarActivity {
 						if (suggestedSupport[i].getName().equals("NONAME")){
 							newButton.setVisibility(View.GONE);
 						}
-						scroll5.addView(newButton);
+						
+						TableRow.LayoutParams tableLayoutParams = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
+
+						// New Cell
+						LinearLayout cell = new LinearLayout(getBaseContext());
+						cell.setBackgroundColor(Color.TRANSPARENT);
+						cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
+						cell.addView(newButton);
+						
+						scroll5.addView(cell);
 						final ChampionAttributes currentChampion = suggestedSupport[i];
 						newButton.setOnClickListener(new View.OnClickListener(){
 							@Override
@@ -288,6 +339,9 @@ public class TeamBuilder extends ActionBarActivity {
 				
 				// Table to display all available champions
 				table.removeAllViews();
+				TableLayout.LayoutParams tableRowParams = new TableLayout.LayoutParams(
+						TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
+				tableRowParams.setMargins(3, 3, 2, 10);
 				
 				// Calculate the screen diagonal in inches to identify it's a tablet or a phone.
 				DisplayMetrics dm = new DisplayMetrics();
@@ -310,6 +364,7 @@ public class TeamBuilder extends ActionBarActivity {
 				else
 					maxButtonInRow = 11;		// For big tablets (larger than 9 inches).
 				
+				// Fill the rows with buttons
 				int buttonInRow = maxButtonInRow;
 				TableRow currentRow = null;
 				ChampionAttributes[] allAvailableChampions = teambuilder.getAllAvailableChampions();
@@ -317,10 +372,15 @@ public class TeamBuilder extends ActionBarActivity {
 					if (buttonInRow == maxButtonInRow){
 						buttonInRow = 0;
 						TableRow newRow = new TableRow(TeamBuilder.this);
-						newRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 60));
+						newRow.setBackgroundColor(Color.TRANSPARENT);
+						newRow.setPadding(0, 0, 0, 20);	// Border between rows
+						newRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 60));	// 60dp high
+						
 						table.addView(newRow);
 						currentRow = newRow;
 					}
+					
+					// Create the button
 					final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this), allAvailableChampions[i]);
 					if (allAvailableChampions[i].getName().equals("NONAME")){
 						newButton.setVisibility(View.GONE);
@@ -328,7 +388,17 @@ public class TeamBuilder extends ActionBarActivity {
 					else{
 						buttonInRow += 1;
 					}
-					currentRow.addView(newButton);
+					newButton.setPadding(0, 0, 20, 20);
+					
+					TableRow.LayoutParams tableLayoutParams = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+					tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
+
+					// New Cell
+					LinearLayout cell = new LinearLayout(getBaseContext());
+					cell.setBackgroundColor(Color.TRANSPARENT);
+					cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
+					cell.addView(newButton);
+					currentRow.addView(cell);
 					
 					// Following code works for selecting champion from "All available champion" field
 					final ChampionAttributes currentChampion = allAvailableChampions[i];
