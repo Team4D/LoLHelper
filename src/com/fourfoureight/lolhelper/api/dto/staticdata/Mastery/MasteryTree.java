@@ -1,15 +1,12 @@
-com.fourfoureight.lolhelper./**
- * 
- */
 package com.fourfoureight.lolhelper.api.dto.staticdata.Mastery;
 
 import java.util.List;
 
 /**
  * @author Shyos
- * 
  */
-public class MasteryTree {
+public class MasteryTree
+{
 	private List<MasteryTreeList> Defense;
 	private List<MasteryTreeList> Offense;
 	private List<MasteryTreeList> Utility;
@@ -17,7 +14,8 @@ public class MasteryTree {
 	/**
 	 * @return the defense
 	 */
-	public List<MasteryTreeList> getDefense() {
+	public List<MasteryTreeList> getDefense()
+	{
 		return Defense;
 	}
 
@@ -25,14 +23,16 @@ public class MasteryTree {
 	 * @param defense
 	 *            the defense to set
 	 */
-	public void setDefense(List<MasteryTreeList> defense) {
+	public void setDefense(List<MasteryTreeList> defense)
+	{
 		Defense = defense;
 	}
 
 	/**
 	 * @return the offense
 	 */
-	public List<MasteryTreeList> getOffense() {
+	public List<MasteryTreeList> getOffense()
+	{
 		return Offense;
 	}
 
@@ -40,14 +40,16 @@ public class MasteryTree {
 	 * @param offense
 	 *            the offense to set
 	 */
-	public void setOffense(List<MasteryTreeList> offense) {
+	public void setOffense(List<MasteryTreeList> offense)
+	{
 		Offense = offense;
 	}
 
 	/**
 	 * @return the utility
 	 */
-	public List<MasteryTreeList> getUtility() {
+	public List<MasteryTreeList> getUtility()
+	{
 		return Utility;
 	}
 
@@ -55,7 +57,8 @@ public class MasteryTree {
 	 * @param utility
 	 *            the utility to set
 	 */
-	public void setUtility(List<MasteryTreeList> utility) {
+	public void setUtility(List<MasteryTreeList> utility)
+	{
 		Utility = utility;
 	}
 }

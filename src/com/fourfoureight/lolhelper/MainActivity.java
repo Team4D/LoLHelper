@@ -16,7 +16,7 @@ import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.LinearLayout;
 
 import com.fourfoureight.lolhelper.Build_Guides.BuildScreen;
-import com.fourfoureight.lolhelper.Database.LOLDatabaseAsyncTask;
+import com.fourfoureight.lolhelper.api.database.LOLDatabaseAsyncTask;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
