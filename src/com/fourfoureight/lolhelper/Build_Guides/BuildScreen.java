@@ -101,8 +101,7 @@ public class BuildScreen extends ActionBarActivity
 		// Set the layout
 		ImageView championIcon = (ImageView) findViewById(R.id.icon);
 		if (screenInches < 6){
-			championIcon.getLayoutParams().height = ((int) (1 * dpInPx));		// A phone is less than 6 inches.
-			s.getLayoutParams().height = ((int) (1 * dpInPx2));
+			// Nothing needed for phones which is less than 6 inches.
 		}
 		else if (screenInches < 9){
 			championIcon.getLayoutParams().height = ((int) (1.8 * dpInPx));		// Small tablets are considered between 6 to 9 inches.
