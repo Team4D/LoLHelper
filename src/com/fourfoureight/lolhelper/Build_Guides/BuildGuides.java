@@ -122,7 +122,7 @@ public class BuildGuides extends ActionBarActivity
 
 		// Create an ad.
 		adView = new AdView(this);
-		adView.setAdSize(AdSize.BANNER);
+		adView.setAdSize(AdSize.SMART_BANNER);
 		adView.setAdUnitId(AD_UNIT_ID);
 
 		// Add the AdView to the view hierarchy. The view will have no size

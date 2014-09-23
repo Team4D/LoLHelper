@@ -75,5 +75,14 @@
 	        android:onClick="viewjung"
 	        android:text="Jung" />
 	</LinearLayout>
+	
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom"
+        android:id="@+id/adcontainer">
+    </LinearLayout>  
 
 </LinearLayout>

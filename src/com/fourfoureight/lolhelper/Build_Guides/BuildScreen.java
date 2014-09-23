@@ -16,6 +16,9 @@ import android.widget.Spinner;
 
 import com.fourfoureight.lolhelper.GlobalVariables;
 import com.fourfoureight.lolhelper.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 
 public class BuildScreen extends ActionBarActivity
 {
@@ -26,6 +29,12 @@ public class BuildScreen extends ActionBarActivity
 
 	// Screen Size
 	public static double screenInches;
+	
+	/** The view to show the ad. */
+	private AdView adView;
+
+	/* Your ad unit id. Replace with your actual ad unit id. */
+	private static final String AD_UNIT_ID = "ca-app-pub-9973141875464346/2397347111";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -103,6 +112,27 @@ public class BuildScreen extends ActionBarActivity
 			championIcon.getLayoutParams().height = ((int) (2.2 * dpInPx));		// For big tablets (larger than 9 inches).
 			s.getLayoutParams().height = ((int) (2 * dpInPx2));
 		}
+		
+		LinearLayout adlayout = (LinearLayout) findViewById(R.id.adcontainer);
+
+		// Create an ad.
+		adView = new AdView(this);
+		adView.setAdSize(AdSize.SMART_BANNER);
+		adView.setAdUnitId(AD_UNIT_ID);
+
+		// Add the AdView to the view hierarchy. The view will have no size
+		// until the ad is loaded.
+		adlayout.addView(adView);
+
+		// Create an ad request. Check logcat output for the hashed device ID to
+		// get test ads on a physical device.
+		AdRequest adRequest = new AdRequest.Builder()
+				.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+				// .addTestDevice("INSERT_YOUR_HASHED_DEVICE_ID_HERE")
+				.build();
+
+		// Start loading the ad in the background.
+		adView.loadAd(adRequest);
 		
 	}
 
