@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/iitem1"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/headofkhazix" />
 
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/iitem2"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/headofkhazix" />
 
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/iitem3"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/headofkhazix" />
 
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/iitem4"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/headofkhazix" />
 
     <ImageView
@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/iitem5"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/headofkhazix" />
     
@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="30dp"
         android:src="@drawable/headofkhazix"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -106,52 +106,14 @@
         android:layout_toLeftOf="@+id/spell"
         android:src="@drawable/headofkhazix" />
 
-    <ImageView
-        android:id="@+id/isummspell1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ispell"
-        android:layout_below="@+id/item2"
-        android:src="@drawable/headofkhazix" />
-
     <Button
         android:id="@+id/btnRandom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item6"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="18dp"
         android:text="Randomize" />
-
-    <TextView
-        android:id="@+id/text_summoner_spell"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/item2"
-        android:layout_alignLeft="@+id/isummspell1"
-        android:layout_marginBottom="7dp"
-        android:text="Summoner Spells:"
-        android:textColor="#FFFFFF" />
-
-    <TextView
-        android:id="@+id/text_mastery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/item5"
-        android:layout_alignBottom="@+id/item5"
-        android:layout_alignLeft="@+id/isummspell2"
-        android:text="Masteries:"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF" />
-
-    <TextView
-        android:id="@+id/mastery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/text_mastery"
-        android:layout_alignTop="@+id/iitem6"
-        android:text="TextView"
-        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/text_spell"
@@ -162,24 +124,6 @@
         android:layout_alignLeft="@+id/ispell"
         android:text="Spell:"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF" />
-
-    <TextView
-        android:id="@+id/item1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/iitem1"
-        android:layout_below="@+id/iitem1"
-        android:text="item"
-        android:textColor="#FFFFFF" />
-
-    <TextView
-        android:id="@+id/item2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/iitem2"
-        android:layout_below="@+id/iitem2"
-        android:text="item"
         android:textColor="#FFFFFF" />
 
     <TextView
@@ -202,41 +146,6 @@
         android:src="@drawable/headofkhazix" />
 
     <TextView
-        android:id="@+id/item3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/iitem3"
-        android:layout_below="@+id/iitem3"
-        android:text="item"
-        android:textColor="#FFFFFF" />
-
-    <TextView
-        android:id="@+id/item4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/iitem4"
-        android:layout_below="@+id/iitem4"
-        android:text="item"
-        android:textColor="#FFFFFF" />
-
-    <TextView
-        android:id="@+id/item5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/iitem5"
-        android:layout_below="@+id/iitem5"
-        android:text="item"
-        android:textColor="#FFFFFF" />
-
-    <ImageView
-        android:id="@+id/isummspell2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/iitem5"
-        android:layout_alignRight="@+id/text_spell"
-        android:src="@drawable/headofkhazix" />
-
-    <TextView
         android:id="@+id/summspell1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -255,11 +164,56 @@
         android:textColor="#FFFFFF" />
 
     <TextView
+        android:id="@+id/item1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/iitem2"
+        android:layout_toRightOf="@+id/iitem1"
+        android:text="item"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/item2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iitem2"
+        android:layout_toRightOf="@+id/iitem2"
+        android:text="item"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/item3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/iitem4"
+        android:layout_alignLeft="@+id/item2"
+        android:text="item"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/item4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/iitem5"
+        android:layout_alignLeft="@+id/item3"
+        android:text="item"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/item5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iitem5"
+        android:layout_alignLeft="@+id/item4"
+        android:text="item"
+        android:textColor="#FFFFFF" />
+
+    <TextView
         android:id="@+id/item6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/iitem6"
-        android:layout_below="@+id/iitem6"
+        android:layout_alignBottom="@+id/iitem6"
+        android:layout_alignLeft="@+id/item5"
         android:text="item"
         android:textColor="#FFFFFF" />
 
@@ -267,11 +221,56 @@
         android:id="@+id/text_spell_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/item1"
-        android:layout_alignBottom="@+id/item1"
+        android:layout_alignLeft="@+id/summspell1"
+        android:layout_below="@+id/ispell"
+        android:text="Spell:"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/text_summoner_spell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/iitem3"
+        android:layout_alignLeft="@+id/isummspell1"
+        android:text="Summoner Spells:"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/mastery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/item6"
         android:layout_alignLeft="@+id/ispell"
-        android:textColor="#FFFFFF"
-        android:text="Spell" />
+        android:text="TextView"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/text_mastery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/summspell2"
+        android:layout_below="@+id/item5"
+        android:text="Masteries:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
+
+    <ImageView
+        android:id="@+id/isummspell2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/summspell1"
+        android:layout_alignLeft="@+id/mastery"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/headofkhazix" />
+
+    <ImageView
+        android:id="@+id/isummspell1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/summspell1"
+        android:layout_below="@+id/text_summoner_spell"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/headofkhazix" />
     
     </RelativeLayout>
     
