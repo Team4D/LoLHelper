@@ -16,107 +16,109 @@ public class APIData
 	{
 	}
 
-	public static Champion GetChampionByID(int ID)
+	public static Champion getChampionByID(int ID)
 	{
 		return null;
 	}
 
-	public static Champion GetChampionByName(String name)
+	public static Champion getChampionByName(String name)
 	{
 		return null;
 	}
 
-	public static Champion GetChampionByKey(String key)
+	public static Champion getChampionByKey(String key)
 	{
 		return null;
 	}
 
-	public static String[] GetChampionList()
+	public static String[] getChampionList()
 	{
 		return null;
 	}
 
-	public static int GetNumberChampions()
+	public static int getNumberChampions()
 	{
 		return -1;
 	}
 
-	public static Item GetItemByID(int ID)
+	public static Item getItemByID(int ID)
 	{
 		return null;
 	}
 
-	public static Item GetItemByName(String name)
+	public static Item getItemByName(String name)
 	{
 		return null;
 	}
 
-	public static String[] GetItemList()
+	public static String[] getItemList()
 	{
 		return null;
 	}
 
-	public static int GetNumberItems()
+	public static int getNumberItems()
 	{
 		return -1;
 	}
 
-	public static Mastery GetMasteryByID(int ID)
+	public static Mastery getMasteryByID(int ID)
 	{
 		return null;
 	}
 
-	public static Mastery GetMasteryByName(String name)
+	public static Mastery getMasteryByName(String name)
 	{
 		return null;
 	}
 
-	public static String[] GetMasteryList()
+	public static String[] getMasteryList()
 	{
 		return null;
 	}
 
-	public static int GetNumberMasteries()
+	public static int getNumberMasteries()
 	{
 		return -1;
 	}
 
-	public static Rune GetRuneByID(int ID)
+	public static Rune getRuneByID(int ID)
 	{
 		return null;
 	}
 
-	public static Rune GetRuneByName(String name)
+	public static Rune getRuneByName(String name)
 	{
 		return null;
 	}
 
-	public static String[] GetRuneList()
+	public static String[] getRuneList()
 	{
 		return null;
 	}
 
-	public static int GetNumberRunes()
+	public static int getNumberRunes()
 	{
 		return -1;
 	}
 
-	public static SummonerSpell GetSummonerSpellByID(int ID)
+	public static SummonerSpell getSummonerSpellByID(int ID)
 	{
 		return null;
 	}
 
-	public static SummonerSpell GetSummonerSpellByName(String name)
+	public static SummonerSpell getSummonerSpellByName(String name)
 	{
 		return null;
 	}
 
-	public static String[] GetSummonerSpellList()
+	public static String[] getSummonerSpellList()
 	{
-		return null;
+		//Return value for tests
+		String[] s = {"Barrier", "Flash"};
+		return s;
 	}
 
-	public static int GetNumberSummonerSpells()
+	public static int getNumberSummonerSpells()
 	{
 		return -1;
 	}
