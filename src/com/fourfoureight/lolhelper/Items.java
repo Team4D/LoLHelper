@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.fourfoureight.lolhelper.General_Info.items;
+import com.fourfoureight.lolhelper.api.APIData;
 
 public class Items extends ActionBarActivity
 {
@@ -37,8 +38,7 @@ public class Items extends ActionBarActivity
 
 		items.runMain();
 
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-				this, R.array.item_array, R.layout.spinner_item);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, APIData.getItemList());
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		final ImageView icon = (ImageView) findViewById(R.id.icon);
 

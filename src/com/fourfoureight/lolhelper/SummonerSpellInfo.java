@@ -62,6 +62,7 @@ public class SummonerSpellInfo extends ActionBarActivity
 		effectText.setText("Effect: \n" + spell.getEffectBurn());
 		cooldownText.setText("Cooldown: \n" + spell.getCooldownBurn());
 		rangeText.setText("Range: \n" + spell.getRangeBurn());
+		//TODO: Either implement breakstealth or delete completely
 		levelText.setText("Level: \n" + spell.getSummonerLevel());
 
 	}
