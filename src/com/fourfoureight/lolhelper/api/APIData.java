@@ -1,10 +1,17 @@
 package com.fourfoureight.lolhelper.api;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.fourfoureight.lolhelper.api.database.LOLSQLiteHelper;
 import com.fourfoureight.lolhelper.api.dto.staticdata.Champion.Champion;
 import com.fourfoureight.lolhelper.api.dto.staticdata.Item.Item;
 import com.fourfoureight.lolhelper.api.dto.staticdata.Mastery.Mastery;
 import com.fourfoureight.lolhelper.api.dto.staticdata.Rune.Rune;
 import com.fourfoureight.lolhelper.api.dto.staticdata.SummonerSpell.SummonerSpell;
+import com.google.gson.Gson;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonElement;
 
 /**
  * @author KaosuRyoko
@@ -15,9 +22,26 @@ public class APIData
 	private APIData()
 	{
 	}
+	
+	private static SQLiteDatabase myDB = LOLSQLiteHelper.getInstance(null).getWritableDatabase();
 
 	public static Champion getChampionByID(int ID)
 	{
+		Cursor dbcursor = myDB.query("champions", new String[] { "json" }, "_id = " + ID, null, null, null, null, null);
+		if (dbcursor.getCount() > -1)
+		{
+			dbcursor.moveToFirst();
+			String champ = dbcursor.getString(dbcursor.getColumnIndex("json"));
+			try
+			{
+				Champion champion = new Gson().fromJson(champ, Champion.class);
+				return champion;
+			}
+			catch (Exception e)
+			{
+				//Should probably at least do some logging, but not worried about that right now.
+			}
+		}
 		return null;
 	}
 

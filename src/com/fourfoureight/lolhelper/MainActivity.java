@@ -43,7 +43,7 @@ public class MainActivity extends ActionBarActivity
 		LinearLayout layout = (LinearLayout) findViewById(R.id.container);
 
 		// Initialize the database for use.
-		new LOLDatabaseAsyncTask(this).execute();
+		new LOLDatabaseAsyncTask(this.getApplication()).execute();
 
 		// get the listview
 		expListView = (ExpandableListView) findViewById(R.id.lvExp);

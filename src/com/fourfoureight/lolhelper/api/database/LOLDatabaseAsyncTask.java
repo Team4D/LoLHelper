@@ -4,7 +4,6 @@
 package com.fourfoureight.lolhelper.api.database;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 
 /**
@@ -22,10 +21,7 @@ public class LOLDatabaseAsyncTask extends AsyncTask<String, Void, String[]>
 	@Override
 	protected String[] doInBackground(String... params)
 	{
-		SQLiteDatabase db = LOLSQLiteHelper.getInstance(context).getWritableDatabase();
-		db.close();
-
+		LOLSQLiteHelper.getInstance(context).getWritableDatabase();
 		return null;
 	}
-
 }
