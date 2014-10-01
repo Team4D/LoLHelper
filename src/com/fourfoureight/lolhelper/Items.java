@@ -36,8 +36,6 @@ public class Items extends ActionBarActivity
 			layout.setBackgroundResource(R.drawable.bg2);
 		}
 
-		items.runMain();
-
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, APIData.getItemList());
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		final ImageView icon = (ImageView) findViewById(R.id.icon);

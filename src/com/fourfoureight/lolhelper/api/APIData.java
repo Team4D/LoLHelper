@@ -47,11 +47,41 @@ public class APIData
 
 	public static Champion getChampionByName(String name)
 	{
+		Cursor dbcursor = myDB.query("champions", new String[] { "json" }, "name = " + name, null, null, null, null, null);
+		if (dbcursor.getCount() > -1)
+		{
+			dbcursor.moveToFirst();
+			String champ = dbcursor.getString(dbcursor.getColumnIndex("json"));
+			try
+			{
+				Champion champion = new Gson().fromJson(champ, Champion.class);
+				return champion;
+			}
+			catch (Exception e)
+			{
+				//Should probably at least do some logging, but not worried about that right now.
+			}
+		}
 		return null;
 	}
 
 	public static Champion getChampionByKey(String key)
 	{
+		Cursor dbcursor = myDB.query("champions", new String[] { "json" }, "key = " + key, null, null, null, null, null);
+		if (dbcursor.getCount() > -1)
+		{
+			dbcursor.moveToFirst();
+			String champ = dbcursor.getString(dbcursor.getColumnIndex("json"));
+			try
+			{
+				Champion champion = new Gson().fromJson(champ, Champion.class);
+				return champion;
+			}
+			catch (Exception e)
+			{
+				//Should probably at least do some logging, but not worried about that right now.
+			}
+		}
 		return null;
 	}
 
@@ -67,13 +97,42 @@ public class APIData
 
 	public static Item getItemByID(int ID)
 	{
+		Cursor dbcursor = myDB.query("items", new String[] { "json" }, "_id = " + ID, null, null, null, null, null);
+		if (dbcursor.getCount() > -1)
+		{
+			dbcursor.moveToFirst();
+			String item = dbcursor.getString(dbcursor.getColumnIndex("json"));
+			try
+			{
+				Item i = new Gson().fromJson(item, Item.class);
+				return i;
+			}
+			catch (Exception e)
+			{
+				//Should probably at least do some logging, but not worried about that right now.
+			}
+		}
 		return null;
 	}
 
 	public static Item getItemByName(String name)
 	{
-		return null;
-	}
+		Cursor dbcursor = myDB.query("items", new String[] { "json" }, "name = " + name, null, null, null, null, null);
+		if (dbcursor.getCount() > -1)
+		{
+			dbcursor.moveToFirst();
+			String item = dbcursor.getString(dbcursor.getColumnIndex("json"));
+			try
+			{
+				Item i = new Gson().fromJson(item, Item.class);
+				return i;
+			}
+			catch (Exception e)
+			{
+				//Should probably at least do some logging, but not worried about that right now.
+			}
+		}
+		return null;	}
 
 	public static String[] getItemList()
 	{
@@ -87,11 +146,41 @@ public class APIData
 
 	public static Mastery getMasteryByID(int ID)
 	{
+		Cursor dbcursor = myDB.query("masteries", new String[] { "json" }, "_id = " + ID, null, null, null, null, null);
+		if (dbcursor.getCount() > -1)
+		{
+			dbcursor.moveToFirst();
+			String mastery = dbcursor.getString(dbcursor.getColumnIndex("json"));
+			try
+			{
+				Mastery m = new Gson().fromJson(mastery, Mastery.class);
+				return m;
+			}
+			catch (Exception e)
+			{
+				//Should probably at least do some logging, but not worried about that right now.
+			}
+		}
 		return null;
 	}
 
 	public static Mastery getMasteryByName(String name)
 	{
+		Cursor dbcursor = myDB.query("masteries", new String[] { "json" }, "name = " + name, null, null, null, null, null);
+		if (dbcursor.getCount() > -1)
+		{
+			dbcursor.moveToFirst();
+			String mastery = dbcursor.getString(dbcursor.getColumnIndex("json"));
+			try
+			{
+				Mastery m = new Gson().fromJson(mastery, Mastery.class);
+				return m;
+			}
+			catch (Exception e)
+			{
+				//Should probably at least do some logging, but not worried about that right now.
+			}
+		}
 		return null;
 	}
 
@@ -107,11 +196,41 @@ public class APIData
 
 	public static Rune getRuneByID(int ID)
 	{
+		Cursor dbcursor = myDB.query("runes", new String[] { "json" }, "_id = " + ID, null, null, null, null, null);
+		if (dbcursor.getCount() > -1)
+		{
+			dbcursor.moveToFirst();
+			String rune = dbcursor.getString(dbcursor.getColumnIndex("json"));
+			try
+			{
+				Rune r = new Gson().fromJson(rune, Rune.class);
+				return r;
+			}
+			catch (Exception e)
+			{
+				//Should probably at least do some logging, but not worried about that right now.
+			}
+		}
 		return null;
 	}
 
 	public static Rune getRuneByName(String name)
 	{
+		Cursor dbcursor = myDB.query("runes", new String[] { "json" }, "name = " + name, null, null, null, null, null);
+		if (dbcursor.getCount() > -1)
+		{
+			dbcursor.moveToFirst();
+			String rune = dbcursor.getString(dbcursor.getColumnIndex("json"));
+			try
+			{
+				Rune r = new Gson().fromJson(rune, Rune.class);
+				return r;
+			}
+			catch (Exception e)
+			{
+				//Should probably at least do some logging, but not worried about that right now.
+			}
+		}
 		return null;
 	}
 
@@ -127,11 +246,41 @@ public class APIData
 
 	public static SummonerSpell getSummonerSpellByID(int ID)
 	{
+		Cursor dbcursor = myDB.query("summonerspells", new String[] { "json" }, "_id = " + ID, null, null, null, null, null);
+		if (dbcursor.getCount() > -1)
+		{
+			dbcursor.moveToFirst();
+			String spell = dbcursor.getString(dbcursor.getColumnIndex("json"));
+			try
+			{
+				SummonerSpell s = new Gson().fromJson(spell, SummonerSpell.class);
+				return s;
+			}
+			catch (Exception e)
+			{
+				//Should probably at least do some logging, but not worried about that right now.
+			}
+		}
 		return null;
 	}
 
 	public static SummonerSpell getSummonerSpellByName(String name)
 	{
+		Cursor dbcursor = myDB.query("summonerspells", new String[] { "json" }, "name = " + name, null, null, null, null, null);
+		if (dbcursor.getCount() > -1)
+		{
+			dbcursor.moveToFirst();
+			String spell = dbcursor.getString(dbcursor.getColumnIndex("json"));
+			try
+			{
+				SummonerSpell s = new Gson().fromJson(spell, SummonerSpell.class);
+				return s;
+			}
+			catch (Exception e)
+			{
+				//Should probably at least do some logging, but not worried about that right now.
+			}
+		}
 		return null;
 	}
 

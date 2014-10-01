@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.fourfoureight.lolhelper.General_Info.SpellDatabase;
+import com.fourfoureight.lolhelper.api.APIData;
 
 ;
 
@@ -38,10 +39,7 @@ public class Champions extends ActionBarActivity
 			layout.setBackgroundResource(R.drawable.bg2);
 		}
 
-		SpellDatabase.makeSpellDatabase();
-
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-				this, R.array.champion_array, R.layout.spinner_item);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, APIData.getChampionList());
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		final ImageView icon = (ImageView) findViewById(R.id.icon);
 
