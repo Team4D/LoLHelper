@@ -1,6 +1,9 @@
 package com.fourfoureight.lolhelper.api;
 
+import java.util.Arrays;
+
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.fourfoureight.lolhelper.api.database.LOLSQLiteHelper;
@@ -47,7 +50,7 @@ public class APIData
 
 	public static Champion getChampionByName(String name)
 	{
-		Cursor dbcursor = myDB.query("champions", new String[] { "json" }, "name = " + name, null, null, null, null, null);
+		Cursor dbcursor = myDB.rawQuery("select json from champions where name = ?", new String[] { name });
 		if (dbcursor.getCount() > -1)
 		{
 			dbcursor.moveToFirst();
@@ -67,7 +70,7 @@ public class APIData
 
 	public static Champion getChampionByKey(String key)
 	{
-		Cursor dbcursor = myDB.query("champions", new String[] { "json" }, "key = " + key, null, null, null, null, null);
+		Cursor dbcursor = myDB.rawQuery("select json from champions where key = ?", new String[] { key });
 		if (dbcursor.getCount() > -1)
 		{
 			dbcursor.moveToFirst();
@@ -87,12 +90,25 @@ public class APIData
 
 	public static String[] getChampionList()
 	{
-		return null;
+		//Get all names
+		Cursor dbcursor = myDB.rawQuery("select name from champions", null);
+		int n = dbcursor.getCount(); //number of entries
+		int m = dbcursor.getColumnIndex("name"); //index of name column
+		String[] s = new String[n];
+		dbcursor.moveToFirst();
+		//Put each entry name into s
+		for(int i=0; i<n; i++){
+			s[i] = dbcursor.getString(m);
+			System.out.println(s[i]);
+			dbcursor.moveToNext();
+		}
+		Arrays.sort(s);
+		return s;
 	}
 
 	public static int getNumberChampions()
 	{
-		return -1;
+		return (int) DatabaseUtils.queryNumEntries(myDB, "champions");
 	}
 
 	public static Item getItemByID(int ID)
@@ -117,7 +133,7 @@ public class APIData
 
 	public static Item getItemByName(String name)
 	{
-		Cursor dbcursor = myDB.query("items", new String[] { "json" }, "name = " + name, null, null, null, null, null);
+		Cursor dbcursor = myDB.rawQuery("select json from items where name = ?", new String[] { name });
 		if (dbcursor.getCount() > -1)
 		{
 			dbcursor.moveToFirst();
@@ -136,12 +152,25 @@ public class APIData
 
 	public static String[] getItemList()
 	{
-		return null;
+		//Get all names
+		Cursor dbcursor = myDB.rawQuery("select name from items", null);
+		int n = dbcursor.getCount(); //number of entries
+		int m = dbcursor.getColumnIndex("name"); //index of name column
+		String[] s = new String[n];
+		dbcursor.moveToFirst();
+		//Put each entry name into s
+		for(int i=0; i<n; i++){
+			s[i] = dbcursor.getString(m);
+			System.out.println(s[i]);
+			dbcursor.moveToNext();
+		}
+		Arrays.sort(s);
+		return s;
 	}
 
 	public static int getNumberItems()
 	{
-		return -1;
+		return (int) DatabaseUtils.queryNumEntries(myDB, "items");
 	}
 
 	public static Mastery getMasteryByID(int ID)
@@ -166,7 +195,7 @@ public class APIData
 
 	public static Mastery getMasteryByName(String name)
 	{
-		Cursor dbcursor = myDB.query("masteries", new String[] { "json" }, "name = " + name, null, null, null, null, null);
+		Cursor dbcursor = myDB.rawQuery("select json from masteries where name = ?", new String[] { name });
 		if (dbcursor.getCount() > -1)
 		{
 			dbcursor.moveToFirst();
@@ -186,12 +215,25 @@ public class APIData
 
 	public static String[] getMasteryList()
 	{
-		return null;
+		//Get all names
+		Cursor dbcursor = myDB.rawQuery("select name from masteries", null);
+		int n = dbcursor.getCount(); //number of entries
+		int m = dbcursor.getColumnIndex("name"); //index of name column
+		String[] s = new String[n];
+		dbcursor.moveToFirst();
+		//Put each entry name into s
+		for(int i=0; i<n; i++){
+			s[i] = dbcursor.getString(m);
+			System.out.println(s[i]);
+			dbcursor.moveToNext();
+		}
+		Arrays.sort(s);
+		return s;
 	}
 
 	public static int getNumberMasteries()
 	{
-		return -1;
+		return (int) DatabaseUtils.queryNumEntries(myDB, "masteries");
 	}
 
 	public static Rune getRuneByID(int ID)
@@ -216,7 +258,7 @@ public class APIData
 
 	public static Rune getRuneByName(String name)
 	{
-		Cursor dbcursor = myDB.query("runes", new String[] { "json" }, "name = " + name, null, null, null, null, null);
+		Cursor dbcursor = myDB.rawQuery("select json from runess where name = ?", new String[] { name });
 		if (dbcursor.getCount() > -1)
 		{
 			dbcursor.moveToFirst();
@@ -236,12 +278,25 @@ public class APIData
 
 	public static String[] getRuneList()
 	{
-		return null;
+		//Get all names
+		Cursor dbcursor = myDB.rawQuery("select name from runes", null);
+		int n = dbcursor.getCount(); //number of entries
+		int m = dbcursor.getColumnIndex("name"); //index of name column
+		String[] s = new String[n];
+		dbcursor.moveToFirst();
+		//Put each entry name into s
+		for(int i=0; i<n; i++){
+			s[i] = dbcursor.getString(m);
+			System.out.println(s[i]);
+			dbcursor.moveToNext();
+		}
+		Arrays.sort(s);
+		return s;
 	}
 
 	public static int getNumberRunes()
 	{
-		return -1;
+		return (int) DatabaseUtils.queryNumEntries(myDB, "runes");
 	}
 
 	public static SummonerSpell getSummonerSpellByID(int ID)
@@ -266,7 +321,7 @@ public class APIData
 
 	public static SummonerSpell getSummonerSpellByName(String name)
 	{
-		Cursor dbcursor = myDB.query("summonerspells", new String[] { "json" }, "name = " + name, null, null, null, null, null);
+		Cursor dbcursor = myDB.rawQuery("select json from summonerspells where name = ?", new String[] { name });
 		if (dbcursor.getCount() > -1)
 		{
 			dbcursor.moveToFirst();
@@ -286,13 +341,24 @@ public class APIData
 
 	public static String[] getSummonerSpellList()
 	{
-		//Return value for tests
-		String[] s = {"Barrier", "Flash"};
+		//Get all names
+		Cursor dbcursor = myDB.rawQuery("select name from summonerspells", null);
+		int n = dbcursor.getCount(); //number of entries
+		int m = dbcursor.getColumnIndex("name"); //index of name column
+		String[] s = new String[n];
+		dbcursor.moveToFirst();
+		//Put each entry name into s
+		for(int i=0; i<n; i++){
+			s[i] = dbcursor.getString(m);
+			System.out.println(s[i]);
+			dbcursor.moveToNext();
+		}
+		Arrays.sort(s);
 		return s;
 	}
 
 	public static int getNumberSummonerSpells()
 	{
-		return -1;
+		return (int) DatabaseUtils.queryNumEntries(myDB, "summonerspells");
 	}
 }
