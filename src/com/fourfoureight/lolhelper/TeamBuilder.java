@@ -73,6 +73,7 @@ public class TeamBuilder extends ActionBarActivity {
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allStrategies);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter1);
+        
         // selector control for spinner
         spinner1.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
@@ -101,7 +102,7 @@ public class TeamBuilder extends ActionBarActivity {
                 ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(TeamBuilder.this, android.R.layout.simple_spinner_item, allStrategies);
                 adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner1.setAdapter(adapter1);
-				suggestChampion.performClick();
+//				suggestChampion.performClick();
 			}
 		});
         
@@ -573,16 +574,22 @@ public class TeamBuilder extends ActionBarActivity {
     	// First calculate how many pixels is 60 dip, which is the size of all imagebuttons.
         DisplayMetrics dm = getResources().getDisplayMetrics();
         float dpInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, dm);
+        float dpInPx_w = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, dm);
         
+    	String message = champion.getName();
+    	icon.setImageResource(getResources().getIdentifier(
+    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", getPackageName()));
+    	
+        icon.setAdjustViewBounds(true);
     	icon.setMaxHeight((int)dpInPx);
     	icon.setMaxWidth((int)dpInPx);
     	icon.setMinimumHeight((int)dpInPx);
     	icon.setMinimumWidth((int)dpInPx);
-    	icon.setAdjustViewBounds(true);
-    	icon.setScaleType(ScaleType.CENTER);
-    	String message = champion.getName();
-    	icon.setImageResource(getResources().getIdentifier(
-    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", getPackageName()));
+    	icon.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
+    	icon.setScaleType(ScaleType.FIT_CENTER);
+    	icon.setPadding(0, 0, 0, 0);
+    	icon.setBackgroundColor(Color.TRANSPARENT);
+
     	return icon;
     }
 }

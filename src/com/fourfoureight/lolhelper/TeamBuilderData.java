@@ -594,7 +594,7 @@ public class TeamBuilderData
 	}
 
 	// Return a list of champions that matches the given position, ignore the strategy.
-	// This method is called when the team strategy is -1 (haven't benn picked)
+	// This method is called when the team strategy is -1 (haven't been picked)
 	// return list won't include the champions that already in the given team.
 	private ChampionAttributes[] suggestChampionsByPosition(int position)
 	{
@@ -669,7 +669,7 @@ public class TeamBuilderData
 			returnArray[i] = -1;
 		}
 
-		// for every strategy score, find if it is the greatest in the array. if so,
+		// for every strategy score, find if it is the greatest one. if so,
 		// append the strategy to returnArray and increment returnArray[0]
 		for (int i = 0; i < 10; i++)
 		{
@@ -688,7 +688,7 @@ public class TeamBuilderData
 		availableStrategy = returnArray;
 	}
 
-	// Retrun an array contains every champion who is not in the team.
+	// Return an array contains every champion who is not in the team.
 	public ChampionAttributes[] getAllAvailableChampions()
 	{
 		ChampionAttributes[] returnArray = new ChampionAttributes[numOfChampions];

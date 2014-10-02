@@ -106,7 +106,7 @@ public class DBcounters extends SQLiteOpenHelper
 	/**
 	 * Copies your database from your local assets-folder to the just created
 	 * empty database in the system folder, from where it can be accessed and
-	 * handled. This is done by transfering bytestream.
+	 * handled. This is done by transferring bytestream.
 	 */
 	private void copyDataBase() throws IOException
 	{
