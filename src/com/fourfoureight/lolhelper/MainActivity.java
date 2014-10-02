@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -16,7 +17,9 @@ import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.LinearLayout;
 
 import com.fourfoureight.lolhelper.Build_Guides.BuildScreen;
+import com.fourfoureight.lolhelper.api.APIData;
 import com.fourfoureight.lolhelper.api.database.LOLDatabaseAsyncTask;
+import com.fourfoureight.lolhelper.api.dto.staticdata.Champion.Champion;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -44,6 +47,7 @@ public class MainActivity extends ActionBarActivity
 
 		// Initialize the database for use.
 		new LOLDatabaseAsyncTask(this.getApplication()).execute();
+		new grabChampion().execute(266);
 
 		// get the listview
 		expListView = (ExpandableListView) findViewById(R.id.lvExp);
@@ -348,5 +352,22 @@ public class MainActivity extends ActionBarActivity
 	{
 		Intent intent = new Intent(this, About.class);
 		startActivity(intent);
+	}
+
+	private class grabChampion extends AsyncTask<Integer, Void, Champion>
+	{
+		@Override
+		protected Champion doInBackground(Integer... champ_id)
+		{
+			Champion c = APIData.getChampionByID(champ_id[0]);
+			// Note: This functions return value is passed as a parameter to onPostExecute
+			return c;
+		}
+
+		@Override
+		protected void onPostExecute(Champion champ)
+		{
+			Champion mychamp = champ;
+		}
 	}
 }

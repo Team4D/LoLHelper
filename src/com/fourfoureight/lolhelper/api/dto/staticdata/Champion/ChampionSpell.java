@@ -11,10 +11,10 @@ import com.fourfoureight.lolhelper.api.dto.staticdata.SpellVars;
 
 /**
  * @author Shyos
- * 
  */
-public class ChampionSpell {
-	private List<Integer> cooldown;
+public class ChampionSpell
+{
+	private List<Float> cooldown;
 	private String cooldownBurn;
 	private List<Integer> cost;
 	private String costBurn;
@@ -27,117 +27,189 @@ public class ChampionSpell {
 	private LevelTip leveltip;
 	private int maxrank;
 	private String name;
-	private String range;
+	private Object range;
 	private String rangeBurn;
 	private String resource;
 	private String tooltip;
 	private List<SpellVars> vars;
-	public List<Integer> getCooldown() {
+
+	public List<Float> getCooldown()
+	{
 		return cooldown;
 	}
-	public void setCooldown(List<Integer> cooldown) {
+
+	public void setCooldown(List<Float> cooldown)
+	{
 		this.cooldown = cooldown;
 	}
-	public String getCooldownBurn() {
+
+	public String getCooldownBurn()
+	{
 		return cooldownBurn;
 	}
-	public void setCooldownBurn(String cooldownBurn) {
+
+	public void setCooldownBurn(String cooldownBurn)
+	{
 		this.cooldownBurn = cooldownBurn;
 	}
-	public List<Integer> getCost() {
+
+	public List<Integer> getCost()
+	{
 		return cost;
 	}
-	public void setCost(List<Integer> cost) {
+
+	public void setCost(List<Integer> cost)
+	{
 		this.cost = cost;
 	}
-	public String getCostBurn() {
+
+	public String getCostBurn()
+	{
 		return costBurn;
 	}
-	public void setCostBurn(String costBurn) {
+
+	public void setCostBurn(String costBurn)
+	{
 		this.costBurn = costBurn;
 	}
-	public String getCostType() {
+
+	public String getCostType()
+	{
 		return costType;
 	}
-	public void setCostType(String costType) {
+
+	public void setCostType(String costType)
+	{
 		this.costType = costType;
 	}
-	public String getDescription() {
+
+	public String getDescription()
+	{
 		return description;
 	}
-	public void setDescription(String description) {
+
+	public void setDescription(String description)
+	{
 		this.description = description;
 	}
-	public List<Object> getEffect() {
+
+	public List<Object> getEffect()
+	{
 		return effect;
 	}
-	public void setEffect(List<Object> effect) {
+
+	public void setEffect(List<Object> effect)
+	{
 		this.effect = effect;
 	}
-	public List<String> getEffectBurn() {
+
+	public List<String> getEffectBurn()
+	{
 		return effectBurn;
 	}
-	public void setEffectBurn(List<String> effectBurn) {
+
+	public void setEffectBurn(List<String> effectBurn)
+	{
 		this.effectBurn = effectBurn;
 	}
-	public String getId() {
+
+	public String getId()
+	{
 		return id;
 	}
-	public void setId(String id) {
+
+	public void setId(String id)
+	{
 		this.id = id;
 	}
-	public Image getImage() {
+
+	public Image getImage()
+	{
 		return image;
 	}
-	public void setImage(Image image) {
+
+	public void setImage(Image image)
+	{
 		this.image = image;
 	}
-	public LevelTip getLeveltip() {
+
+	public LevelTip getLeveltip()
+	{
 		return leveltip;
 	}
-	public void setLeveltip(LevelTip leveltip) {
+
+	public void setLeveltip(LevelTip leveltip)
+	{
 		this.leveltip = leveltip;
 	}
-	public int getMaxrank() {
+
+	public int getMaxrank()
+	{
 		return maxrank;
 	}
-	public void setMaxrank(int maxrank) {
+
+	public void setMaxrank(int maxrank)
+	{
 		this.maxrank = maxrank;
 	}
-	public String getName() {
+
+	public String getName()
+	{
 		return name;
 	}
-	public void setName(String name) {
+
+	public void setName(String name)
+	{
 		this.name = name;
 	}
-	public String getRange() {
+
+	public Object getRange()
+	{
 		return range;
 	}
-	public void setRange(String range) {
+
+	public void setRange(Object range)
+	{
 		this.range = range;
 	}
-	public String getRangeBurn() {
+
+	public String getRangeBurn()
+	{
 		return rangeBurn;
 	}
-	public void setRangeBurn(String rangeBurn) {
+
+	public void setRangeBurn(String rangeBurn)
+	{
 		this.rangeBurn = rangeBurn;
 	}
-	public String getResource() {
+
+	public String getResource()
+	{
 		return resource;
 	}
-	public void setResource(String resource) {
+
+	public void setResource(String resource)
+	{
 		this.resource = resource;
 	}
-	public String getTooltip() {
+
+	public String getTooltip()
+	{
 		return tooltip;
 	}
-	public void setTooltip(String tooltip) {
+
+	public void setTooltip(String tooltip)
+	{
 		this.tooltip = tooltip;
 	}
-	public List<SpellVars> getVars() {
+
+	public List<SpellVars> getVars()
+	{
 		return vars;
 	}
-	public void setVars(List<SpellVars> vars) {
+
+	public void setVars(List<SpellVars> vars)
+	{
 		this.vars = vars;
 	}
 }
