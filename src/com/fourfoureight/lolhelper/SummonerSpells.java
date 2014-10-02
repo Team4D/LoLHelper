@@ -1,8 +1,11 @@
 package com.fourfoureight.lolhelper;
 
 import com.fourfoureight.lolhelper.api.APIData;
+import com.fourfoureight.lolhelper.api.dto.staticdata.SummonerSpell.SummonerSpell;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -16,6 +19,45 @@ import android.widget.Spinner;
 
 public class SummonerSpells extends ActionBarActivity
 {
+	
+	private class getSpells extends AsyncTask<Context, Void, ArrayAdapter<String>>
+	{
+		@Override
+		protected ArrayAdapter<String> doInBackground(Context... context)
+		{
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(context[0], R.layout.spinner_item, APIData.getSummonerSpellList());
+			// Note: This return value is passed as a parameter to onPostExecute
+			return adapter;
+		}
+
+		@Override
+		protected void onPostExecute(ArrayAdapter<String> adapter)
+		{
+			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			final ImageView icon = (ImageView) findViewById(R.id.icon);
+
+			Spinner s = (Spinner) findViewById(R.id.spinner1);
+			s.setAdapter(adapter);
+			s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+			{
+
+				@Override
+				public void onItemSelected(AdapterView adapter, View v, int i, long lng)
+				{
+					EXTRA_MESSAGE = adapter.getItemAtPosition(i).toString();
+					int resID = getResources().getIdentifier(EXTRA_MESSAGE.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
+							"drawable", getPackageName());
+					icon.setImageResource(resID);
+				}
+
+				@Override
+				public void onNothingSelected(AdapterView arg0)
+				{
+					// do something else
+				}
+			});
+		}
+	}
 
 	static String EXTRA_MESSAGE = "";
 
@@ -34,32 +76,9 @@ public class SummonerSpells extends ActionBarActivity
 		{
 			layout.setBackgroundResource(R.drawable.bg2);
 		}
+
+		new getSpells().execute(this);
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, APIData.getSummonerSpellList());
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		final ImageView icon = (ImageView) findViewById(R.id.icon);
-
-		Spinner s = (Spinner) findViewById(R.id.spinner1);
-		s.setAdapter(adapter);
-		s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-		{
-
-			@Override
-			public void onItemSelected(AdapterView adapter, View v, int i, long lng)
-			{
-				EXTRA_MESSAGE = adapter.getItemAtPosition(i).toString();
-				int resID = getResources().getIdentifier(EXTRA_MESSAGE.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
-						"drawable", getPackageName());
-				icon.setImageResource(resID);
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView arg0)
-			{
-				// do something else
-			}
-		});
-
 	}
 
 	public void sspellinfo(View view)

@@ -1,6 +1,7 @@
 package com.fourfoureight.lolhelper;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -15,6 +16,43 @@ import com.fourfoureight.lolhelper.api.dto.staticdata.SummonerSpell.SummonerSpel
 
 public class SummonerSpellInfo extends ActionBarActivity
 {
+	
+	private class grabSpell extends AsyncTask<String, Void, SummonerSpell>
+	{
+		@Override
+		protected SummonerSpell doInBackground(String... spell_name)
+		{
+			SummonerSpell c = APIData.getSummonerSpellByName(spell_name[0]);
+			// Note: This return value is passed as a parameter to onPostExecute
+			return c;
+		}
+
+		@Override
+		protected void onPostExecute(SummonerSpell spell)
+		{
+	/*		String name = SSpell.getName(SSpell.summonerspells[i]);
+			String effect = SSpell.getEffect(SSpell.summonerspells[i]);
+			int cooldown = SSpell.getCooldown(SSpell.summonerspells[i]);
+			String range = SSpell.getRange(SSpell.summonerspells[i]);
+			boolean breakstealth = SSpell.getBreakStealth(SSpell.summonerspells[i]);
+			int level = SSpell.getLevel(SSpell.summonerspells[i]);
+	*/
+			TextView nameText = (TextView) findViewById(R.id.nameDis);
+			TextView effectText = (TextView) findViewById(R.id.effectDis); // effectDis *************************
+			TextView cooldownText = (TextView) findViewById(R.id.cooldownDis); // cooldownDis *****************************
+			TextView rangeText = (TextView) findViewById(R.id.rangeDis); // rangeDis **********************************
+			TextView breakstealthText = (TextView) findViewById(R.id.breakstealthDis); // breakstealthDis *****************
+			TextView levelText = (TextView) findViewById(R.id.levelDis); // levelDis *******************************
+
+			// Setting Text for TextViews
+			nameText.setText(spell.getName());
+			effectText.setText("Effect: \n" + spell.getDescription());
+			cooldownText.setText("Cooldown: \n" + spell.getCooldownBurn());
+			rangeText.setText("Range: \n" + spell.getRangeBurn());
+			//TODO: Either implement breakstealth or delete completely
+			levelText.setText("Level: \n" + spell.getSummonerLevel());
+		}
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -36,35 +74,12 @@ public class SummonerSpellInfo extends ActionBarActivity
 		Intent intent = getIntent();
 		String message = intent.getStringExtra(SummonerSpells.EXTRA_MESSAGE);
 		
-		SummonerSpell spell = APIData.getSummonerSpellByName(message);
-
 		ImageView icon = (ImageView) findViewById(R.id.icon);
 		int resID = getResources().getIdentifier(message.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
 				"drawable", getPackageName());
 		icon.setImageResource(resID);
-
-/*		String name = SSpell.getName(SSpell.summonerspells[i]);
-		String effect = SSpell.getEffect(SSpell.summonerspells[i]);
-		int cooldown = SSpell.getCooldown(SSpell.summonerspells[i]);
-		String range = SSpell.getRange(SSpell.summonerspells[i]);
-		boolean breakstealth = SSpell.getBreakStealth(SSpell.summonerspells[i]);
-		int level = SSpell.getLevel(SSpell.summonerspells[i]);
-*/
-		TextView nameText = (TextView) findViewById(R.id.nameDis);
-		TextView effectText = (TextView) findViewById(R.id.effectDis); // effectDis *************************
-		TextView cooldownText = (TextView) findViewById(R.id.cooldownDis); // cooldownDis *****************************
-		TextView rangeText = (TextView) findViewById(R.id.rangeDis); // rangeDis **********************************
-		TextView breakstealthText = (TextView) findViewById(R.id.breakstealthDis); // breakstealthDis *****************
-		TextView levelText = (TextView) findViewById(R.id.levelDis); // levelDis *******************************
-
-		// Setting Text for TextViews
-		nameText.setText(spell.getName());
-		effectText.setText("Effect: \n" + spell.getEffectBurn());
-		cooldownText.setText("Cooldown: \n" + spell.getCooldownBurn());
-		rangeText.setText("Range: \n" + spell.getRangeBurn());
-		//TODO: Either implement breakstealth or delete completely
-		levelText.setText("Level: \n" + spell.getSummonerLevel());
-
+		
+		new grabSpell().execute(message);
 	}
 
 	@Override
