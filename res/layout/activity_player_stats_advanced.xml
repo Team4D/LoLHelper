@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.fourfoureight.lolhelper.PlayerStatsAdvanced" >
+    tools:context="com.team4d.lolhelper.PlayerStatsAdvanced" >
     
 	    <TextView
 	        android:id="@+id/textView1"

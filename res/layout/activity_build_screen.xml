@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.fourfoureight.lolhelper.build_screen" >
+    tools:context="com.team4d.lolhelper.build_screen" >
 
     <ImageView
         android:id="@+id/icon"
@@ -38,7 +38,7 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
 	    android:orientation="horizontal"
-	    tools:context="com.fourfoureight.lolhelper.build_screen" >
+	    tools:context="com.team4d.lolhelper.build_screen" >
 	    <Button
 	        android:id="@+id/button2"
 	        android:layout_width="wrap_content"

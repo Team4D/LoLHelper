@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:orientation="vertical"
-    tools:context="com.fourfoureight.lolhelper.Build_Guides.BuildGuides"
+    tools:context="com.team4d.lolhelper.buildguides.BuildGuides"
     tools:ignore="MergeRootFrame" >
 
  <LinearLayout 

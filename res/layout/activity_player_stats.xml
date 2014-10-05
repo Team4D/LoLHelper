@@ -6,7 +6,7 @@
     android:background="@drawable/bg"
     android:scrollbars="vertical"
     android:visibility="visible"
-    tools:context="com.fourfoureight.lolhelper.PlayerStats"
+    tools:context="com.team4d.lolhelper.PlayerStats"
     tools:ignore="TooManyViews" >
 
     <FrameLayout

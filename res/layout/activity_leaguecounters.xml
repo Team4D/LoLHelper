@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:padding="20sp"
-    tools:context="com.fourfoureight.lolhelper.Leaguecounters"
+    tools:context="com.team4d.lolhelper.Leaguecounters"
     tools:ignore="MergeRootFrame" >
 
     <ImageView

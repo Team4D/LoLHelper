@@ -13,7 +13,7 @@
 		    android:layout_height="wrap_content"
 		    android:scrollbars="vertical"
 		    android:visibility="visible"
-		    tools:context="com.fourfoureight.lolhelper.Options"
+		    tools:context="com.team4d.lolhelper.Options"
 		    tools:ignore="MergeRootFrame" >
 		    
 		    <TextView
