@@ -372,20 +372,24 @@ public class APIData
 		//Replace e's
 		int n = e.size();
 		for(int i=0; i<n; i++){
-			base.replace("{{ e" + i + " }}", e.get(i));
+			base = base.replace("{{ e" + i + " }}", e.get(i));
 		}
 		//Replace a's
 		n = vars.size();
 		for(int i=0; i<n; i++){
-			base.replace("{{ " + vars.get(i).getKey() + " }}", vars.get(i).getCoeff().toString());
+			base = base.replace("{{ " + vars.get(i).getKey() + " }}", vars.get(i).getCoeff().toString());
 		}
 		//Replace f's (individual cases)
 		if(spell.getName().equals("Flay")){
-			base.replace("{{ f1 }}-{{ f2 }} ", "");
+			base = base.replace("{{ f1 }}-{{ f2 }} ", "");
 		} else if(spell.getName().equals("Blood Thirst / Blood Price")){
-			base.replace("({{ f5 }}) ", "");
-			base.replace("{{ f4 }} ", "");
+			base = base.replace("({{ f5 }}) ", "");
+			base = base.replace("{{ f4 }} ", "");
 		}
+		//Remove HTML formatting
+		base = base.replaceAll("<br>", "\n");
+		base = base.replaceAll("(<(.[^>])*>)?", "");
+		base = base.replaceAll("</span>", "");
 		return base;
 	}
 	
@@ -394,8 +398,12 @@ public class APIData
 		List<SpellVars> vars = spell.getVars();
 		int n = vars.size();
 		for(int i=0; i<n; i++){
-			base.replace("{{ " + vars.get(i).getKey() + " }}", vars.get(i).getCoeff().toString());
+			base = base.replace("{{ " + vars.get(i).getKey() + " }}", vars.get(i).getCoeff().toString());
 		}
+		//Remove HTML formatting
+		base = base.replaceAll("<br>", "\n");
+		base = base.replaceAll("(<(.[^>])*>)?", "");
+		base = base.replaceAll("</span>", "");
 		return base;
 	}
 }
