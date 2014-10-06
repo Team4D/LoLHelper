@@ -1,6 +1,7 @@
 package com.team4d.lolhelper.api;
 
 import java.util.Arrays;
+import java.util.List;
 
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -10,7 +11,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonElement;
 import com.team4d.lolhelper.api.database.LOLSQLiteHelper;
+import com.team4d.lolhelper.api.dto.staticdata.SpellVars;
 import com.team4d.lolhelper.api.dto.staticdata.champion.Champion;
+import com.team4d.lolhelper.api.dto.staticdata.champion.ChampionSpell;
 import com.team4d.lolhelper.api.dto.staticdata.item.Item;
 import com.team4d.lolhelper.api.dto.staticdata.mastery.Mastery;
 import com.team4d.lolhelper.api.dto.staticdata.rune.Rune;
@@ -360,5 +363,39 @@ public class APIData
 	public static int getNumberSummonerSpells()
 	{
 		return (int) DatabaseUtils.queryNumEntries(myDB, "summonerspells");
+	}
+	
+	public static String parse(ChampionSpell spell){
+		String base = spell.getTooltip();
+		List<String> e = spell.getEffectBurn();
+		List<SpellVars> vars = spell.getVars();
+		//Replace e's
+		int n = e.size();
+		for(int i=0; i<n; i++){
+			base.replace("{{ e" + i + " }}", e.get(i));
+		}
+		//Replace a's
+		n = vars.size();
+		for(int i=0; i<n; i++){
+			base.replace("{{ " + vars.get(i).getKey() + " }}", vars.get(i).getCoeff().toString());
+		}
+		//Replace f's (individual cases)
+		if(spell.getName().equals("Flay")){
+			base.replace("{{ f1 }}-{{ f2 }} ", "");
+		} else if(spell.getName().equals("Blood Thirst / Blood Price")){
+			base.replace("({{ f5 }}) ", "");
+			base.replace("{{ f4 }} ", "");
+		}
+		return base;
+	}
+	
+	public static String parse(SummonerSpell spell){
+		String base = spell.getTooltip();
+		List<SpellVars> vars = spell.getVars();
+		int n = vars.size();
+		for(int i=0; i<n; i++){
+			base.replace("{{ " + vars.get(i).getKey() + " }}", vars.get(i).getCoeff().toString());
+		}
+		return base;
 	}
 }
