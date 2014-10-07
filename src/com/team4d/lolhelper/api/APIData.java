@@ -371,12 +371,29 @@ public class APIData
 		List<SpellVars> vars = spell.getVars();
 		//Remove HTML formatting
 		base = base.replaceAll("<br>", "\n");
-		base = base.replaceAll("(<(.[^>])*>)?", "");
-		base = base.replaceAll("</span>", "");
+		base = base.replaceAll("(<[^>]*>)?", "");
 		//Replace e's
 		int n = e.size();
 		for(int i=0; i<n; i++){
 			base = base.replace("{{ e" + i + " }}", e.get(i));
+		}
+		//Replace f's (individual cases)
+		String name = spell.getName();
+		if(name.equals("Flay")){
+			base = base.replace("{{ f1 }}-{{ f2 }} ", "");
+		} else if(name.equals("Blood Thirst / Blood Price")){
+			base = base.replace("({{ f5 }}) ", "");
+			base = base.replace("{{ f4 }} ", "");
+		} else if(name.equals("Hawkshot")){
+			base = base.replaceAll("Total Gold Retrieved: .*", "");
+		} else if(name.equals("Baleful Strike")){
+			base = base.replaceAll("Ability Power bonus: .*", "");
+		} else if(name.equals("Enrage")){
+			base = base.replaceAll("Total Health gained: .*", "");
+		} else if(name.equals("Vorpal Blade")){
+			base = base.replace("{{ f1 }} ","");
+			base = base.replace("{{ f2 }} ", "");
+			base = base.replace("restores {{ f3 }} Health", "heals 33% of normal amount");
 		}
 		//Replace a's and f's
 		n = vars.size();
@@ -401,10 +418,10 @@ public class APIData
 				if(spell.getName().equals("Savagery")){
 					base = base.replace("({{ " + k + " }}) ", "");
 				} else {
-					base = base.replace("{{ " + k + " }}", "+" + listPercent(v.getCoeff()) + "% of Attack Damage");
+					base = base.replace("{{ " + k + " }}", "(+" + listPercent(v.getCoeff()) + "% Attack Damage)");
 				}
 			} else if(s.equals("@dynamic.abilitypower")){
-				base = base.replace("{{ " + k + " }}", "+" + listPercent(v.getCoeff()) + "% of Ability Power");
+				base = base.replace("{{ " + k + " }}", "(+" + listPercent(v.getCoeff()) + "% Ability Power)");
 			} else { // normal cases
 				if(s.equals("spelldamage")){
 					addition = "% Ability Power";
@@ -426,20 +443,6 @@ public class APIData
 				base = base.replace("{{ " + k + " }}", listPercent(v.getCoeff()) + addition);
 			}
 		}
-		//Replace f's (individual cases)
-		String name = spell.getName();
-		if(name.equals("Flay")){
-			base = base.replace("{{ f1 }}-{{ f2 }} ", "");
-		} else if(name.equals("Blood Thirst / Blood Price")){
-			base = base.replace("({{ f5 }}) ", "");
-			base = base.replace("{{ f4 }} ", "");
-		} else if(name.equals("Hawkshot")){
-			base = base.replaceAll("Total Gold Retrieved: .*", "");
-		} else if(name.equals("Baleful Strike")){
-			base = base.replaceAll("Ability Power bonus: .*", "");
-		} else if(name.equals("Enrage")){
-			base = base.replaceAll("Total Health gained: .*", "");
-		}
 		return base;
 	}
 	
@@ -447,27 +450,46 @@ public class APIData
 		String base = spell.getTooltip();
 		List<SpellVars> vars = spell.getVars();
 		int n = vars.size();
-		for(int i=0; i<n; i++){
-			base = base.replace("{{ " + vars.get(i).getKey() + " }}", vars.get(i).getCoeff().toString());
-		}
 		//Remove HTML formatting
 		base = base.replaceAll("<br>", "\n");
-		base = base.replaceAll("(<(.[^>])*>)?", "");
-		base = base.replaceAll("</span>", "");
+		base = base.replaceAll("(<[^>]*>)?", "");
+		//Replace variables
+		for(int i=0; i<n; i++){
+			base = base.replace("{{ " + vars.get(i).getKey() + " }}", list(vars.get(i).getCoeff()));
+		}
 		return base;
 	}
 	
 	private static String list(Object o){
 		String str = o.toString();
-		str = str.replaceAll("([|])", "");
+		str = str.replace("[", "");
+		str = str.replace("]", "");
 		str = str.replace(",", "/");
 		return str;
 	}
 	
 	private static String listPercent(Object o){
+		//Need to turn decimals to percentages
 		String str = o.toString();
-		str = str.replaceAll("([|])", "");
-		str = str.replace(",", "/");
-		return str;
+		String result = "";
+		int last;
+		double value;
+		//Remove [
+		str = str.substring(1);
+		//Start parsing
+		last = str.indexOf(',');
+		//Get inner parts (one value of [x] will skip this step)
+		while(last > 0){
+			value = Double.parseDouble(str.substring(0, last));
+			result = result + (int) (value*100) + '/';
+			str = str.substring(last+1);
+			last = str.indexOf(',');
+		}
+		//Get last part (])
+		last = str.indexOf(']');
+		value = Double.parseDouble(str.substring(0, last));
+		result = result + (int) (value*100);
+		
+		return result;
 	}
 }
