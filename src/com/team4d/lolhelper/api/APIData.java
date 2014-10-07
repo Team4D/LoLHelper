@@ -458,10 +458,16 @@ public class APIData
 	}
 	
 	private static String list(Object o){
-		return o.toString();
+		String str = o.toString();
+		str = str.replaceAll("([|])", "");
+		str = str.replace(",", "/");
+		return str;
 	}
 	
 	private static String listPercent(Object o){
-		return o.toString();
+		String str = o.toString();
+		str = str.replaceAll("([|])", "");
+		str = str.replace(",", "/");
+		return str;
 	}
 }
