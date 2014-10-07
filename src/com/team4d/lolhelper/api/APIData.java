@@ -427,11 +427,18 @@ public class APIData
 			}
 		}
 		//Replace f's (individual cases)
-		if(spell.getName().equals("Flay")){
+		String name = spell.getName();
+		if(name.equals("Flay")){
 			base = base.replace("{{ f1 }}-{{ f2 }} ", "");
-		} else if(spell.getName().equals("Blood Thirst / Blood Price")){
+		} else if(name.equals("Blood Thirst / Blood Price")){
 			base = base.replace("({{ f5 }}) ", "");
 			base = base.replace("{{ f4 }} ", "");
+		} else if(name.equals("Hawkshot")){
+			base = base.replaceAll("Total Gold Retrieved: .*", "");
+		} else if(name.equals("Baleful Strike")){
+			base = base.replaceAll("Ability Power bonus: .*", "");
+		} else if(name.equals("Enrage")){
+			base = base.replaceAll("Total Health gained: .*", "");
 		}
 		return base;
 	}
