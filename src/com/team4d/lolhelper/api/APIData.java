@@ -369,15 +369,62 @@ public class APIData
 		String base = spell.getTooltip();
 		List<String> e = spell.getEffectBurn();
 		List<SpellVars> vars = spell.getVars();
+		//Remove HTML formatting
+		base = base.replaceAll("<br>", "\n");
+		base = base.replaceAll("(<(.[^>])*>)?", "");
+		base = base.replaceAll("</span>", "");
 		//Replace e's
 		int n = e.size();
 		for(int i=0; i<n; i++){
 			base = base.replace("{{ e" + i + " }}", e.get(i));
 		}
-		//Replace a's
+		//Replace a's and f's
 		n = vars.size();
+		SpellVars v;
+		String addition = "";
 		for(int i=0; i<n; i++){
-			base = base.replace("{{ " + vars.get(i).getKey() + " }}", vars.get(i).getCoeff().toString());
+			v = vars.get(i);
+			String k = v.getKey();
+			String s = v.getLink();
+			//Special cases (THANKS RITO)
+			if(s.equals("@special.BraumWArmor") || s.equals("@special.BraumWMR") || s.equals("@special.jaxrarmor") || s.equals("@special.jaxrmr")){
+				base = base.replace("{{ " + k + " }} ", "");
+			} else if(s.equals("@special.nautilusq")){
+				base = base.replace("({{ " + k + " }}) ", "");
+			} else if(s.equals("@cooldownchampion") || s.equals("@text") || s.equals("@special.dariusr3") || s.equals("@cooldownchampion")){
+				base = base.replace("{{ " + k + " }}", list(v.getCoeff()));
+			} else if(s.equals("@special.viw")){
+				base = base.replace("{{ " + k + " }}", "1% per " + list(v.getCoeff()) + " bonus Attack Damage");
+			} else if(s.equals("@stacks")){
+				base = base.replace("{{ " + k + " }}", list(v.getCoeff()) + " per stack");
+			} else if(s.equals("@dynamic.attackdamage")){
+				if(spell.getName().equals("Savagery")){
+					base = base.replace("({{ " + k + " }}) ", "");
+				} else {
+					base = base.replace("{{ " + k + " }}", "+" + listPercent(v.getCoeff()) + "% of Attack Damage");
+				}
+			} else if(s.equals("@dynamic.abilitypower")){
+				base = base.replace("{{ " + k + " }}", "+" + listPercent(v.getCoeff()) + "% of Ability Power");
+			} else { // normal cases
+				if(s.equals("spelldamage")){
+					addition = "% Ability Power";
+				} else if(s.equals("attackdamage")){
+					addition = "% Attack Damage";
+				} else if(s.equals("bonusattackdamage")){
+					addition = "% bonus Attack Damage";
+				} else if(s.equals("bonushealth")){
+					addition = "% bonus Health";
+				} else if(s.equals("bonusspellblock")){
+					addition = "% bonus Magic Resist";
+				} else if(s.equals("bonusarmor")){
+					addition = "% bonus Armor";
+				} else if(s.equals("armor")){
+					addition = "% Armor";
+				} else if(s.equals("mana")){
+					addition = "% maximum Mana";
+				}
+				base = base.replace("{{ " + k + " }}", listPercent(v.getCoeff()) + addition);
+			}
 		}
 		//Replace f's (individual cases)
 		if(spell.getName().equals("Flay")){
@@ -386,10 +433,6 @@ public class APIData
 			base = base.replace("({{ f5 }}) ", "");
 			base = base.replace("{{ f4 }} ", "");
 		}
-		//Remove HTML formatting
-		base = base.replaceAll("<br>", "\n");
-		base = base.replaceAll("(<(.[^>])*>)?", "");
-		base = base.replaceAll("</span>", "");
 		return base;
 	}
 	
@@ -405,5 +448,13 @@ public class APIData
 		base = base.replaceAll("(<(.[^>])*>)?", "");
 		base = base.replaceAll("</span>", "");
 		return base;
+	}
+	
+	private static String list(Object o){
+		return o.toString();
+	}
+	
+	private static String listPercent(Object o){
+		return o.toString();
 	}
 }
