@@ -3,7 +3,7 @@
     <string name="About_Header">Created By Team 4th Dimension</string>
 	<string name="About_Roles_Right">\n
 	    				 Leader, Documentation\n
-	    				 Project Analyst, Programmer\n
+	    				 Programmer (Build Roulette)\n
 	    				 Programmer (App Design)\n
 	    				 Programmer (Item Builds)\n
 	    				 Programmer (Player Stats)\n
@@ -16,8 +16,8 @@
 	    				 Programmer (Team Builder)\n
 	    				 Programmer (Team Builder)\n
 	    				 Programmer (Team Builder)\n
-	    				 Business Consultant, Programmer (General Info)\n
-	    				 Design\n
+	    				 Programmer (General Info)\n\n
+	    				 Executive Producer\n
 	    				  </string>
 	<string name="About_Roles_Left"> \n
 	    				 Alexa Varady\n
@@ -34,8 +34,8 @@
 	    				 Su Yan\n
 	    				 Thomas Ford\n
 	    				 Josh Werner\n
-	    				 Murl Westheffer\n
-	    				 Miguel Calderón\n
+	    				 Murl Westheffer\n\n
+	    				 Paul Steffens\n
 	    				  </string>
 	<string name="About_Version">Version 0.9.002</string> <!--  # of commits minus 182 for beta -->
     <string name="Button_Enter">Enter</string>

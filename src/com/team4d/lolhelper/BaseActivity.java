@@ -25,7 +25,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -51,8 +55,7 @@ public class BaseActivity extends FragmentActivity
 	private static final String AD_UNIT_ID = "ca-app-pub-9973141875464346/2397347111";
 	
 	//Jungle Timer things
-	TextView GR, GB, LR, LB, DR, BA;
-	ImageButton GRback, GBback, LRback, LBback, DRback, BAback; // Backgrounds
+	Button GR, GB, LR, LB, DR, BA;
 	Timer[] timer = new Timer[6];
 	boolean reset[] = { true, true, true, true, true, true };
 	boolean running[] = { false, false, false, false, false, false };
@@ -127,10 +130,14 @@ public class BaseActivity extends FragmentActivity
 
 	            @Override
 	            public void onPanelExpanded(View panel) {
+	            	ImageView arrow = (ImageView) findViewById(R.id.arrowbararrow);
+	            	arrow.setBackgroundResource(R.drawable.uparrow);
 	            }
 
 	            @Override
 	            public void onPanelCollapsed(View panel) {
+	            	ImageView arrow = (ImageView) findViewById(R.id.arrowbararrow);
+	            	arrow.setBackgroundResource(R.drawable.downarrow);
 	            }
 
 	            @Override
@@ -143,19 +150,17 @@ public class BaseActivity extends FragmentActivity
 	        });
 
 	        //Jungle Timers
-	        GR = (TextView) findViewById(R.id.textView1);
-			LR = (TextView) findViewById(R.id.textView2);
-			GB = (TextView) findViewById(R.id.textView3);
-			LB = (TextView) findViewById(R.id.textView4);
-			DR = (TextView) findViewById(R.id.textView5);
-			BA = (TextView) findViewById(R.id.textView6);
-
-			GRback = (ImageButton) findViewById(R.id.imageButton1);
-			LRback = (ImageButton) findViewById(R.id.imageButton2);
-			GBback = (ImageButton) findViewById(R.id.ImageButton3);
-			LBback = (ImageButton) findViewById(R.id.ImageButton4);
-			DRback = (ImageButton) findViewById(R.id.ImageButton5);
-			BAback = (ImageButton) findViewById(R.id.ImageButton6);
+			GB = (Button) findViewById(R.id.Button0);
+			LB = (Button) findViewById(R.id.Button1);
+			BA = (Button) findViewById(R.id.Button2);
+			DR = (Button) findViewById(R.id.Button3);
+			LR = (Button) findViewById(R.id.Button4);
+			GR = (Button) findViewById(R.id.Button5);
+			
+			LinearLayout layout = (LinearLayout) findViewById(R.id.jungletimerbar);
+			LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+			params.setMargins(0, getActionBarHeight(), 0, 0);
+			layout.setLayoutParams(params);
 
 			notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 			ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
@@ -375,22 +380,23 @@ public class BaseActivity extends FragmentActivity
 				if (TimeLeft[0] <= 0)
 				{
 					ringtone.play();
-					GR.setText("Alive");
+					GB.setText("Alive");
+					GB.setTextColor(Color.WHITE);
 					running[0] = false;
 					timer[0].cancel();
 					timer[0].purge();
-					GRback.setBackgroundColor(0xff7A1F00);
+					GB.setBackgroundResource(R.drawable.timer0);
 				} else if (TimeLeft[0] > 0)
 				{
 					if (TimeLeft[0] == 30000)
 					{
 						ringtone.play();
-						GRback.setBackgroundColor(Color.YELLOW);
+						GB.setTextColor(Color.YELLOW);
 					} else if (TimeLeft[0] == 10000)
 					{
-						GRback.setBackgroundColor(Color.RED);
+						GB.setTextColor(Color.RED);
 					}
-					GR.setText("" + TimeLeft[0] / 60000 + ":" + String.format("%02d", (TimeLeft[0] / 1000) % 60));
+					GB.setText("" + TimeLeft[0] / 60000 + ":" + String.format("%02d", (TimeLeft[0] / 1000) % 60));
 					TimeLeft[0] -= 1000;
 				}
 
@@ -408,23 +414,23 @@ public class BaseActivity extends FragmentActivity
 				if (TimeLeft[1] <= 0)
 				{
 					ringtone.play();
-					LR.setText("Alive");
+					LB.setText("Alive");
 					running[1] = false;
 					timer[1].cancel();
 					timer[1].purge();
-					LRback.setBackgroundColor(0xff7A1F00);
+					LB.setBackgroundResource(R.drawable.timer1);
 				}
 				else if (TimeLeft[1] > 0)
 				{
 					if (TimeLeft[1] == 30000)
 					{
 						ringtone.play();
-						LRback.setBackgroundColor(Color.YELLOW);
+						LB.setTextColor(Color.YELLOW);
 					} else if (TimeLeft[1] == 10000)
 					{
-						LRback.setBackgroundColor(Color.RED);
+						LB.setTextColor(Color.RED);
 					}
-					LR.setText("" + TimeLeft[1] / 60000 + ":" + String.format("%02d", (TimeLeft[1] / 1000) % 60));
+					LB.setText("" + TimeLeft[1] / 60000 + ":" + String.format("%02d", (TimeLeft[1] / 1000) % 60));
 					TimeLeft[1] -= 1000;
 				}
 
@@ -442,23 +448,26 @@ public class BaseActivity extends FragmentActivity
 				if (TimeLeft[2] <= 0)
 				{
 					ringtone.play();
-					GB.setText("Alive");
+					BA.setText("Alive");
 					running[2] = false;
 					timer[2].cancel();
 					timer[2].purge();
-					GBback.setBackgroundColor(0xff001F3D);
+					BA.setBackgroundResource(R.drawable.timer2);
 				}
 				else if (TimeLeft[2] > 0)
 				{
-					if (TimeLeft[2] == 30000)
+					if (TimeLeft[2] == 60000)
+					{
+						BA.setTextColor(Color.LTGRAY);
+					} else if (TimeLeft[2] == 30000)
 					{
 						ringtone.play();
-						GBback.setBackgroundColor(Color.YELLOW);
+						BA.setTextColor(Color.YELLOW);
 					} else if (TimeLeft[2] == 10000)
 					{
-						GBback.setBackgroundColor(Color.RED);
+						BA.setTextColor(Color.RED);
 					}
-					GB.setText("" + TimeLeft[2] / 60000 + ":" + String.format("%02d", (TimeLeft[2] / 1000) % 60));
+					BA.setText("" + TimeLeft[2] / 60000 + ":" + String.format("%02d", (TimeLeft[2] / 1000) % 60));
 					TimeLeft[2] -= 1000;
 				}
 
@@ -476,23 +485,23 @@ public class BaseActivity extends FragmentActivity
 				if (TimeLeft[3] <= 0)
 				{
 					ringtone.play();
-					LB.setText("Alive");
+					DR.setText("Alive");
 					running[3] = false;
 					timer[3].cancel();
 					timer[3].purge();
-					LBback.setBackgroundColor(0xff001F3D);
+					DR.setBackgroundResource(R.drawable.timer3);
 				}
 				else if (TimeLeft[3] > 0)
 				{
 					if (TimeLeft[3] == 30000)
 					{
 						ringtone.play();
-						LBback.setBackgroundColor(Color.YELLOW);
+						DR.setTextColor(Color.YELLOW);
 					} else if (TimeLeft[3] == 10000)
 					{
-						LBback.setBackgroundColor(Color.RED);
+						DR.setTextColor(Color.RED);
 					}
-					LB.setText("" + TimeLeft[3] / 60000 + ":" + String.format("%02d", (TimeLeft[3] / 1000) % 60));
+					DR.setText("" + TimeLeft[3] / 60000 + ":" + String.format("%02d", (TimeLeft[3] / 1000) % 60));
 					TimeLeft[3] -= 1000;
 				}
 
@@ -510,23 +519,23 @@ public class BaseActivity extends FragmentActivity
 				if (TimeLeft[4] <= 0)
 				{
 					ringtone.play();
-					DR.setText("Alive");
+					LR.setText("Alive");
 					running[4] = false;
 					timer[4].cancel();
 					timer[4].purge();
-					DRback.setBackgroundColor(0xff3C3C3C);
+					LR.setBackgroundResource(R.drawable.timer4);
 				}
 				else if (TimeLeft[4] > 0)
 				{
 					if (TimeLeft[4] == 30000)
 					{
 						ringtone.play();
-						DRback.setBackgroundColor(Color.YELLOW);
+						LR.setTextColor(Color.YELLOW);
 					} else if (TimeLeft[4] == 10000)
 					{
-						DRback.setBackgroundColor(Color.RED);
+						LR.setTextColor(Color.RED);
 					}
-					DR.setText("" + TimeLeft[4] / 60000 + ":" + String.format("%02d", (TimeLeft[4] / 1000) % 60));
+					LR.setText("" + TimeLeft[4] / 60000 + ":" + String.format("%02d", (TimeLeft[4] / 1000) % 60));
 					TimeLeft[4] -= 1000;
 				}
 
@@ -544,26 +553,23 @@ public class BaseActivity extends FragmentActivity
 				if (TimeLeft[5] <= 0)
 				{
 					ringtone.play();
-					BA.setText("Alive");
+					GR.setText("Alive");
 					running[5] = false;
 					timer[5].cancel();
 					timer[5].purge();
-					BAback.setBackgroundColor(0xff3C3C3C);
+					GR.setBackgroundResource(R.drawable.timer5);
 				}
 				else if (TimeLeft[5] > 0)
 				{
-					if (TimeLeft[5] == 60000)
-					{
-						BAback.setBackgroundColor(Color.LTGRAY);
-					} else if (TimeLeft[5] == 30000)
+					if (TimeLeft[5] == 30000)
 					{
 						ringtone.play();
-						BAback.setBackgroundColor(Color.YELLOW);
+						GR.setTextColor(Color.YELLOW);
 					} else if (TimeLeft[5] == 10000)
 					{
-						BAback.setBackgroundColor(Color.RED);
+						GR.setTextColor(Color.RED);
 					}
-					BA.setText("" + TimeLeft[5] / 60000 + ":" + String.format("%02d", (TimeLeft[5] / 1000) % 60));
+					GR.setText("" + TimeLeft[5] / 60000 + ":" + String.format("%02d", (TimeLeft[5] / 1000) % 60));
 					TimeLeft[5] -= 1000;
 				}
 
@@ -574,11 +580,12 @@ public class BaseActivity extends FragmentActivity
 	//
 	// Called when each of these buttons is clicked
 	//
-	public void RedGolem(View view)
+	public void BlueGolem(View view)
 	{
 		TimeLeft[0] = 300000;
-		if (!running[0])
+		if (!running[0]) //start it
 		{
+			GB.setBackgroundResource(R.drawable.timer0blank);
 			running[0] = true;
 			timer[0] = new Timer();
 			timer[0].schedule(new TimerTask()
@@ -589,21 +596,22 @@ public class BaseActivity extends FragmentActivity
 					TimerMethod0();
 				}
 			}, 0, 1000);
-		} else
+		} else //cancel it
 		{
+			GB.setBackgroundResource(R.drawable.timer0);
 			timer[0].cancel();
 			timer[0].purge();
-			GRback.setBackgroundColor(0xff7A1F00);
-			GR.setText("Canceled");
+			GB.setText("--");
 			running[0] = false;
 		}
 	}
 
-	public void RedLizard(View view)
+	public void BlueLizard(View view)
 	{
 		TimeLeft[1] = 300000;
 		if (!running[1])
 		{
+			LB.setBackgroundResource(R.drawable.timer1blank);
 			running[1] = true;
 			timer[1] = new Timer();
 			timer[1].schedule(new TimerTask()
@@ -618,17 +626,18 @@ public class BaseActivity extends FragmentActivity
 		{
 			timer[1].cancel();
 			timer[1].purge();
-			LRback.setBackgroundColor(0xff7A1F00);
-			LR.setText("Canceled");
+			LB.setBackgroundResource(R.drawable.timer1);
+			LB.setText("--");
 			running[1] = false;
 		}
 	}
 
-	public void BlueGolem(View view)
+	public void Baron(View view)
 	{
-		TimeLeft[2] = 300000;
+		TimeLeft[2] = 420000;
 		if (!running[2])
 		{
+			BA.setBackgroundResource(R.drawable.timer2blank);
 			running[2] = true;
 			timer[2] = new Timer();
 			timer[2].schedule(new TimerTask()
@@ -643,17 +652,18 @@ public class BaseActivity extends FragmentActivity
 		{
 			timer[2].cancel();
 			timer[2].purge();
-			GBback.setBackgroundColor(0xff001F3D);
-			GB.setText("Canceled");
+			BA.setBackgroundResource(R.drawable.timer2);
+			BA.setText("--");
 			running[2] = false;
 		}
 	}
 
-	public void BlueLizard(View view)
+	public void Dragon(View view)
 	{
-		TimeLeft[3] = 300000;
+		TimeLeft[3] = 360000;
 		if (!running[3])
 		{
+			DR.setBackgroundResource(R.drawable.timer3blank);
 			running[3] = true;
 			timer[3] = new Timer();
 			timer[3].schedule(new TimerTask()
@@ -668,18 +678,19 @@ public class BaseActivity extends FragmentActivity
 		{
 			timer[3].cancel();
 			timer[3].purge();
-			LBback.setBackgroundColor(0xff001F3D);
-			LB.setText("Canceled");
+			DR.setBackgroundResource(R.drawable.timer3);
+			DR.setText("--");
 			running[3] = false;
 		}
 
 	}
 
-	public void Dragon(View view)
+	public void RedLizard(View view)
 	{
-		TimeLeft[4] = 360000;
+		TimeLeft[4] = 300000;
 		if (!running[4])
 		{
+			LR.setBackgroundResource(R.drawable.timer4blank);
 			running[4] = true;
 			timer[4] = new Timer();
 			timer[4].schedule(new TimerTask()
@@ -694,18 +705,19 @@ public class BaseActivity extends FragmentActivity
 		{
 			timer[4].cancel();
 			timer[4].purge();
-			DRback.setBackgroundColor(0xff3C3C3C);
-			DR.setText("Canceled");
+			LR.setBackgroundResource(R.drawable.timer4);
+			LR.setText("--");
 			running[4] = false;
 		}
 
 	}
 
-	public void Baron(View view)
+	public void RedGolem(View view)
 	{
-		TimeLeft[5] = 420000;
+		TimeLeft[5] = 300000;
 		if (!running[5])
 		{
+			GR.setBackgroundResource(R.drawable.timer5blank);
 			running[5] = true;
 			timer[5] = new Timer();
 			timer[5].schedule(new TimerTask()
@@ -720,8 +732,8 @@ public class BaseActivity extends FragmentActivity
 		{
 			timer[5].cancel();
 			timer[5].purge();
-			BAback.setBackgroundColor(0xff3C3C3C);
-			BA.setText("Canceled");
+			GR.setBackgroundResource(R.drawable.timer5);
+			GR.setText("--");
 			running[5] = false;
 		}
 	}

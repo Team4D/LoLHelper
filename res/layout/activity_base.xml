@@ -10,7 +10,7 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
 	    android:gravity="top"
-	    sothree:panelHeight="100dp"
+	    sothree:panelHeight="80dp"
 	    sothree:shadowHeight="4dp">
 	    
 	    <!-- The main content view -->
@@ -20,287 +20,160 @@
 	        android:layout_height="match_parent" />
 	
 	    <!-- The Slide Up Panel Layout (Jungle Timers) -->
-        <RelativeLayout
-	        android:id="@+id/relativeLayout1"
-	        android:layout_width="wrap_content"
+       <RelativeLayout
+	        android:id="@+id/jungletimerdrawer"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_centerHorizontal="true"
-	        android:layout_gravity="center_vertical"
-	        android:layout_marginTop="60dp" >
+        	android:background="#111"
+	        android:orientation="vertical" >
+	        
+           <LinearLayout
+	        android:id="@+id/jungletimerbar"
+	        android:gravity="top"
+	        android:layout_marginTop="50dp"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal" >
 		
-		    <ImageButton
-		        android:id="@+id/imageButton1"
-		        android:layout_width="wrap_content"
-		        android:layout_height="150dp"
-		        android:layout_alignLeft="@+id/ImageButton3"
-		        android:layout_alignRight="@+id/relativeLayout1"
-		        android:adjustViewBounds="true"
-		        android:background="#7A1F00"
-		        android:contentDescription="@id/imageButton1"
-		        android:onClick="RedGolem"
-		        android:scaleType="fitCenter"
-		        android:src="@drawable/golem" />
-		
-		    <ImageButton
-		        android:id="@+id/imageButton2"
-		        android:layout_width="wrap_content"
-		        android:layout_height="150dp"
-		        android:layout_alignLeft="@+id/relativeLayout1"
-		        android:layout_alignParentTop="true"
-		        android:layout_alignRight="@+id/tableRow2"
-		        android:background="#7A1F00"
-		        android:contentDescription="@id/imageButton2"
-		        android:onClick="RedLizard"
-		        android:scaleType="fitCenter"
-		        android:src="@drawable/lizard" />
-		
-		    <ImageButton
-		        android:id="@+id/ImageButton3"
-		        android:layout_width="wrap_content"
-		        android:layout_height="150dp"
-		        android:layout_alignLeft="@+id/ImageButton5"
-		        android:layout_alignRight="@+id/relativeLayout1"
-		        android:layout_below="@id/imageButton1"
-		        android:adjustViewBounds="true"
-		        android:background="#001F3D"
-		        android:contentDescription="@id/ImageButton3"
-		        android:onClick="BlueGolem"
-		        android:scaleType="fitCenter"
-		        android:src="@drawable/golem" />
-		
-		    <ImageButton
-		        android:id="@+id/ImageButton4"
-		        android:layout_width="wrap_content"
-		        android:layout_height="150dp"
-		        android:layout_alignLeft="@+id/relativeLayout1"
-		        android:layout_alignRight="@+id/tableRow4"
-		        android:layout_below="@id/imageButton2"
-		        android:background="#001F3D"
-		        android:contentDescription="@id/ImageButton4"
-		        android:onClick="BlueLizard"
-		        android:scaleType="fitCenter"
-		        android:src="@drawable/lizard" />
-		
-		    <ImageButton
-		        android:id="@+id/ImageButton5"
-		        android:layout_width="wrap_content"
-		        android:layout_height="150dp"
-		        android:layout_alignRight="@+id/relativeLayout1"
-		        android:layout_below="@+id/ImageButton3"
-		        android:adjustViewBounds="true"
-		        android:background="#3C3C3C"
-		        android:contentDescription="@id/ImageButton5"
-		        android:onClick="Dragon"
-		        android:scaleType="fitCenter"
-		        android:src="@drawable/dragon" />
-		
-		    <ImageButton
-		        android:id="@+id/ImageButton6"
-		        android:layout_width="wrap_content"
-		        android:layout_height="150dp"
-		        android:layout_below="@id/ImageButton4"
-		        android:layout_toRightOf="@+id/relativeLayout1"
-		        android:background="#3C3C3C"
-		        android:contentDescription="@id/ImageButton6"
-		        android:onClick="Baron"
-		        android:scaleType="fitCenter"
-		        android:src="@drawable/baron" />
-		
-		    <TableRow
-		        android:id="@+id/tableRow3"
+	           <ImageView
+	               android:scaleType="fitXY"
+	               android:layout_margin="0dp"
+	               android:padding="0dp"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:src="@drawable/pad0"
+	               android:layout_weight="36"/>
+			    <Button
+			        android:scaleType="fitXY"
+			        android:layout_margin="0dp"
+			        android:padding="0dp"
+			        android:id="@+id/Button0"
+			        android:layout_width="0dp"
+			        android:layout_height="wrap_content"
+			        android:onClick="BlueGolem"
+			        android:textColor="#ffffff"
+			        android:background="@drawable/timer0"
+			        android:layout_weight="63" />
+			    <ImageView
+			       android:scaleType="fitXY"
+	               android:layout_margin="0dp"
+	               android:padding="0dp"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:src="@drawable/pad1"
+	               android:layout_weight="10"/>
+			    <Button
+			       android:scaleType="fitXY"
+			        android:layout_margin="0dp"
+			        android:padding="0dp"
+			        android:id="@+id/Button1"
+			        android:layout_width="0dp"
+			        android:layout_height="wrap_content"
+			        android:onClick="BlueLizard"
+			        android:textColor="#ffffff"
+			        android:background="@drawable/timer1"
+			        android:layout_weight="65" />
+			    <ImageView
+			       android:scaleType="fitXY"
+	               android:layout_margin="0dp"
+	               android:padding="0dp"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:src="@drawable/pad2"
+	               android:layout_weight="20"/>
+			    <Button
+			       android:scaleType="fitXY"
+			        android:layout_margin="0dp"
+			        android:padding="0dp"
+			        android:id="@+id/Button2"
+			        android:layout_width="0dp"
+			        android:layout_height="wrap_content"
+			        android:onClick="Baron"
+			        android:textColor="#ffffff"
+			        android:background="@drawable/timer2"
+			        android:layout_weight="83" />
+			    <ImageView
+			       android:scaleType="fitXY"
+	               android:layout_margin="0dp"
+	               android:padding="0dp"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:src="@drawable/pad3"
+	               android:layout_weight="9"/>
+			    <Button
+			       android:scaleType="fitXY"
+			        android:layout_margin="0dp"
+			        android:padding="0dp"
+			        android:id="@+id/Button3"
+			        android:layout_width="0dp"
+			        android:layout_height="wrap_content"
+			        android:onClick="Dragon"
+			        android:textColor="#ffffff"
+			        android:background="@drawable/timer3"
+			        android:layout_weight="84" />
+			    <ImageView
+			       android:scaleType="fitXY"
+	               android:layout_margin="0dp"
+	               android:padding="0dp"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:src="@drawable/pad4"
+	               android:layout_weight="18"/>
+			    <Button
+			       android:scaleType="fitXY"
+			        android:layout_margin="0dp"
+			        android:padding="0dp"
+			        android:id="@+id/Button4"
+			        android:layout_width="0dp"
+			        android:layout_height="wrap_content"
+			        android:onClick="RedLizard"
+			        android:textColor="#ffffff"
+			        android:background="@drawable/timer4"
+			        android:layout_weight="64" />
+			    <ImageView
+			       android:scaleType="fitXY"
+	               android:layout_margin="0dp"
+	               android:padding="0dp"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:src="@drawable/pad5"
+	               android:layout_weight="9"/>
+			    <Button
+			       android:scaleType="fitXY"
+			        android:layout_margin="0dp"
+			        android:padding="0dp"
+			        android:id="@+id/Button5"
+			        android:layout_width="0dp"
+			        android:layout_height="wrap_content"
+			        android:onClick="RedGolem"
+			        android:textColor="#ffffff"
+			        android:background="@drawable/timer5"
+			        android:layout_weight="64" />
+			    <ImageView
+			       android:scaleType="fitXY"
+	               android:layout_margin="0dp"
+	               android:padding="0dp"
+	               android:layout_width="0dp"
+	               android:layout_height="wrap_content"
+	               android:src="@drawable/pad6"
+	               android:layout_weight="34"/>
+			</LinearLayout>
+			
+          <LinearLayout
+	            android:layout_below="@id/jungletimerbar"
+		        android:id="@+id/arrowbar"
 		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_alignRight="@+id/relativeLayout1"
-		        android:layout_alignTop="@+id/ImageButton3"
-		        android:background="#262727"
-		        android:gravity="center" >
-		
-		        <TextView
-		            android:id="@+id/textView7"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:text="Blue Golem"
-		            android:textAppearance="?android:attr/textAppearanceLarge"
-		            android:textColor="#808182"
-		            android:textSize="10dp" />
-		    </TableRow>
-		
-		    <TableRow
-		        android:id="@+id/tableRow4"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_alignTop="@id/ImageButton4"
-		        android:layout_toRightOf="@+id/relativeLayout1"
-		        android:background="#262727"
-		        android:gravity="center" >
-		
-		        <TextView
-		            android:id="@+id/textView8"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:text="Blue Lizard"
-		            android:textAppearance="?android:attr/textAppearanceLarge"
-		            android:textColor="#808182"
-		            android:textSize="10dp" />
-		    </TableRow>
-		
-		    <TableRow
-		        android:id="@+id/tableRow5"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_alignRight="@id/ImageButton5"
-		        android:layout_alignTop="@id/ImageButton5"
-		        android:background="#262727"
-		        android:gravity="center" >
-		
-		        <TextView
-		            android:id="@+id/textView11"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:text="Dragon"
-		            android:textAppearance="?android:attr/textAppearanceLarge"
-		            android:textColor="#808182"
-		            android:textSize="10dp" />
-		    </TableRow>
-		
-		    <TableRow
-		        android:id="@+id/tableRow6"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_alignTop="@id/ImageButton6"
-		        android:layout_toRightOf="@+id/relativeLayout1"
-		        android:background="#262727"
-		        android:gravity="center" >
-		
-		        <TextView
-		            android:id="@+id/textView12"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:text="Baron"
-		            android:textAppearance="?android:attr/textAppearanceLarge"
-		            android:textColor="#808182"
-		            android:textSize="10dp" />
-		    </TableRow>
-		
-		    <TableRow
-		        android:id="@+id/tableRow1"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_alignParentTop="true"
-		        android:layout_toLeftOf="@+id/relativeLayout1"
-		        android:background="#262727"
-		        android:gravity="center" >
-		
-		        <TextView
-		            android:id="@+id/textView9"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:contentDescription="Red Golem"
-		            android:text="Red Golem"
-		            android:textAppearance="?android:attr/textAppearanceLarge"
-		            android:textColor="#808182"
-		            android:textSize="10dp" />
-		    </TableRow>
-		
-		    <TableRow
-		        android:id="@+id/tableRow2"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_alignParentTop="true"
-		        android:layout_toRightOf="@+id/tableRow7"
-		        android:background="#262727"
-		        android:gravity="center" >
-		
-		        <TextView
-		            android:id="@+id/textView10"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:text="Red Lizard"
-		            android:textAppearance="?android:attr/textAppearanceLarge"
-		            android:textColor="#808182"
-		            android:textSize="10dp" />
-		
-		    </TableRow>
-		
-		    <TableRow
-		        android:id="@+id/tableRow7"
-		        android:layout_width=".01dp"
-		        android:layout_height="375dp"
-		        android:layout_alignParentTop="true"
-		        android:layout_centerHorizontal="true"
-		        android:background="#262727"
-		        android:visibility="invisible" >
-		
-		    </TableRow>
-		
-		    <TextView
-		        android:id="@+id/textView1"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignLeft="@+id/imageButton1"
-		        android:layout_below="@+id/tableRow1"
-		        android:text="RG"
-		        android:textAppearance="?android:attr/textAppearanceMedium"
-		        android:textColor="#ffffff" />
-		
-		    <TextView
-		        android:id="@+id/textView2"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignLeft="@+id/tableRow4"
-		        android:layout_below="@+id/tableRow2"
-		        android:text="RL"
-		        android:textAppearance="?android:attr/textAppearanceMedium"
-		        android:textColor="#ffffff" />
-		
-		    <TextView
-		        android:id="@+id/textView4"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignLeft="@+id/tableRow4"
-		        android:layout_below="@+id/tableRow4"
-		        android:text="BL"
-		        android:textAppearance="?android:attr/textAppearanceMedium"
-		        android:textColor="#ffffff" />
-		
-		    <TextView
-		        android:id="@+id/textView6"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignLeft="@+id/ImageButton6"
-		        android:layout_below="@+id/tableRow6"
-		        android:text="BA"
-		        android:textAppearance="?android:attr/textAppearanceMedium"
-		        android:textColor="#ffffff" />
-		
-		    <TextView
-		        android:id="@+id/textView5"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignLeft="@+id/ImageButton5"
-		        android:layout_below="@+id/tableRow5"
-		        android:text="DR"
-		        android:textAppearance="?android:attr/textAppearanceMedium"
-		        android:textColor="#ffffff" />
-		
-		    <TextView
-		        android:id="@+id/textView3"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignLeft="@+id/ImageButton3"
-		        android:layout_below="@+id/tableRow3"
-		        android:text="BG"
-		        android:textAppearance="?android:attr/textAppearanceMedium"
-		        android:textColor="#ffffff" />
-		    
-		    <LinearLayout
-		        android:orientation="vertical"
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_alignParentBottom="true"
-		        android:gravity="bottom"
-		        android:id="@+id/container2">
-		    </LinearLayout>  
+		        android:layout_height="30dp"
+		        android:layout_marginTop="25dp"
+		        android:gravity="bottom|center_horizontal"
+		        android:orientation="horizontal" >
+		           <ImageView
+		               android:id="@+id/arrowbararrow"
+		               android:scaleType="fitXY"
+		               android:layout_width="wrap_content"
+		               android:layout_height="27dp"
+		               android:background="@drawable/downarrow" />
+	        </LinearLayout>
 		
 		</RelativeLayout>
 		
