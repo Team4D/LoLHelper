@@ -88,6 +88,7 @@ public class BaseActivity extends Activity
 		{
 			selectItem(0);
 		}
+
 	}
 
 	@Override
@@ -166,12 +167,39 @@ public class BaseActivity extends Activity
 	/** Swaps fragments in the main content view */
 	private void selectItem(int position)
 	{
-		// Create a new fragment and specify the planet to show based on
-		// position
+		// Create appropriate fragment
+//		Fragment fragment;
+		switch(position){
+			case 0:
+//				fragment = new TeamBuilderFragment();
+				break;
+			case 1:
+//				fragment = new UltimateBraveryFragment();
+				break;
+			case 2:
+//				fragment = new PlayerStatsFragment();
+				break;
+			case 3:
+//				fragment = new ChampionInfoFragment();
+				break;
+			case 4:
+//				fragment = new ItemInfoFragment();
+				break;
+			case 5:
+//				fragment = new SummonerSpellInfoFragment();
+				break;
+			case 6:
+//				fragment = new AboutFragment();
+				break;
+			default:
+//				fragment = new Fragment();	
+		}
+		//TODO: Get rid of this once other fragments are uncommented
 		Fragment fragment = new Fragment();
-		Bundle args = new Bundle();
-		// args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-		fragment.setArguments(args);
+		
+//		Bundle args = new Bundle();
+//		args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
+//		fragment.setArguments(args);
 
 		// Insert the fragment by replacing any existing fragment
 		FragmentManager fragmentManager = getFragmentManager();

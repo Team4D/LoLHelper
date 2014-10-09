@@ -18,7 +18,7 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
         <item name="android:spinnerDropDownItemStyle">@style/SpinnerItem.DropDownItem</item>
-        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowNoTitle">false</item>
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     <style name="ColorRed">&quot;#7A1F00&quot;</style>
