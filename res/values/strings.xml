@@ -431,6 +431,7 @@
     <string name="title_activity_about">About</string>
     <string name="title_activity_buildadditional">Additional Build Info</string>
     <string-array name="page_array">
+        <item>Home</item>
         <item>Team Builder</item>
         <item>Ultimate Bravery</item>
         <item>Ranked Stats</item>

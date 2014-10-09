@@ -1,12 +1,13 @@
 package com.team4d.lolhelper;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
@@ -17,8 +18,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.android.gms.ads.AdView;
+import com.team4d.lolhelper.fragments.HomeFragment;
 
-public class BaseActivity extends Activity
+public class BaseActivity extends FragmentActivity
 {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
@@ -168,43 +170,43 @@ public class BaseActivity extends Activity
 	private void selectItem(int position)
 	{
 		// Create appropriate fragment
-//		Fragment fragment;
 		switch(position){
 			case 0:
-//				fragment = new TeamBuilderFragment();
+				HomeFragment fragment0 = new HomeFragment();
+				// Insert the fragment by replacing any existing fragment
+				FragmentManager fragmentManager = getSupportFragmentManager();
+				fragmentManager.beginTransaction()
+						.add(R.id.content_frame, fragment0).commit();
 				break;
 			case 1:
-//				fragment = new UltimateBraveryFragment();
+//				fragment = new TeamBuilderFragment();
 				break;
 			case 2:
-//				fragment = new PlayerStatsFragment();
+//				fragment = new UltimateBraveryFragment();
 				break;
 			case 3:
-//				fragment = new ChampionInfoFragment();
+//				fragment = new PlayerStatsFragment();
 				break;
 			case 4:
-//				fragment = new ItemInfoFragment();
+//				fragment = new ChampionInfoFragment();
 				break;
 			case 5:
-//				fragment = new SummonerSpellInfoFragment();
+//				fragment = new ItemInfoFragment();
 				break;
 			case 6:
+//				fragment = new SummonerSpellInfoFragment();
+				break;
+			case 7:
 //				fragment = new AboutFragment();
 				break;
 			default:
-//				fragment = new Fragment();	
+				Fragment fragment = new Fragment();	
 		}
-		//TODO: Get rid of this once other fragments are uncommented
-		Fragment fragment = new Fragment();
 		
 //		Bundle args = new Bundle();
 //		args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
 //		fragment.setArguments(args);
 
-		// Insert the fragment by replacing any existing fragment
-		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.beginTransaction()
-				.replace(R.id.content_frame, fragment).commit();
 
 		// Highlight the selected item, update the title, and close the drawer
 		mDrawerList.setItemChecked(position, true);
