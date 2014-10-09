@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import com.fourfoureight.lolhelper.R;
+import com.team4d.lolhelper.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -40,7 +40,7 @@ public class BuildScreen extends ActionBarActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_build_screen);
+		setContentView(R.layout.fragment_build_screen);
 
 		LinearLayout layout = (LinearLayout) findViewById(R.id.container);
 		if (((GlobalVariables) this.getApplication()).getskin() == 1)

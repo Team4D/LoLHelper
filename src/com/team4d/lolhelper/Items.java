@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import com.fourfoureight.lolhelper.R;
+import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.generalinfo.items;
 
@@ -25,7 +25,7 @@ public class Items extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_items);
+		setContentView(R.layout.fragment_items);
 
 		LinearLayout layout = (LinearLayout) findViewById(R.id.container);
 		if (((GlobalVariables) this.getApplication()).getskin() == 1)

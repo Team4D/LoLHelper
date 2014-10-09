@@ -23,7 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
 
-import com.fourfoureight.lolhelper.R;
+import com.team4d.lolhelper.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -55,7 +55,7 @@ public class BuildGuides extends ActionBarActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_build);
+		setContentView(R.layout.fragment_build);
 
 		RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
 		if (((GlobalVariables) this.getApplication()).getskin() == 1)

@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.fourfoureight.lolhelper.R;
+import com.team4d.lolhelper.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -47,7 +47,7 @@ public class JungleTimer extends Activity
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_jungle_timer);
+		setContentView(R.layout.fragment_jungle_timer);
 
 		RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
 		if (((GlobalVariables) this.getApplication()).getskin() == 1)
@@ -102,7 +102,7 @@ public class JungleTimer extends Activity
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.base, menu);
 
 		return true;
 	}

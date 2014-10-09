@@ -1,6 +1,6 @@
 package com.team4d.lolhelper;
 
-import com.fourfoureight.lolhelper.R;
+import com.team4d.lolhelper.R;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ public class About extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_about);
+		setContentView(R.layout.fragment_about);
 		RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
 		if (((GlobalVariables) this.getApplication()).getskin() == 1)
 		{

@@ -21,7 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fourfoureight.lolhelper.R;
+import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.stats.StatsPull;
 
 public class PlayerStats extends Activity
@@ -55,7 +55,7 @@ public class PlayerStats extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_player_stats);
+		setContentView(R.layout.fragment_player_stats);
 
 		String enterString = ((GlobalVariables) this.getApplication()).getEnterString();
 		Button enter = (Button) findViewById(R.id.enter);
@@ -769,7 +769,7 @@ public class PlayerStats extends Activity
 	{
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.base, menu);
 		return true;
 	}
 

@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fourfoureight.lolhelper.R;
+import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.generalinfo.SpellDatabase;
 import com.team4d.lolhelper.generalinfo.SpellInfo;
 import com.team4d.lolhelper.generalinfo.items;
@@ -24,7 +24,7 @@ public class UltimateBravery extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_ultimate_bravery);
+		setContentView(R.layout.fragment_ultimate_bravery);
 
 		FrameLayout layout = (FrameLayout) findViewById(R.id.container);
 		if (((GlobalVariables) this.getApplication()).getskin() == 1)

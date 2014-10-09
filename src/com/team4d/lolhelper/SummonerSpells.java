@@ -1,6 +1,6 @@
 package com.team4d.lolhelper;
 
-import com.fourfoureight.lolhelper.R;
+import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.api.dto.staticdata.summonerspell.SummonerSpell;
 
@@ -66,7 +66,7 @@ public class SummonerSpells extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_summoner_spells);
+		setContentView(R.layout.fragment_summoner_spells);
 
 		LinearLayout layout = (LinearLayout) findViewById(R.id.container);
 		if (((GlobalVariables) this.getApplication()).getskin() == 1)

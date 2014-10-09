@@ -2,7 +2,7 @@ package com.team4d.lolhelper;
 
 import java.io.IOException;
 
-import com.fourfoureight.lolhelper.R;
+import com.team4d.lolhelper.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -26,7 +26,7 @@ public class Leaguecounters extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_leaguecounters);
+		setContentView(R.layout.fragment_leaguecounters);
 
 		RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
 		if (((GlobalVariables) this.getApplication()).getskin() == 1)
@@ -197,7 +197,7 @@ public class Leaguecounters extends Activity
 	{
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.base, menu);
 		return true;
 	}
 

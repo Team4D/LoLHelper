@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import com.fourfoureight.lolhelper.R;
+import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.generalinfo.SpellDatabase;
 
 public class Counters extends Activity
@@ -27,7 +27,7 @@ public class Counters extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_counters);
+		setContentView(R.layout.fragment_counters);
 
 		LinearLayout layout = (LinearLayout) findViewById(R.id.container);
 		if (((GlobalVariables) this.getApplication()).getskin() == 1)
@@ -121,7 +121,7 @@ public class Counters extends Activity
 	{
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.base, menu);
 		return true;
 	}
 

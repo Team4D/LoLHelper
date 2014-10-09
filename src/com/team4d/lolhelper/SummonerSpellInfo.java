@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fourfoureight.lolhelper.R;
+import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.api.dto.staticdata.summonerspell.SummonerSpell;
 import com.team4d.lolhelper.generalinfo.SSpell;
@@ -59,7 +59,7 @@ public class SummonerSpellInfo extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_summoner_spell_info);
+		setContentView(R.layout.fragment_summoner_spell_info);
 
 		FrameLayout layout = (FrameLayout) findViewById(R.id.container);
 		if (((GlobalVariables) this.getApplication()).getskin() == 1)
@@ -88,7 +88,7 @@ public class SummonerSpellInfo extends Activity
 	{
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.base, menu);
 		return true;
 	}
 

@@ -22,7 +22,7 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
-import com.fourfoureight.lolhelper.R;
+import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.generalinfo.ChampionAttributes;
 
 // Description:
@@ -42,7 +42,7 @@ public class TeamBuilder extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_team_builder);
+        setContentView(R.layout.fragment_team_builder);
         
         FrameLayout layout = (FrameLayout)findViewById(R.id.container);
         if (((GlobalVariables) this.getApplication()).getskin() == 1)
@@ -554,7 +554,7 @@ public class TeamBuilder extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.base, menu);
         return true;
     }
 

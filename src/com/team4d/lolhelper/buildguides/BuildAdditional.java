@@ -6,7 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fourfoureight.lolhelper.R;
+import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.GlobalVariables;
 
 public class BuildAdditional extends ActionBarActivity
@@ -15,7 +15,7 @@ public class BuildAdditional extends ActionBarActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_buildadditional);
+		setContentView(R.layout.fragment_buildadditional);
 
 		// Get passed information
 		Intent intent = getIntent();

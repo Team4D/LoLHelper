@@ -421,7 +421,8 @@
         <item>Smite</item>
         <item>Teleport</item>
     </string-array>
-
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
     <string name="title_activity_jungle_timer">JungleTimer</string>
     <string name="title_activity_champion_info">ChampionInfo</string>
     <string name="title_activity_item_info">ItemInfo</string>
@@ -429,5 +430,14 @@
     <string name="title_activity_player_stats_advanced">More Stats</string>
     <string name="title_activity_about">About</string>
     <string name="title_activity_buildadditional">Additional Build Info</string>
+    <string-array name="page_array">
+        <item>Team Builder</item>
+        <item>Ultimate Bravery</item>
+        <item>Ranked Stats</item>
+        <item>Champion Details</item>
+        <item>Item Details</item>
+        <item>Summoner Spell Details</item>
+        <item>About</item>
+    </string-array>
 
 </resources>

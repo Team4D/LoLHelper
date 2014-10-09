@@ -9,7 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fourfoureight.lolhelper.R;
+import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.generalinfo.ChampionDatabase;
 import com.team4d.lolhelper.generalinfo.SpellDatabase;
 import com.team4d.lolhelper.generalinfo.SpellInfo;
@@ -21,7 +21,7 @@ public class ViewChampions extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_viewchampions);
+		setContentView(R.layout.fragment_viewchampions);
 
 		FrameLayout layout = (FrameLayout) findViewById(R.id.container);
 		if (((GlobalVariables) this.getApplication()).getskin() == 1)
@@ -1010,7 +1010,7 @@ public class ViewChampions extends Activity
 	{
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.base, menu);
 		return true;
 	}
 

@@ -1,6 +1,6 @@
 package com.team4d.lolhelper;
 
-import com.fourfoureight.lolhelper.R;
+import com.team4d.lolhelper.R;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,7 +23,7 @@ public class Options extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_options);
+		setContentView(R.layout.fragment_options);
 		listen();
 		ScrollView layout = (ScrollView) findViewById(R.id.scrollView1);
 		if (((GlobalVariables) this.getApplication()).getskin() == 1)
@@ -175,7 +175,7 @@ public class Options extends Activity
 	@Override
 	public void onBackPressed()
 	{
-		Intent intent = new Intent(this, MainActivity.class);
+		Intent intent = new Intent(this, BaseActivity.class);
 		startActivity(intent);
 	}
 
