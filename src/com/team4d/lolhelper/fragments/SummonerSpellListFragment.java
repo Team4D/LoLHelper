@@ -94,6 +94,14 @@ public class SummonerSpellListFragment extends Fragment
 				button.setImageDrawable(btnImg);
 				LayoutParams params = new LayoutParams(btnImg.getIntrinsicWidth() * 2, btnImg.getIntrinsicHeight() * 2);
 				button.setLayoutParams(params);
+				button.setOnClickListener(new View.OnClickListener()
+				{
+					@Override
+					public void onClick(View v)
+					{
+						// TODO Auto-generated method stub
+					}
+				});
 				mGridView.addView(button);
 			}
 		}

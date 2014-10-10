@@ -86,7 +86,7 @@ public class ItemListFragment extends Fragment
 			Drawable imgsize = getResources().getDrawable(R.drawable.defaultitemsize);
 			float dpImgWidth = imgsize.getIntrinsicWidth() / dm.density;
 
-			int columns = (int) (dpWidth / (dpImgWidth * 2 + 10));
+			int columns = (int) (dpWidth / (dpImgWidth + 10));
 			mGridView.setColumnCount(columns);
 
 			boolean bonetoothonce = false;
