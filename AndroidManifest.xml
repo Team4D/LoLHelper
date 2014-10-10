@@ -123,7 +123,7 @@
             android:label="@string/title_activity_build_screen" >
         </activity>
         <activity
-            android:name="com.team4d.lolhelper.UltimateBravery"
+            android:name="com.team4d.lolhelper.BuildRoulette"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_ultimate_bravery" >
         </activity>

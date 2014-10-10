@@ -1,13 +1,16 @@
 package com.team4d.lolhelper;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -29,7 +32,7 @@ import com.team4d.lolhelper.generalinfo.ChampionAttributes;
 // This is the main Team Builder class.
 // It deals with the user interface for the team builder page.
 
-public class TeamBuilder extends Activity {
+public class TeamBuilder extends Fragment {
     
 	// Create an instance for the data storage class.
     TeamBuilderData teambuilder = new TeamBuilderData();
@@ -37,41 +40,48 @@ public class TeamBuilder extends Activity {
     int[] buttonPressFlags = {-1, -1, -1, -1, -1};
 	// button is displaying a champion = 1, button is not displaying a champion = 0
     int[] buttonChangedFlags = {0, 0, 0, 0, 0};
+    
+	@Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+        Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_team_builder, container, false);
+    }
         
 	// Run when the team builder page created.
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_team_builder);
+	public void onStart(){
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.fragment_team_builder);
         
-        FrameLayout layout = (FrameLayout)findViewById(R.id.container);
-        if (((GlobalVariables) this.getApplication()).getskin() == 1)
+        FrameLayout layout = (FrameLayout)this.getView().findViewById(R.id.container);
+        if (((GlobalVariables) this.getActivity().getApplication()).getskin() == 1)
     	{
     		layout.setBackgroundResource(R.drawable.bg);
     	}
-    	if (((GlobalVariables) this.getApplication()).getskin() == 2)
+    	if (((GlobalVariables) this.getActivity().getApplication()).getskin() == 2)
     	{
     		layout.setBackgroundResource(R.drawable.bg2);
     	}
         
     	// five buttons on the left
-        final ImageButton top = (ImageButton)findViewById(R.id.imageButton00);
-        final ImageButton jungle = (ImageButton)findViewById(R.id.imageButton01);
-        final ImageButton middle = (ImageButton)findViewById(R.id.imageButton02);
-        final ImageButton adc = (ImageButton)findViewById(R.id.imageButton03);
-        final ImageButton support = (ImageButton)findViewById(R.id.imageButton04);
+        final ImageButton top = (ImageButton)this.getView().findViewById(R.id.imageButton00);
+        final ImageButton jungle = (ImageButton)this.getView().findViewById(R.id.imageButton01);
+        final ImageButton middle = (ImageButton)this.getView().findViewById(R.id.imageButton02);
+        final ImageButton adc = (ImageButton)this.getView().findViewById(R.id.imageButton03);
+        final ImageButton support = (ImageButton)this.getView().findViewById(R.id.imageButton04);
         // button "Suggest Champion" is invisible
-        final Button suggestChampion = (Button)findViewById(R.id.Button06);
+        final Button suggestChampion = (Button)this.getView().findViewById(R.id.Button06);
         // button "Suggest Style"
-        final Button suggestStyle = (Button)findViewById(R.id.Button05);
+        final Button suggestStyle = (Button)this.getView().findViewById(R.id.Button05);
         // spinner to selecting team styles
-        final Spinner spinner1 = (Spinner) findViewById(R.id.spinner1);
+        final Spinner spinner1 = (Spinner)this.getView().findViewById(R.id.spinner1);
         // a table layout to display "All Available Champions"	
-        final TableLayout table = (TableLayout)findViewById(R.id.Table);
+        final TableLayout table = (TableLayout)this.getView().findViewById(R.id.Table);
         
         // set the display content for spinner
         String[] allStrategies = teambuilder.getAvailableStrategy();
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allStrategies);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, allStrategies);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter1);
         
@@ -100,7 +110,7 @@ public class TeamBuilder extends Activity {
 				teambuilder.suggestStrategyForTeam();
 				// update the contents in spinner
                 String[] allStrategies = teambuilder.getAvailableStrategy();
-                ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(TeamBuilder.this, android.R.layout.simple_spinner_item, allStrategies);
+                ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(TeamBuilder.this.getActivity(), android.R.layout.simple_spinner_item, allStrategies);
                 adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner1.setAdapter(adapter1);
 //				suggestChampion.performClick();
@@ -112,11 +122,11 @@ public class TeamBuilder extends Activity {
 			public void onClick(View v){
 				
 				// horizontal scroll bars after five buttons to display suggested champions.
-				LinearLayout scroll1 = (LinearLayout)findViewById(R.id.Linear1);
-				LinearLayout scroll2 = (LinearLayout)findViewById(R.id.Linear2);
-				LinearLayout scroll3 = (LinearLayout)findViewById(R.id.Linear3);
-				LinearLayout scroll4 = (LinearLayout)findViewById(R.id.Linear4);
-				LinearLayout scroll5 = (LinearLayout)findViewById(R.id.Linear5);
+				LinearLayout scroll1 = (LinearLayout)v.getRootView().findViewById(R.id.Linear1);
+				LinearLayout scroll2 = (LinearLayout)v.getRootView().findViewById(R.id.Linear2);
+				LinearLayout scroll3 = (LinearLayout)v.getRootView().findViewById(R.id.Linear3);
+				LinearLayout scroll4 = (LinearLayout)v.getRootView().findViewById(R.id.Linear4);
+				LinearLayout scroll5 = (LinearLayout)v.getRootView().findViewById(R.id.Linear5);
 				
 				scroll1.removeAllViews();
 				scroll2.removeAllViews();
@@ -128,7 +138,7 @@ public class TeamBuilder extends Activity {
 				ChampionAttributes[] suggestedTop = teambuilder.suggestChampionsByStrategy(0);
 				if ((suggestedTop != null) && (buttonChangedFlags[0] == 0)){
 					for (int i = 0; i < suggestedTop.length; i++){
-						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this), suggestedTop[i]);
+						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this.getActivity()), suggestedTop[i]);
 						if (suggestedTop[i].getName().equals("NONAME")){
 							newButton.setVisibility(View.GONE);
 						}
@@ -137,7 +147,7 @@ public class TeamBuilder extends Activity {
 						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
 
 						// New Cell
-						LinearLayout cell = new LinearLayout(getBaseContext());
+						LinearLayout cell = new LinearLayout(v.getContext());
 						cell.setBackgroundColor(Color.TRANSPARENT);
 						cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
 						cell.addView(newButton);
@@ -151,7 +161,7 @@ public class TeamBuilder extends Activity {
 									teambuilder.setOurTeam(0, currentChampion);
 							    	String message = currentChampion.getName();
 							    	top.setImageResource(getResources().getIdentifier(
-							    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", getPackageName()));
+							    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", v.getContext().getPackageName()));
 
 									buttonPressFlags[0] = -1;
 									buttonPressFlags[1] = -1;
@@ -171,7 +181,7 @@ public class TeamBuilder extends Activity {
 				ChampionAttributes[] suggestedJungle = teambuilder.suggestChampionsByStrategy(1);
 				if ((suggestedJungle != null) && (buttonChangedFlags[1] == 0)){
 					for (int i = 0; i < suggestedJungle.length; i++){
-						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this), suggestedJungle[i]);
+						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this.getActivity()), suggestedJungle[i]);
 						if (suggestedJungle[i].getName().equals("NONAME")){
 							newButton.setVisibility(View.GONE);
 						}
@@ -180,7 +190,7 @@ public class TeamBuilder extends Activity {
 						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
 
 						// New Cell
-						LinearLayout cell = new LinearLayout(getBaseContext());
+						LinearLayout cell = new LinearLayout(v.getContext());
 						cell.setBackgroundColor(Color.TRANSPARENT);
 						cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
 						cell.addView(newButton);
@@ -194,7 +204,7 @@ public class TeamBuilder extends Activity {
 									teambuilder.setOurTeam(1, currentChampion);
 							    	String message = currentChampion.getName();
 							    	jungle.setImageResource(getResources().getIdentifier(
-							    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", getPackageName()));
+							    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", v.getContext().getPackageName()));
 
 									buttonPressFlags[0] = -1;
 									buttonPressFlags[1] = -1;
@@ -214,7 +224,7 @@ public class TeamBuilder extends Activity {
 				ChampionAttributes[] suggestedMid = teambuilder.suggestChampionsByStrategy(2);
 				if ((suggestedMid != null) && (buttonChangedFlags[2] == 0)){
 					for (int i = 0; i < suggestedMid.length; i++){
-						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this), suggestedMid[i]);
+						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this.getActivity()), suggestedMid[i]);
 						if (suggestedMid[i].getName().equals("NONAME")){
 							newButton.setVisibility(View.GONE);
 						}
@@ -223,7 +233,7 @@ public class TeamBuilder extends Activity {
 						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
 
 						// New Cell
-						LinearLayout cell = new LinearLayout(getBaseContext());
+						LinearLayout cell = new LinearLayout(v.getContext());
 						cell.setBackgroundColor(Color.TRANSPARENT);
 						cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
 						cell.addView(newButton);
@@ -237,7 +247,7 @@ public class TeamBuilder extends Activity {
 									teambuilder.setOurTeam(2, currentChampion);
 							    	String message = currentChampion.getName();
 							    	middle.setImageResource(getResources().getIdentifier(
-							    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", getPackageName()));
+							    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", v.getContext().getPackageName()));
 
 									buttonPressFlags[0] = -1;
 									buttonPressFlags[1] = -1;
@@ -257,7 +267,7 @@ public class TeamBuilder extends Activity {
 				ChampionAttributes[] suggestedADC = teambuilder.suggestChampionsByStrategy(3);
 				if ((suggestedADC != null) && (buttonChangedFlags[3] == 0)){
 					for (int i = 0; i < suggestedADC.length; i++){
-						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this), suggestedADC[i]);
+						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this.getActivity()), suggestedADC[i]);
 						if (suggestedADC[i].getName().equals("NONAME")){
 							newButton.setVisibility(View.GONE);
 						}
@@ -266,7 +276,7 @@ public class TeamBuilder extends Activity {
 						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
 
 						// New Cell
-						LinearLayout cell = new LinearLayout(getBaseContext());
+						LinearLayout cell = new LinearLayout(v.getContext());
 						cell.setBackgroundColor(Color.TRANSPARENT);
 						cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
 						cell.addView(newButton);
@@ -280,7 +290,7 @@ public class TeamBuilder extends Activity {
 									teambuilder.setOurTeam(3, currentChampion);
 							    	String message = currentChampion.getName();
 							    	adc.setImageResource(getResources().getIdentifier(
-							    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", getPackageName()));
+							    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", v.getContext().getPackageName()));
 							    	
 									buttonPressFlags[0] = -1;
 									buttonPressFlags[1] = -1;
@@ -300,7 +310,7 @@ public class TeamBuilder extends Activity {
 				ChampionAttributes[] suggestedSupport = teambuilder.suggestChampionsByStrategy(4);
 				if ((suggestedSupport != null) && (buttonChangedFlags[4] == 0)){
 					for (int i = 0; i < suggestedSupport.length; i++){
-						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this), suggestedSupport[i]);
+						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this.getActivity()), suggestedSupport[i]);
 						if (suggestedSupport[i].getName().equals("NONAME")){
 							newButton.setVisibility(View.GONE);
 						}
@@ -309,7 +319,7 @@ public class TeamBuilder extends Activity {
 						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
 
 						// New Cell
-						LinearLayout cell = new LinearLayout(getBaseContext());
+						LinearLayout cell = new LinearLayout(v.getContext());
 						cell.setBackgroundColor(Color.TRANSPARENT);
 						cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
 						cell.addView(newButton);
@@ -323,7 +333,7 @@ public class TeamBuilder extends Activity {
 									teambuilder.setOurTeam(4, currentChampion);
 							    	String message = currentChampion.getName();
 							    	support.setImageResource(getResources().getIdentifier(
-							    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", getPackageName()));
+							    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", v.getContext().getPackageName()));
 
 									buttonPressFlags[0] = -1;
 									buttonPressFlags[1] = -1;
@@ -347,7 +357,7 @@ public class TeamBuilder extends Activity {
 				
 				// Calculate the screen diagonal in inches to identify it's a tablet or a phone.
 				DisplayMetrics dm = new DisplayMetrics();
-				getWindowManager().getDefaultDisplay().getMetrics(dm);
+				((Activity)(v.getContext())).getWindowManager().getDefaultDisplay().getMetrics(dm);
 				int width=dm.widthPixels;
 				int height=dm.heightPixels;
 				int dens=dm.densityDpi;
@@ -373,7 +383,7 @@ public class TeamBuilder extends Activity {
 				for (int i = 0; i < allAvailableChampions.length; i++){
 					if (buttonInRow == maxButtonInRow){
 						buttonInRow = 0;
-						TableRow newRow = new TableRow(TeamBuilder.this);
+						TableRow newRow = new TableRow(TeamBuilder.this.getActivity());
 						newRow.setBackgroundColor(Color.TRANSPARENT);
 						newRow.setPadding(0, 0, 0, 20);	// Border between rows
 						newRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 60));	// 60dp high
@@ -383,7 +393,7 @@ public class TeamBuilder extends Activity {
 					}
 					
 					// Create the button
-					final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this), allAvailableChampions[i]);
+					final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this.getActivity()), allAvailableChampions[i]);
 					if (allAvailableChampions[i].getName().equals("NONAME")){
 						newButton.setVisibility(View.GONE);
 					}
@@ -396,7 +406,7 @@ public class TeamBuilder extends Activity {
 					tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
 
 					// New Cell
-					LinearLayout cell = new LinearLayout(getBaseContext());
+					LinearLayout cell = new LinearLayout(v.getContext());
 					cell.setBackgroundColor(Color.TRANSPARENT);
 					cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
 					cell.addView(newButton);
@@ -412,7 +422,7 @@ public class TeamBuilder extends Activity {
 								buttonChangedFlags[0] = 1;
 						    	String message = currentChampion.getName();
 						    	top.setImageResource(getResources().getIdentifier(
-						    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", getPackageName()));
+						    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", v.getContext().getPackageName()));
 
 							}
 							else if (buttonPressFlags[1] == 1){
@@ -420,7 +430,7 @@ public class TeamBuilder extends Activity {
 								buttonChangedFlags[1] = 1;
 						    	String message = currentChampion.getName();
 						    	jungle.setImageResource(getResources().getIdentifier(
-						    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", getPackageName()));
+						    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", v.getContext().getPackageName()));
 
 							}
 							else if (buttonPressFlags[2] == 1){
@@ -428,7 +438,7 @@ public class TeamBuilder extends Activity {
 								buttonChangedFlags[2] = 1;
 						    	String message = currentChampion.getName();
 						    	middle.setImageResource(getResources().getIdentifier(
-						    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", getPackageName()));
+						    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", v.getContext().getPackageName()));
 
 							}
 							else if (buttonPressFlags[3] == 1){
@@ -436,7 +446,7 @@ public class TeamBuilder extends Activity {
 								buttonChangedFlags[3] = 1;
 						    	String message = currentChampion.getName();
 						    	adc.setImageResource(getResources().getIdentifier(
-						    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", getPackageName()));
+						    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", v.getContext().getPackageName()));
 
 							}
 							else if (buttonPressFlags[4] == 1){
@@ -444,7 +454,7 @@ public class TeamBuilder extends Activity {
 								buttonChangedFlags[4] = 1;
 						    	String message = currentChampion.getName();
 						    	support.setImageResource(getResources().getIdentifier(
-						    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", getPackageName()));
+						    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", v.getContext().getPackageName()));
 							}
 							buttonPressFlags[0] = -1;
 							buttonPressFlags[1] = -1;
@@ -545,19 +555,6 @@ public class TeamBuilder extends Activity {
 		});
     }
 
-	@Override
-	public void onBackPressed() {
-	    super.onBackPressed();
-	}
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.base, menu);
-        return true;
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -579,7 +576,7 @@ public class TeamBuilder extends Activity {
         
     	String message = champion.getName();
     	icon.setImageResource(getResources().getIdentifier(
-    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", getPackageName()));
+    			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", this.getActivity().getPackageName()));
     	
         icon.setAdjustViewBounds(true);
     	icon.setMaxHeight((int)dpInPx);

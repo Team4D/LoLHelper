@@ -3,10 +3,13 @@ package com.team4d.lolhelper;
 import java.util.Random;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -17,28 +20,35 @@ import com.team4d.lolhelper.generalinfo.SpellDatabase;
 import com.team4d.lolhelper.generalinfo.SpellInfo;
 import com.team4d.lolhelper.generalinfo.items;
 
-public class UltimateBravery extends Activity
+public class BuildRoulette extends Fragment
 {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+        Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_build_roulette, container, false);
+    }
+	
+	@Override
+	public void onStart()
 	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fragment_ultimate_bravery);
+//		super.onCreate(savedInstanceState);
+//		setContentView(R.layout.fragment_build_roulette);
 
-		FrameLayout layout = (FrameLayout) findViewById(R.id.container);
-		if (((GlobalVariables) this.getApplication()).getskin() == 1)
+		FrameLayout layout = (FrameLayout) this.getView().findViewById(R.id.container);
+		if (((GlobalVariables) this.getActivity().getApplication()).getskin() == 1)
 		{
 			layout.setBackgroundResource(R.drawable.bg);
 		}
-		if (((GlobalVariables) this.getApplication()).getskin() == 2)
+		if (((GlobalVariables) this.getActivity().getApplication()).getskin() == 2)
 		{
 			layout.setBackgroundResource(R.drawable.bg2);
 		}
 
 		items.runMain();
 
-		Button rand = (Button) findViewById(R.id.btnRandom);
+		Button rand = (Button) this.getView().findViewById(R.id.btnRandom);
 		rand.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
@@ -57,29 +67,29 @@ public class UltimateBravery extends Activity
 
 				int viktorItem = getRandom(0, 3);
 
-				TextView textView1 = (TextView) findViewById(R.id.item1);
-				TextView textView2 = (TextView) findViewById(R.id.item2);
-				TextView textView3 = (TextView) findViewById(R.id.item3);
-				TextView textView4 = (TextView) findViewById(R.id.item4);
-				TextView textView5 = (TextView) findViewById(R.id.item5);
-				TextView textView6 = (TextView) findViewById(R.id.item6); // Items 1-6
-				TextView textView7 = (TextView) findViewById(R.id.champname); // Champ Name
-				TextView textView8 = (TextView) findViewById(R.id.mastery); // Masteries
-				TextView textView9 = (TextView) findViewById(R.id.summspell1);
-				TextView textView10 = (TextView) findViewById(R.id.summspell2); // Summoner Spells
-				TextView textView11 = (TextView) findViewById(R.id.spell); // Spell Button (Q W or E)
-				TextView textView12 = (TextView) findViewById(R.id.text_spell_name);
+				TextView textView1 = (TextView) getView().findViewById(R.id.item1);
+				TextView textView2 = (TextView) getView().findViewById(R.id.item2);
+				TextView textView3 = (TextView) getView().findViewById(R.id.item3);
+				TextView textView4 = (TextView) getView().findViewById(R.id.item4);
+				TextView textView5 = (TextView) getView().findViewById(R.id.item5);
+				TextView textView6 = (TextView) getView().findViewById(R.id.item6); // Items 1-6
+				TextView textView7 = (TextView) getView().findViewById(R.id.champname); // Champ Name
+				TextView textView8 = (TextView) getView().findViewById(R.id.mastery); // Masteries
+				TextView textView9 = (TextView) getView().findViewById(R.id.summspell1);
+				TextView textView10 = (TextView) getView().findViewById(R.id.summspell2); // Summoner Spells
+				TextView textView11 = (TextView) getView().findViewById(R.id.spell); // Spell Button (Q W or E)
+				TextView textView12 = (TextView) getView().findViewById(R.id.text_spell_name);
 
-				ImageView imageView1 = (ImageView) findViewById(R.id.iitem1);
-				ImageView imageView2 = (ImageView) findViewById(R.id.iitem2);
-				ImageView imageView3 = (ImageView) findViewById(R.id.iitem3);
-				ImageView imageView4 = (ImageView) findViewById(R.id.iitem4);
-				ImageView imageView5 = (ImageView) findViewById(R.id.iitem5);
-				ImageView imageView6 = (ImageView) findViewById(R.id.iitem6);
-				ImageView imageView7 = (ImageView) findViewById(R.id.ichampname);
-				ImageView imageView8 = (ImageView) findViewById(R.id.ispell);
-				ImageView imageView9 = (ImageView) findViewById(R.id.isummspell1);
-				ImageView imageView10 = (ImageView) findViewById(R.id.isummspell2);
+				ImageView imageView1 = (ImageView) getView().findViewById(R.id.iitem1);
+				ImageView imageView2 = (ImageView) getView().findViewById(R.id.iitem2);
+				ImageView imageView3 = (ImageView) getView().findViewById(R.id.iitem3);
+				ImageView imageView4 = (ImageView) getView().findViewById(R.id.iitem4);
+				ImageView imageView5 = (ImageView) getView().findViewById(R.id.iitem5);
+				ImageView imageView6 = (ImageView) getView().findViewById(R.id.iitem6);
+				ImageView imageView7 = (ImageView) getView().findViewById(R.id.ichampname);
+				ImageView imageView8 = (ImageView) getView().findViewById(R.id.ispell);
+				ImageView imageView9 = (ImageView) getView().findViewById(R.id.isummspell1);
+				ImageView imageView10 = (ImageView) getView().findViewById(R.id.isummspell2);
 
 				/*
 				 * Set champion, items
@@ -204,31 +214,31 @@ public class UltimateBravery extends Activity
 				 * Set images for all items, champion
 				 */
 				iconID = getResources().getIdentifier(item1.replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable",
-						getPackageName());
+						v.getContext().getPackageName());
 				imageView1.setImageResource(iconID);
 
 				iconID = getResources().getIdentifier(item2.replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable",
-						getPackageName());
+						v.getContext().getPackageName());
 				imageView2.setImageResource(iconID);
 
 				iconID = getResources().getIdentifier(item3.replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable",
-						getPackageName());
+						v.getContext().getPackageName());
 				imageView3.setImageResource(iconID);
 
 				iconID = getResources().getIdentifier(item4.replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable",
-						getPackageName());
+						v.getContext().getPackageName());
 				imageView4.setImageResource(iconID);
 
 				iconID = getResources().getIdentifier(item5.replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable",
-						getPackageName());
+						v.getContext().getPackageName());
 				imageView5.setImageResource(iconID);
 
 				iconID = getResources().getIdentifier(item6.replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable",
-						getPackageName());
+						v.getContext().getPackageName());
 				imageView6.setImageResource(iconID);
 
 				iconID = getResources().getIdentifier(champIcon.replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable",
-						getPackageName());
+						v.getContext().getPackageName());
 				imageView7.setImageResource(iconID);
 
 				/*
@@ -259,7 +269,7 @@ public class UltimateBravery extends Activity
 
 				champSpell = champIcon + spellNum;
 				iconID = getResources().getIdentifier(champSpell.replaceAll("[^a-zA-Z0-9]+", "").toLowerCase(),
-						"drawable", getPackageName());
+						"drawable", v.getContext().getPackageName());
 				imageView8.setImageResource(iconID);
 				
 				// Text for spell
@@ -301,24 +311,17 @@ public class UltimateBravery extends Activity
 				summSpell1 = getSummonerSpellName(randomSummSpell1);
 				textView9.setText(summSpell0);
 				iconID = getResources().getIdentifier(summSpell0.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
-						"drawable", getPackageName());
+						"drawable", v.getContext().getPackageName());
 				imageView9.setImageResource(iconID);
 				textView10.setText(summSpell1);
 				iconID = getResources().getIdentifier(summSpell1.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
-						"drawable", getPackageName());
+						"drawable", v.getContext().getPackageName());
 				imageView10.setImageResource(iconID);
 
 			}
 		});
 
 		rand.performClick();
-	}
-
-	@Override
-	public void onBackPressed()
-	{
-
-		super.onBackPressed();
 	}
 
 	// Method to get random champion. High must be 1 higher than the desired index
@@ -348,15 +351,6 @@ public class UltimateBravery extends Activity
 		int High = 61;
 		int R = r.nextInt(High - Low) + Low;
 		return R;
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.ultimate_bravery, menu);
-		return true;
 	}
 
 	@Override
