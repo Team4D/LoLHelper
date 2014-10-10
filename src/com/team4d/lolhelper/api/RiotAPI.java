@@ -13,6 +13,8 @@ public class RiotAPI
 	private static String BaseAPIAddress;
 	private static String StaticDataAPIAddress;
 	private static String ChampionAPIAddress;
+	private static String SummonerAPIAddress;
+	private static String StatsAPIAddress;
 
 	/**
 	 * Private constructor to prevent initialization of static class.
@@ -22,6 +24,8 @@ public class RiotAPI
 		BaseAPIAddress = "https://" + region + ".api.pvp.net/api/lol/";
 		StaticDataAPIAddress = "static-data/" + region + "/v1.2/";
 		ChampionAPIAddress = region + "/v1.2/champion";
+		SummonerAPIAddress = region + "/v1.4/summoner/by-name/";
+		StatsAPIAddress = region + "/v1.3/stats/by-summoner/";
 	}
 
 	/**
@@ -161,9 +165,47 @@ public class RiotAPI
 		return CallAPI(APIQuery);
 
 	}
+
 	/*
 	 * ********************************
 	 * End of Champion API Queries
+	 * ********************************
+	 */
+	/*
+	 * ********************************
+	 * Beginning of Stats API Queries
+	 * ********************************
+	 */
+	public JsonElement GetRankedStatsByID(int id)
+	{
+		String APIQuery = BaseAPIAddress + StatsAPIAddress + id + "/ranked?" + APIKey;
+		return CallAPI(APIQuery);
+	}
+
+	public JsonElement GetSummaryStatsByID(int id)
+	{
+		String APIQuery = BaseAPIAddress + StatsAPIAddress + id + "/summary?" + APIKey;
+		return CallAPI(APIQuery);
+	}
+
+	/*
+	 * ********************************
+	 * End of Stats API Queries
+	 * ********************************
+	 */
+	/*
+	 * ********************************
+	 * Beginning of Summoner API Queries
+	 * ********************************
+	 */
+	public JsonElement GetSummonerByName(String name)
+	{
+		String APIQuery = BaseAPIAddress + SummonerAPIAddress + name + "?" + APIKey;
+		return CallAPI(APIQuery);
+	}
+	/*
+	 * ********************************
+	 * End of Summoner API Queries
 	 * ********************************
 	 */
 }

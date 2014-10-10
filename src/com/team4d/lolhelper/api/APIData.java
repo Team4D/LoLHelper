@@ -18,6 +18,9 @@ import com.team4d.lolhelper.api.dto.staticdata.item.Item;
 import com.team4d.lolhelper.api.dto.staticdata.mastery.Mastery;
 import com.team4d.lolhelper.api.dto.staticdata.rune.Rune;
 import com.team4d.lolhelper.api.dto.staticdata.summonerspell.SummonerSpell;
+import com.team4d.lolhelper.api.dto.stats.PlayerStatsSummaryList;
+import com.team4d.lolhelper.api.dto.stats.RankedStats;
+import com.team4d.lolhelper.api.dto.summoner.Summoner;
 
 /**
  * @author KaosuRyoko
@@ -559,6 +562,7 @@ public class APIData
 		RiotAPI api = new RiotAPI("na");
 		JsonElement APIReturn = api.GetLiveChampions(true);
 		JsonArray Champions = APIReturn.getAsJsonObject().getAsJsonArray("champions");
+		api = null;
 
 		String[] ChampList = new String[Champions.size()];
 		for (int i = 0; i < Champions.size(); i++)
@@ -567,9 +571,113 @@ public class APIData
 		}
 		return ChampList;
 	}
+
 	/*
 	 * ********************************
 	 * End of Champion API Data
+	 * ********************************
+	 */
+	/*
+	 * ********************************
+	 * Start of Summoner API Data
+	 * ********************************
+	 */
+	public static Summoner getSummonerByName(String name)
+	{
+		RiotAPI api = new RiotAPI("na");
+		JsonElement summoner = api.GetSummonerByName(name);
+		api = null;
+		try
+		{
+			Summoner s = new Gson().fromJson(summoner, Summoner.class);
+			return s;
+		} catch (Exception e)
+		{
+			// Should probably at least do some logging, but not worried about that right now.
+		}
+		return null;
+	}
+
+	/*
+	 * ********************************
+	 * End of Summoner API Data
+	 * ********************************
+	 */
+	/*
+	 * ********************************
+	 * Start of Stats API Data
+	 * ********************************
+	 */
+	public static RankedStats getRankedStatsByID(int id)
+	{
+		RiotAPI api = new RiotAPI("na");
+		JsonElement ranked = api.GetRankedStatsByID(id);
+		api = null;
+
+		try
+		{
+			RankedStats s = new Gson().fromJson(ranked, RankedStats.class);
+			return s;
+		} catch (Exception e)
+		{
+			// Should probably at least do some logging, but not worried about that right now.
+		}
+		return null;
+	}
+
+	public static RankedStats getRankedStatsByName(String name)
+	{
+		RiotAPI api = new RiotAPI("na");
+		JsonElement summoner = api.GetSummonerByName(name);
+		try
+		{
+			Summoner s = new Gson().fromJson(summoner, Summoner.class);
+			JsonElement ranked = api.GetRankedStatsByID((int) s.getId());
+			RankedStats rs = new Gson().fromJson(ranked, RankedStats.class);
+			return rs;
+		} catch (Exception e)
+		{
+			// Should probably at least do some logging, but not worried about that right now.
+		}
+		return null;
+	}
+
+	public static PlayerStatsSummaryList getSummaryStatsByID(int id)
+	{
+		RiotAPI api = new RiotAPI("na");
+		JsonElement summary = api.GetSummaryStatsByID(id);
+		api = null;
+
+		try
+		{
+			PlayerStatsSummaryList s = new Gson().fromJson(summary, PlayerStatsSummaryList.class);
+			return s;
+		} catch (Exception e)
+		{
+			// Should probably at least do some logging, but not worried about that right now.
+		}
+		return null;
+	}
+
+	public static PlayerStatsSummaryList getSummaryStatsByName(String name)
+	{
+		RiotAPI api = new RiotAPI("na");
+		JsonElement summoner = api.GetSummonerByName(name);
+		try
+		{
+			Summoner s = new Gson().fromJson(summoner, Summoner.class);
+			JsonElement summary = api.GetSummaryStatsByID((int) s.getId());
+			PlayerStatsSummaryList rs = new Gson().fromJson(summary, PlayerStatsSummaryList.class);
+			return rs;
+		} catch (Exception e)
+		{
+			// Should probably at least do some logging, but not worried about that right now.
+		}
+		return null;
+	}
+	/*
+	 * ********************************
+	 * End of Stats API Data
 	 * ********************************
 	 */
 }
