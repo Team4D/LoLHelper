@@ -553,6 +553,13 @@ public class APIData
 		str = str.replaceAll("(<[^>]*>)?", "");
 		return str;
 	}
+	
+	public static String parseResource(ChampionSpell spell){
+		String str = spell.getResource();
+		String cost = spell.getCostBurn();
+		str.replace("{{ cost }}", cost);
+		return str;
+	}
 
 	/*
 	 * ********************************

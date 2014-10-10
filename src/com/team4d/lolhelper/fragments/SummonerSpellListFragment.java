@@ -1,5 +1,6 @@
 package com.team4d.lolhelper.fragments;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
@@ -19,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.team4d.lolhelper.Popup;
 import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.api.dto.staticdata.summonerspell.SummonerSpell;
@@ -118,52 +120,17 @@ public class SummonerSpellListFragment extends Fragment
 	}
 	
 	public void showPopup(String name){
-		LinearLayout view = (LinearLayout) this.getActivity().findViewById(R.id.summonerspellpopup);
-		LayoutInflater inflater = (LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		layout = inflater.inflate(R.layout.fragment_summoner_spell_popup, view);
+		Activity activity = this.getActivity();		
+		layout = Popup.popupSummonerSpell(activity, name);
 		
 		PopupWindow popup = new PopupWindow(this.getActivity());
 		popup.setContentView(layout);
 		popup.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
-		popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
-		ImageView icon = (ImageView) layout.findViewById(R.id.icon);
-		int resID = getResources().getIdentifier(name.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
-				"drawable", "com.team4d.lolhelper");
-		icon.setImageResource(resID);	
-		
-		new grabSpell().execute(name);
-		
+		popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);		
 		popup.setOutsideTouchable(true);
 		popup.setFocusable(true);
 		popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
 		
 	}
 	
-	private class grabSpell extends AsyncTask<String, Void, SummonerSpell>
-	{
-		@Override
-		protected SummonerSpell doInBackground(String... spell_name)
-		{
-			SummonerSpell c = APIData.getSummonerSpellByName(spell_name[0]);
-			// Note: This return value is passed as a parameter to onPostExecute
-			return c;
-		}
-
-		@Override
-		protected void onPostExecute(SummonerSpell spell)
-		{
-			TextView nameText = (TextView) layout.findViewById(R.id.nameDis);
-			TextView effectText = (TextView) layout.findViewById(R.id.effectDis);
-			TextView cooldownText = (TextView) layout.findViewById(R.id.cooldownDis);
-			TextView rangeText = (TextView) layout.findViewById(R.id.rangeDis);
-			TextView levelText = (TextView) layout.findViewById(R.id.levelDis); 
-			
-			// Setting Text for TextViews
-			nameText.setText(spell.getName());
-			effectText.setText("Effect: \n" + spell.getDescription());
-			cooldownText.setText("Cooldown: \n" + spell.getCooldownBurn());
-			rangeText.setText("Range: \n" + spell.getRangeBurn());
-			levelText.setText("Level: \n" + spell.getSummonerLevel());
-		}
-	}
 }
