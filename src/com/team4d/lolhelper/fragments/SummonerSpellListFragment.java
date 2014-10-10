@@ -5,16 +5,18 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 
 import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
 
-public class HomeFragment extends Fragment
+public class SummonerSpellListFragment extends Fragment
 {
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -27,25 +29,23 @@ public class HomeFragment extends Fragment
 			Bundle savedInstanceState)
 	{
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_home, container, false);
+		return inflater.inflate(R.layout.fragment_summonerspelllist, container, false);
 	}
 
 	@Override
 	public void onStart()
 	{
 		super.onStart();
-		new FreeChampionAsyncTask(this.getActivity(), this.getView()).execute();
+		new SummonerSpellListAsyncTask(this.getActivity(), this.getView()).execute();
 	}
 
-	// Note: Need a general solution to deal with cases where the user opens a new fragment before the doInBackground
-	// completes. For now just be patient.
-	private class FreeChampionAsyncTask extends AsyncTask<Void, String, String[]>
+	private class SummonerSpellListAsyncTask extends AsyncTask<Void, String, String[]>
 	{
 
 		private final Context mContext;
 		private final View mView;
 
-		public FreeChampionAsyncTask(Context c, View v)
+		public SummonerSpellListAsyncTask(Context c, View v)
 		{
 			mContext = c;
 			mView = v;
@@ -60,8 +60,8 @@ public class HomeFragment extends Fragment
 		@Override
 		protected String[] doInBackground(Void... params)
 		{
-			String[] freeChamps = APIData.getFreeChampionList();
-			return freeChamps;
+			String[] sspells = APIData.getSummonerSpellList();
+			return sspells;
 		}
 
 		@Override
@@ -73,7 +73,17 @@ public class HomeFragment extends Fragment
 		@Override
 		protected void onPostExecute(String[] result)
 		{
-			LinearLayout freeChampLayout = (LinearLayout) mView.findViewById(R.id.FreeChampionsLayout);
+			GridLayout mGridView = (GridLayout) mView.findViewById(R.id.SummonerSpellListGrid);
+
+			DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
+			float dpWidth = dm.widthPixels / dm.density;
+
+			Drawable imgsize = getResources().getDrawable(R.drawable.defaultchampsize);
+			float dpImgWidth = imgsize.getIntrinsicWidth() / dm.density;
+
+			int columns = (int) (dpWidth / (dpImgWidth + 10));
+			mGridView.setColumnCount(columns);
+
 			for (int i = 0; i < result.length; i++)
 			{
 				LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -82,7 +92,9 @@ public class HomeFragment extends Fragment
 				Drawable btnImg = getResources().getDrawable(getResources().getIdentifier(
 						result[i].replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable", mContext.getPackageName()));
 				button.setImageDrawable(btnImg);
-				freeChampLayout.addView(button);
+				LayoutParams params = new LayoutParams(btnImg.getIntrinsicWidth() * 2, btnImg.getIntrinsicHeight() * 2);
+				button.setLayoutParams(params);
+				mGridView.addView(button);
 			}
 		}
 	}

@@ -2,11 +2,9 @@ package com.team4d.lolhelper;
 
 import java.util.Random;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,26 +13,22 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.team4d.lolhelper.R;
-import com.team4d.lolhelper.generalinfo.SpellDatabase;
-import com.team4d.lolhelper.generalinfo.SpellInfo;
-import com.team4d.lolhelper.generalinfo.items;
-
 public class BuildRoulette extends Fragment
 {
 
 	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-        Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_build_roulette, container, false);
-    }
-	
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState)
+	{
+		// Inflate the layout for this fragment
+		return inflater.inflate(R.layout.fragment_build_roulette, container, false);
+	}
+
 	@Override
 	public void onStart()
 	{
-//		super.onCreate(savedInstanceState);
-//		setContentView(R.layout.fragment_build_roulette);
+		// super.onCreate(savedInstanceState);
+		// setContentView(R.layout.fragment_build_roulette);
 
 		FrameLayout layout = (FrameLayout) this.getView().findViewById(R.id.container);
 		if (((GlobalVariables) this.getActivity().getApplication()).getskin() == 1)
@@ -46,7 +40,7 @@ public class BuildRoulette extends Fragment
 			layout.setBackgroundResource(R.drawable.bg2);
 		}
 
-		items.runMain();
+		// items.runMain();
 
 		Button rand = (Button) this.getView().findViewById(R.id.btnRandom);
 		rand.setOnClickListener(new View.OnClickListener()
@@ -271,12 +265,12 @@ public class BuildRoulette extends Fragment
 				iconID = getResources().getIdentifier(champSpell.replaceAll("[^a-zA-Z0-9]+", "").toLowerCase(),
 						"drawable", v.getContext().getPackageName());
 				imageView8.setImageResource(iconID);
-				
+
 				// Text for spell
-				SpellDatabase spellData = new SpellDatabase();
-				SpellDatabase.makeSpellDatabase();
-				SpellInfo spells [][] = spellData.getSpellArray();
-				textView12.setText(spells[champID][intSpellNum].getSpellName());
+				// SpellDatabase spellData = new SpellDatabase();
+				// SpellDatabase.makeSpellDatabase();
+				// SpellInfo spells [][] = spellData.getSpellArray();
+				// textView12.setText(spells[champID][intSpellNum].getSpellName());
 
 				/*
 				 * New stuff here: Random masteries. If you look at my method, it's horribly long. I needed to randomly

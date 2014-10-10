@@ -37,7 +37,11 @@ import com.nineoldandroids.view.animation.AnimatorProxy;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 import com.team4d.lolhelper.api.database.LOLSQLiteHelper;
+import com.team4d.lolhelper.fragments.ChampionListFragment;
 import com.team4d.lolhelper.fragments.HomeFragment;
+import com.team4d.lolhelper.fragments.ItemListFragment;
+import com.team4d.lolhelper.fragments.SummonerSpellListFragment;
+import com.team4d.lolhelper.fragments.SummonerStatsFragment;
 
 public class BaseActivity extends Activity
 {
@@ -292,14 +296,14 @@ public class BaseActivity extends Activity
 	/** Swaps fragments in the main content view */
 	private void selectItem(int position)
 	{
+		FragmentManager fragmentManager = getFragmentManager();
 		// Create appropriate fragment
 		switch (position)
 		{
 		case 0:
 			HomeFragment fragment0 = new HomeFragment();
 			// Insert the fragment by replacing any existing fragment
-			FragmentManager fragmentManager = getFragmentManager();
-			fragmentManager.beginTransaction().add(R.id.content_frame, fragment0).commit();
+			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment0).commit();
 			break;
 		case 1:
 			// fragment = new TeamBuilderFragment();
@@ -308,16 +312,20 @@ public class BaseActivity extends Activity
 			// fragment = new UltimateBraveryFragment();
 			break;
 		case 3:
-			// fragment = new PlayerStatsFragment();
+			SummonerStatsFragment fragment3 = new SummonerStatsFragment();
+			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment3).commit();
 			break;
 		case 4:
-			// fragment = new ChampionInfoFragment();
+			ChampionListFragment fragment4 = new ChampionListFragment();
+			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment4).commit();
 			break;
 		case 5:
-			// fragment = new ItemInfoFragment();
+			ItemListFragment fragment5 = new ItemListFragment();
+			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment5).commit();
 			break;
 		case 6:
-			// fragment = new SummonerSpellInfoFragment();
+			SummonerSpellListFragment fragment6 = new SummonerSpellListFragment();
+			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment6).commit();
 			break;
 		case 7:
 			// fragment = new AboutFragment();
