@@ -8,10 +8,6 @@ import java.util.Map;
 
 import com.team4d.lolhelper.api.dto.staticdata.BasicData;
 
-/**
- * @author Shyos
- * 
- */
 public class ItemList {
 	private BasicData basic;
 	private Map<String, Item> data;

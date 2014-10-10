@@ -5,10 +5,7 @@ package com.team4d.lolhelper.api.dto.staticdata.summonerspell;
 
 import java.util.Map;
 
-/**
- * @author Shyos
- * 
- */
+
 public class SummonerSpellList {
 	private Map<String, SummonerSpell> data;
 	private String type;

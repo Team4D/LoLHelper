@@ -5,10 +5,7 @@ package com.team4d.lolhelper.api.dto.staticdata.realm;
 
 import java.util.Map;
 
-/**
- * @author Shyos
- * 
- */
+
 public class Realm {
 	private String cdn; // 
 	private String css; // 

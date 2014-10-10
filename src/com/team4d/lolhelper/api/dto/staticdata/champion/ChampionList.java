@@ -5,10 +5,7 @@ package com.team4d.lolhelper.api.dto.staticdata.champion;
 
 import java.util.Map;
 
-/**
- * @author Shyos
- *
- */
+
 public class ChampionList {
 	private Map<String, Champion> data;	
 	private String	format;	

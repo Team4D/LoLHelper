@@ -6,10 +6,7 @@ package com.team4d.lolhelper.api.dto.staticdata;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author Shyos
- * 
- */
+
 public class BasicData {
 	private String colloq;
 	private Boolean consumeOnFull;

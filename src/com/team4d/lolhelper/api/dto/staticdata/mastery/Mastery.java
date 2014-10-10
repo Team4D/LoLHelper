@@ -7,10 +7,7 @@ import java.util.List;
 
 import com.team4d.lolhelper.api.dto.staticdata.Image;
 
-/**
- * @author Shyos
- * 
- */
+
 public class Mastery {
 	private List<String> description;
 	private int id;

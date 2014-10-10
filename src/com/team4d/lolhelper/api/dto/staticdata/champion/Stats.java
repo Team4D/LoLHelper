@@ -3,10 +3,7 @@
  */
 package com.team4d.lolhelper.api.dto.staticdata.champion;
 
-/**
- * @author Shyos
- * 
- */
+
 public class Stats {
 	private double armor;
 	private double armorperlevel;

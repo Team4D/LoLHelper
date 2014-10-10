@@ -3,10 +3,7 @@
  */
 package com.team4d.lolhelper.api.dto.staticdata;
 
-/**
- * @author Shyos
- * 
- */
+
 public class Metadata {
 	private boolean isRune;
 	private String tier;

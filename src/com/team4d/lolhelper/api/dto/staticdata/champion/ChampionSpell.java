@@ -9,9 +9,6 @@ import com.team4d.lolhelper.api.dto.staticdata.Image;
 import com.team4d.lolhelper.api.dto.staticdata.LevelTip;
 import com.team4d.lolhelper.api.dto.staticdata.SpellVars;
 
-/**
- * @author Shyos
- */
 public class ChampionSpell
 {
 	private List<Float> cooldown;

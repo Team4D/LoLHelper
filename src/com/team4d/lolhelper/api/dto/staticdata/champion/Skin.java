@@ -3,10 +3,6 @@
  */
 package com.team4d.lolhelper.api.dto.staticdata.champion;
 
-/**
- * @author Shyos
- *
- */
 public class Skin {
 	private String id;
 	private String name;

@@ -5,10 +5,6 @@ package com.team4d.lolhelper.api.dto.staticdata.item;
 
 import java.util.List;
 
-/**
- * @author Shyos
- *
- */
 public class ItemTree {
 	private String header;	
 	private List<String> tags;

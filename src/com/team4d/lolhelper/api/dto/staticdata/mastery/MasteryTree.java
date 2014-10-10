@@ -2,9 +2,6 @@ package com.team4d.lolhelper.api.dto.staticdata.mastery;
 
 import java.util.List;
 
-/**
- * @author Shyos
- */
 public class MasteryTree
 {
 	private List<MasteryTreeList> Defense;

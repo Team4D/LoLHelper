@@ -11,10 +11,7 @@ import com.team4d.lolhelper.api.dto.staticdata.Gold;
 import com.team4d.lolhelper.api.dto.staticdata.Image;
 import com.team4d.lolhelper.api.dto.staticdata.Metadata;
 
-/**
- * @author Shyos
- *
- */
+
 public class Rune {
 	private String colloq;
 	private Boolean consumeOnFull;

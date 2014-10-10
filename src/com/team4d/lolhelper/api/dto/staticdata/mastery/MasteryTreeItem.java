@@ -3,10 +3,7 @@
  */
 package com.team4d.lolhelper.api.dto.staticdata.mastery;
 
-/**
- * @author Shyos
- * 
- */
+
 public class MasteryTreeItem {
 	private String masteryId;
 	private String prereq;

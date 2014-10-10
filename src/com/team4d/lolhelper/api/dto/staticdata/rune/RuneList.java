@@ -7,10 +7,7 @@ import java.util.Map;
 
 import com.team4d.lolhelper.api.dto.staticdata.BasicData;
 
-/**
- * @author Shyos
- * 
- */
+
 public class RuneList {
 	private BasicData basic;
 	private Map<String, Rune> data;

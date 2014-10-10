@@ -5,10 +5,7 @@ package com.team4d.lolhelper.api.dto.staticdata.champion;
 
 import java.util.List;
 
-/**
- * @author Shyos
- * 
- */
+
 public class Block {
 	private List<BlockItem> items;
 	private String type;

@@ -3,10 +3,7 @@
  */
 package com.team4d.lolhelper.api.dto.staticdata;
 
-/**
- * @author Shyos
- * 
- */
+
 public class BasicDataStats {
 
 	private double FlatArmorMod;

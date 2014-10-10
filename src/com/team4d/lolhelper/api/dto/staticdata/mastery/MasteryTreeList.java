@@ -5,10 +5,7 @@ package com.team4d.lolhelper.api.dto.staticdata.mastery;
 
 import java.util.List;
 
-/**
- * @author Shyos
- * 
- */
+
 public class MasteryTreeList {
 	private List<MasteryTreeItem> masteryTreeItems;
 

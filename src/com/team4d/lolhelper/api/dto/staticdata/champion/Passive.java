@@ -5,10 +5,6 @@ package com.team4d.lolhelper.api.dto.staticdata.champion;
 
 import com.team4d.lolhelper.api.dto.staticdata.Image;
 
-/**
- * @author Shyos
- * 
- */
 public class Passive {
 	private String description;
 	private Image image;
