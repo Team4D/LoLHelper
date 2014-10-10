@@ -1,20 +1,29 @@
 package com.team4d.lolhelper.fragments;
 
+import java.util.Map;
+
 import android.app.Fragment;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
+import com.team4d.lolhelper.api.dto.staticdata.item.Item;
+import com.team4d.lolhelper.api.dto.staticdata.summonerspell.SummonerSpell;
 
 /**
  * TODO: Implement sorting and shop style browsing
@@ -23,6 +32,8 @@ import com.team4d.lolhelper.api.APIData;
  */
 public class ItemListFragment extends Fragment
 {
+	View layout; //used for popup
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -133,8 +144,87 @@ public class ItemListFragment extends Fragment
 				button.setImageDrawable(btnImg);
 				LayoutParams params = new LayoutParams(btnImg.getIntrinsicWidth() * 2, btnImg.getIntrinsicHeight() * 2);
 				button.setLayoutParams(params);
+				button.setTag(result[i]);
+				button.setOnClickListener(new View.OnClickListener()
+				{
+					@Override
+					public void onClick(View v)
+					{
+						showPopup((String) v.getTag());
+					}
+				});
 				mGridView.addView(button);
 			}
+		}
+	}
+	
+	public void showPopup(String name){
+		LinearLayout view = (LinearLayout) this.getActivity().findViewById(R.id.itempopup);
+		LayoutInflater inflater = (LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		layout = inflater.inflate(R.layout.fragment_item_popup, view);
+		
+		PopupWindow popup = new PopupWindow(this.getActivity());
+		popup.setContentView(layout);
+		popup.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
+		popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+		ImageView icon = (ImageView) layout.findViewById(R.id.icon);
+		int resID = getResources().getIdentifier(name.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
+				"drawable", "com.team4d.lolhelper");
+		icon.setImageResource(resID);	
+		
+		new grabItem().execute(name);
+		
+		popup.setOutsideTouchable(true);
+		popup.setFocusable(true);
+		popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
+	}
+	
+	private class grabItem extends AsyncTask<String, Void, Item>
+	{
+		@Override
+		protected Item doInBackground(String... name)
+		{
+			Item c = APIData.getItemByName(name[0]);
+			// Note: This return value is passed as a parameter to onPostExecute
+			return c;
+		}
+
+		@Override
+		protected void onPostExecute(Item item)
+		{
+			TextView nameText = (TextView) layout.findViewById(R.id.name);
+			TextView mapsText = (TextView) layout.findViewById(R.id.maps);
+			TextView descriptionText = (TextView) layout.findViewById(R.id.description);
+			TextView totalgoldText = (TextView) layout.findViewById(R.id.totalgold); 
+			TextView sellgoldText = (TextView) layout.findViewById(R.id.sellgold); 
+			
+			// Setting Text for TextViews
+			String str = "";
+			if(item.getMaps()!=null){
+				Map<String, Boolean> maps = item.getMaps();
+				//Maps: 1 (SR), 10 (TT), 8 (CS), 12 (HA)
+				if(!maps.containsKey("1")){
+					str = str + "Summoner's Rift, ";
+				}
+				if(!maps.containsKey("10")){
+					str = str + "Twisted Treeline, ";
+				}
+				if(!maps.containsKey("8")){
+					str = str + "Crystal Scar, ";
+				}
+				if(!maps.containsKey("12")){
+					str = str + "Howling Abyss, ";
+				}
+				str = str.substring(0, str.length()-2);
+			} else {
+				str = "All";
+			}
+			//Get rid of last ", "
+			nameText.setText(item.getName());
+			mapsText.setText("Maps: \n" + str);
+			descriptionText.setText("Description: \n" + APIData.parseOutHtml(item.getDescription()));
+			totalgoldText.setText("Total Gold: " + item.getGold().getTotal());
+			sellgoldText.setText("Sells For: " + item.getGold().getSell());
 		}
 	}
 }

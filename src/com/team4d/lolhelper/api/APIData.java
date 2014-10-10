@@ -2,6 +2,7 @@ package com.team4d.lolhelper.api;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -545,6 +546,12 @@ public class APIData
 		result = result + (int) (value * 100);
 
 		return result;
+	}
+	
+	public static String parseOutHtml(String str){
+		str = str.replaceAll("<br>", "\n");
+		str = str.replaceAll("(<[^>]*>)?", "");
+		return str;
 	}
 
 	/*

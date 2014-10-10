@@ -25,7 +25,7 @@ import com.team4d.lolhelper.api.dto.staticdata.summonerspell.SummonerSpell;
 
 public class SummonerSpellListFragment extends Fragment
 {
-	View layout;
+	View layout; //used for popup
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
