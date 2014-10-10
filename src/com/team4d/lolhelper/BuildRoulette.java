@@ -336,13 +336,13 @@ public class BuildRoulette extends Fragment
 					 */
 
 					String summSpell0, summSpell1;
-					int randomSummSpell0 = getRandom(0, 13);
-					int randomSummSpell1 = getRandom(0, 13);
+					int randomSummSpell0 = getRandom(0, summonerSpellList.length);
+					int randomSummSpell1 = getRandom(0, summonerSpellList.length);
 					summSpell0 = getSummonerSpellName(randomSummSpell0);
 
 					while (randomSummSpell0 == randomSummSpell1)
 					{
-						randomSummSpell1 = getRandom(0, 13);
+						randomSummSpell1 = getRandom(0, summonerSpellList.length);
 					}
 
 					summSpell1 = getSummonerSpellName(randomSummSpell1);
@@ -365,29 +365,17 @@ public class BuildRoulette extends Fragment
 		// VALID INDEXES ARE 0 TO 1
 		public int getChampionIcon()
 		{
-			Random r = new Random();
-			int Low = 0;
-			int High = championList.length - 1;
-			int R = r.nextInt(High - Low) + Low;
-			return R;
+			return getRandom(0, championList.length);
 		}
 
 		public int getBoots()
 		{
-			Random r = new Random();
-			int Low = 0;
-			int High = 7;
-			int R = r.nextInt(High - Low) + Low;
-			return R;
+			return getRandom(0, 7);
 		}
 
 		public int getItem()
 		{
-			Random r = new Random();
-			int Low = 0;
-			int High = 61;
-			int R = r.nextInt(High - Low) + Low;
-			return R;
+			return getRandom(0, 61);
 		}
 
 
