@@ -10,14 +10,12 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.api.dto.staticdata.summonerspell.SummonerSpell;
-import com.team4d.lolhelper.generalinfo.SSpell;
 
 public class SummonerSpellInfo extends Activity
 {
-	
+
 	private class grabSpell extends AsyncTask<String, Void, SummonerSpell>
 	{
 		@Override
@@ -31,18 +29,21 @@ public class SummonerSpellInfo extends Activity
 		@Override
 		protected void onPostExecute(SummonerSpell spell)
 		{
-	/*		String name = SSpell.getName(SSpell.summonerspells[i]);
-			String effect = SSpell.getEffect(SSpell.summonerspells[i]);
-			int cooldown = SSpell.getCooldown(SSpell.summonerspells[i]);
-			String range = SSpell.getRange(SSpell.summonerspells[i]);
-			boolean breakstealth = SSpell.getBreakStealth(SSpell.summonerspells[i]);
-			int level = SSpell.getLevel(SSpell.summonerspells[i]);
-	*/
+			/*
+			 * String name = SSpell.getName(SSpell.summonerspells[i]);
+			 * String effect = SSpell.getEffect(SSpell.summonerspells[i]);
+			 * int cooldown = SSpell.getCooldown(SSpell.summonerspells[i]);
+			 * String range = SSpell.getRange(SSpell.summonerspells[i]);
+			 * boolean breakstealth = SSpell.getBreakStealth(SSpell.summonerspells[i]);
+			 * int level = SSpell.getLevel(SSpell.summonerspells[i]);
+			 */
 			TextView nameText = (TextView) findViewById(R.id.nameDis);
 			TextView effectText = (TextView) findViewById(R.id.effectDis); // effectDis *************************
-			TextView cooldownText = (TextView) findViewById(R.id.cooldownDis); // cooldownDis *****************************
+			TextView cooldownText = (TextView) findViewById(R.id.cooldownDis); // cooldownDis
+																				// *****************************
 			TextView rangeText = (TextView) findViewById(R.id.rangeDis); // rangeDis **********************************
-			TextView breakstealthText = (TextView) findViewById(R.id.breakstealthDis); // breakstealthDis *****************
+			TextView breakstealthText = (TextView) findViewById(R.id.breakstealthDis); // breakstealthDis
+																						// *****************
 			TextView levelText = (TextView) findViewById(R.id.levelDis); // levelDis *******************************
 
 			// Setting Text for TextViews
@@ -50,7 +51,7 @@ public class SummonerSpellInfo extends Activity
 			effectText.setText("Effect: \n" + spell.getDescription());
 			cooldownText.setText("Cooldown: \n" + spell.getCooldownBurn());
 			rangeText.setText("Range: \n" + spell.getRangeBurn());
-			//TODO: Either implement breakstealth or delete completely
+			// TODO: Either implement breakstealth or delete completely
 			levelText.setText("Level: \n" + spell.getSummonerLevel());
 		}
 	}
@@ -71,15 +72,14 @@ public class SummonerSpellInfo extends Activity
 			layout.setBackgroundResource(R.drawable.bg2);
 		}
 
-
 		Intent intent = getIntent();
 		String message = intent.getStringExtra(SummonerSpells.EXTRA_MESSAGE);
-		
+
 		ImageView icon = (ImageView) findViewById(R.id.icon);
 		int resID = getResources().getIdentifier(message.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
 				"drawable", getPackageName());
 		icon.setImageResource(resID);
-		
+
 		new grabSpell().execute(message);
 	}
 

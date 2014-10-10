@@ -99,6 +99,11 @@ public class LOLSQLiteHelper extends SQLiteOpenHelper
 			database.execSQL(LoadChamp);
 		}
 
+		Champions = null;
+		ChampionKeys = null;
+		ChampionData = null;
+		CreateChampionsTable = null;
+
 		/*
 		 * Creates the items db table
 		 */
@@ -117,6 +122,10 @@ public class LOLSQLiteHelper extends SQLiteOpenHelper
 					+ "', '" + Item.toString().replaceAll("'", "''") + "');";
 			database.execSQL(LoadItem);
 		}
+
+		Items = null;
+		ItemData = null;
+		CreateItemsTable = null;
 
 		/*
 		 * Create the masteries db table
@@ -139,6 +148,9 @@ public class LOLSQLiteHelper extends SQLiteOpenHelper
 			database.execSQL(LoadMastery);
 		}
 
+		Masteries = null;
+		CreateMasteriesTable = null;
+
 		/*
 		 * Create the runes db table
 		 */
@@ -158,6 +170,9 @@ public class LOLSQLiteHelper extends SQLiteOpenHelper
 					+ "', '" + Rune.toString().replaceAll("'", "''") + "');";
 			database.execSQL(LoadRune);
 		}
+
+		Runes = null;
+		CreateRunesTable = null;
 
 		/*
 		 * Create the summonerspells db table
@@ -179,6 +194,9 @@ public class LOLSQLiteHelper extends SQLiteOpenHelper
 			database.execSQL(LoadSummonerSpell);
 		}
 
+		SummonerSpells = null;
+		CreateSummonerSpellsTable = null;
+
 		/*
 		 * Create the realms db table
 		 */
@@ -192,6 +210,10 @@ public class LOLSQLiteHelper extends SQLiteOpenHelper
 		String LoadRealm = "INSERT INTO realms (json) VALUES ('" + Realm.toString() + "');";
 		database.execSQL(LoadRealm);
 
+		CreateRealmsTable = null;
+		LoadRealm = null;
+		Realm = null;
+
 		/*
 		 * Create the versions db table
 		 */
@@ -204,6 +226,9 @@ public class LOLSQLiteHelper extends SQLiteOpenHelper
 			String LoadVersion = "INSERT INTO versions (version) VALUES ('" + Versions.get(i) + "');";
 			database.execSQL(LoadVersion);
 		}
+
+		Versions = null;
+		CreateVersionsTable = null;
 	}
 
 	/**

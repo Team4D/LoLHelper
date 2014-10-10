@@ -4,8 +4,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.Ringtone;
@@ -14,8 +15,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Process;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.TypedValue;
@@ -26,20 +27,19 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.RelativeLayout.LayoutParams;
 
 import com.google.android.gms.ads.AdView;
 import com.nineoldandroids.view.animation.AnimatorProxy;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
+import com.team4d.lolhelper.api.database.LOLSQLiteHelper;
 import com.team4d.lolhelper.fragments.HomeFragment;
 
-public class BaseActivity extends FragmentActivity
+public class BaseActivity extends Activity
 {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
@@ -53,8 +53,8 @@ public class BaseActivity extends FragmentActivity
 	private AdView adView;
 	/* Your ad unit id. Replace with your actual ad unit id. */
 	private static final String AD_UNIT_ID = "ca-app-pub-9973141875464346/2397347111";
-	
-	//Jungle Timer things
+
+	// Jungle Timer things
 	Button GR, GB, LR, LB, DR, BA;
 	Timer[] timer = new Timer[6];
 	boolean reset[] = { true, true, true, true, true, true };
@@ -69,6 +69,8 @@ public class BaseActivity extends FragmentActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_base);
+
+		new DatabaseAsyncTask(this).execute();
 
 		mTitle = mDrawerTitle = getTitle();
 		mPageTitles = getResources().getStringArray(R.array.page_array);
@@ -115,88 +117,104 @@ public class BaseActivity extends FragmentActivity
 				};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-		if (savedInstanceState == null)
-		{
-			selectItem(0);
-		}
-		
-		//Jungle Timer Drawer
+		/*
+		 * if (savedInstanceState == null)
+		 * {
+		 * selectItem(0);
+		 * }
+		 */
+		// Jungle Timer Drawer
 		final SlidingUpPanelLayout mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
-	        mLayout.setPanelSlideListener(new PanelSlideListener() {
-	            @Override
-	            public void onPanelSlide(View panel, float slideOffset) {
-	                setActionBarTranslation(mLayout.getCurrentParalaxOffset());
-	            }
+		mLayout.setPanelSlideListener(new PanelSlideListener()
+		{
+			@Override
+			public void onPanelSlide(View panel, float slideOffset)
+			{
+				setActionBarTranslation(mLayout.getCurrentParalaxOffset());
+			}
 
-	            @Override
-	            public void onPanelExpanded(View panel) {
-	            	ImageView arrow = (ImageView) findViewById(R.id.arrowbararrow);
-	            	arrow.setBackgroundResource(R.drawable.uparrow);
-	            }
+			@Override
+			public void onPanelExpanded(View panel)
+			{
+				ImageView arrow = (ImageView) findViewById(R.id.arrowbararrow);
+				arrow.setBackgroundResource(R.drawable.uparrow);
+			}
 
-	            @Override
-	            public void onPanelCollapsed(View panel) {
-	            	ImageView arrow = (ImageView) findViewById(R.id.arrowbararrow);
-	            	arrow.setBackgroundResource(R.drawable.downarrow);
-	            }
+			@Override
+			public void onPanelCollapsed(View panel)
+			{
+				ImageView arrow = (ImageView) findViewById(R.id.arrowbararrow);
+				arrow.setBackgroundResource(R.drawable.downarrow);
+			}
 
-	            @Override
-	            public void onPanelAnchored(View panel) {
-	            }
+			@Override
+			public void onPanelAnchored(View panel)
+			{
+			}
 
-	            @Override
-	            public void onPanelHidden(View panel) {
-	            }
-	        });
+			@Override
+			public void onPanelHidden(View panel)
+			{
+			}
+		});
 
-	        //Jungle Timers
-			GB = (Button) findViewById(R.id.Button0);
-			LB = (Button) findViewById(R.id.Button1);
-			BA = (Button) findViewById(R.id.Button2);
-			DR = (Button) findViewById(R.id.Button3);
-			LR = (Button) findViewById(R.id.Button4);
-			GR = (Button) findViewById(R.id.Button5);
-			
-			LinearLayout layout = (LinearLayout) findViewById(R.id.jungletimerbar);
-			LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-			params.setMargins(0, getActionBarHeight(), 0, 0);
-			layout.setLayoutParams(params);
+		// Jungle Timers
+		GB = (Button) findViewById(R.id.Button0);
+		LB = (Button) findViewById(R.id.Button1);
+		BA = (Button) findViewById(R.id.Button2);
+		DR = (Button) findViewById(R.id.Button3);
+		LR = (Button) findViewById(R.id.Button4);
+		GR = (Button) findViewById(R.id.Button5);
 
-			notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-			ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
+		LinearLayout layout = (LinearLayout) findViewById(R.id.jungletimerbar);
+		LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		params.setMargins(0, getActionBarHeight(), 0, 0);
+		layout.setLayoutParams(params);
+
+		notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+		ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
 	}
-	
-	private int getActionBarHeight(){
-        int actionBarHeight = 0;
-        TypedValue tv = new TypedValue();
-        if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data,getResources().getDisplayMetrics());
-        }
-        return actionBarHeight;
-    }
-	
-	public void setActionBarTranslation(float y) {
-        // Figure out the actionbar height
-        int actionBarHeight = getActionBarHeight();
-        // A hack to add the translation to the action bar
-        ViewGroup content = ((ViewGroup) findViewById(android.R.id.content).getParent());
-        int children = content.getChildCount();
-        for (int i = 0; i < children; i++) {
-            View child = content.getChildAt(i);
-            if (child.getId() != android.R.id.content) {
-                if (y <= -actionBarHeight) {
-                    child.setVisibility(View.GONE);
-                } else {
-                    child.setVisibility(View.VISIBLE);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                        child.setTranslationY(y);
-                    } else {
-                        AnimatorProxy.wrap(child).setTranslationY(y);
-                    }
-                }
-            }
-        }
-    }
+
+	private int getActionBarHeight()
+	{
+		int actionBarHeight = 0;
+		TypedValue tv = new TypedValue();
+		if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true))
+		{
+			actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
+		}
+		return actionBarHeight;
+	}
+
+	public void setActionBarTranslation(float y)
+	{
+		// Figure out the actionbar height
+		int actionBarHeight = getActionBarHeight();
+		// A hack to add the translation to the action bar
+		ViewGroup content = ((ViewGroup) findViewById(android.R.id.content).getParent());
+		int children = content.getChildCount();
+		for (int i = 0; i < children; i++)
+		{
+			View child = content.getChildAt(i);
+			if (child.getId() != android.R.id.content)
+			{
+				if (y <= -actionBarHeight)
+				{
+					child.setVisibility(View.GONE);
+				} else
+				{
+					child.setVisibility(View.VISIBLE);
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+					{
+						child.setTranslationY(y);
+					} else
+					{
+						AnimatorProxy.wrap(child).setTranslationY(y);
+					}
+				}
+			}
+		}
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
@@ -275,43 +293,42 @@ public class BaseActivity extends FragmentActivity
 	private void selectItem(int position)
 	{
 		// Create appropriate fragment
-		switch(position){
-			case 0:
-				HomeFragment fragment0 = new HomeFragment();
-				// Insert the fragment by replacing any existing fragment
-				FragmentManager fragmentManager = getSupportFragmentManager();
-				fragmentManager.beginTransaction()
-						.add(R.id.content_frame, fragment0).commit();
-				break;
-			case 1:
-//				fragment = new TeamBuilderFragment();
-				break;
-			case 2:
-//				fragment = new UltimateBraveryFragment();
-				break;
-			case 3:
-//				fragment = new PlayerStatsFragment();
-				break;
-			case 4:
-//				fragment = new ChampionInfoFragment();
-				break;
-			case 5:
-//				fragment = new ItemInfoFragment();
-				break;
-			case 6:
-//				fragment = new SummonerSpellInfoFragment();
-				break;
-			case 7:
-//				fragment = new AboutFragment();
-				break;
-			default:
-				Fragment fragment = new Fragment();	
+		switch (position)
+		{
+		case 0:
+			HomeFragment fragment0 = new HomeFragment();
+			// Insert the fragment by replacing any existing fragment
+			FragmentManager fragmentManager = getFragmentManager();
+			fragmentManager.beginTransaction().add(R.id.content_frame, fragment0).commit();
+			break;
+		case 1:
+			// fragment = new TeamBuilderFragment();
+			break;
+		case 2:
+			// fragment = new UltimateBraveryFragment();
+			break;
+		case 3:
+			// fragment = new PlayerStatsFragment();
+			break;
+		case 4:
+			// fragment = new ChampionInfoFragment();
+			break;
+		case 5:
+			// fragment = new ItemInfoFragment();
+			break;
+		case 6:
+			// fragment = new SummonerSpellInfoFragment();
+			break;
+		case 7:
+			// fragment = new AboutFragment();
+			break;
+		default:
+			Fragment fragment = new Fragment();
 		}
-		
-//		Bundle args = new Bundle();
-//		args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-//		fragment.setArguments(args);
 
+		// Bundle args = new Bundle();
+		// args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
+		// fragment.setArguments(args);
 
 		// Highlight the selected item, update the title, and close the drawer
 		mDrawerList.setItemChecked(position, true);
@@ -347,26 +364,46 @@ public class BaseActivity extends FragmentActivity
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 
-	private class BaseAsyncTask extends AsyncTask<Void, Void, Void>
+	private class DatabaseAsyncTask extends AsyncTask<Void, String, Void>
 	{
-		@Override
-		protected void onPreExecute()
-		{
+		private final Context mContext;
 
+		public DatabaseAsyncTask(Context c)
+		{
+			mContext = c;
 		}
 
 		@Override
-		protected Void doInBackground(Void... empty)
+		protected void onPreExecute()
 		{
+		}
+
+		@Override
+		protected Void doInBackground(Void... params)
+		{
+			Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND + Process.THREAD_PRIORITY_MORE_FAVORABLE);
+			LOLSQLiteHelper.getInstance(mContext).getWritableDatabase();
 			return null;
+		}
+
+		@Override
+		protected void onProgressUpdate(String... status)
+		{
 		}
 
 		@Override
 		protected void onPostExecute(Void empty)
 		{
+			// Create a new fragment and specify the planet to show based on
+			// position
+			HomeFragment fragment = new HomeFragment();
+
+			// Insert the fragment by replacing any existing fragment
+			FragmentManager fragmentManager = getFragmentManager();
+			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 		}
 	}
-	
+
 	//
 	// All the timer methods
 	//
@@ -583,7 +620,7 @@ public class BaseActivity extends FragmentActivity
 	public void BlueGolem(View view)
 	{
 		TimeLeft[0] = 300000;
-		if (!running[0]) //start it
+		if (!running[0]) // start it
 		{
 			GB.setBackgroundResource(R.drawable.timer0blank);
 			running[0] = true;
@@ -596,7 +633,8 @@ public class BaseActivity extends FragmentActivity
 					TimerMethod0();
 				}
 			}, 0, 1000);
-		} else //cancel it
+		} else
+		// cancel it
 		{
 			GB.setBackgroundResource(R.drawable.timer0);
 			timer[0].cancel();

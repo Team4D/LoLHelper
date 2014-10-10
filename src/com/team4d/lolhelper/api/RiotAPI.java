@@ -10,8 +10,9 @@ import com.google.gson.JsonParser;
 public class RiotAPI
 {
 	private static final String APIKey = "api_key=434900e3-6801-47cb-b669-31cff23af9f6";
-	private final String BaseAPIAddress;
+	private static String BaseAPIAddress;
 	private static String StaticDataAPIAddress;
+	private static String ChampionAPIAddress;
 
 	/**
 	 * Private constructor to prevent initialization of static class.
@@ -20,6 +21,7 @@ public class RiotAPI
 	{
 		BaseAPIAddress = "https://" + region + ".api.pvp.net/api/lol/";
 		StaticDataAPIAddress = "static-data/" + region + "/v1.2/";
+		ChampionAPIAddress = region + "/v1.2/champion";
 	}
 
 	/**
@@ -56,7 +58,9 @@ public class RiotAPI
 	}
 
 	/*
+	 * ********************************
 	 * Beginning of Static API Queries
+	 * ********************************
 	 */
 	public JsonElement GetChampions()
 	{
@@ -129,8 +133,37 @@ public class RiotAPI
 		String APIQuery = BaseAPIAddress + StaticDataAPIAddress + "versions?" + APIKey;
 		return CallAPI(APIQuery);
 	}
+
 	/*
+	 * ********************************
 	 * End of Static API Queries
+	 * ********************************
 	 */
 
+	/*
+	 * ********************************
+	 * Beginning of Champion API Queries
+	 * ********************************
+	 */
+	public JsonElement GetLiveChampions(boolean free)
+	{
+		String APIQuery = BaseAPIAddress + ChampionAPIAddress + "?freeToPlay=";
+		if (free)
+		{
+			APIQuery = APIQuery + "true";
+		}
+		else
+		{
+			APIQuery = APIQuery + "false";
+		}
+		APIQuery = APIQuery + "&" + APIKey;
+
+		return CallAPI(APIQuery);
+
+	}
+	/*
+	 * ********************************
+	 * End of Champion API Queries
+	 * ********************************
+	 */
 }

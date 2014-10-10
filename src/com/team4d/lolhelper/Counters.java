@@ -14,9 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import com.team4d.lolhelper.R;
-import com.team4d.lolhelper.generalinfo.SpellDatabase;
-
 public class Counters extends Activity
 {
 
@@ -39,7 +36,7 @@ public class Counters extends Activity
 			layout.setBackgroundResource(R.drawable.bg2);
 		}
 
-		SpellDatabase.makeSpellDatabase();
+		// SpellDatabase.makeSpellDatabase();
 
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 				this, R.array.champion_array, R.layout.spinner_item);
@@ -80,32 +77,36 @@ public class Counters extends Activity
 				// do something else
 			}
 		});
-		
+
 		// Calculate the screen diagonal in inches.
 		DisplayMetrics dm = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
-		int width=dm.widthPixels;
-		int height=dm.heightPixels;
-		int dens=dm.densityDpi;
-		double wi=(double)width/(double)dens;
-		double hi=(double)height/(double)dens;
-		double x = Math.pow(wi,2);
-		double y = Math.pow(hi,2);
-		double screenInches = Math.sqrt(x+y);
-		
-    	// Calculate how many pixels is 180 dp, which is the size of champion icon.
-        dm = getResources().getDisplayMetrics();
-        float dpInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 180, dm);
-		
+		int width = dm.widthPixels;
+		int height = dm.heightPixels;
+		int dens = dm.densityDpi;
+		double wi = (double) width / (double) dens;
+		double hi = (double) height / (double) dens;
+		double x = Math.pow(wi, 2);
+		double y = Math.pow(hi, 2);
+		double screenInches = Math.sqrt(x + y);
+
+		// Calculate how many pixels is 180 dp, which is the size of champion icon.
+		dm = getResources().getDisplayMetrics();
+		float dpInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 180, dm);
+
 		// Set the layout
-		if (screenInches < 6){
-			icon.getLayoutParams().height = ((int) (1 * dpInPx));		// A phone is less than 6 inches.
+		if (screenInches < 6)
+		{
+			icon.getLayoutParams().height = ((int) (1 * dpInPx)); // A phone is less than 6 inches.
 		}
-		else if (screenInches < 9){
-			icon.getLayoutParams().height = ((int) (1.8 * dpInPx));		// Small tablets are considered between 6 to 9 inches.
+		else if (screenInches < 9)
+		{
+			icon.getLayoutParams().height = ((int) (1.8 * dpInPx)); // Small tablets are considered between 6 to 9
+																	// inches.
 		}
-		else{
-			icon.getLayoutParams().height = ((int) (2.2 * dpInPx));		// For big tablets (larger than 9 inches).
+		else
+		{
+			icon.getLayoutParams().height = ((int) (2.2 * dpInPx)); // For big tablets (larger than 9 inches).
 		}
 	}
 

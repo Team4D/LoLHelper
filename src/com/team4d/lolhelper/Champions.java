@@ -1,7 +1,6 @@
 package com.team4d.lolhelper;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,9 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
-import com.team4d.lolhelper.generalinfo.SpellDatabase;
 
 public class Champions extends Activity
 {
@@ -67,9 +64,6 @@ public class Champions extends Activity
 
 	public void viewchampions(View view)
 	{
-		Intent intent = new Intent(this, ViewChampions.class);
-		intent.putExtra(EXTRA_MESSAGE, EXTRA_MESSAGE);
-		startActivity(intent);
 	}
 
 	@Override

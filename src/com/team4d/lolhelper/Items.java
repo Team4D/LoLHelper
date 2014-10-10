@@ -12,9 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
-import com.team4d.lolhelper.generalinfo.items;
 
 public class Items extends Activity
 {

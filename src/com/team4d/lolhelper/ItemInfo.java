@@ -9,10 +9,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.api.dto.staticdata.item.Item;
-import com.team4d.lolhelper.generalinfo.items;
 
 public class ItemInfo extends Activity
 {
@@ -35,28 +33,29 @@ public class ItemInfo extends Activity
 
 		Intent intent = getIntent();
 		String message = intent.getStringExtra("EXTRA_MESSAGE");
-		
+
 		Item item = APIData.getItemByName(message);
 
-		//Set picture
+		// Set picture
 		ImageView icon = (ImageView) findViewById(R.id.icon);
 		int resID = getResources().getIdentifier(message.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
 				"drawable", getPackageName());
 		icon.setImageResource(resID);
 
-/*		String name = items.getName(items.itemsArray[i]);
-		String availability = items.getAvailability(items.itemsArray[i]);
-		String tier = items.getTier(items.itemsArray[i]);
-		String stats = items.getStats(items.itemsArray[i]);
-		String passive1 = items.getPassive1(items.itemsArray[i]);
-		String passive2 = items.getPassive2(items.itemsArray[i]);
-		String passive3 = items.getPassive3(items.itemsArray[i]);
-		String passive4 = items.getPassive4(items.itemsArray[i]);
-		String passive5 = items.getPassive5(items.itemsArray[i]);
-		String menu = items.getMenu(items.itemsArray[i]);
-		String itemCost = items.getItemCost(items.itemsArray[i]);
-		String sellValue = items.getSellValue(items.itemsArray[i]);
-*/
+		/*
+		 * String name = items.getName(items.itemsArray[i]);
+		 * String availability = items.getAvailability(items.itemsArray[i]);
+		 * String tier = items.getTier(items.itemsArray[i]);
+		 * String stats = items.getStats(items.itemsArray[i]);
+		 * String passive1 = items.getPassive1(items.itemsArray[i]);
+		 * String passive2 = items.getPassive2(items.itemsArray[i]);
+		 * String passive3 = items.getPassive3(items.itemsArray[i]);
+		 * String passive4 = items.getPassive4(items.itemsArray[i]);
+		 * String passive5 = items.getPassive5(items.itemsArray[i]);
+		 * String menu = items.getMenu(items.itemsArray[i]);
+		 * String itemCost = items.getItemCost(items.itemsArray[i]);
+		 * String sellValue = items.getSellValue(items.itemsArray[i]);
+		 */
 		TextView nameText = (TextView) findViewById(R.id.nameDis);
 		TextView availabilityText = (TextView) findViewById(R.id.availabilityDis);
 		TextView tierText = (TextView) findViewById(R.id.tierDis);
@@ -71,17 +70,17 @@ public class ItemInfo extends Activity
 		TextView sellValueText = (TextView) findViewById(R.id.sellDis);
 
 		// Setting Text for TextViews
-		//TODO: Figure out other fields
+		// TODO: Figure out other fields
 		nameText.setText(item.getName());
 		availabilityText.setText("Builds From: \n" + item.getFrom());
 		tierText.setText("Consumable: \n" + item.getConsumed());
 		statsText.setText("Builds Into: \n" + item.getInto());
 		passive1Text.setText(item.getDescription());
-//		passive2Text.setText(passive2);
-//		passive3Text.setText(passive3);
-//		passive4Text.setText(passive4);
-//		passive5Text.setText(passive5);
-//		menuText.setText("Menu: \n" + menu);
+		// passive2Text.setText(passive2);
+		// passive3Text.setText(passive3);
+		// passive4Text.setText(passive4);
+		// passive5Text.setText(passive5);
+		// menuText.setText("Menu: \n" + menu);
 		itemCostText.setText("Cost: \n" + item.getGold().getTotal());
 		sellValueText.setText("Sell Value: \n" + item.getGold().getSell());
 
