@@ -41,7 +41,6 @@ public class HomeFragment extends Fragment
 	// completes. For now just be patient.
 	private class FreeChampionAsyncTask extends AsyncTask<Void, String, String[]>
 	{
-
 		private final Context mContext;
 		private final View mView;
 
@@ -73,6 +72,10 @@ public class HomeFragment extends Fragment
 		@Override
 		protected void onPostExecute(String[] result)
 		{
+			if (mView == null || mView.isShown() == false)
+			{
+				return;
+			}
 			LinearLayout freeChampLayout = (LinearLayout) mView.findViewById(R.id.FreeChampionsLayout);
 			for (int i = 0; i < result.length; i++)
 			{

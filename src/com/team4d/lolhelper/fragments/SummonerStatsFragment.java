@@ -42,7 +42,7 @@ public class SummonerStatsFragment extends Fragment
 		super.onStart();
 
 		// Set OnKeyListener to detect Enter and begin pulling data
-		EditText SummonerNameEditText = (EditText) this.getView().findViewById(R.id.SummonerNameEditText);
+		final EditText SummonerNameEditText = (EditText) this.getView().findViewById(R.id.SummonerNameEditText);
 		SummonerNameEditText.setOnKeyListener(new View.OnKeyListener()
 		{
 			@Override
@@ -51,14 +51,13 @@ public class SummonerStatsFragment extends Fragment
 				if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER))
 				{
 					hideKeyboard(v);
-					EditText mEditText = (EditText) v.findViewById(R.id.SummonerNameEditText);
-					String summonername = mEditText.getText().toString();
-					if (summonername == "")
+					String summonername = SummonerNameEditText.getText().toString();
+					if (summonername.isEmpty())
 					{
 						return false;
 					}
 
-					new SummonerStatsAsyncTask().execute(mEditText.getText().toString());
+					new SummonerStatsAsyncTask().execute(summonername);
 					return true;
 				}
 
@@ -75,13 +74,12 @@ public class SummonerStatsFragment extends Fragment
 			public void onClick(View v)
 			{
 				hideKeyboard(v);
-				EditText mEditText = (EditText) v.findViewById(R.id.SummonerNameEditText);
-				String summonername = mEditText.getText().toString();
-				if (summonername == "")
+				String summonername = SummonerNameEditText.getText().toString();
+				if (summonername.isEmpty())
 				{
 					return;
 				}
-				new SummonerStatsAsyncTask().execute(mEditText.getText().toString());
+				new SummonerStatsAsyncTask().execute(summonername);
 			};
 
 		});
