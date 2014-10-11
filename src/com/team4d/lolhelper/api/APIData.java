@@ -1,6 +1,9 @@
 package com.team4d.lolhelper.api;
 
+import java.lang.reflect.Type;
+import java.sql.Wrapper;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +14,10 @@ import android.database.sqlite.SQLiteDatabase;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.internal.LinkedTreeMap;
+import com.google.gson.reflect.TypeToken;
 import com.team4d.lolhelper.api.database.LOLSQLiteHelper;
 import com.team4d.lolhelper.api.dto.staticdata.SpellVars;
 import com.team4d.lolhelper.api.dto.staticdata.champion.Champion;
@@ -22,6 +29,7 @@ import com.team4d.lolhelper.api.dto.staticdata.summonerspell.SummonerSpell;
 import com.team4d.lolhelper.api.dto.stats.PlayerStatsSummaryList;
 import com.team4d.lolhelper.api.dto.stats.RankedStats;
 import com.team4d.lolhelper.api.dto.summoner.Summoner;
+import com.team4d.lolhelper.api.dto.summoner.SummonerDto;
 
 /**
  * @author KaosuRyoko
@@ -596,15 +604,22 @@ public class APIData
 	 * Start of Summoner API Data
 	 * ********************************
 	 */
-	public static Summoner getSummonerByName(String name)
+	public static LinkedTreeMap<String, Object> getSummonerByName(String name)
 	{
 		RiotAPI api = new RiotAPI("na");
 		JsonElement summoner = api.GetSummonerByName(name);
 		api = null;
 		try
 		{
-			Summoner s = new Gson().fromJson(summoner, Summoner.class);
-			return s;
+			Gson gson = new Gson();
+			Map<String, Object> map = new HashMap<String, Object>();
+			map = (Map<String, Object>)gson.fromJson(summoner, map.getClass());
+			LinkedTreeMap<String, Object> map2 = (LinkedTreeMap<String, Object>) map.get(name);
+			System.out.println(summoner.toString());
+			System.out.println("Name " + map2.get("name"));
+			System.out.println("ID " + map2.get("id"));
+			System.out.println("ID " + parseID(map2.get("id")));
+			return map2;
 		} catch (Exception e)
 		{
 			// Should probably at least do some logging, but not worried about that right now.
@@ -642,11 +657,10 @@ public class APIData
 	public static RankedStats getRankedStatsByName(String name)
 	{
 		RiotAPI api = new RiotAPI("na");
-		JsonElement summoner = api.GetSummonerByName(name);
 		try
 		{
-			Summoner s = new Gson().fromJson(summoner, Summoner.class);
-			JsonElement ranked = api.GetRankedStatsByID((int) s.getId());
+			LinkedTreeMap<String, Object> s = getSummonerByName(name);
+			JsonElement ranked = api.GetRankedStatsByID(Integer.valueOf(parseID(s.get("id"))));
 			RankedStats rs = new Gson().fromJson(ranked, RankedStats.class);
 			return rs;
 		} catch (Exception e)
@@ -676,11 +690,10 @@ public class APIData
 	public static PlayerStatsSummaryList getSummaryStatsByName(String name)
 	{
 		RiotAPI api = new RiotAPI("na");
-		JsonElement summoner = api.GetSummonerByName(name);
 		try
 		{
-			Summoner s = new Gson().fromJson(summoner, Summoner.class);
-			JsonElement summary = api.GetSummaryStatsByID((int) s.getId());
+			LinkedTreeMap<String, Object> s = getSummonerByName(name);
+			JsonElement summary = api.GetSummaryStatsByID(Integer.valueOf(parseID(s.get("id"))));
 			PlayerStatsSummaryList rs = new Gson().fromJson(summary, PlayerStatsSummaryList.class);
 			return rs;
 		} catch (Exception e)
@@ -688,6 +701,13 @@ public class APIData
 			// Should probably at least do some logging, but not worried about that right now.
 		}
 		return null;
+	}
+	
+	public static String parseID(Object o){
+		String str = o.toString();
+		str.replace(".", "");
+		str = str.substring(0, str.length()-2);
+		return str;
 	}
 	/*
 	 * ********************************
