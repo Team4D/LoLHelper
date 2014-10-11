@@ -334,7 +334,7 @@ public class BuildRouletteFragment extends Fragment
 					imageView8.setImageResource(iconID);
 
 					// Text for spell					
-					new CurrentChampion(champIcon, view, intSpellNum).execute();
+					new CurrentChampion(champIcon, view, intSpellNum - 1).execute();
 
 					/*
 					 * New stuff here: Random masteries. If you look at my method, it's horribly long. I needed to randomly
@@ -405,9 +405,9 @@ public class BuildRouletteFragment extends Fragment
 			case 0:
 				return "Ionian Boots of Lucidity";
 			case 1:
-				return "Berserker Greaves";
+				return "Berserker's Greaves";
 			case 2:
-				return "Mercury Treads";
+				return "Mercury's Treads";
 			case 3:
 				return "Boots of Mobility";
 			case 4:
@@ -463,7 +463,7 @@ public class BuildRouletteFragment extends Fragment
 			case 17:
 				return "Last Whisper";
 			case 18:
-				return "Runaan's Hurricane";
+				return "Runaan's Hurricane \n(ranged only)";
 			case 19:
 				return "Rylai's Crystal Scepter";
 			case 20:
@@ -535,7 +535,7 @@ public class BuildRouletteFragment extends Fragment
 			case 53:
 				return "Randuin's Omen";
 			case 54:
-				return "Ravenous Hydra";
+				return "Ravenous Hydra \n(melee only)";
 			case 55:
 				return "Rod of Ages";
 			case 56:
