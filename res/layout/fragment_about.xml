@@ -7,7 +7,7 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:background="@drawable/bg"
-    tools:context="com.team4d.lolhelper.About"
+    tools:context="com.team4d.lolhelper.fragments.AboutFragment"
     tools:ignore="MergeRootFrame" >
 
 	    <TextView
@@ -38,10 +38,10 @@
 			    <TextView
 			        android:text="Project Managers:\n\n\nTeam Builder:"
 			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:textColor="#FFFFFF"
-			        android:layout_marginTop="20dp"
-			        android:layout_marginLeft="10dp" />
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="20dp"
+		            android:textColor="#FFFFFF"
+		            android:textStyle="bold" />
 			    
 			    <TextView
 			        android:text="Greg Ervin\nAlexa Varady\n\nThomas Ford\nJosh Werner\nSu Yan"
@@ -50,7 +50,6 @@
 			        android:textColor="#FFFFFF"
 			        android:layout_marginTop="20dp"
 			        android:layout_marginLeft="10dp" />
-	    
 			        
 			   </LinearLayout>
 	        

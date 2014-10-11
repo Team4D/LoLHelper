@@ -15,9 +15,9 @@
 	    				 Programmer (Timers)\n
 	    				 Programmer (Team Builder)\n
 	    				 Programmer (Team Builder)\n
-	    				 Programmer (Team Builder)\n
+	    				 Programmer (Counters)\n
 	    				 Programmer (General Info)\n\n
-	    				 Executive Producer\n
+	    				 Executive Producer\n\n\n
 	    				  </string>
 	<string name="About_Roles_Left"> \n
 	    				 Alexa Varady\n
@@ -32,10 +32,10 @@
 	    				 Qin Chen\n
 	    				 Evan Bissell\n
 	    				 Su Yan\n
-	    				 Thomas Ford\n
 	    				 Josh Werner\n
+	    				 Thomas Ford\n
 	    				 Murl Westheffer\n\n
-	    				 Paul Steffens\n
+	    				 Paul Steffens\n\n\n
 	    				  </string>
 	<string name="About_Version">Version 0.9.002</string> <!--  # of commits minus 182 for beta -->
     <string name="Button_Enter">Enter</string>

@@ -326,7 +326,8 @@ public class BaseActivity extends Activity
 			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment6).commit();
 			break;
 		case 7:
-			// fragment = new AboutFragment();
+			AboutFragment fragment7 = new AboutFragment();
+			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment7).commit();
 			break;
 		default:
 			Fragment fragment = new Fragment();
