@@ -59,7 +59,28 @@ public class BuildRouletteFragment extends Fragment
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
+	// Class to get name of a champion's spell.
+	private class CurrentChampion extends AsyncTask<Void, String, String[]>{
+		private Champion champion;
+		private String name;
+		
+		public CurrentChampion(String championName){
+			name = championName;
+		}
+		
+		@Override
+		protected String[] doInBackground(Void... params) {
+			champion = APIData.getChampionByName(name);
+			return null;
+		}
+		
+		protected String getSpellName(int spellIndex){
+			return champion.getSpells().get(spellIndex).getName();
+		}
+	}
+	
+	// Class to get all random data.
 	private class getRandomData extends AsyncTask<Void, String, String[]>
 	{
 		private final Context context;
@@ -85,6 +106,31 @@ public class BuildRouletteFragment extends Fragment
 
 			FrameLayout layout = (FrameLayout) view.findViewById(R.id.container);
 			layout.setBackgroundResource(R.drawable.bg);
+			
+			final TextView textView1 = (TextView) view.findViewById(R.id.item1);
+			final TextView textView2 = (TextView) view.findViewById(R.id.item2);
+			final TextView textView3 = (TextView) view.findViewById(R.id.item3);
+			final TextView textView4 = (TextView) view.findViewById(R.id.item4);
+			final TextView textView5 = (TextView) view.findViewById(R.id.item5);
+			final TextView textView6 = (TextView) view.findViewById(R.id.item6); // Items 1-6
+			final TextView textView7 = (TextView) view.findViewById(R.id.champname); // Champ Name
+			final TextView textView8 = (TextView) view.findViewById(R.id.mastery); // Masteries
+			final TextView textView9 = (TextView) view.findViewById(R.id.summspell1);
+			final TextView textView10 = (TextView) view.findViewById(R.id.summspell2); // Summoner Spells
+			final TextView textView11 = (TextView) view.findViewById(R.id.spell); // Spell Button (Q W or E)
+			final TextView textView12 = (TextView) view.findViewById(R.id.text_spell_name);
+
+			final ImageView imageView1 = (ImageView) view.findViewById(R.id.iitem1);
+			final ImageView imageView2 = (ImageView) view.findViewById(R.id.iitem2);
+			final ImageView imageView3 = (ImageView) view.findViewById(R.id.iitem3);
+			final ImageView imageView4 = (ImageView) view.findViewById(R.id.iitem4);
+			final ImageView imageView5 = (ImageView) view.findViewById(R.id.iitem5);
+			final ImageView imageView6 = (ImageView) view.findViewById(R.id.iitem6);
+			final ImageView imageView7 = (ImageView) view.findViewById(R.id.ichampname);
+			final ImageView imageView8 = (ImageView) view.findViewById(R.id.ispell);
+			final ImageView imageView9 = (ImageView) view.findViewById(R.id.isummspell1);
+			final ImageView imageView10 = (ImageView) view.findViewById(R.id.isummspell2);
+
 
 			Button rand = (Button) view.findViewById(R.id.btnRandom);
 			rand.setOnClickListener(new View.OnClickListener()
@@ -95,40 +141,14 @@ public class BuildRouletteFragment extends Fragment
 					/*
 					 * Initialize all variables
 					 */
-
 					final String champIcon;
 					String item1, item2, item3, item4, item5, item6, mastery;
 					int placeholderItem;
 					int[] itemArray = new int[61];
 					int iconID;
 					int[] masteryArray = { 0, 0, 0 };
-
 					int viktorItem = getRandom(0, 3);
-
-					TextView textView1 = (TextView) v.findViewById(R.id.item1);
-					TextView textView2 = (TextView) v.findViewById(R.id.item2);
-					TextView textView3 = (TextView) v.findViewById(R.id.item3);
-					TextView textView4 = (TextView) v.findViewById(R.id.item4);
-					TextView textView5 = (TextView) v.findViewById(R.id.item5);
-					TextView textView6 = (TextView) v.findViewById(R.id.item6); // Items 1-6
-					TextView textView7 = (TextView) v.findViewById(R.id.champname); // Champ Name
-					TextView textView8 = (TextView) v.findViewById(R.id.mastery); // Masteries
-					TextView textView9 = (TextView) v.findViewById(R.id.summspell1);
-					TextView textView10 = (TextView) v.findViewById(R.id.summspell2); // Summoner Spells
-					TextView textView11 = (TextView) v.findViewById(R.id.spell); // Spell Button (Q W or E)
-					TextView textView12 = (TextView) v.findViewById(R.id.text_spell_name);
-
-					ImageView imageView1 = (ImageView) v.findViewById(R.id.iitem1);
-					ImageView imageView2 = (ImageView) v.findViewById(R.id.iitem2);
-					ImageView imageView3 = (ImageView) v.findViewById(R.id.iitem3);
-					ImageView imageView4 = (ImageView) v.findViewById(R.id.iitem4);
-					ImageView imageView5 = (ImageView) v.findViewById(R.id.iitem5);
-					ImageView imageView6 = (ImageView) v.findViewById(R.id.iitem6);
-					ImageView imageView7 = (ImageView) v.findViewById(R.id.ichampname);
-					ImageView imageView8 = (ImageView) v.findViewById(R.id.ispell);
-					ImageView imageView9 = (ImageView) v.findViewById(R.id.isummspell1);
-					ImageView imageView10 = (ImageView) v.findViewById(R.id.isummspell2);
-
+					
 					/*
 					 * Set champion, items
 					 */
@@ -309,21 +329,8 @@ public class BuildRouletteFragment extends Fragment
 							"drawable", v.getContext().getPackageName());
 					imageView8.setImageResource(iconID);
 
-					// Text for spell
-					class CurrentChampion extends AsyncTask<Void, String, String[]>{
-						private Champion champion;
-						
-						@Override
-						protected String[] doInBackground(Void... params) {
-							champion = APIData.getChampionByName(champIcon);
-							return null;
-						}
-						
-						protected String getSpellName(int spellIndex){
-							return champion.getSpells().get(spellIndex).getName();
-						}
-					}					
-					CurrentChampion champion = new CurrentChampion();
+					// Text for spell					
+					CurrentChampion champion = new CurrentChampion(champIcon);
 					champion.execute();
 					textView12.setText(champion.getSpellName(intSpellNum));
 
