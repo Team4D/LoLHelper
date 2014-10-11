@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.team4d.lolhelper.R;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -13,53 +13,50 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class Leaguecounters extends Activity
+public class Leaguecounters extends Fragment
 {
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+        Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_leaguecounters, container, false);
+    }
+	
+	@Override
+	public void onStart()
 	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fragment_leaguecounters);
 
-		RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
-		if (((GlobalVariables) this.getApplication()).getskin() == 1)
-		{
-			layout.setBackgroundResource(R.drawable.bg);
-		}
-		if (((GlobalVariables) this.getApplication()).getskin() == 2)
-		{
-			layout.setBackgroundResource(R.drawable.bg2);
-		}
+		RelativeLayout layout = (RelativeLayout) this.getView().findViewById(R.id.container);
+		layout.setBackgroundResource(R.drawable.bg);
 
-		DBcounters myDbHelper = new DBcounters(this);
+		DBcounters myDbHelper = new DBcounters(this.getView().getContext());
 
 		try
 		{
-
 			myDbHelper.createDataBase();
 
 		} catch (IOException ioe)
 		{
-
 			throw new Error("Unable to create database");
 
 		}
 
 		try
 		{
-
 			myDbHelper.openDataBase();
 
 		} catch (SQLException sqle)
 		{
-
 			throw sqle;
 
 		}
@@ -67,7 +64,7 @@ public class Leaguecounters extends Activity
 		String foo[] =
 		{ "_id", "Name", "Counter1", "Counter2", "Counter3", "GA1", "GA2",
 				"GA3" };
-		Intent intent = getIntent();
+		Intent intent = this.getActivity().getIntent();
 		String champ = intent.getStringExtra("champion");
 		SQLiteDatabase counters = myDbHelper.getReadableDatabase();
 		Cursor result = counters.query("counters", foo, "Name=\"" + champ + "\"",
@@ -75,88 +72,88 @@ public class Leaguecounters extends Activity
 		result.moveToFirst();
 
 		// Set images for champion
-		ImageView iv = (ImageView) findViewById(R.id.imageView1);
+		ImageView iv = (ImageView) this.getView().findViewById(R.id.imageView1);
 		iv.setImageDrawable(getResources().getDrawable(
 				getResources().getIdentifier(
 						champ.toLowerCase().replaceAll("\\s", "")
 								.replaceAll("'", "").replaceAll("\\.", ""),
-						"drawable", getPackageName())));
+						"drawable", this.getActivity().getPackageName())));
 
-		ImageView iv0 = (ImageView) findViewById(R.id.imageView2);
+		ImageView iv0 = (ImageView) this.getView().findViewById(R.id.imageView2);
 		iv0.setImageDrawable(getResources().getDrawable(
 				getResources().getIdentifier(
 						result.getString(result.getColumnIndex("Counter1"))
 								.toLowerCase().replaceAll("\\s", "")
 								.replaceAll("'", "").replaceAll("\\.", ""),
-						"drawable", getPackageName())));
+						"drawable", this.getActivity().getPackageName())));
 
-		ImageView iv1 = (ImageView) findViewById(R.id.imageView3);
+		ImageView iv1 = (ImageView) this.getView().findViewById(R.id.imageView3);
 		iv1.setImageDrawable(getResources().getDrawable(
 				getResources().getIdentifier(
 						result.getString(result.getColumnIndex("Counter2"))
 								.toLowerCase().replaceAll("\\s", "")
 								.replaceAll("'", "").replaceAll("\\.", ""),
-						"drawable", getPackageName())));
+						"drawable", this.getActivity().getPackageName())));
 
-		ImageView iv2 = (ImageView) findViewById(R.id.imageView4);
+		ImageView iv2 = (ImageView) this.getView().findViewById(R.id.imageView4);
 		iv2.setImageDrawable(getResources().getDrawable(
 				getResources().getIdentifier(
 						result.getString(result.getColumnIndex("Counter3"))
 								.toLowerCase().replaceAll("\\s", "")
 								.replaceAll("'", "").replaceAll("\\.", ""),
-						"drawable", getPackageName())));
+						"drawable", this.getActivity().getPackageName())));
 
-		ImageView iv3 = (ImageView) findViewById(R.id.imageView5);
+		ImageView iv3 = (ImageView) this.getView().findViewById(R.id.imageView5);
 		iv3.setImageDrawable(getResources().getDrawable(
 				getResources().getIdentifier(
 						result.getString(result.getColumnIndex("GA1"))
 								.toLowerCase().replaceAll("\\s", "")
 								.replaceAll("'", "").replaceAll("\\.", ""),
-						"drawable", getPackageName())));
+						"drawable", this.getActivity().getPackageName())));
 
-		ImageView iv4 = (ImageView) findViewById(R.id.imageView6);
+		ImageView iv4 = (ImageView) this.getView().findViewById(R.id.imageView6);
 		iv4.setImageDrawable(getResources().getDrawable(
 				getResources().getIdentifier(
 						result.getString(result.getColumnIndex("GA2"))
 								.toLowerCase().replaceAll("\\s", "")
 								.replaceAll("'", "").replaceAll("\\.", ""),
-						"drawable", getPackageName())));
+						"drawable", this.getActivity().getPackageName())));
 
-		ImageView iv5 = (ImageView) findViewById(R.id.imageView7);
+		ImageView iv5 = (ImageView) this.getView().findViewById(R.id.imageView7);
 		iv5.setImageDrawable(getResources().getDrawable(
 				getResources().getIdentifier(
 						result.getString(result.getColumnIndex("GA3"))
 								.toLowerCase().replaceAll("\\s", "")
 								.replaceAll("'", "").replaceAll("\\.", ""),
-						"drawable", getPackageName())));
+						"drawable", this.getActivity().getPackageName())));
 
 		// Set text for champion 3 countered by and 3 counters
-		TextView tv = (TextView) findViewById(R.id.textView1);
+		TextView tv = (TextView) this.getView().findViewById(R.id.textView1);
 		tv.setText(champ);
 
-		TextView tv0 = (TextView) findViewById(R.id.TextView02);
+		TextView tv0 = (TextView) this.getView().findViewById(R.id.TextView02);
 		tv0.setText(result.getString(result.getColumnIndex("Counter1")));
 
-		TextView tv1 = (TextView) findViewById(R.id.textView2);
+		TextView tv1 = (TextView) this.getView().findViewById(R.id.textView2);
 		tv1.setText(result.getString(result.getColumnIndex("Counter2")));
 
-		TextView tv2 = (TextView) findViewById(R.id.TextView04);
+		TextView tv2 = (TextView) this.getView().findViewById(R.id.TextView04);
 		tv2.setText(result.getString(result.getColumnIndex("Counter3")));
 
-		TextView tv3 = (TextView) findViewById(R.id.TextView01);
+		TextView tv3 = (TextView) this.getView().findViewById(R.id.TextView01);
 		tv3.setText(result.getString(result.getColumnIndex("GA1")));
 
-		TextView tv4 = (TextView) findViewById(R.id.TextView05);
+		TextView tv4 = (TextView) this.getView().findViewById(R.id.TextView05);
 		tv4.setText(result.getString(result.getColumnIndex("GA2")));
 
-		TextView tv5 = (TextView) findViewById(R.id.TextView03);
+		TextView tv5 = (TextView) this.getView().findViewById(R.id.TextView03);
 		tv5.setText(result.getString(result.getColumnIndex("GA3")));
 
 		result.close();
 		
 		// Calculate the screen diagonal in inches.
 		DisplayMetrics dm = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(dm);
+		this.getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
 		int width=dm.widthPixels;
 		int height=dm.heightPixels;
 		int dens=dm.densityDpi;
@@ -190,15 +187,6 @@ public class Leaguecounters extends Activity
 		    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(marginParams);
 		    iv.setLayoutParams(layoutParams);		// For big tablets (larger than 9 inches).
 		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.base, menu);
-		return true;
 	}
 
 	@Override

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -55,14 +53,7 @@ public class TeamBuilder extends Fragment {
 //        setContentView(R.layout.fragment_team_builder);
         
         FrameLayout layout = (FrameLayout)this.getView().findViewById(R.id.container);
-        if (((GlobalVariables) this.getActivity().getApplication()).getskin() == 1)
-    	{
-    		layout.setBackgroundResource(R.drawable.bg);
-    	}
-    	if (((GlobalVariables) this.getActivity().getApplication()).getskin() == 2)
-    	{
-    		layout.setBackgroundResource(R.drawable.bg2);
-    	}
+   		layout.setBackgroundResource(R.drawable.bg);
         
     	// five buttons on the left
         final ImageButton top = (ImageButton)this.getView().findViewById(R.id.imageButton00);

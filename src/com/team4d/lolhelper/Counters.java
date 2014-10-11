@@ -1,37 +1,43 @@
 package com.team4d.lolhelper;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
-import android.view.Menu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-public class Counters extends Activity
+public class Counters extends Fragment
 {
 
 	public static String EXTRA_MESSAGE = "";
 	public static int arrayValue = 0;
-
+	
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+        Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_counters, container, false);
+    }
+	
+	@Override
+	public void onStart()
 	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fragment_counters);
 
-		LinearLayout layout = (LinearLayout) findViewById(R.id.container);
-		if (((GlobalVariables) this.getApplication()).getskin() == 1)
+		LinearLayout layout = (LinearLayout) this.getView().findViewById(R.id.container);
+		if (((GlobalVariables) this.getActivity().getApplication()).getskin() == 1)
 		{
 			layout.setBackgroundResource(R.drawable.bg);
 		}
-		if (((GlobalVariables) this.getApplication()).getskin() == 2)
+		if (((GlobalVariables) this.getActivity().getApplication()).getskin() == 2)
 		{
 			layout.setBackgroundResource(R.drawable.bg2);
 		}
@@ -39,11 +45,11 @@ public class Counters extends Activity
 		// SpellDatabase.makeSpellDatabase();
 
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-				this, R.array.champion_array, R.layout.spinner_item);
+				this.getView().getContext(), R.array.champion_array, R.layout.spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		final ImageView icon = (ImageView) findViewById(R.id.icon);
+		final ImageView icon = (ImageView) this.getView().findViewById(R.id.icon);
 
-		Spinner s = (Spinner) findViewById(R.id.spinner1);
+		Spinner s = (Spinner) this.getView().findViewById(R.id.spinner1);
 		s.setAdapter(adapter);
 		s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
 		{
@@ -54,7 +60,7 @@ public class Counters extends Activity
 				EXTRA_MESSAGE = adapter.getItemAtPosition(i).toString();
 
 				icon.setImageResource(getResources().getIdentifier(
-						EXTRA_MESSAGE.replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable", getPackageName()));
+						EXTRA_MESSAGE.replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable", v.getContext().getPackageName()));
 
 				if (EXTRA_MESSAGE.equals("Cho Gath"))
 				{
@@ -80,7 +86,7 @@ public class Counters extends Activity
 
 		// Calculate the screen diagonal in inches.
 		DisplayMetrics dm = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(dm);
+		this.getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
 		int width = dm.widthPixels;
 		int height = dm.heightPixels;
 		int dens = dm.densityDpi;
@@ -112,18 +118,9 @@ public class Counters extends Activity
 
 	public void leaguecounters(View view)
 	{
-		Intent intent = new Intent(this, Leaguecounters.class);
+		Intent intent = new Intent(this.getActivity(), Leaguecounters.class);
 		intent.putExtra("champion", EXTRA_MESSAGE);
 		startActivity(intent);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.base, menu);
-		return true;
 	}
 
 	@Override
