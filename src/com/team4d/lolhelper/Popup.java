@@ -166,12 +166,13 @@ public class Popup {
 	 * Champion Spells
 	 * ********************************
 	 */
-	public static View popupChampionSpell(Activity activity, ChampionSpell spell){
+	public static View popupChampionSpell(Activity activity, ChampionSpell spell, String champ, int i){
 		LinearLayout view = (LinearLayout) activity.findViewById(R.id.championspellpopup);
 		LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		layout = inflater.inflate(R.layout.fragment_champion_spell_popup, view);
 		ImageView icon = (ImageView) layout.findViewById(R.id.icon);
-		int resID = activity.getResources().getIdentifier(spell.getName().replaceAll("[^a-zA-Z]+", "").toLowerCase(),
+		String n = champ.replaceAll("[^a-zA-Z0-9]+", "").toLowerCase() + i;
+		int resID = activity.getResources().getIdentifier(n.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
 				"drawable", "com.team4d.lolhelper");
 		icon.setImageResource(resID);	
 		

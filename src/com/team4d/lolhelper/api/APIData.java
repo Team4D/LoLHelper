@@ -558,7 +558,7 @@ public class APIData
 	{
 		String str = spell.getResource();
 		String cost = spell.getCostBurn();
-		str.replace("{{ cost }}", cost);
+		str = str.replace("{{ cost }}", cost);
 		return str;
 	}
 

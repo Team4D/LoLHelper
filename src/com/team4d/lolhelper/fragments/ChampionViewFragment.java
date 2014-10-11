@@ -254,7 +254,7 @@ public class ChampionViewFragment extends Fragment
 					}
 					else
 					{
-						button.setOnClickListener(new ChampionSpellOnClickListener(champ.getSpells().get(i - 1)));
+						button.setOnClickListener(new ChampionSpellOnClickListener(champ.getSpells().get(i - 1), champ.getName(), i));
 					}
 					abilities.addView(button);
 				}
@@ -402,17 +402,21 @@ public class ChampionViewFragment extends Fragment
 		public class ChampionSpellOnClickListener implements OnClickListener
 		{
 			ChampionSpell spell;
+			String champ;
+			int i;
 
-			public ChampionSpellOnClickListener(ChampionSpell spell)
+			public ChampionSpellOnClickListener(ChampionSpell spell, String champ, int i)
 			{
 				this.spell = spell;
+				this.champ = champ;
+				this.i = i;
 			}
 
 			@Override
 			public void onClick(View v)
 			{
 				Activity activity = (Activity) context;
-				View layout = Popup.popupChampionSpell(activity, spell);
+				View layout = Popup.popupChampionSpell(activity, spell, champ, i);
 
 				PopupWindow popup = new PopupWindow(activity);
 				popup.setContentView(layout);
