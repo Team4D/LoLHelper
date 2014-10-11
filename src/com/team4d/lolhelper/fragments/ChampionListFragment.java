@@ -1,13 +1,12 @@
 package com.team4d.lolhelper.fragments;
 
-import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,9 +34,9 @@ public class ChampionListFragment extends Fragment
 	}
 
 	@Override
-	public void onStart()
+	public void onActivityCreated(Bundle savedInstanceState)
 	{
-		super.onStart();
+		super.onActivityCreated(savedInstanceState);
 		new ChampionListAsyncTask(this.getActivity(), this.getView(), this).execute();
 	}
 
@@ -97,9 +96,11 @@ public class ChampionListFragment extends Fragment
 						result[i].replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable", mContext.getPackageName()));
 				button.setImageDrawable(btnImg);
 				button.setTag(result[i]);
-				button.setOnClickListener(new View.OnClickListener(){
+				button.setOnClickListener(new View.OnClickListener()
+				{
 					@Override
-					public void onClick(View v){
+					public void onClick(View v)
+					{
 						Bundle bundle = new Bundle();
 						bundle.putString("name", (String) v.getTag());
 						ChampionViewFragment f = new ChampionViewFragment();

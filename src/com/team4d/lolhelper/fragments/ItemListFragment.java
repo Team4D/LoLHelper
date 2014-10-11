@@ -48,9 +48,9 @@ public class ItemListFragment extends Fragment
 	}
 
 	@Override
-	public void onStart()
+	public void onActivityCreated(Bundle savedInstanceState)
 	{
-		super.onStart();
+		super.onActivityCreated(savedInstanceState);
 		new ChampionListAsyncTask(this.getActivity(), this.getView()).execute();
 	}
 

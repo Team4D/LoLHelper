@@ -40,9 +40,9 @@ public class SummonerSpellListFragment extends Fragment
 	}
 
 	@Override
-	public void onStart()
+	public void onActivityCreated(Bundle savedInstanceState)
 	{
-		super.onStart();
+		super.onActivityCreated(savedInstanceState);
 		new SummonerSpellListAsyncTask(this.getActivity(), this.getView()).execute();
 	}
 
