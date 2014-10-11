@@ -61,7 +61,7 @@ public class ChampionViewFragment extends Fragment
 		super.onStart();
 		// ViewPager
 		mPager = (ViewPager) getActivity().findViewById(R.id.pager);
-		mPagerAdapter = new MyAdapter(getActivity().getSupportFragmentManager());
+		mPagerAdapter = new MyAdapter(name, getActivity().getSupportFragmentManager());
 		mPager.setAdapter(mPagerAdapter);
 		PagerTitleStrip pagerTitleStrip = (PagerTitleStrip) getActivity().findViewById(R.id.titlestrip);
 		
@@ -74,7 +74,8 @@ public class ChampionViewFragment extends Fragment
 	}
 	
 	public static class MyAdapter extends FragmentPagerAdapter {
-        String[] title = {
+        String name;
+		String[] title = {
         	"Overview",
         	"Stats",
         	"Lore",
@@ -82,8 +83,9 @@ public class ChampionViewFragment extends Fragment
         	"Counters"
         };
 		
-		public MyAdapter(FragmentManager fm) {
+		public MyAdapter(String name, FragmentManager fm) {
             super(fm);
+            this.name = name;
         }
 
         @Override
@@ -93,7 +95,7 @@ public class ChampionViewFragment extends Fragment
 
         @Override
         public Fragment getItem(int position) {
-            return SlideScreenFragment.newInstance(position);
+            return SlideScreenFragment.newInstance(name, position);
         }
         
         @Override
@@ -104,17 +106,19 @@ public class ChampionViewFragment extends Fragment
 
     public static class SlideScreenFragment extends Fragment {
         int mNum;
+        String name;
 
         /**
-         * Create a new instance of CountingFragment, providing "num"
+         * Create a new instance, providing "num"
          * as an argument.
          */
-        static SlideScreenFragment newInstance(int num) {
+        static SlideScreenFragment newInstance(String name, int num) {
             SlideScreenFragment f = new SlideScreenFragment();
 
             // Supply num input as an argument.
             Bundle args = new Bundle();
             args.putInt("num", num);
+            args.putString("name", name);
             f.setArguments(args);
 
             return f;
@@ -127,6 +131,7 @@ public class ChampionViewFragment extends Fragment
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             mNum = getArguments() != null ? getArguments().getInt("num") : 1;
+            name = getArguments().getString("name");
         }
 
         /**
@@ -136,14 +141,13 @@ public class ChampionViewFragment extends Fragment
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             ViewGroup v = (ViewGroup) inflater.inflate(R.layout.fragment_pager_list, container, false);
-
             
             LinearLayout layout = (LinearLayout) v.findViewById(R.id.container);
             switch(mNum){
             case 0: //Overview
-            	TextView t = new TextView(v.getContext());
-            	t.setText("test");
-            	layout.addView(t);
+            	View view = inflater.inflate(R.layout.fragment_champion_overview, null);
+            	layout.addView(view);
+            	new makeView(name, view, mNum).execute();
             	break;
             case 1: //Stats
             	break;
@@ -154,9 +158,6 @@ public class ChampionViewFragment extends Fragment
             case 4: //Counters
             	break;
             default:
-            	TextView t2 = new TextView(v.getContext());
-            	t2.setText("test2");
-            	layout.addView(t2);
             	break;
             }
             return v;
@@ -165,7 +166,48 @@ public class ChampionViewFragment extends Fragment
     }
     
     
-    
+	private static class makeView extends AsyncTask<String, Void, Champion>
+	{
+		private final String name;
+		private final View view;
+		private final int n;
+		
+		public makeView(String name, View view, int mNum){
+			this.name = name;
+			this.view = view;
+			n = mNum;
+		}
+		@Override
+		protected Champion doInBackground(String... args)
+		{
+			Champion c = APIData.getChampionByName(name);
+			// Note: This return value is passed as a parameter to onPostExecute
+			return c;
+		}
+
+		@Override
+		protected void onPostExecute(Champion champ)
+		{			
+			switch(n){
+			case 0:
+				TextView test = (TextView) view.findViewById(R.id.test);
+				test.setText("test2");
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			default:
+				break;
+			}
+		}
+
+	}
+	
     
 	private class grabChampion extends AsyncTask<String, Void, Champion>
 	{
