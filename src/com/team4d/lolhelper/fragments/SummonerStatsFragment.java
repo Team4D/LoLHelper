@@ -152,7 +152,7 @@ public class SummonerStatsFragment extends Fragment
 			Gson gson = new Gson();
 			PlayerStatsSummaryList summonerSummary = gson.fromJson(results.get("summonerSummary"),
 					PlayerStatsSummaryList.class);
-//			List<PlayerStatsSummary> summary = summonerSummary.getPlayerStatSummaries();
+			List<PlayerStatsSummary> summary = summonerSummary.getPlayerStatSummaries();
 			LinearLayout statsLayout = (LinearLayout) activity.findViewById(R.id.StatsLayout);
 
 			// Creates the title bar with the summoner name

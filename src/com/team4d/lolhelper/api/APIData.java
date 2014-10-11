@@ -705,7 +705,7 @@ public class APIData
 	
 	public static String parseID(Object o){
 		String str = o.toString();
-		str.replace(".", "");
+		str = str.replace(".", "");
 		str = str.substring(0, str.length()-2);
 		return str;
 	}
