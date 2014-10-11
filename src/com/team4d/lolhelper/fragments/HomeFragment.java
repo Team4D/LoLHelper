@@ -1,6 +1,8 @@
 package com.team4d.lolhelper.fragments;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -34,7 +36,7 @@ public class HomeFragment extends Fragment
 	public void onStart()
 	{
 		super.onStart();
-		new FreeChampionAsyncTask(this.getActivity(), this.getView()).execute();
+		new FreeChampionAsyncTask(this.getActivity(), this.getView(), this).execute();
 	}
 
 	// Note: Need a general solution to deal with cases where the user opens a new fragment before the doInBackground
@@ -43,11 +45,13 @@ public class HomeFragment extends Fragment
 	{
 		private final Context mContext;
 		private final View mView;
+		private final Fragment fragment;
 
-		public FreeChampionAsyncTask(Context c, View v)
+		public FreeChampionAsyncTask(Context c, View v, Fragment f)
 		{
 			mContext = c;
 			mView = v;
+			fragment = f;
 		}
 
 		@Override
@@ -85,6 +89,20 @@ public class HomeFragment extends Fragment
 				Drawable btnImg = getResources().getDrawable(getResources().getIdentifier(
 						result[i].replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable", mContext.getPackageName()));
 				button.setImageDrawable(btnImg);
+				button.setTag(result[i]);
+				button.setOnClickListener(new View.OnClickListener(){
+					@Override
+					public void onClick(View v){
+						Bundle bundle = new Bundle();
+						bundle.putString("name", (String) v.getTag());
+						ChampionViewFragment f = new ChampionViewFragment();
+						f.setArguments(bundle);
+						FragmentManager manager = fragment.getFragmentManager();
+						FragmentTransaction transaction = manager.beginTransaction().replace(R.id.content_frame, f);
+						transaction.addToBackStack(null);
+						transaction.commit();
+					}
+				});
 				freeChampLayout.addView(button);
 			}
 		}
