@@ -64,9 +64,13 @@ public class BuildRouletteFragment extends Fragment
 	private class CurrentChampion extends AsyncTask<Void, String, String[]>{
 		private Champion champion;
 		private String name;
+		private final View view;
+		private final int spellIndex;
 		
-		public CurrentChampion(String championName){
+		public CurrentChampion(String championName, View v, int spell){
 			name = championName;
+			view = v;
+			spellIndex = spell;
 		}
 		
 		@Override
@@ -75,8 +79,9 @@ public class BuildRouletteFragment extends Fragment
 			return null;
 		}
 		
-		protected String getSpellName(int spellIndex){
-			return champion.getSpells().get(spellIndex).getName();
+		protected void onPostExecute(String[] result){
+			final TextView textView12 = (TextView) view.findViewById(R.id.text_spell_name);
+			textView12.setText(champion.getSpells().get(spellIndex).getName());
 		}
 	}
 	
@@ -118,7 +123,6 @@ public class BuildRouletteFragment extends Fragment
 			final TextView textView9 = (TextView) view.findViewById(R.id.summspell1);
 			final TextView textView10 = (TextView) view.findViewById(R.id.summspell2); // Summoner Spells
 			final TextView textView11 = (TextView) view.findViewById(R.id.spell); // Spell Button (Q W or E)
-			final TextView textView12 = (TextView) view.findViewById(R.id.text_spell_name);
 
 			final ImageView imageView1 = (ImageView) view.findViewById(R.id.iitem1);
 			final ImageView imageView2 = (ImageView) view.findViewById(R.id.iitem2);
@@ -330,9 +334,7 @@ public class BuildRouletteFragment extends Fragment
 					imageView8.setImageResource(iconID);
 
 					// Text for spell					
-					CurrentChampion champion = new CurrentChampion(champIcon);
-					champion.execute();
-					textView12.setText(champion.getSpellName(intSpellNum));
+					new CurrentChampion(champIcon, view, intSpellNum).execute();
 
 					/*
 					 * New stuff here: Random masteries. If you look at my method, it's horribly long. I needed to randomly

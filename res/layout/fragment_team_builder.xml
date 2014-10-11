@@ -30,7 +30,7 @@
 	            android:layout_height="60dp"
 	            android:layout_alignBottom="@+id/imageButton00"
 	            android:layout_alignLeft="@+id/imageButton00"
-	            android:layout_alignRight="@+id/Button05"
+	            android:layout_alignRight="@+id/Button01"
 	            android:layout_alignTop="@+id/imageButton00"
 	            android:layout_marginLeft="70dp" >
 
@@ -166,7 +166,7 @@
 	            android:layout_below="@+id/spinner1"
 	            android:text="Suggest Champions"
 	            android:visibility="invisible"
-	            android:textSize="9sp" />
+	            android:textSize="9dp" />
 
 	        <Spinner
 	            android:id="@+id/spinner1"
@@ -176,6 +176,7 @@
 	            android:layout_marginLeft="15dp"
 	            android:layout_marginTop="12dp"
 	            android:layout_toLeftOf="@+id/Button05"
+	            android:layout_marginRight="10dp"
 	            tools:listitem="@android:layout/simple_spinner_dropdown_item" />
 
 	        <ImageButton
@@ -242,20 +243,6 @@
     			android:paddingBottom="0dip"
 	            android:src="@drawable/support" />
 
-	        <Button
-	            android:id="@+id/Button05"
-	            android:layout_width="70dp"
-	            android:layout_height="wrap_content"
-	            android:layout_above="@+id/textView3"
-	            android:layout_alignParentRight="true"
-	            android:layout_alignTop="@+id/spinner1"
-	            android:layout_marginLeft="10dp"
-	            android:layout_marginRight="15dp"
-	            android:gravity="center"
-	            android:text="Suggest Style"
-	            android:textColor="#FFFFFF"
-	            android:textSize="10sp" />
-
 	        <ImageButton
 	            android:id="@+id/imageButton00"
 	            android:layout_width="60dp"
@@ -271,6 +258,30 @@
     			android:paddingBottom="0dip"
 	            android:adjustViewBounds="true"
 	            android:src="@drawable/top" />
+
+	        <Button
+	            android:id="@+id/ButtonHelp"
+	            android:layout_width="70dp"
+	            android:layout_height="wrap_content"
+	            android:layout_above="@+id/Button06"
+	            android:layout_alignParentRight="true"
+	            android:layout_marginRight="15dp"
+	            android:gravity="center"
+	            android:text="Help?"
+	            android:textColor="#FFFFFF"
+	            android:textSize="10dp" />
+
+	        <Button
+	            android:id="@+id/Button05"
+	            android:layout_width="70dp"
+	            android:layout_height="wrap_content"
+	            android:layout_above="@+id/Button06"
+	            android:layout_marginRight="10dp"
+	            android:layout_toLeftOf="@+id/ButtonHelp"
+	            android:gravity="center"
+	            android:text="Suggest Style"
+	            android:textColor="#FFFFFF"
+	            android:textSize="10dp" />
 
 	    </RelativeLayout>
            
