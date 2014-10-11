@@ -1,23 +1,33 @@
 package com.team4d.lolhelper.fragments;
 
+import java.io.IOException;
 import java.util.Map;
 
 import android.support.v4.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
@@ -25,20 +35,23 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.team4d.lolhelper.DBcounters;
 import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.api.dto.staticdata.champion.Champion;
-import com.team4d.lolhelper.api.dto.staticdata.item.Item;
+import com.team4d.lolhelper.api.dto.staticdata.champion.Stats;
 
 public class ChampionViewFragment extends Fragment
 {
-	String name;
-	static final int NUM_ITEMS = 5;
-	MyAdapter mAdapter;
-	ViewPager mPager;
-	PagerAdapter mPagerAdapter;
+	View mLayout; //used for popup
+	static String name;
+	static final int NUM_ITEMS = 4;
+	private ViewPager mPager;
+	private PagerAdapter mPagerAdapter;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -47,6 +60,12 @@ public class ChampionViewFragment extends Fragment
 		name = getArguments().getString("name");
 	}
 
+	@Override
+	public void onDetach()
+	{
+		System.out.println("Detached");
+		mPager.setAdapter(null);
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
@@ -63,8 +82,7 @@ public class ChampionViewFragment extends Fragment
 		mPager = (ViewPager) getActivity().findViewById(R.id.pager);
 		mPagerAdapter = new MyAdapter(name, getActivity().getSupportFragmentManager());
 		mPager.setAdapter(mPagerAdapter);
-		PagerTitleStrip pagerTitleStrip = (PagerTitleStrip) getActivity().findViewById(R.id.titlestrip);
-		
+	
 		ImageView icon = (ImageView) getView().findViewById(R.id.icon);
 		int resID = getResources().getIdentifier(name.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
 				"drawable", getActivity().getPackageName());
@@ -73,13 +91,12 @@ public class ChampionViewFragment extends Fragment
 
 	}
 	
-	public static class MyAdapter extends FragmentPagerAdapter {
+	public class MyAdapter extends FragmentStatePagerAdapter {
         String name;
 		String[] title = {
         	"Overview",
         	"Stats",
         	"Lore",
-        	"Builds",
         	"Counters"
         };
 		
@@ -92,7 +109,7 @@ public class ChampionViewFragment extends Fragment
         public int getCount() {
             return NUM_ITEMS;
         }
-
+        
         @Override
         public Fragment getItem(int position) {
             return SlideScreenFragment.newInstance(name, position);
@@ -101,6 +118,11 @@ public class ChampionViewFragment extends Fragment
         @Override
         public CharSequence getPageTitle(int position) {
          return title[position];
+        }
+        
+        @Override
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
         }
     }
 
@@ -145,17 +167,24 @@ public class ChampionViewFragment extends Fragment
             LinearLayout layout = (LinearLayout) v.findViewById(R.id.container);
             switch(mNum){
             case 0: //Overview
-            	View view = inflater.inflate(R.layout.fragment_champion_overview, null);
-            	layout.addView(view);
-            	new makeView(name, view, mNum).execute();
+            	View view0 = inflater.inflate(R.layout.fragment_champion_overview, null);
+            	layout.addView(view0);
+            	new makeView(name, view0, mNum).execute();
             	break;
             case 1: //Stats
+            	View view1 = inflater.inflate(R.layout.fragment_champion_stats, null);
+            	layout.addView(view1);
+            	new makeView(name, view1, mNum).execute();
             	break;
             case 2: //Lore
+            	View view2 = inflater.inflate(R.layout.fragment_champion_lore, null);
+            	layout.addView(view2);
+            	new makeView(name, view2, mNum).execute();
             	break;
-            case 3: //Builds
-            	break;
-            case 4: //Counters
+            case 3: //Counters
+            	View view4 = inflater.inflate(R.layout.fragment_champion_counters, null);
+            	layout.addView(view4);
+            	new makeView(name, view4, mNum).execute();
             	break;
             default:
             	break;
@@ -189,17 +218,166 @@ public class ChampionViewFragment extends Fragment
 		protected void onPostExecute(Champion champ)
 		{			
 			switch(n){
-			case 0:
-				TextView test = (TextView) view.findViewById(R.id.test);
-				test.setText("test2");
+			case 0: //Overview
+				TextView info = (TextView) view.findViewById(R.id.info);
+				info.setText("Difficulty: " + champ.getInfo().getDifficulty() + "/10\n"
+						+ "Attack: " + champ.getInfo().getAttack() + "/10\n"
+						+ "Magic: " + champ.getInfo().getMagic() + "/10\n"
+						+ "Defense: " + champ.getInfo().getDefense() + "/10");
+				TextView resource = (TextView) view.findViewById(R.id.resource);
+				resource.setText(champ.getPartype());
+				
+				//Champion abilities
+				LinearLayout abilities = (LinearLayout) view.findViewById(R.id.abilities);
+
+				for(int i=0; i<5; i++){
+					LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+					ImageButton button = (ImageButton) inflater.inflate(R.layout.free_champion_image_button, null);
+					String n = champ.getName().replaceAll("[^a-zA-Z0-9]+", "").toLowerCase() + i;
+					Drawable btnImg = view.getResources().getDrawable(view.getResources().getIdentifier(
+							n, "drawable", view.getContext().getPackageName()));
+					button.setImageDrawable(btnImg);
+					LayoutParams params = new LayoutParams((int)(btnImg.getIntrinsicWidth() * 1.2), (int)(btnImg.getIntrinsicHeight() * 1.2));
+					button.setLayoutParams(params);
+					button.setOnClickListener(new View.OnClickListener()
+					{
+						@Override
+						public void onClick(View v)
+						{
+							//TODO: Implement
+						}
+					});
+					abilities.addView(button);
+				}
 				break;
-			case 1:
+			case 1: //Stats
+				TextView health = (TextView) view.findViewById(R.id.health);
+				TextView resourcetype = (TextView) view.findViewById(R.id.resourcetype);
+				TextView resource1 = (TextView) view.findViewById(R.id.resource);
+				TextView attackdamage = (TextView) view.findViewById(R.id.attackdamage);
+				TextView attackspeed = (TextView) view.findViewById(R.id.attackspeed);
+				TextView attackrange = (TextView) view.findViewById(R.id.attackrange);
+				
+				TextView healthregen = (TextView) view.findViewById(R.id.healthregen);
+				TextView resourcetyperegen = (TextView) view.findViewById(R.id.resourcetyperegen);
+				TextView resourceregen = (TextView) view.findViewById(R.id.resourceregen);
+				TextView armor = (TextView) view.findViewById(R.id.armor);
+				TextView magicresist = (TextView) view.findViewById(R.id.magicresist);
+				TextView movementspeed = (TextView) view.findViewById(R.id.movementspeed);
+				
+				Stats stats = champ.getStats();
+				
+				health.setText((int) stats.getHp() + " (+" + (int) stats.getHpperlevel() + " per level)");
+				resourcetype.setText(champ.getPartype() + ":");
+				resource1.setText((int) stats.getMp() + " (+" + stats.getMpperlevel() + " per level)");
+				attackdamage.setText((int) stats.getAttackdamage() + " (+" + stats.getAttackdamageperlevel() + " per level)");
+				attackspeed.setText(Math.round(625/(1+stats.getAttackspeedoffset()))/1000.0 + " (+" + stats.getAttackspeedperlevel() + "% per level)");
+				attackrange.setText("" + (int) stats.getAttackrange());
+				
+				healthregen.setText(stats.getHpregen() + " (+" + stats.getHpregenperlevel() + " per level)");
+				resourcetyperegen.setText(champ.getPartype() + " Regen:");
+				resourceregen.setText((int) stats.getMpregen() + " (+" + stats.getMpregenperlevel() + " per level)");
+				armor.setText((int) stats.getArmor() + " (+" + stats.getArmorperlevel() + " per level)");
+				magicresist.setText((int) stats.getSpellblock() + " (+" + stats.getSpellblockperlevel() + " per level)");
+				movementspeed.setText("" + (int) stats.getMovespeed());
+				
 				break;
-			case 2:
+			case 2: //Lore
+				TextView lore = (TextView) view.findViewById(R.id.lore);
+				lore.setText(APIData.parseOutHtml(champ.getLore()));
 				break;
-			case 3:
-				break;
-			case 4:
+			case 3: //Counters
+				//Database
+				DBcounters myDbHelper = new DBcounters(view.getContext());
+				try{
+					myDbHelper.createDataBase();
+				} catch (IOException ioe){
+					throw new Error("Unable to create database");
+				}
+				try{
+					myDbHelper.openDataBase();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+
+				String foo[] =
+				{ "_id", "Name", "Counter1", "Counter2", "Counter3", "GA1", "GA2",
+						"GA3" };
+				SQLiteDatabase counters = myDbHelper.getReadableDatabase();
+				Cursor result = counters.query("counters", foo, "Name=\"" + champ.getName() + "\"",
+						null, null, null, null);
+				result.moveToFirst();
+				//Info
+				ImageView iv0 = (ImageView) view.findViewById(R.id.imageba1);
+				iv0.setImageDrawable(view.getResources().getDrawable(
+						view.getResources().getIdentifier(
+								result.getString(result.getColumnIndex("Counter1"))
+										.toLowerCase().replaceAll("\\s", "")
+										.replaceAll("'", "").replaceAll("\\.", ""),
+								"drawable", view.getContext().getPackageName())));
+
+				ImageView iv1 = (ImageView) view.findViewById(R.id.imageba2);
+				iv1.setImageDrawable(view.getResources().getDrawable(
+						view.getResources().getIdentifier(
+								result.getString(result.getColumnIndex("Counter2"))
+										.toLowerCase().replaceAll("\\s", "")
+										.replaceAll("'", "").replaceAll("\\.", ""),
+								"drawable", view.getContext().getPackageName())));
+
+				ImageView iv2 = (ImageView) view.findViewById(R.id.imageba3);
+				iv2.setImageDrawable(view.getResources().getDrawable(
+						view.getResources().getIdentifier(
+								result.getString(result.getColumnIndex("Counter3"))
+										.toLowerCase().replaceAll("\\s", "")
+										.replaceAll("'", "").replaceAll("\\.", ""),
+								"drawable", view.getContext().getPackageName())));
+
+				ImageView iv3 = (ImageView) view.findViewById(R.id.imagega1);
+				iv3.setImageDrawable(view.getResources().getDrawable(
+						view.getResources().getIdentifier(
+								result.getString(result.getColumnIndex("GA1"))
+										.toLowerCase().replaceAll("\\s", "")
+										.replaceAll("'", "").replaceAll("\\.", ""),
+								"drawable", view.getContext().getPackageName())));
+
+				ImageView iv4 = (ImageView) view.findViewById(R.id.imagega2);
+				iv4.setImageDrawable(view.getResources().getDrawable(
+						view.getResources().getIdentifier(
+								result.getString(result.getColumnIndex("GA2"))
+										.toLowerCase().replaceAll("\\s", "")
+										.replaceAll("'", "").replaceAll("\\.", ""),
+								"drawable", view.getContext().getPackageName())));
+
+				ImageView iv5 = (ImageView) view.findViewById(R.id.imagega3);
+				iv5.setImageDrawable(view.getResources().getDrawable(
+						view.getResources().getIdentifier(
+								result.getString(result.getColumnIndex("GA3"))
+										.toLowerCase().replaceAll("\\s", "")
+										.replaceAll("'", "").replaceAll("\\.", ""),
+								"drawable", view.getContext().getPackageName())));
+
+				// Set text for champion 3 countered by and 3 counters
+				TextView tv0 = (TextView) view.findViewById(R.id.textba1);
+				tv0.setText(result.getString(result.getColumnIndex("Counter1")));
+
+				TextView tv1 = (TextView) view.findViewById(R.id.textba2);
+				tv1.setText(result.getString(result.getColumnIndex("Counter2")));
+
+				TextView tv2 = (TextView) view.findViewById(R.id.textba3);
+				tv2.setText(result.getString(result.getColumnIndex("Counter3")));
+
+				TextView tv3 = (TextView) view.findViewById(R.id.textga1);
+				tv3.setText(result.getString(result.getColumnIndex("GA1")));
+
+				TextView tv4 = (TextView) view.findViewById(R.id.textga2);
+				tv4.setText(result.getString(result.getColumnIndex("GA2")));
+
+				TextView tv5 = (TextView) view.findViewById(R.id.textga3);
+				tv5.setText(result.getString(result.getColumnIndex("GA3")));
+
+				result.close();
+				
+
 				break;
 			default:
 				break;
