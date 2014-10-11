@@ -81,6 +81,13 @@ public class TeamBuilderFragment extends Fragment {
         final Spinner spinner1 = (Spinner)this.getView().findViewById(R.id.spinner1);
         // a table layout to display "All Available Champions"	
         final TableLayout table = (TableLayout)this.getView().findViewById(R.id.Table);
+		
+		// horizontal scroll bars after five buttons to display suggested champions.
+		final LinearLayout scroll1 = (LinearLayout) this.getView().findViewById(R.id.Linear1);
+		final LinearLayout scroll2 = (LinearLayout) this.getView().findViewById(R.id.Linear2);
+		final LinearLayout scroll3 = (LinearLayout) this.getView().findViewById(R.id.Linear3);
+		final LinearLayout scroll4 = (LinearLayout) this.getView().findViewById(R.id.Linear4);
+		final LinearLayout scroll5 = (LinearLayout) this.getView().findViewById(R.id.Linear5);
         
         // set the display content for spinner
         String[] allStrategies = teambuilder.getAvailableStrategy();
@@ -123,13 +130,6 @@ public class TeamBuilderFragment extends Fragment {
         // button Suggest Champion
         suggestChampion.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View v){
-				
-				// horizontal scroll bars after five buttons to display suggested champions.
-				LinearLayout scroll1 = (LinearLayout)v.getRootView().findViewById(R.id.Linear1);
-				LinearLayout scroll2 = (LinearLayout)v.getRootView().findViewById(R.id.Linear2);
-				LinearLayout scroll3 = (LinearLayout)v.getRootView().findViewById(R.id.Linear3);
-				LinearLayout scroll4 = (LinearLayout)v.getRootView().findViewById(R.id.Linear4);
-				LinearLayout scroll5 = (LinearLayout)v.getRootView().findViewById(R.id.Linear5);
 				
 				scroll1.removeAllViews();
 				scroll2.removeAllViews();
@@ -557,7 +557,7 @@ public class TeamBuilderFragment extends Fragment {
 			}	
 		});
         
-        //button Help
+        // button Help
         Button help = (Button) this.getActivity().findViewById(R.id.ButtonHelp);
         help.setOnClickListener(new View.OnClickListener(){
         	public void onClick(View v){

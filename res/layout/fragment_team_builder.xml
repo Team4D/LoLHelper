@@ -30,7 +30,7 @@
 	            android:layout_height="60dp"
 	            android:layout_alignBottom="@+id/imageButton00"
 	            android:layout_alignLeft="@+id/imageButton00"
-	            android:layout_alignRight="@+id/Button01"
+	            android:layout_alignRight="@+id/ButtonHelp"
 	            android:layout_alignTop="@+id/imageButton00"
 	            android:layout_marginLeft="70dp" >
 
