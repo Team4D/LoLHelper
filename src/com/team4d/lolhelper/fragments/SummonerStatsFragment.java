@@ -45,9 +45,9 @@ public class SummonerStatsFragment extends Fragment
 	}
 
 	@Override
-	public void onStart()
+	public void onActivityCreated(Bundle savedInstanceState)
 	{
-		super.onStart();
+		super.onActivityCreated(savedInstanceState);
 		final Context c = this.getActivity();
 		final View v = this.getView();
 		final Activity activity = this.getActivity();
@@ -152,7 +152,7 @@ public class SummonerStatsFragment extends Fragment
 			PlayerStatsSummaryList summonerSummary = gson.fromJson(results.get("summonerSummary"),
 					PlayerStatsSummaryList.class);
 			List<PlayerStatsSummary> summary = summonerSummary.getPlayerStatSummaries();
-			
+
 			LinearLayout statsLayout = (LinearLayout) activity.findViewById(R.id.StatsLayout);
 
 			// Creates the title bar with the summoner name
@@ -185,12 +185,12 @@ public class SummonerStatsFragment extends Fragment
 			if (i > -1)
 			{ // exists
 				TextView soloHead = new TextView(mContext);
-				summonerLevel.setBackgroundColor(Color.parseColor("#CC404040"));
-				summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
-				summonerLevel.setGravity(Gravity.CENTER);
-				summonerLevel.setTextSize(20);
-				summonerLevel.setText("Ranked Solo");
-				summonerLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				soloHead.setBackgroundColor(Color.parseColor("#CC404040"));
+				soloHead.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloHead.setGravity(Gravity.CENTER);
+				soloHead.setTextSize(20);
+				soloHead.setText("Ranked Solo");
+				soloHead.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(soloHead);
 			}
 
@@ -201,12 +201,12 @@ public class SummonerStatsFragment extends Fragment
 			if (i > -1)
 			{ // exists
 				TextView normalHead = new TextView(mContext);
-				summonerLevel.setBackgroundColor(Color.parseColor("#CC404040"));
-				summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
-				summonerLevel.setGravity(Gravity.CENTER);
-				summonerLevel.setTextSize(20);
-				summonerLevel.setText("Normal");
-				summonerLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				normalHead.setBackgroundColor(Color.parseColor("#CC404040"));
+				normalHead.setTextColor(Color.parseColor("#FFFFFFFF"));
+				normalHead.setGravity(Gravity.CENTER);
+				normalHead.setTextSize(20);
+				normalHead.setText("Normal");
+				normalHead.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(normalHead);
 			}
 
@@ -217,12 +217,12 @@ public class SummonerStatsFragment extends Fragment
 			if (i > -1)
 			{ // exists
 				TextView ranked5Head = new TextView(mContext);
-				summonerLevel.setBackgroundColor(Color.parseColor("#CC404040"));
-				summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
-				summonerLevel.setGravity(Gravity.CENTER);
-				summonerLevel.setTextSize(20);
-				summonerLevel.setText("Ranked 5x5");
-				summonerLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				ranked5Head.setBackgroundColor(Color.parseColor("#CC404040"));
+				ranked5Head.setTextColor(Color.parseColor("#FFFFFFFF"));
+				ranked5Head.setGravity(Gravity.CENTER);
+				ranked5Head.setTextSize(20);
+				ranked5Head.setText("Ranked 5x5");
+				ranked5Head.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(ranked5Head);
 			}
 
@@ -233,12 +233,12 @@ public class SummonerStatsFragment extends Fragment
 			if (i > -1)
 			{ // exists
 				TextView ranked3Head = new TextView(mContext);
-				summonerLevel.setBackgroundColor(Color.parseColor("#CC404040"));
-				summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
-				summonerLevel.setGravity(Gravity.CENTER);
-				summonerLevel.setTextSize(20);
-				summonerLevel.setText("Ranked 3x3");
-				summonerLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				ranked3Head.setBackgroundColor(Color.parseColor("#CC404040"));
+				ranked3Head.setTextColor(Color.parseColor("#FFFFFFFF"));
+				ranked3Head.setGravity(Gravity.CENTER);
+				ranked3Head.setTextSize(20);
+				ranked3Head.setText("Ranked 3x3");
+				ranked3Head.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(ranked3Head);
 			}
 
@@ -249,12 +249,12 @@ public class SummonerStatsFragment extends Fragment
 			if (i > -1)
 			{ // exists
 				TextView tbHead = new TextView(mContext);
-				summonerLevel.setBackgroundColor(Color.parseColor("#CC404040"));
-				summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
-				summonerLevel.setGravity(Gravity.CENTER);
-				summonerLevel.setTextSize(20);
-				summonerLevel.setText("Team Builder");
-				summonerLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				tbHead.setBackgroundColor(Color.parseColor("#CC404040"));
+				tbHead.setTextColor(Color.parseColor("#FFFFFFFF"));
+				tbHead.setGravity(Gravity.CENTER);
+				tbHead.setTextSize(20);
+				tbHead.setText("Team Builder");
+				tbHead.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(tbHead);
 			}
 
@@ -265,12 +265,12 @@ public class SummonerStatsFragment extends Fragment
 			if (i > -1)
 			{ // exists
 				TextView aramHead = new TextView(mContext);
-				summonerLevel.setBackgroundColor(Color.parseColor("#CC404040"));
-				summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
-				summonerLevel.setGravity(Gravity.CENTER);
-				summonerLevel.setTextSize(20);
-				summonerLevel.setText("ARAM");
-				summonerLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				aramHead.setBackgroundColor(Color.parseColor("#CC404040"));
+				aramHead.setTextColor(Color.parseColor("#FFFFFFFF"));
+				aramHead.setGravity(Gravity.CENTER);
+				aramHead.setTextSize(20);
+				aramHead.setText("ARAM");
+				aramHead.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(aramHead);
 			}
 
@@ -281,12 +281,12 @@ public class SummonerStatsFragment extends Fragment
 			if (i > -1)
 			{ // exists
 				TextView coopHead = new TextView(mContext);
-				summonerLevel.setBackgroundColor(Color.parseColor("#CC404040"));
-				summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
-				summonerLevel.setGravity(Gravity.CENTER);
-				summonerLevel.setTextSize(20);
-				summonerLevel.setText("Co-op vs AI");
-				summonerLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				coopHead.setBackgroundColor(Color.parseColor("#CC404040"));
+				coopHead.setTextColor(Color.parseColor("#FFFFFFFF"));
+				coopHead.setGravity(Gravity.CENTER);
+				coopHead.setTextSize(20);
+				coopHead.setText("Co-op vs AI");
+				coopHead.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(coopHead);
 			}
 		}
