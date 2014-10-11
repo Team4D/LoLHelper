@@ -1,12 +1,11 @@
 package com.team4d.lolhelper.fragments;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,20 +14,17 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import com.team4d.lolhelper.Popup;
 import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
-import com.team4d.lolhelper.api.dto.staticdata.summonerspell.SummonerSpell;
 
 public class SummonerSpellListFragment extends Fragment
 {
-	View layout; //used for popup
-	
+	View layout; // used for popup
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -118,19 +114,20 @@ public class SummonerSpellListFragment extends Fragment
 			}
 		}
 	}
-	
-	public void showPopup(String name){
-		Activity activity = this.getActivity();		
+
+	public void showPopup(String name)
+	{
+		Activity activity = this.getActivity();
 		layout = Popup.popupSummonerSpell(activity, name);
-		
+
 		PopupWindow popup = new PopupWindow(this.getActivity());
 		popup.setContentView(layout);
 		popup.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
-		popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);		
+		popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
 		popup.setOutsideTouchable(true);
 		popup.setFocusable(true);
 		popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
-		
+
 	}
-	
+
 }

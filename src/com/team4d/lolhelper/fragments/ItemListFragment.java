@@ -2,11 +2,11 @@ package com.team4d.lolhelper.fragments;
 
 import java.util.Map;
 
-import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,7 +23,6 @@ import android.widget.TextView;
 import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.api.dto.staticdata.item.Item;
-import com.team4d.lolhelper.api.dto.staticdata.summonerspell.SummonerSpell;
 
 /**
  * TODO: Implement sorting and shop style browsing
@@ -32,8 +31,8 @@ import com.team4d.lolhelper.api.dto.staticdata.summonerspell.SummonerSpell;
  */
 public class ItemListFragment extends Fragment
 {
-	View layout; //used for popup
-	
+	View layout; // used for popup
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -142,7 +141,8 @@ public class ItemListFragment extends Fragment
 				Drawable btnImg = getResources().getDrawable(getResources().getIdentifier(
 						n, "drawable", mContext.getPackageName()));
 				button.setImageDrawable(btnImg);
-				LayoutParams params = new LayoutParams((int)(btnImg.getIntrinsicWidth() * 1.2), (int)(btnImg.getIntrinsicHeight() * 1.2));
+				LayoutParams params = new LayoutParams((int) (btnImg.getIntrinsicWidth() * 1.2),
+						(int) (btnImg.getIntrinsicHeight() * 1.2));
 				button.setLayoutParams(params);
 				button.setTag(result[i]);
 				button.setOnClickListener(new View.OnClickListener()
@@ -157,12 +157,13 @@ public class ItemListFragment extends Fragment
 			}
 		}
 	}
-	
-	public void showPopup(String name){
+
+	public void showPopup(String name)
+	{
 		LinearLayout view = (LinearLayout) this.getActivity().findViewById(R.id.itempopup);
 		LayoutInflater inflater = (LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		layout = inflater.inflate(R.layout.fragment_item_popup, view);
-		
+
 		PopupWindow popup = new PopupWindow(this.getActivity());
 		popup.setContentView(layout);
 		popup.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -170,15 +171,15 @@ public class ItemListFragment extends Fragment
 		ImageView icon = (ImageView) layout.findViewById(R.id.icon);
 		int resID = getResources().getIdentifier(name.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
 				"drawable", "com.team4d.lolhelper");
-		icon.setImageResource(resID);	
-		
+		icon.setImageResource(resID);
+
 		new grabItem().execute(name);
-		
+
 		popup.setOutsideTouchable(true);
 		popup.setFocusable(true);
 		popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
 	}
-	
+
 	private class grabItem extends AsyncTask<String, Void, Item>
 	{
 		@Override
@@ -195,31 +196,37 @@ public class ItemListFragment extends Fragment
 			TextView nameText = (TextView) layout.findViewById(R.id.name);
 			TextView mapsText = (TextView) layout.findViewById(R.id.maps);
 			TextView descriptionText = (TextView) layout.findViewById(R.id.description);
-			TextView totalgoldText = (TextView) layout.findViewById(R.id.totalgold); 
-			TextView sellgoldText = (TextView) layout.findViewById(R.id.sellgold); 
-			
+			TextView totalgoldText = (TextView) layout.findViewById(R.id.totalgold);
+			TextView sellgoldText = (TextView) layout.findViewById(R.id.sellgold);
+
 			// Setting Text for TextViews
 			String str = "";
-			if(item.getMaps()!=null){
+			if (item.getMaps() != null)
+			{
 				Map<String, Boolean> maps = item.getMaps();
-				//Maps: 1 (SR), 10 (TT), 8 (CS), 12 (HA)
-				if(!maps.containsKey("1")){
+				// Maps: 1 (SR), 10 (TT), 8 (CS), 12 (HA)
+				if (!maps.containsKey("1"))
+				{
 					str = str + "Summoner's Rift, ";
 				}
-				if(!maps.containsKey("10")){
+				if (!maps.containsKey("10"))
+				{
 					str = str + "Twisted Treeline, ";
 				}
-				if(!maps.containsKey("8")){
+				if (!maps.containsKey("8"))
+				{
 					str = str + "Crystal Scar, ";
 				}
-				if(!maps.containsKey("12")){
+				if (!maps.containsKey("12"))
+				{
 					str = str + "Howling Abyss, ";
 				}
-				str = str.substring(0, str.length()-2);
-			} else {
+				str = str.substring(0, str.length() - 2);
+			} else
+			{
 				str = "All";
 			}
-			//Get rid of last ", "
+			// Get rid of last ", "
 			nameText.setText(item.getName());
 			mapsText.setText("Maps: \n" + str);
 			descriptionText.setText("Description: \n" + APIData.parseOutHtml(item.getDescription()));

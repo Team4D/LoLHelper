@@ -201,7 +201,9 @@ public class RiotAPI
 	public JsonElement GetSummonerByName(String name)
 	{
 		String APIQuery = BaseAPIAddress + SummonerAPIAddress + name + "?" + APIKey;
-		return CallAPI(APIQuery);
+		JsonElement APIResult = CallAPI(APIQuery);
+		JsonElement summoner = APIResult.getAsJsonObject().get(name);
+		return summoner;
 	}
 	/*
 	 * ********************************

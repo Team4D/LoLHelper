@@ -3,32 +3,28 @@ package com.team4d.lolhelper.fragments;
 import java.util.List;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.internal.LinkedTreeMap;
 import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.api.dto.stats.PlayerStatsSummary;
 import com.team4d.lolhelper.api.dto.stats.PlayerStatsSummaryList;
 import com.team4d.lolhelper.api.dto.summoner.Summoner;
-import com.team4d.lolhelper.api.dto.summoner.SummonerDto;
 
 public class SummonerStatsFragment extends Fragment
 {
@@ -115,8 +111,8 @@ public class SummonerStatsFragment extends Fragment
 	{
 		Context mContext;
 		Activity activity;
+		Summoner summoner;
 		String name;
-		LinkedTreeMap<String, Object> summoner;
 
 		public SummonerStatsAsyncTask(Context c, Activity a, String name)
 		{
@@ -133,7 +129,6 @@ public class SummonerStatsFragment extends Fragment
 		@Override
 		protected PlayerStatsSummaryList doInBackground(String... summonername)
 		{
-			JsonObject results = new JsonObject();
 			summoner = APIData.getSummonerByName(summonername[0]);
 			PlayerStatsSummaryList summonerSummary = APIData.getSummaryStatsByName(summonername[0]);
 			return summonerSummary;
@@ -156,7 +151,7 @@ public class SummonerStatsFragment extends Fragment
 			summonerTitle.setTextColor(Color.parseColor("#FFFFFFFF"));
 			summonerTitle.setGravity(Gravity.CENTER);
 			summonerTitle.setTextSize(20);
-			summonerTitle.setText(summoner.get("name").toString());
+			summonerTitle.setText(summoner.getName());
 			summonerTitle.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 			statsLayout.addView(summonerTitle);
 
@@ -166,19 +161,19 @@ public class SummonerStatsFragment extends Fragment
 			summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
 			summonerLevel.setGravity(Gravity.CENTER);
 			summonerLevel.setTextSize(20);
-			summonerLevel.setText("Summoner Level: " + summoner.get("summonerLevel").toString());
+			summonerLevel.setText("Summoner Level: " + summoner.getSummonerLevel());
 			summonerLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 			statsLayout.addView(summonerLevel);
 
-			
-			//Add all the game types that exist for this player! (that we want to add)
-			int i=-1;
-			
+			// Add all the game types that exist for this player! (that we want to add)
+			int i = -1;
+
 			/**
 			 * Ranked Solo
 			 */
 			i = find("RankedSolo5x5", summary);
-			if(i>-1){ //exists
+			if (i > -1)
+			{ // exists
 				TextView soloHead = new TextView(mContext);
 				summonerLevel.setBackgroundColor(Color.parseColor("#CC404040"));
 				summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
@@ -188,13 +183,13 @@ public class SummonerStatsFragment extends Fragment
 				summonerLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(soloHead);
 			}
-			
-			
+
 			/**
 			 * Normal
 			 */
-//			i = find("Unranked", summary);
-			if(i>-1){ //exists
+			// i = find("Unranked", summary);
+			if (i > -1)
+			{ // exists
 				TextView normalHead = new TextView(mContext);
 				summonerLevel.setBackgroundColor(Color.parseColor("#CC404040"));
 				summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
@@ -204,13 +199,13 @@ public class SummonerStatsFragment extends Fragment
 				summonerLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(normalHead);
 			}
-			
-			
+
 			/**
 			 * Ranked 5x5
 			 */
-//			i = find("RankedTeam5x5", summary);
-			if(i>-1){ //exists
+			// i = find("RankedTeam5x5", summary);
+			if (i > -1)
+			{ // exists
 				TextView ranked5Head = new TextView(mContext);
 				summonerLevel.setBackgroundColor(Color.parseColor("#CC404040"));
 				summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
@@ -220,13 +215,13 @@ public class SummonerStatsFragment extends Fragment
 				summonerLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(ranked5Head);
 			}
-			
-			
+
 			/**
 			 * Ranked 3x3
 			 */
-//			i = find("RankedTeam3x3", summary);
-			if(i>-1){ //exists
+			// i = find("RankedTeam3x3", summary);
+			if (i > -1)
+			{ // exists
 				TextView ranked3Head = new TextView(mContext);
 				summonerLevel.setBackgroundColor(Color.parseColor("#CC404040"));
 				summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
@@ -236,13 +231,13 @@ public class SummonerStatsFragment extends Fragment
 				summonerLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(ranked3Head);
 			}
-			
-			
+
 			/**
 			 * Team Builder
 			 */
-//			i = find("CAP5x5", summary);
-			if(i>-1){ //exists
+			// i = find("CAP5x5", summary);
+			if (i > -1)
+			{ // exists
 				TextView tbHead = new TextView(mContext);
 				summonerLevel.setBackgroundColor(Color.parseColor("#CC404040"));
 				summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
@@ -252,13 +247,13 @@ public class SummonerStatsFragment extends Fragment
 				summonerLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(tbHead);
 			}
-			
-			
+
 			/**
 			 * ARAM
 			 */
-//			i = find("AramUnranked5x5", summary);
-			if(i>-1){ //exists
+			// i = find("AramUnranked5x5", summary);
+			if (i > -1)
+			{ // exists
 				TextView aramHead = new TextView(mContext);
 				summonerLevel.setBackgroundColor(Color.parseColor("#CC404040"));
 				summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
@@ -268,13 +263,13 @@ public class SummonerStatsFragment extends Fragment
 				summonerLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(aramHead);
 			}
-			
-			
+
 			/**
 			 * Co-op vs AI
 			 */
-//			i = find("CoopVsAI", summary);
-			if(i>-1){ //exists
+			// i = find("CoopVsAI", summary);
+			if (i > -1)
+			{ // exists
 				TextView coopHead = new TextView(mContext);
 				summonerLevel.setBackgroundColor(Color.parseColor("#CC404040"));
 				summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
@@ -286,11 +281,14 @@ public class SummonerStatsFragment extends Fragment
 			}
 		}
 	}
-	
-	private int find(String type, List<PlayerStatsSummary> summary){
+
+	private int find(String type, List<PlayerStatsSummary> summary)
+	{
 		int n = summary.size();
-		for(int i=0; i<n; i++){
-			if(summary.get(i).getPlayerStatSummaryType().equals(type)){
+		for (int i = 0; i < n; i++)
+		{
+			if (summary.get(i).getPlayerStatSummaryType().equals(type))
+			{
 				return i;
 			}
 		}

@@ -1,11 +1,7 @@
 package com.team4d.lolhelper.api;
 
-import java.lang.reflect.Type;
-import java.sql.Wrapper;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -14,10 +10,6 @@ import android.database.sqlite.SQLiteDatabase;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.internal.LinkedTreeMap;
-import com.google.gson.reflect.TypeToken;
 import com.team4d.lolhelper.api.database.LOLSQLiteHelper;
 import com.team4d.lolhelper.api.dto.staticdata.SpellVars;
 import com.team4d.lolhelper.api.dto.staticdata.champion.Champion;
@@ -29,7 +21,6 @@ import com.team4d.lolhelper.api.dto.staticdata.summonerspell.SummonerSpell;
 import com.team4d.lolhelper.api.dto.stats.PlayerStatsSummaryList;
 import com.team4d.lolhelper.api.dto.stats.RankedStats;
 import com.team4d.lolhelper.api.dto.summoner.Summoner;
-import com.team4d.lolhelper.api.dto.summoner.SummonerDto;
 
 /**
  * @author KaosuRyoko
@@ -555,14 +546,16 @@ public class APIData
 
 		return result;
 	}
-	
-	public static String parseOutHtml(String str){
+
+	public static String parseOutHtml(String str)
+	{
 		str = str.replaceAll("<br>", "\n");
 		str = str.replaceAll("(<[^>]*>)?", "");
 		return str;
 	}
-	
-	public static String parseResource(ChampionSpell spell){
+
+	public static String parseResource(ChampionSpell spell)
+	{
 		String str = spell.getResource();
 		String cost = spell.getCostBurn();
 		str.replace("{{ cost }}", cost);
@@ -604,24 +597,20 @@ public class APIData
 	 * Start of Summoner API Data
 	 * ********************************
 	 */
-	public static LinkedTreeMap<String, Object> getSummonerByName(String name)
+	public static Summoner getSummonerByName(String name)
 	{
 		RiotAPI api = new RiotAPI("na");
 		JsonElement summoner = api.GetSummonerByName(name);
 		api = null;
 		try
 		{
-			Gson gson = new Gson();
-			Map<String, Object> map = new HashMap<String, Object>();
-			map = (Map<String, Object>)gson.fromJson(summoner, map.getClass());
-			LinkedTreeMap<String, Object> map2 = (LinkedTreeMap<String, Object>) map.get(name);
-			return map2;
+			Summoner s = new Gson().fromJson(summoner.toString(), Summoner.class);
+			return s;
 		} catch (Exception e)
 		{
 			// Should probably at least do some logging, but not worried about that right now.
+			return null;
 		}
-		System.out.println("null?");
-		return null;
 	}
 
 	/*
@@ -656,8 +645,8 @@ public class APIData
 		RiotAPI api = new RiotAPI("na");
 		try
 		{
-			LinkedTreeMap<String, Object> s = getSummonerByName(name);
-			JsonElement ranked = api.GetRankedStatsByID(Integer.valueOf(parseID(s.get("id"))));
+			Summoner s = getSummonerByName(name);
+			JsonElement ranked = api.GetRankedStatsByID(Integer.valueOf(parseID(s.getId())));
 			RankedStats rs = new Gson().fromJson(ranked, RankedStats.class);
 			return rs;
 		} catch (Exception e)
@@ -680,30 +669,33 @@ public class APIData
 		} catch (Exception e)
 		{
 			// Should probably at least do some logging, but not worried about that right now.
+			return null;
 		}
-		return null;
 	}
 
 	public static PlayerStatsSummaryList getSummaryStatsByName(String name)
 	{
+		PlayerStatsSummaryList rs;
+
 		RiotAPI api = new RiotAPI("na");
 		try
 		{
-			LinkedTreeMap<String, Object> s = getSummonerByName(name);
-			JsonElement summary = api.GetSummaryStatsByID(Integer.valueOf(parseID(s.get("id"))));
-			PlayerStatsSummaryList rs = new Gson().fromJson(summary, PlayerStatsSummaryList.class);
+			Summoner s = getSummonerByName(name);
+			JsonElement summary = api.GetSummaryStatsByID((int) s.getId());
+			rs = new Gson().fromJson(summary, PlayerStatsSummaryList.class);
 			return rs;
 		} catch (Exception e)
 		{
 			// Should probably at least do some logging, but not worried about that right now.
+			return null;
 		}
-		return null;
 	}
-	
-	public static String parseID(Object o){
+
+	public static String parseID(Object o)
+	{
 		String str = o.toString();
 		str = str.replace(".", "");
-		str = str.substring(0, str.length()-2);
+		str = str.substring(0, str.length() - 2);
 		return str;
 	}
 	/*
