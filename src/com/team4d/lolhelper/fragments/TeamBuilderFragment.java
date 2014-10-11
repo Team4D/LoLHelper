@@ -1,4 +1,4 @@
-package com.team4d.lolhelper;
+package com.team4d.lolhelper.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -24,13 +24,17 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import com.team4d.lolhelper.R;
+import com.team4d.lolhelper.TeamBuilderData;
+import com.team4d.lolhelper.R.drawable;
+import com.team4d.lolhelper.R.id;
+import com.team4d.lolhelper.R.layout;
 import com.team4d.lolhelper.generalinfo.ChampionAttributes;
 
 // Description:
 // This is the main Team Builder class.
 // It deals with the user interface for the team builder page.
 
-public class TeamBuilder extends Fragment {
+public class TeamBuilderFragment extends Fragment {
     
 	// Create an instance for the data storage class.
     TeamBuilderData teambuilder = new TeamBuilderData();
@@ -39,6 +43,12 @@ public class TeamBuilder extends Fragment {
 	// button is displaying a champion = 1, button is not displaying a champion = 0
     int[] buttonChangedFlags = {0, 0, 0, 0, 0};
     
+	@Override
+	public void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+	}
+	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
@@ -49,9 +59,8 @@ public class TeamBuilder extends Fragment {
 	// Run when the team builder page created.
     @Override
 	public void onStart(){
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.fragment_team_builder);
-        
+    	super.onStart();
+
         FrameLayout layout = (FrameLayout)this.getView().findViewById(R.id.container);
    		layout.setBackgroundResource(R.drawable.bg);
         
@@ -101,7 +110,7 @@ public class TeamBuilder extends Fragment {
 				teambuilder.suggestStrategyForTeam();
 				// update the contents in spinner
                 String[] allStrategies = teambuilder.getAvailableStrategy();
-                ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(TeamBuilder.this.getActivity(), android.R.layout.simple_spinner_item, allStrategies);
+                ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(TeamBuilderFragment.this.getActivity(), android.R.layout.simple_spinner_item, allStrategies);
                 adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner1.setAdapter(adapter1);
 //				suggestChampion.performClick();
@@ -129,7 +138,7 @@ public class TeamBuilder extends Fragment {
 				ChampionAttributes[] suggestedTop = teambuilder.suggestChampionsByStrategy(0);
 				if ((suggestedTop != null) && (buttonChangedFlags[0] == 0)){
 					for (int i = 0; i < suggestedTop.length; i++){
-						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this.getActivity()), suggestedTop[i]);
+						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilderFragment.this.getActivity()), suggestedTop[i]);
 						if (suggestedTop[i].getName().equals("NONAME")){
 							newButton.setVisibility(View.GONE);
 						}
@@ -172,7 +181,7 @@ public class TeamBuilder extends Fragment {
 				ChampionAttributes[] suggestedJungle = teambuilder.suggestChampionsByStrategy(1);
 				if ((suggestedJungle != null) && (buttonChangedFlags[1] == 0)){
 					for (int i = 0; i < suggestedJungle.length; i++){
-						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this.getActivity()), suggestedJungle[i]);
+						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilderFragment.this.getActivity()), suggestedJungle[i]);
 						if (suggestedJungle[i].getName().equals("NONAME")){
 							newButton.setVisibility(View.GONE);
 						}
@@ -215,7 +224,7 @@ public class TeamBuilder extends Fragment {
 				ChampionAttributes[] suggestedMid = teambuilder.suggestChampionsByStrategy(2);
 				if ((suggestedMid != null) && (buttonChangedFlags[2] == 0)){
 					for (int i = 0; i < suggestedMid.length; i++){
-						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this.getActivity()), suggestedMid[i]);
+						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilderFragment.this.getActivity()), suggestedMid[i]);
 						if (suggestedMid[i].getName().equals("NONAME")){
 							newButton.setVisibility(View.GONE);
 						}
@@ -258,7 +267,7 @@ public class TeamBuilder extends Fragment {
 				ChampionAttributes[] suggestedADC = teambuilder.suggestChampionsByStrategy(3);
 				if ((suggestedADC != null) && (buttonChangedFlags[3] == 0)){
 					for (int i = 0; i < suggestedADC.length; i++){
-						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this.getActivity()), suggestedADC[i]);
+						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilderFragment.this.getActivity()), suggestedADC[i]);
 						if (suggestedADC[i].getName().equals("NONAME")){
 							newButton.setVisibility(View.GONE);
 						}
@@ -301,7 +310,7 @@ public class TeamBuilder extends Fragment {
 				ChampionAttributes[] suggestedSupport = teambuilder.suggestChampionsByStrategy(4);
 				if ((suggestedSupport != null) && (buttonChangedFlags[4] == 0)){
 					for (int i = 0; i < suggestedSupport.length; i++){
-						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this.getActivity()), suggestedSupport[i]);
+						final ImageButton newButton = initializeButton(new ImageButton(TeamBuilderFragment.this.getActivity()), suggestedSupport[i]);
 						if (suggestedSupport[i].getName().equals("NONAME")){
 							newButton.setVisibility(View.GONE);
 						}
@@ -374,7 +383,7 @@ public class TeamBuilder extends Fragment {
 				for (int i = 0; i < allAvailableChampions.length; i++){
 					if (buttonInRow == maxButtonInRow){
 						buttonInRow = 0;
-						TableRow newRow = new TableRow(TeamBuilder.this.getActivity());
+						TableRow newRow = new TableRow(TeamBuilderFragment.this.getActivity());
 						newRow.setBackgroundColor(Color.TRANSPARENT);
 						newRow.setPadding(0, 0, 0, 20);	// Border between rows
 						newRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 60));	// 60dp high
@@ -384,7 +393,7 @@ public class TeamBuilder extends Fragment {
 					}
 					
 					// Create the button
-					final ImageButton newButton = initializeButton(new ImageButton(TeamBuilder.this.getActivity()), allAvailableChampions[i]);
+					final ImageButton newButton = initializeButton(new ImageButton(TeamBuilderFragment.this.getActivity()), allAvailableChampions[i]);
 					if (allAvailableChampions[i].getName().equals("NONAME")){
 						newButton.setVisibility(View.GONE);
 					}

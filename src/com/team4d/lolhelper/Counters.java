@@ -1,5 +1,11 @@
 package com.team4d.lolhelper;
 
+import com.team4d.lolhelper.R;
+import com.team4d.lolhelper.R.array;
+import com.team4d.lolhelper.R.drawable;
+import com.team4d.lolhelper.R.id;
+import com.team4d.lolhelper.R.layout;
+
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,9 +23,14 @@ import android.widget.Spinner;
 
 public class Counters extends Fragment
 {
-
 	public static String EXTRA_MESSAGE = "";
 	public static int arrayValue = 0;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+	}
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,18 +42,10 @@ public class Counters extends Fragment
 	@Override
 	public void onStart()
 	{
-
+		super.onStart();
+		
 		LinearLayout layout = (LinearLayout) this.getView().findViewById(R.id.container);
-		if (((GlobalVariables) this.getActivity().getApplication()).getskin() == 1)
-		{
-			layout.setBackgroundResource(R.drawable.bg);
-		}
-		if (((GlobalVariables) this.getActivity().getApplication()).getskin() == 2)
-		{
-			layout.setBackgroundResource(R.drawable.bg2);
-		}
-
-		// SpellDatabase.makeSpellDatabase();
+		layout.setBackgroundResource(R.drawable.bg);
 
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 				this.getView().getContext(), R.array.champion_array, R.layout.spinner_item);

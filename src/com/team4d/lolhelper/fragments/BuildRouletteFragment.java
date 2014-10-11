@@ -1,4 +1,4 @@
-package com.team4d.lolhelper;
+package com.team4d.lolhelper.fragments;
 
 import java.util.Random;
 
@@ -14,12 +14,22 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.team4d.lolhelper.R;
+import com.team4d.lolhelper.R.drawable;
+import com.team4d.lolhelper.R.id;
+import com.team4d.lolhelper.R.layout;
 import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.api.dto.staticdata.champion.Champion;
 import com.team4d.lolhelper.api.dto.staticdata.champion.ChampionSpell;
 
-public class BuildRoulette extends Fragment
+public class BuildRouletteFragment extends Fragment
 {
+	@Override
+	public void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

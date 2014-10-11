@@ -37,11 +37,7 @@ import com.nineoldandroids.view.animation.AnimatorProxy;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 import com.team4d.lolhelper.api.database.LOLSQLiteHelper;
-import com.team4d.lolhelper.fragments.ChampionListFragment;
-import com.team4d.lolhelper.fragments.HomeFragment;
-import com.team4d.lolhelper.fragments.ItemListFragment;
-import com.team4d.lolhelper.fragments.SummonerSpellListFragment;
-import com.team4d.lolhelper.fragments.SummonerStatsFragment;
+import com.team4d.lolhelper.fragments.*;
 
 public class BaseActivity extends Activity
 {
@@ -306,10 +302,12 @@ public class BaseActivity extends Activity
 			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment0).commit();
 			break;
 		case 1:
-			// fragment = new TeamBuilderFragment();
+			TeamBuilderFragment fragment1 = new TeamBuilderFragment();
+			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment1).commit();
 			break;
 		case 2:
-			// fragment = new UltimateBraveryFragment();
+			BuildRouletteFragment fragment2 = new BuildRouletteFragment();
+			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment2).commit();
 			break;
 		case 3:
 			SummonerStatsFragment fragment3 = new SummonerStatsFragment();

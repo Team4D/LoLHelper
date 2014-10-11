@@ -142,7 +142,7 @@ public class ItemListFragment extends Fragment
 				Drawable btnImg = getResources().getDrawable(getResources().getIdentifier(
 						n, "drawable", mContext.getPackageName()));
 				button.setImageDrawable(btnImg);
-				LayoutParams params = new LayoutParams(btnImg.getIntrinsicWidth() * 2, btnImg.getIntrinsicHeight() * 2);
+				LayoutParams params = new LayoutParams((int)(btnImg.getIntrinsicWidth() * 1.2), (int)(btnImg.getIntrinsicHeight() * 1.2));
 				button.setLayoutParams(params);
 				button.setTag(result[i]);
 				button.setOnClickListener(new View.OnClickListener()

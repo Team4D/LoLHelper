@@ -68,7 +68,7 @@
             android:label="@string/title_activity_match_info" >
         </activity>
         <activity
-            android:name="com.team4d.lolhelper.TeamBuilder"
+            android:name="com.team4d.lolhelper.fragments.TeamBuilderFragment"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_team_builder" >
         </activity>
@@ -123,9 +123,9 @@
             android:label="@string/title_activity_build_screen" >
         </activity>
         <activity
-            android:name="com.team4d.lolhelper.BuildRoulette"
+            android:name="com.team4d.lolhelper.fragments.BuildRouletteFragment"
             android:screenOrientation="portrait"
-            android:label="@string/title_activity_ultimate_bravery" >
+            android:label="@string/title_activity_build_roulette" >
         </activity>
         <activity
             android:name="com.team4d.lolhelper.ViewSummonerSpells"

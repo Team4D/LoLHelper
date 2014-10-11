@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/bg"
-    tools:context="com.team4d.lolhelper.TeamBuilder"
+    tools:context="com.team4d.lolhelper.fragments.TeamBuilderFragment"
     tools:ignore="MergeRootFrame" >
 
     <RelativeLayout
