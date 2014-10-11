@@ -23,6 +23,18 @@ public class Popup {
 	//Static class
 	private Popup(){
 	}
+
+	/*
+	 * ********************************
+	 * Loading Popup
+	 * ********************************
+	 */
+	public static View popupLoading(Activity activity){
+		LinearLayout view = (LinearLayout) activity.findViewById(R.id.loadingpopup);
+		LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		layout = inflater.inflate(R.layout.fragment_loading_popup, view);
+		return layout;
+	}
 	
 	/*
 	 * ********************************
