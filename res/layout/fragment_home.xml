@@ -39,6 +39,7 @@
                     android:layout_weight="1" />
 
                 <ImageButton
+                    android:id="@+id/latest"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -55,7 +56,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:gravity="center"
-                    android:text="Azir\nThe Emporer of the Sands"
+                    android:text="Azir\nThe Emperor of the Sands"
                     android:textColor="#FFFFFFFF" />
 
                 <Space

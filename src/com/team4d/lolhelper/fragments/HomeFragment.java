@@ -105,6 +105,21 @@ public class HomeFragment extends Fragment
 				});
 				freeChampLayout.addView(button);
 			}
+			ImageButton latest = (ImageButton) mView.findViewById(R.id.latest);
+			latest.setTag("Azir");
+			latest.setOnClickListener(new View.OnClickListener(){
+				@Override
+				public void onClick(View v){
+					Bundle bundle = new Bundle();
+					bundle.putString("name", (String) v.getTag());
+					ChampionViewFragment f = new ChampionViewFragment();
+					f.setArguments(bundle);
+					FragmentManager manager = fragment.getFragmentManager();
+					FragmentTransaction transaction = manager.beginTransaction().replace(R.id.content_frame, f);
+					transaction.addToBackStack(null);
+					transaction.commit();
+				}
+			});
 		}
 	}
 }
