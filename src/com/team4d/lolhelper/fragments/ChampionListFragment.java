@@ -1,6 +1,9 @@
 package com.team4d.lolhelper.fragments;
 
-import android.app.Fragment;
+import android.app.Activity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -35,7 +38,7 @@ public class ChampionListFragment extends Fragment
 	public void onStart()
 	{
 		super.onStart();
-		new ChampionListAsyncTask(this.getActivity(), this.getView()).execute();
+		new ChampionListAsyncTask(this.getActivity(), this.getView(), this).execute();
 	}
 
 	private class ChampionListAsyncTask extends AsyncTask<Void, String, String[]>
@@ -43,11 +46,13 @@ public class ChampionListFragment extends Fragment
 
 		private final Context mContext;
 		private final View mView;
+		private final Fragment fragment;
 
-		public ChampionListAsyncTask(Context c, View v)
+		public ChampionListAsyncTask(Context c, View v, Fragment f)
 		{
 			mContext = c;
 			mView = v;
+			fragment = f;
 		}
 
 		@Override
@@ -91,6 +96,20 @@ public class ChampionListFragment extends Fragment
 				Drawable btnImg = getResources().getDrawable(getResources().getIdentifier(
 						result[i].replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable", mContext.getPackageName()));
 				button.setImageDrawable(btnImg);
+				button.setTag(result[i]);
+				button.setOnClickListener(new View.OnClickListener(){
+					@Override
+					public void onClick(View v){
+						Bundle bundle = new Bundle();
+						bundle.putString("name", (String) v.getTag());
+						ChampionViewFragment f = new ChampionViewFragment();
+						f.setArguments(bundle);
+						FragmentManager manager = fragment.getFragmentManager();
+						FragmentTransaction transaction = manager.beginTransaction().replace(R.id.content_frame, f);
+						transaction.addToBackStack(null);
+						transaction.commit();
+					}
+				});
 				mGridView.addView(button);
 			}
 		}
