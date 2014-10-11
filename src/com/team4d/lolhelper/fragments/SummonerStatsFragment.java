@@ -20,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.api.dto.stats.PlayerStatsSummary;
@@ -107,11 +109,10 @@ public class SummonerStatsFragment extends Fragment
 		inputManager.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 
-	private class SummonerStatsAsyncTask extends AsyncTask<String, Void, PlayerStatsSummaryList>
+	private class SummonerStatsAsyncTask extends AsyncTask<String, Void, JsonObject>
 	{
 		Context mContext;
 		Activity activity;
-		Summoner summoner;
 		String name;
 
 		public SummonerStatsAsyncTask(Context c, Activity a, String name)
@@ -127,11 +128,15 @@ public class SummonerStatsFragment extends Fragment
 		}
 
 		@Override
-		protected PlayerStatsSummaryList doInBackground(String... summonername)
+		protected JsonObject doInBackground(String... summonername)
 		{
-			summoner = APIData.getSummonerByName(summonername[0]);
+			JsonObject results = new JsonObject();
+			Summoner summoner = APIData.getSummonerByName(summonername[0]);
 			PlayerStatsSummaryList summonerSummary = APIData.getSummaryStatsByName(summonername[0]);
-			return summonerSummary;
+			Gson gson = new Gson();
+			results.add("summoner", gson.toJsonTree(summoner, Summoner.class));
+			results.add("summonerSummary", gson.toJsonTree(summonerSummary, PlayerStatsSummaryList.class));
+			return results;
 		}
 
 		@Override
@@ -140,9 +145,14 @@ public class SummonerStatsFragment extends Fragment
 		}
 
 		@Override
-		protected void onPostExecute(PlayerStatsSummaryList summonerSummary)
+		protected void onPostExecute(JsonObject results)
 		{
+			Gson gson = new Gson();
+			Summoner summoner = gson.fromJson(results.get("summoner"), Summoner.class);
+			PlayerStatsSummaryList summonerSummary = gson.fromJson(results.get("summonerSummary"),
+					PlayerStatsSummaryList.class);
 			List<PlayerStatsSummary> summary = summonerSummary.getPlayerStatSummaries();
+			
 			LinearLayout statsLayout = (LinearLayout) activity.findViewById(R.id.StatsLayout);
 
 			// Creates the title bar with the summoner name
@@ -161,7 +171,7 @@ public class SummonerStatsFragment extends Fragment
 			summonerLevel.setTextColor(Color.parseColor("#FFFFFFFF"));
 			summonerLevel.setGravity(Gravity.CENTER);
 			summonerLevel.setTextSize(20);
-			summonerLevel.setText("Summoner Level: " + summoner.getSummonerLevel());
+			summonerLevel.setText("Summoner Level: " + (int) summoner.getSummonerLevel());
 			summonerLevel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 			statsLayout.addView(summonerLevel);
 
@@ -187,7 +197,7 @@ public class SummonerStatsFragment extends Fragment
 			/**
 			 * Normal
 			 */
-			// i = find("Unranked", summary);
+			i = find("Unranked", summary);
 			if (i > -1)
 			{ // exists
 				TextView normalHead = new TextView(mContext);
@@ -203,7 +213,7 @@ public class SummonerStatsFragment extends Fragment
 			/**
 			 * Ranked 5x5
 			 */
-			// i = find("RankedTeam5x5", summary);
+			i = find("RankedTeam5x5", summary);
 			if (i > -1)
 			{ // exists
 				TextView ranked5Head = new TextView(mContext);
@@ -219,7 +229,7 @@ public class SummonerStatsFragment extends Fragment
 			/**
 			 * Ranked 3x3
 			 */
-			// i = find("RankedTeam3x3", summary);
+			i = find("RankedTeam3x3", summary);
 			if (i > -1)
 			{ // exists
 				TextView ranked3Head = new TextView(mContext);
@@ -235,7 +245,7 @@ public class SummonerStatsFragment extends Fragment
 			/**
 			 * Team Builder
 			 */
-			// i = find("CAP5x5", summary);
+			i = find("CAP5x5", summary);
 			if (i > -1)
 			{ // exists
 				TextView tbHead = new TextView(mContext);
@@ -251,7 +261,7 @@ public class SummonerStatsFragment extends Fragment
 			/**
 			 * ARAM
 			 */
-			// i = find("AramUnranked5x5", summary);
+			i = find("AramUnranked5x5", summary);
 			if (i > -1)
 			{ // exists
 				TextView aramHead = new TextView(mContext);
@@ -267,7 +277,7 @@ public class SummonerStatsFragment extends Fragment
 			/**
 			 * Co-op vs AI
 			 */
-			// i = find("CoopVsAI", summary);
+			i = find("CoopVsAI", summary);
 			if (i > -1)
 			{ // exists
 				TextView coopHead = new TextView(mContext);
