@@ -11,10 +11,11 @@
     tools:ignore="MergeRootFrame" >
 
 	    <TextView
+	        android:layout_weight="0"
             android:id="@+id/textView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/About_Header"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -22,6 +23,7 @@
             android:textSize="20sp" />
 		    
         <ScrollView
+            android:layout_weight="1"
             android:id="@+id/scrollView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,22 +32,36 @@
             
             <LinearLayout
 				android:id="@+id/LinLayout1"
+				android:layout_marginLeft="20dp"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:gravity="top"
 				android:orientation="horizontal">
 
 				            
 			    <TextView
-			        android:text="Project Managers:\n\n\nTeam Builder:"
-			        android:layout_width="wrap_content"
+			        android:layout_weight="1"
+			        android:text="Project Managers:\n\n\n
+			        Team Builder:\n\n\n\n
+			        Build Roulette:\n\n\n
+			        Ranked Stats:\n\n\n\n\n
+			        General Info:\n\n\n\n\n\n
+			        Jungle Timers:\n\n\n\n
+			        Build Guides:\n\n\n
+			        Layout:\n\n\n\n
+			        \n
+			        Executive Producer:\n\n"
+			        android:layout_width="0dp"
 		            android:layout_height="wrap_content"
+		            android:gravity="right"
 		            android:layout_marginTop="20dp"
 		            android:textColor="#FFFFFF"
 		            android:textStyle="bold" />
 			    
 			    <TextView
-			        android:text="Greg Ervin\nAlexa Varady\n\nThomas Ford\nJosh Werner\nSu Yan"
-			        android:layout_width="wrap_content"
+			        android:layout_weight="4"
+			        android:text="Greg Ervin\nAlexa Varady\n\nThomas Ford\nJosh Werner\nSu Yan\n\nAustin Hofmann\nSu Yan\n\nGreg Ervin\nBrice Thrower\nPatrick Walter\nDavid Young\n\nGreg Ervin\nSean Hannah\nMegan Teahan\nAlexa Varady\nMurl Westheffer\n\nEvan Bissell\nQin Chen\nAlexa Varady\n\nEric Chanthorabout\nAlexa Varady\n\nGreg Ervin\nSean Stout\nSu Yan\n\n\nPaul Steffens"
+			        android:layout_width="0dp"
 			        android:layout_height="wrap_content"
 			        android:textColor="#FFFFFF"
 			        android:layout_marginTop="20dp"
@@ -56,17 +72,20 @@
 	</ScrollView>
 	
     <TextView
+        android:layout_weight="0"
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:textStyle="italic"
     	android:text="LoL Helper isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#FFFFFF" />
         		    
     <TextView
+        android:layout_weight="0"
 	     android:id="@+id/textView4"
 	     android:layout_below="@+id/HSV"
 	     android:layout_width="match_parent"
@@ -74,7 +93,7 @@
 	     android:text="@string/About_Version"
 	     android:textColor="#FFFFFF"
 	     android:gravity="center_horizontal"
-	     android:layout_marginTop="20dp"
+	     android:layout_marginTop="10dp"
 	     android:textAppearance="?android:attr/textAppearanceMedium" />
 	
 </LinearLayout>
