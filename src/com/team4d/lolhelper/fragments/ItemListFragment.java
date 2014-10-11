@@ -2,7 +2,7 @@ package com.team4d.lolhelper.fragments;
 
 import java.util.Map;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;

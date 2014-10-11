@@ -2,7 +2,7 @@ package com.team4d.lolhelper.fragments;
 
 import java.util.Random;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;

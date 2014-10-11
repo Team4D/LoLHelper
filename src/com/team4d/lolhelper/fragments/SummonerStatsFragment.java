@@ -3,7 +3,7 @@ package com.team4d.lolhelper.fragments;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -111,7 +111,7 @@ public class SummonerStatsFragment extends Fragment
 		inputManager.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 
-	private class SummonerStatsAsyncTask extends AsyncTask<String, Void, JsonObject>
+	private class SummonerStatsAsyncTask extends AsyncTask<String, Void, PlayerStatsSummaryList>
 	{
 		Context mContext;
 		Activity activity;
@@ -131,14 +131,12 @@ public class SummonerStatsFragment extends Fragment
 		}
 
 		@Override
-		protected JsonObject doInBackground(String... summonername)
+		protected PlayerStatsSummaryList doInBackground(String... summonername)
 		{
 			JsonObject results = new JsonObject();
 			summoner = APIData.getSummonerByName(summonername[0]);
 			PlayerStatsSummaryList summonerSummary = APIData.getSummaryStatsByName(summonername[0]);
-			Gson gson = new Gson();
-			results.add("summonerSummary", gson.toJsonTree(summonerSummary, PlayerStatsSummaryList.class));
-			return results;
+			return summonerSummary;
 		}
 
 		@Override
@@ -147,11 +145,8 @@ public class SummonerStatsFragment extends Fragment
 		}
 
 		@Override
-		protected void onPostExecute(JsonObject results)
+		protected void onPostExecute(PlayerStatsSummaryList summonerSummary)
 		{
-			Gson gson = new Gson();
-			PlayerStatsSummaryList summonerSummary = gson.fromJson(results.get("summonerSummary"),
-					PlayerStatsSummaryList.class);
 			List<PlayerStatsSummary> summary = summonerSummary.getPlayerStatSummaries();
 			LinearLayout statsLayout = (LinearLayout) activity.findViewById(R.id.StatsLayout);
 
@@ -182,7 +177,7 @@ public class SummonerStatsFragment extends Fragment
 			/**
 			 * Ranked Solo
 			 */
-//			i = find("RankedSolo5x5", summary);
+			i = find("RankedSolo5x5", summary);
 			if(i>-1){ //exists
 				TextView soloHead = new TextView(mContext);
 				summonerLevel.setBackgroundColor(Color.parseColor("#CC404040"));

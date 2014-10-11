@@ -4,8 +4,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -39,7 +40,7 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 import com.team4d.lolhelper.api.database.LOLSQLiteHelper;
 import com.team4d.lolhelper.fragments.*;
 
-public class BaseActivity extends Activity
+public class BaseActivity extends FragmentActivity
 {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
@@ -292,7 +293,7 @@ public class BaseActivity extends Activity
 	/** Swaps fragments in the main content view */
 	private void selectItem(int position)
 	{
-		FragmentManager fragmentManager = getFragmentManager();
+		FragmentManager fragmentManager = getSupportFragmentManager();
 		// Create appropriate fragment
 		switch (position)
 		{
@@ -406,7 +407,7 @@ public class BaseActivity extends Activity
 			HomeFragment fragment = new HomeFragment();
 
 			// Insert the fragment by replacing any existing fragment
-			FragmentManager fragmentManager = getFragmentManager();
+			FragmentManager fragmentManager = getSupportFragmentManager();
 			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 		}
 	}

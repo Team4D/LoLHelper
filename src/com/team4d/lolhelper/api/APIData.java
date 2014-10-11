@@ -615,15 +615,12 @@ public class APIData
 			Map<String, Object> map = new HashMap<String, Object>();
 			map = (Map<String, Object>)gson.fromJson(summoner, map.getClass());
 			LinkedTreeMap<String, Object> map2 = (LinkedTreeMap<String, Object>) map.get(name);
-			System.out.println(summoner.toString());
-			System.out.println("Name " + map2.get("name"));
-			System.out.println("ID " + map2.get("id"));
-			System.out.println("ID " + parseID(map2.get("id")));
 			return map2;
 		} catch (Exception e)
 		{
 			// Should probably at least do some logging, but not worried about that right now.
 		}
+		System.out.println("null?");
 		return null;
 	}
 
