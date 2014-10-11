@@ -460,6 +460,7 @@ public class BaseActivity extends FragmentActivity
 				{
 					ringtone.play();
 					LB.setText("Alive");
+					LB.setTextColor(Color.WHITE);
 					running[1] = false;
 					timer[1].cancel();
 					timer[1].purge();
@@ -494,6 +495,7 @@ public class BaseActivity extends FragmentActivity
 				{
 					ringtone.play();
 					BA.setText("Alive");
+					BA.setTextColor(Color.WHITE);
 					running[2] = false;
 					timer[2].cancel();
 					timer[2].purge();
@@ -531,6 +533,7 @@ public class BaseActivity extends FragmentActivity
 				{
 					ringtone.play();
 					DR.setText("Alive");
+					DR.setTextColor(Color.WHITE);
 					running[3] = false;
 					timer[3].cancel();
 					timer[3].purge();
@@ -565,6 +568,7 @@ public class BaseActivity extends FragmentActivity
 				{
 					ringtone.play();
 					LR.setText("Alive");
+					LR.setTextColor(Color.WHITE);
 					running[4] = false;
 					timer[4].cancel();
 					timer[4].purge();
@@ -599,6 +603,7 @@ public class BaseActivity extends FragmentActivity
 				{
 					ringtone.play();
 					GR.setText("Alive");
+					GR.setTextColor(Color.WHITE);
 					running[5] = false;
 					timer[5].cancel();
 					timer[5].purge();
