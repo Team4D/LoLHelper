@@ -38,6 +38,18 @@ public class Popup {
 	
 	/*
 	 * ********************************
+	 * Team Builder
+	 * ********************************
+	 */
+	public static View popupTeamBuilder(Activity activity){
+		LinearLayout view = (LinearLayout) activity.findViewById(R.id.teambuilderpopup);
+		LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		layout = inflater.inflate(R.layout.fragment_team_builder_popup, view);
+		return layout;
+	}
+	
+	/*
+	 * ********************************
 	 * Summoner Spells
 	 * ********************************
 	 */

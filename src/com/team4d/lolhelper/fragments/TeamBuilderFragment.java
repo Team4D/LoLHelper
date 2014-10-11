@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,12 +18,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+import com.team4d.lolhelper.Popup;
 import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.TeamBuilderData;
 import com.team4d.lolhelper.R.drawable;
@@ -553,6 +556,14 @@ public class TeamBuilderFragment extends Fragment {
 				suggestChampion.performClick();
 			}	
 		});
+        
+        //button Help
+        Button help = (Button) this.getActivity().findViewById(R.id.ButtonHelp);
+        help.setOnClickListener(new View.OnClickListener(){
+        	public void onClick(View v){
+        		popup();
+        	}
+        });
     }
 
     @Override
@@ -589,5 +600,20 @@ public class TeamBuilderFragment extends Fragment {
     	icon.setBackgroundColor(Color.TRANSPARENT);
 
     	return icon;
+    }
+    
+    //Help Popup
+    public void popup(){
+		Activity activity = this.getActivity();		
+		View layout = Popup.popupTeamBuilder(activity);
+		
+		PopupWindow popup = new PopupWindow(this.getActivity());
+		popup.setContentView(layout);
+		popup.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
+		popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);		
+		popup.setOutsideTouchable(true);
+		popup.setFocusable(true);
+		popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
+		
     }
 }

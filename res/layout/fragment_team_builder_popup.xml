@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#111"
+    android:padding="10dp"
+    android:id="@+id/teambuilderpopup" >
+    
+   	<TextView
+   	    android:text="Welcome to Team Builder!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="#FFFFFF"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+   	
+   	<TextView
+   	    android:text="To suggest champions based on a style:\nChoose a style from the dropdown menu. The suggestions next to each role will change accordingly."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="#FFFFFF"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+   	<TextView
+   	    android:text="To fill a role with a champion:\nFirst tap the empty role (Top, Jungle, etc) and then tap a champion...\n...from the suggestions list to the right\n...from the complete champion list at the bottom."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="#FFFFFF"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+   	
+   	<TextView
+   	    android:text="To remove a selected champion from a role:\nTap the icon and the role will clear."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="#FFFFFF"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+   	
+   	<TextView
+   	    android:text="To suggest a style based on champions:\nTap the 'Suggest Style' button, then view the suggested styles by tapping the drop-down menu to open it."
+   	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="#FFFFFF"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</LinearLayout>
