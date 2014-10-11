@@ -5,43 +5,70 @@
     android:background="@drawable/bg" >
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="100" >
+        android:orientation="vertical" >
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10" />
-
-        <EditText
-            android:id="@+id/SummonerNameEditText"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:hint="@string/Summoner_Name"
-            android:inputType="textNoSuggestions"
-            android:singleLine="true"
-            android:textColor="#ffffff" />
+            android:orientation="horizontal"
+            android:weightSum="100" >
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10" />
 
-        <Button
-            android:id="@+id/enter"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="20"
-            android:text="@string/Button_Enter" />
+            <EditText
+                android:id="@+id/SummonerNameEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:hint="@string/Summoner_Name"
+                android:inputType="textNoSuggestions"
+                android:singleLine="true"
+                android:textColor="#ffffff" >
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10" />
+                <requestFocus />
+            </EditText>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10" />
+
+            <Button
+                android:id="@+id/enter"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="20"
+                android:text="@string/Button_Enter" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FFCCCCCC" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:id="@+id/StatsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </ScrollView>
+
     </LinearLayout>
 
 </RelativeLayout>
