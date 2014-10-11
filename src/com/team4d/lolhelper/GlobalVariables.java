@@ -19,7 +19,7 @@ public class GlobalVariables extends Application
 	private String aboutString = "About";
 	private String teamBuilderString = "Team Builder";
 	private String countersString = "Counters";
-	private String ultimateBraveryString = "Ultimate Bravery";
+	private String buildRouletteString = "Build Roulette";
 	private String buildGuidesString = "Build Guides";
 	private String jungleTimerString = "Jungle Timer";
 	private String championsString = "Champions";
@@ -33,10 +33,10 @@ public class GlobalVariables extends Application
 	private String betaString = "Beta";
 	private String releaseString = "Release";
 	// About Menu Strings
-	private String createdByString = "Created by Team 4th Dimension";
-	private String aboutRolesRightString = "\nLeader, Documentation\nProject Analyst, Programmer\nProgrammer (App Design)\nProgrammer (Item Builds)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (General Info)\nProgrammer (General Info)\nProgrammer (Timers)\nProgrammer (Timers)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nBusiness Consultant, Programmer (General Info)\nDesign\n";
-	private final String versionNumberString = "0.9.008"; // # of commits minus 182 for beta
-	private String versionString = "Version " + versionNumberString;
+	private static String createdByString = "Created by Team 4th Dimension";
+	private static String aboutRolesRightString = "\nLeader, Documentation\nProject Analyst, Programmer\nProgrammer (App Design)\nProgrammer (Item Builds)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (General Info)\nProgrammer (General Info)\nProgrammer (Timers)\nProgrammer (Timers)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nBusiness Consultant, Programmer (General Info)\n\nExecutive Producer\n";
+	private final static String versionNumberString = "0.9.008"; // # of commits minus 182 for beta
+	private static String versionString = "Version " + versionNumberString;
 
 	public void setStrings()
 	{
@@ -51,7 +51,7 @@ public class GlobalVariables extends Application
 			this.aboutString = "About";
 			this.teamBuilderString = "Team Builder";
 			this.countersString = "Counters";
-			this.ultimateBraveryString = "Ultimate Bravery";
+			this.buildRouletteString = "Build Roulette";
 			this.buildGuidesString = "Build Guides";
 			this.jungleTimerString = "Jungle Timer";
 			this.championsString = "Champions";
@@ -66,7 +66,7 @@ public class GlobalVariables extends Application
 			this.releaseString = "Release";
 			// About menu
 			this.createdByString = "Created by Team 4th Dimension";
-			this.aboutRolesRightString = "\nLeader, Documentation\nProject Analyst, Programmer\nProgrammer (App Design)\nProgrammer (Item Builds)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (General Info)\nProgrammer (General Info)\nProgrammer (Timers)\nProgrammer (Timers)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nBusiness Consultant, Programmer (General Info)\nDesign\n";
+//			this.aboutRolesRightString = "\nLeader, Documentation\nProject Analyst, Programmer\nProgrammer (App Design)\nProgrammer (Item Builds)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (General Info)\nProgrammer (General Info)\nProgrammer (Timers)\nProgrammer (Timers)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nBusiness Consultant, Programmer (General Info)\n\nExecutive Producer\n\n";
 			this.versionString = "Version " + versionNumberString;
 		}
 		else if (language == 2) // German, currently a direct translation so probably sucks ass
@@ -80,7 +80,7 @@ public class GlobalVariables extends Application
 			this.aboutString = "Über";
 			this.teamBuilderString = "Team-Hersteller";
 			this.countersString = "Gegenzüge";
-			this.ultimateBraveryString = "Ultimate Bravery";
+			this.buildRouletteString = "Build Roulette";
 			this.buildGuidesString = "Itemaufbau";
 			this.jungleTimerString = "Dschungel-Timer";
 			this.championsString = "Champions";
@@ -95,7 +95,7 @@ public class GlobalVariables extends Application
 			this.releaseString = "Freigabe";
 			// About menu
 			this.createdByString = "Erstellt von Team 4th Dimension";
-			this.aboutRolesRightString = "\nFührer, Dokumentation\nProjekt-Analyst, Programmierer\nProgrammierer (App-Design)\nProgrammierer (Artikel Baut)\nProgrammierer (Spieler-Statistik)\nProgrammierer (Spieler-Statistik)\nProgrammierer (Spieler-Statistik)\nProgrammierer (Allgemeine Infos)\nProgrammierer (Allgemeine Infos)\nProgrammierer (Timer)\nProgrammierer (Timer)\nProgrammierer (Team-Builder)\nProgrammierer (Team-Builder)\nProgrammierer (Team-Builder)\nUnternehmensberater, Programmierer (Allgemeine Infos)\nDesign\n";
+//			this.aboutRolesRightString = "\nFührer, Dokumentation\nProjekt-Analyst, Programmierer\nProgrammierer (App-Design)\nProgrammierer (Artikel Baut)\nProgrammierer (Spieler-Statistik)\nProgrammierer (Spieler-Statistik)\nProgrammierer (Spieler-Statistik)\nProgrammierer (Allgemeine Infos)\nProgrammierer (Allgemeine Infos)\nProgrammierer (Timer)\nProgrammierer (Timer)\nProgrammierer (Team-Builder)\nProgrammierer (Team-Builder)\nProgrammierer (Team-Builder)\nUnternehmensberater, Programmierer (Allgemeine Infos)\nDesign\n";
 			this.versionString = "Version " + versionNumberString;
 		}
 		else if (language == 3) // Spanish, currently a direct translation so probably sucks ass
@@ -109,7 +109,7 @@ public class GlobalVariables extends Application
 			this.aboutString = "Acerca de";
 			this.teamBuilderString = "Equipo Constructor";
 			this.countersString = "Contra";
-			this.ultimateBraveryString = "Valent�a Final";
+			this.buildRouletteString = "Valent�a Final";
 			this.buildGuidesString = "Construir Gu�as";
 			this.jungleTimerString = "Temporizador Selva";
 			this.championsString = "Campeones";
@@ -124,7 +124,7 @@ public class GlobalVariables extends Application
 			this.releaseString = "Lanzamiento";
 			// About menu
 			this.createdByString = "Creado por Team 4th Dimension";
-			this.aboutRolesRightString = "\nLeader, Documentation\nProject Analyst, Programmer\nProgrammer (App Design)\nProgrammer (Item Builds)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (General Info)\nProgrammer (General Info)\nProgrammer (Timers)\nProgrammer (Timers)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nBusiness Consultant, Programmer (General Info)\nDesign\n";
+//			this.aboutRolesRightString = "\nLeader, Documentation\nProject Analyst, Programmer\nProgrammer (App Design)\nProgrammer (Item Builds)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (General Info)\nProgrammer (General Info)\nProgrammer (Timers)\nProgrammer (Timers)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nBusiness Consultant, Programmer (General Info)\nDesign\n";
 			this.versionString = "Versi�n " + versionNumberString;
 		}
 		else if (language == 4) // French, currently a direct translation so probably sucks ass
@@ -138,7 +138,7 @@ public class GlobalVariables extends Application
 			this.aboutString = "A propos";
 			this.teamBuilderString = "B�tisseur d'Equipe";
 			this.countersString = "Contre";
-			this.ultimateBraveryString = "Bravoure Ultime";
+			this.buildRouletteString = "Bravoure Ultime";
 			this.buildGuidesString = "Construire Guides";
 			this.jungleTimerString = "Minuterie Jungle";
 			this.championsString = "Champions";
@@ -153,7 +153,7 @@ public class GlobalVariables extends Application
 			this.releaseString = "Lancement";
 			// About menu
 			this.createdByString = "Cr��e par Team 4th Dimension";
-			this.aboutRolesRightString = "\nLeader, Documentation\nProject Analyst, Programmer\nProgrammer (App Design)\nProgrammer (Item Builds)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (General Info)\nProgrammer (General Info)\nProgrammer (Timers)\nProgrammer (Timers)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nBusiness Consultant, Programmer (General Info)\nDesign\n";
+//			this.aboutRolesRightString = "\nLeader, Documentation\nProject Analyst, Programmer\nProgrammer (App Design)\nProgrammer (Item Builds)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (General Info)\nProgrammer (General Info)\nProgrammer (Timers)\nProgrammer (Timers)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nBusiness Consultant, Programmer (General Info)\nDesign\n";
 			this.versionString = "Version " + versionNumberString;
 		}
 		else if (language == 5) // Italian, currently a direct translation so probably sucks ass
@@ -167,7 +167,7 @@ public class GlobalVariables extends Application
 			this.aboutString = "Circa"; // unsure
 			this.teamBuilderString = "Costruttore della Squadra";
 			this.countersString = "Awersario"; // unsure
-			this.ultimateBraveryString = "Ultimate Bravery";
+			this.buildRouletteString = "Build Roulette";
 			this.buildGuidesString = "Guide di Construzione";
 			this.jungleTimerString = "Timer del Jungle";
 			this.championsString = "Campioni";
@@ -182,7 +182,7 @@ public class GlobalVariables extends Application
 			this.releaseString = "Rilascio"; // unsure
 			// About menu
 			this.createdByString = "Creato di Team 4th Dimension";
-			this.aboutRolesRightString = "\nLeader, Documentation\nProject Analyst, Programmer\nProgrammer (App Design)\nProgrammer (Item Builds)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (General Info)\nProgrammer (General Info)\nProgrammer (Timers)\nProgrammer (Timers)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nBusiness Consultant, Programmer (General Info)\nDesign\n";
+//			this.aboutRolesRightString = "\nLeader, Documentation\nProject Analyst, Programmer\nProgrammer (App Design)\nProgrammer (Item Builds)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (Player Stats)\nProgrammer (General Info)\nProgrammer (General Info)\nProgrammer (Timers)\nProgrammer (Timers)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nProgrammer (Team Builder)\nBusiness Consultant, Programmer (General Info)\nDesign\n";
 			this.versionString = "Versione " + versionNumberString;
 		}
 	}
@@ -269,14 +269,14 @@ public class GlobalVariables extends Application
 		this.countersString = x;
 	}
 
-	public String getUltimateBraveryString()
+	public String getbuildRouletteString()
 	{
-		return ultimateBraveryString;
+		return buildRouletteString;
 	}
 
-	public void setUltimateBraveryString(String x)
+	public void setbuildRouletteString(String x)
 	{
-		this.ultimateBraveryString = x;
+		this.buildRouletteString = x;
 	}
 
 	public String getBuildGuidesString()
@@ -393,7 +393,7 @@ public class GlobalVariables extends Application
 
 	// Strings used in the about menu
 
-	public String getCreatedByString()
+	public static String getCreatedByString()
 	{
 		return createdByString;
 	}
@@ -403,7 +403,7 @@ public class GlobalVariables extends Application
 		this.createdByString = x;
 	}
 
-	public String getAboutRolesRightString()
+	public static String getAboutRolesRightString()
 	{
 		return aboutRolesRightString;
 	}
@@ -413,7 +413,7 @@ public class GlobalVariables extends Application
 		this.aboutRolesRightString = x;
 	}
 
-	public String getVersionString()
+	public static String getVersionString()
 	{
 		return versionString;
 	}

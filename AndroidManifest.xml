@@ -158,7 +158,7 @@
             android:label="@string/title_activity_summoner_spells" >
         </activity>
         <activity
-            android:name="com.team4d.lolhelper.About"
+            android:name="com.team4d.lolhelper.fragments.AboutFragment"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_about" >
         </activity>
