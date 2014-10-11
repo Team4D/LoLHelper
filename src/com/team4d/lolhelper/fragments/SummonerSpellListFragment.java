@@ -127,7 +127,6 @@ public class SummonerSpellListFragment extends Fragment
 		popup.setOutsideTouchable(true);
 		popup.setFocusable(true);
 		popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
-
 	}
 
 }

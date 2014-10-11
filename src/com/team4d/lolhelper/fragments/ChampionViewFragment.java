@@ -1,58 +1,48 @@
 package com.team4d.lolhelper.fragments;
 
 import java.io.IOException;
-import java.util.Map;
 
-import android.support.v4.app.Fragment;
+import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.ListFragment;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.view.ViewGroup.MarginLayoutParams;
-import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
-import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.team4d.lolhelper.DBcounters;
+import com.team4d.lolhelper.Popup;
 import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.api.dto.staticdata.champion.Champion;
+import com.team4d.lolhelper.api.dto.staticdata.champion.ChampionSpell;
 import com.team4d.lolhelper.api.dto.staticdata.champion.Stats;
 
 public class ChampionViewFragment extends Fragment
 {
-	View mLayout; //used for popup
+	View mLayout; // used for popup
 	static String name;
 	static final int NUM_ITEMS = 4;
 	private ViewPager mPager;
 	private PagerAdapter mPagerAdapter;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -66,6 +56,7 @@ public class ChampionViewFragment extends Fragment
 		System.out.println("Detached");
 		mPager.setAdapter(null);
 	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
@@ -82,7 +73,7 @@ public class ChampionViewFragment extends Fragment
 		mPager = (ViewPager) getActivity().findViewById(R.id.pager);
 		mPagerAdapter = new MyAdapter(name, getActivity().getSupportFragmentManager());
 		mPager.setAdapter(mPagerAdapter);
-	
+
 		ImageView icon = (ImageView) getView().findViewById(R.id.icon);
 		int resID = getResources().getIdentifier(name.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
 				"drawable", getActivity().getPackageName());
@@ -90,122 +81,136 @@ public class ChampionViewFragment extends Fragment
 		new grabChampion(name).execute();
 
 	}
-	
-	public class MyAdapter extends FragmentStatePagerAdapter {
-        String name;
+
+	public class MyAdapter extends FragmentStatePagerAdapter
+	{
+		String name;
 		String[] title = {
-        	"Overview",
-        	"Stats",
-        	"Lore",
-        	"Counters"
-        };
-		
-		public MyAdapter(String name, FragmentManager fm) {
-            super(fm);
-            this.name = name;
-        }
+				"Overview",
+				"Stats",
+				"Lore",
+				"Counters"
+		};
 
-        @Override
-        public int getCount() {
-            return NUM_ITEMS;
-        }
-        
-        @Override
-        public Fragment getItem(int position) {
-            return SlideScreenFragment.newInstance(name, position);
-        }
-        
-        @Override
-        public CharSequence getPageTitle(int position) {
-         return title[position];
-        }
-        
-        @Override
-        public int getItemPosition(Object object) {
-            return POSITION_NONE;
-        }
-    }
+		public MyAdapter(String name, FragmentManager fm)
+		{
+			super(fm);
+			this.name = name;
+		}
 
-    public static class SlideScreenFragment extends Fragment {
-        int mNum;
-        String name;
+		@Override
+		public int getCount()
+		{
+			return NUM_ITEMS;
+		}
 
-        /**
-         * Create a new instance, providing "num"
-         * as an argument.
-         */
-        static SlideScreenFragment newInstance(String name, int num) {
-            SlideScreenFragment f = new SlideScreenFragment();
+		@Override
+		public Fragment getItem(int position)
+		{
+			return SlideScreenFragment.newInstance(name, position);
+		}
 
-            // Supply num input as an argument.
-            Bundle args = new Bundle();
-            args.putInt("num", num);
-            args.putString("name", name);
-            f.setArguments(args);
+		@Override
+		public CharSequence getPageTitle(int position)
+		{
+			return title[position];
+		}
 
-            return f;
-        }
+		@Override
+		public int getItemPosition(Object object)
+		{
+			return POSITION_NONE;
+		}
+	}
 
-        /**
-         * When creating, retrieve this instance's number from its arguments.
-         */
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            mNum = getArguments() != null ? getArguments().getInt("num") : 1;
-            name = getArguments().getString("name");
-        }
+	public static class SlideScreenFragment extends Fragment
+	{
+		int mNum;
+		String name;
 
-        /**
-         * The Fragment's UI
-         */
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            ViewGroup v = (ViewGroup) inflater.inflate(R.layout.fragment_pager_list, container, false);
-            
-            LinearLayout layout = (LinearLayout) v.findViewById(R.id.container);
-            switch(mNum){
-            case 0: //Overview
-            	View view0 = inflater.inflate(R.layout.fragment_champion_overview, null);
-            	layout.addView(view0);
-            	new makeView(name, view0, mNum).execute();
-            	break;
-            case 1: //Stats
-            	View view1 = inflater.inflate(R.layout.fragment_champion_stats, null);
-            	layout.addView(view1);
-            	new makeView(name, view1, mNum).execute();
-            	break;
-            case 2: //Lore
-            	View view2 = inflater.inflate(R.layout.fragment_champion_lore, null);
-            	layout.addView(view2);
-            	new makeView(name, view2, mNum).execute();
-            	break;
-            case 3: //Counters
-            	View view4 = inflater.inflate(R.layout.fragment_champion_counters, null);
-            	layout.addView(view4);
-            	new makeView(name, view4, mNum).execute();
-            	break;
-            default:
-            	break;
-            }
-            return v;
-        }
+		/**
+		 * Create a new instance, providing "num"
+		 * as an argument.
+		 */
+		static SlideScreenFragment newInstance(String name, int num)
+		{
+			SlideScreenFragment f = new SlideScreenFragment();
 
-    }
-    
-    
+			// Supply num input as an argument.
+			Bundle args = new Bundle();
+			args.putInt("num", num);
+			args.putString("name", name);
+			f.setArguments(args);
+
+			return f;
+		}
+
+		/**
+		 * When creating, retrieve this instance's number from its arguments.
+		 */
+		@Override
+		public void onCreate(Bundle savedInstanceState)
+		{
+			super.onCreate(savedInstanceState);
+			mNum = getArguments() != null ? getArguments().getInt("num") : 1;
+			name = getArguments().getString("name");
+		}
+
+		/**
+		 * The Fragment's UI
+		 */
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState)
+		{
+			ViewGroup v = (ViewGroup) inflater.inflate(R.layout.fragment_pager_list, container, false);
+
+			LinearLayout layout = (LinearLayout) v.findViewById(R.id.container);
+			switch (mNum)
+			{
+			case 0: // Overview
+				View view0 = inflater.inflate(R.layout.fragment_champion_overview, null);
+				layout.addView(view0);
+				new makeView(name, this.getActivity(), view0, mNum).execute();
+				break;
+			case 1: // Stats
+				View view1 = inflater.inflate(R.layout.fragment_champion_stats, null);
+				layout.addView(view1);
+				new makeView(name, this.getActivity(), view1, mNum).execute();
+				break;
+			case 2: // Lore
+				View view2 = inflater.inflate(R.layout.fragment_champion_lore, null);
+				layout.addView(view2);
+				new makeView(name, this.getActivity(), view2, mNum).execute();
+				break;
+			case 3: // Counters
+				View view4 = inflater.inflate(R.layout.fragment_champion_counters, null);
+				layout.addView(view4);
+				new makeView(name, this.getActivity(), view4, mNum).execute();
+				break;
+			default:
+				break;
+			}
+			return v;
+		}
+
+	}
+
 	private static class makeView extends AsyncTask<String, Void, Champion>
 	{
 		private final String name;
+		private final Context context;
 		private final View view;
 		private final int n;
-		
-		public makeView(String name, View view, int mNum){
+
+		public makeView(String name, Context context, View view, int mNum)
+		{
 			this.name = name;
+			this.context = context;
 			this.view = view;
 			n = mNum;
 		}
+
 		@Override
 		protected Champion doInBackground(String... args)
 		{
@@ -216,9 +221,10 @@ public class ChampionViewFragment extends Fragment
 
 		@Override
 		protected void onPostExecute(Champion champ)
-		{			
-			switch(n){
-			case 0: //Overview
+		{
+			switch (n)
+			{
+			case 0: // Overview
 				TextView info = (TextView) view.findViewById(R.id.info);
 				info.setText("Difficulty: " + champ.getInfo().getDifficulty() + "/10\n"
 						+ "Attack: " + champ.getInfo().getAttack() + "/10\n"
@@ -226,77 +232,87 @@ public class ChampionViewFragment extends Fragment
 						+ "Defense: " + champ.getInfo().getDefense() + "/10");
 				TextView resource = (TextView) view.findViewById(R.id.resource);
 				resource.setText(champ.getPartype());
-				
-				//Champion abilities
+
+				// Champion abilities
 				LinearLayout abilities = (LinearLayout) view.findViewById(R.id.abilities);
 
-				for(int i=0; i<5; i++){
-					LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				for (int i = 0; i < 5; i++)
+				{
+					LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(
+							Context.LAYOUT_INFLATER_SERVICE);
 					ImageButton button = (ImageButton) inflater.inflate(R.layout.free_champion_image_button, null);
 					String n = champ.getName().replaceAll("[^a-zA-Z0-9]+", "").toLowerCase() + i;
 					Drawable btnImg = view.getResources().getDrawable(view.getResources().getIdentifier(
 							n, "drawable", view.getContext().getPackageName()));
 					button.setImageDrawable(btnImg);
-					LayoutParams params = new LayoutParams((int)(btnImg.getIntrinsicWidth() * 1.2), (int)(btnImg.getIntrinsicHeight() * 1.2));
+					LayoutParams params = new LayoutParams((int) (btnImg.getIntrinsicWidth() * 1.2),
+							(int) (btnImg.getIntrinsicHeight() * 1.2));
 					button.setLayoutParams(params);
-					button.setOnClickListener(new View.OnClickListener()
+					if (i == 0)
 					{
-						@Override
-						public void onClick(View v)
-						{
-							//TODO: Implement
-						}
-					});
+						// button.setOnClickListener(new ChampionSpellOnClickListener(champ.getSpells().get(i)));
+					}
+					else
+					{
+						button.setOnClickListener(new ChampionSpellOnClickListener(champ.getSpells().get(i - 1)));
+					}
 					abilities.addView(button);
 				}
 				break;
-			case 1: //Stats
+			case 1: // Stats
 				TextView health = (TextView) view.findViewById(R.id.health);
 				TextView resourcetype = (TextView) view.findViewById(R.id.resourcetype);
 				TextView resource1 = (TextView) view.findViewById(R.id.resource);
 				TextView attackdamage = (TextView) view.findViewById(R.id.attackdamage);
 				TextView attackspeed = (TextView) view.findViewById(R.id.attackspeed);
 				TextView attackrange = (TextView) view.findViewById(R.id.attackrange);
-				
+
 				TextView healthregen = (TextView) view.findViewById(R.id.healthregen);
 				TextView resourcetyperegen = (TextView) view.findViewById(R.id.resourcetyperegen);
 				TextView resourceregen = (TextView) view.findViewById(R.id.resourceregen);
 				TextView armor = (TextView) view.findViewById(R.id.armor);
 				TextView magicresist = (TextView) view.findViewById(R.id.magicresist);
 				TextView movementspeed = (TextView) view.findViewById(R.id.movementspeed);
-				
+
 				Stats stats = champ.getStats();
-				
+
 				health.setText((int) stats.getHp() + " (+" + (int) stats.getHpperlevel() + " per level)");
 				resourcetype.setText(champ.getPartype() + ":");
 				resource1.setText((int) stats.getMp() + " (+" + stats.getMpperlevel() + " per level)");
-				attackdamage.setText((int) stats.getAttackdamage() + " (+" + stats.getAttackdamageperlevel() + " per level)");
-				attackspeed.setText(Math.round(625/(1+stats.getAttackspeedoffset()))/1000.0 + " (+" + stats.getAttackspeedperlevel() + "% per level)");
+				attackdamage.setText((int) stats.getAttackdamage() + " (+" + stats.getAttackdamageperlevel()
+						+ " per level)");
+				attackspeed.setText(Math.round(625 / (1 + stats.getAttackspeedoffset())) / 1000.0 + " (+"
+						+ stats.getAttackspeedperlevel() + "% per level)");
 				attackrange.setText("" + (int) stats.getAttackrange());
-				
+
 				healthregen.setText(stats.getHpregen() + " (+" + stats.getHpregenperlevel() + " per level)");
 				resourcetyperegen.setText(champ.getPartype() + " Regen:");
 				resourceregen.setText((int) stats.getMpregen() + " (+" + stats.getMpregenperlevel() + " per level)");
 				armor.setText((int) stats.getArmor() + " (+" + stats.getArmorperlevel() + " per level)");
-				magicresist.setText((int) stats.getSpellblock() + " (+" + stats.getSpellblockperlevel() + " per level)");
+				magicresist
+						.setText((int) stats.getSpellblock() + " (+" + stats.getSpellblockperlevel() + " per level)");
 				movementspeed.setText("" + (int) stats.getMovespeed());
-				
+
 				break;
-			case 2: //Lore
+			case 2: // Lore
 				TextView lore = (TextView) view.findViewById(R.id.lore);
 				lore.setText(APIData.parseOutHtml(champ.getLore()));
 				break;
-			case 3: //Counters
-				//Database
+			case 3: // Counters
+				// Database
 				DBcounters myDbHelper = new DBcounters(view.getContext());
-				try{
+				try
+				{
 					myDbHelper.createDataBase();
-				} catch (IOException ioe){
+				} catch (IOException ioe)
+				{
 					throw new Error("Unable to create database");
 				}
-				try{
+				try
+				{
 					myDbHelper.openDataBase();
-				} catch (SQLException sqle){
+				} catch (SQLException sqle)
+				{
 					throw sqle;
 				}
 
@@ -307,7 +323,7 @@ public class ChampionViewFragment extends Fragment
 				Cursor result = counters.query("counters", foo, "Name=\"" + champ.getName() + "\"",
 						null, null, null, null);
 				result.moveToFirst();
-				//Info
+				// Info
 				ImageView iv0 = (ImageView) view.findViewById(R.id.imageba1);
 				iv0.setImageDrawable(view.getResources().getDrawable(
 						view.getResources().getIdentifier(
@@ -376,7 +392,6 @@ public class ChampionViewFragment extends Fragment
 				tv5.setText(result.getString(result.getColumnIndex("GA3")));
 
 				result.close();
-				
 
 				break;
 			default:
@@ -384,16 +399,41 @@ public class ChampionViewFragment extends Fragment
 			}
 		}
 
+		public class ChampionSpellOnClickListener implements OnClickListener
+		{
+			ChampionSpell spell;
+
+			public ChampionSpellOnClickListener(ChampionSpell spell)
+			{
+				this.spell = spell;
+			}
+
+			@Override
+			public void onClick(View v)
+			{
+				Activity activity = (Activity) context;
+				View layout = Popup.popupChampionSpell(activity, spell);
+
+				PopupWindow popup = new PopupWindow(activity);
+				popup.setContentView(layout);
+				popup.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
+				popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+				popup.setOutsideTouchable(true);
+				popup.setFocusable(true);
+				popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
+			}
+		}
 	}
-	
-    
+
 	private class grabChampion extends AsyncTask<String, Void, Champion>
 	{
 		private final String name;
-		
-		public grabChampion(String name){
-			this.name=name;
+
+		public grabChampion(String name)
+		{
+			this.name = name;
 		}
+
 		@Override
 		protected Champion doInBackground(String... args)
 		{
@@ -404,7 +444,7 @@ public class ChampionViewFragment extends Fragment
 
 		@Override
 		protected void onPostExecute(Champion champ)
-		{			
+		{
 			TextView nameText = (TextView) getView().findViewById(R.id.name);
 			nameText.setText(name + "\n" + champ.getTitle());
 		}
