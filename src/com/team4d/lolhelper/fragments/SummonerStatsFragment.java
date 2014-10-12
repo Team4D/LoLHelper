@@ -192,6 +192,69 @@ public class SummonerStatsFragment extends Fragment
 				soloHead.setText("Ranked Solo");
 				soloHead.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(soloHead);
+				
+				TextView soloWins = new TextView(mContext);
+				soloWins.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloWins.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloWins.setGravity(Gravity.CENTER);
+				soloWins.setTextSize(20);
+				soloWins.setText("Wins: " + summary.get(i).getWins());
+				soloWins.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloWins);
+				
+				TextView soloLosses = new TextView(mContext);
+				soloLosses.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloLosses.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloLosses.setGravity(Gravity.CENTER);
+				soloLosses.setTextSize(20);
+				soloLosses.setText("Losses: " + summary.get(i).getLosses());
+				soloLosses.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloLosses);
+				
+				TextView soloKills = new TextView(mContext);
+				soloKills.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloKills.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloKills.setGravity(Gravity.CENTER);
+				soloKills.setTextSize(20);
+				soloKills.setText("Kills: " + summary.get(i).getAggregatedStats().getTotalChampionKills());
+				soloKills.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloKills);
+				
+				TextView soloAssists = new TextView(mContext);
+				soloAssists.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloAssists.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloAssists.setGravity(Gravity.CENTER);
+				soloAssists.setTextSize(20);
+				soloAssists.setText("Assists: " + summary.get(i).getAggregatedStats().getTotalAssists());
+				soloAssists.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloAssists);
+				
+				TextView soloMinions = new TextView(mContext);
+				soloMinions.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloMinions.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloMinions.setGravity(Gravity.CENTER);
+				soloMinions.setTextSize(20);
+				soloMinions.setText("Minion Kills: " + summary.get(i).getAggregatedStats().getTotalMinionKills());
+				soloMinions.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloMinions);
+				
+				TextView soloNeutrals = new TextView(mContext);
+				soloNeutrals.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloNeutrals.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloNeutrals.setGravity(Gravity.CENTER);
+				soloNeutrals.setTextSize(20);
+				soloNeutrals.setText("Neutral Monster Kills: " + summary.get(i).getAggregatedStats().getTotalNeutralMinionsKilled());
+				soloNeutrals.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloNeutrals);
+				
+				TextView soloTurrets = new TextView(mContext);
+				soloTurrets.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloTurrets.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloTurrets.setGravity(Gravity.CENTER);
+				soloTurrets.setTextSize(20);
+				soloTurrets.setText("Turret Kills: " + summary.get(i).getAggregatedStats().getTotalTurretsKilled());
+				soloTurrets.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloTurrets);
 			}
 
 			/**
@@ -208,6 +271,60 @@ public class SummonerStatsFragment extends Fragment
 				normalHead.setText("Normal");
 				normalHead.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(normalHead);
+				
+				TextView soloWins = new TextView(mContext);
+				soloWins.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloWins.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloWins.setGravity(Gravity.CENTER);
+				soloWins.setTextSize(20);
+				soloWins.setText("Wins: " + summary.get(i).getWins());
+				soloWins.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloWins);
+				
+				TextView soloKills = new TextView(mContext);
+				soloKills.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloKills.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloKills.setGravity(Gravity.CENTER);
+				soloKills.setTextSize(20);
+				soloKills.setText("Kills: " + summary.get(i).getAggregatedStats().getTotalChampionKills());
+				soloKills.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloKills);
+				
+				TextView soloAssists = new TextView(mContext);
+				soloAssists.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloAssists.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloAssists.setGravity(Gravity.CENTER);
+				soloAssists.setTextSize(20);
+				soloAssists.setText("Assists: " + summary.get(i).getAggregatedStats().getTotalAssists());
+				soloAssists.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloAssists);
+				
+				TextView soloMinions = new TextView(mContext);
+				soloMinions.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloMinions.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloMinions.setGravity(Gravity.CENTER);
+				soloMinions.setTextSize(20);
+				soloMinions.setText("Minion Kills: " + summary.get(i).getAggregatedStats().getTotalMinionKills());
+				soloMinions.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloMinions);
+				
+				TextView soloNeutrals = new TextView(mContext);
+				soloNeutrals.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloNeutrals.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloNeutrals.setGravity(Gravity.CENTER);
+				soloNeutrals.setTextSize(20);
+				soloNeutrals.setText("Neutral Monster Kills: " + summary.get(i).getAggregatedStats().getTotalNeutralMinionsKilled());
+				soloNeutrals.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloNeutrals);
+				
+				TextView soloTurrets = new TextView(mContext);
+				soloTurrets.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloTurrets.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloTurrets.setGravity(Gravity.CENTER);
+				soloTurrets.setTextSize(20);
+				soloTurrets.setText("Turret Kills: " + summary.get(i).getAggregatedStats().getTotalTurretsKilled());
+				soloTurrets.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloTurrets);
 			}
 
 			/**
@@ -224,6 +341,69 @@ public class SummonerStatsFragment extends Fragment
 				ranked5Head.setText("Ranked 5x5");
 				ranked5Head.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(ranked5Head);
+				
+				TextView soloWins = new TextView(mContext);
+				soloWins.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloWins.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloWins.setGravity(Gravity.CENTER);
+				soloWins.setTextSize(20);
+				soloWins.setText("Wins: " + summary.get(i).getWins());
+				soloWins.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloWins);
+				
+				TextView soloLosses = new TextView(mContext);
+				soloLosses.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloLosses.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloLosses.setGravity(Gravity.CENTER);
+				soloLosses.setTextSize(20);
+				soloLosses.setText("Losses: " + summary.get(i).getLosses());
+				soloLosses.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloLosses);
+				
+				TextView soloKills = new TextView(mContext);
+				soloKills.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloKills.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloKills.setGravity(Gravity.CENTER);
+				soloKills.setTextSize(20);
+				soloKills.setText("Kills: " + summary.get(i).getAggregatedStats().getTotalChampionKills());
+				soloKills.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloKills);
+				
+				TextView soloAssists = new TextView(mContext);
+				soloAssists.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloAssists.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloAssists.setGravity(Gravity.CENTER);
+				soloAssists.setTextSize(20);
+				soloAssists.setText("Assists: " + summary.get(i).getAggregatedStats().getTotalAssists());
+				soloAssists.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloAssists);
+				
+				TextView soloMinions = new TextView(mContext);
+				soloMinions.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloMinions.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloMinions.setGravity(Gravity.CENTER);
+				soloMinions.setTextSize(20);
+				soloMinions.setText("Minion Kills: " + summary.get(i).getAggregatedStats().getTotalMinionKills());
+				soloMinions.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloMinions);
+				
+				TextView soloNeutrals = new TextView(mContext);
+				soloNeutrals.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloNeutrals.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloNeutrals.setGravity(Gravity.CENTER);
+				soloNeutrals.setTextSize(20);
+				soloNeutrals.setText("Neutral Monster Kills: " + summary.get(i).getAggregatedStats().getTotalNeutralMinionsKilled());
+				soloNeutrals.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloNeutrals);
+				
+				TextView soloTurrets = new TextView(mContext);
+				soloTurrets.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloTurrets.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloTurrets.setGravity(Gravity.CENTER);
+				soloTurrets.setTextSize(20);
+				soloTurrets.setText("Turret Kills: " + summary.get(i).getAggregatedStats().getTotalTurretsKilled());
+				soloTurrets.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloTurrets);
 			}
 
 			/**
@@ -240,6 +420,69 @@ public class SummonerStatsFragment extends Fragment
 				ranked3Head.setText("Ranked 3x3");
 				ranked3Head.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(ranked3Head);
+				
+				TextView soloWins = new TextView(mContext);
+				soloWins.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloWins.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloWins.setGravity(Gravity.CENTER);
+				soloWins.setTextSize(20);
+				soloWins.setText("Wins: " + summary.get(i).getWins());
+				soloWins.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloWins);
+				
+				TextView soloLosses = new TextView(mContext);
+				soloLosses.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloLosses.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloLosses.setGravity(Gravity.CENTER);
+				soloLosses.setTextSize(20);
+				soloLosses.setText("Losses: " + summary.get(i).getLosses());
+				soloLosses.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloLosses);
+				
+				TextView soloKills = new TextView(mContext);
+				soloKills.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloKills.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloKills.setGravity(Gravity.CENTER);
+				soloKills.setTextSize(20);
+				soloKills.setText("Kills: " + summary.get(i).getAggregatedStats().getTotalChampionKills());
+				soloKills.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloKills);
+				
+				TextView soloAssists = new TextView(mContext);
+				soloAssists.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloAssists.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloAssists.setGravity(Gravity.CENTER);
+				soloAssists.setTextSize(20);
+				soloAssists.setText("Assists: " + summary.get(i).getAggregatedStats().getTotalAssists());
+				soloAssists.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloAssists);
+				
+				TextView soloMinions = new TextView(mContext);
+				soloMinions.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloMinions.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloMinions.setGravity(Gravity.CENTER);
+				soloMinions.setTextSize(20);
+				soloMinions.setText("Minion Kills: " + summary.get(i).getAggregatedStats().getTotalMinionKills());
+				soloMinions.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloMinions);
+				
+				TextView soloNeutrals = new TextView(mContext);
+				soloNeutrals.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloNeutrals.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloNeutrals.setGravity(Gravity.CENTER);
+				soloNeutrals.setTextSize(20);
+				soloNeutrals.setText("Neutral Monster Kills: " + summary.get(i).getAggregatedStats().getTotalNeutralMinionsKilled());
+				soloNeutrals.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloNeutrals);
+				
+				TextView soloTurrets = new TextView(mContext);
+				soloTurrets.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloTurrets.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloTurrets.setGravity(Gravity.CENTER);
+				soloTurrets.setTextSize(20);
+				soloTurrets.setText("Turret Kills: " + summary.get(i).getAggregatedStats().getTotalTurretsKilled());
+				soloTurrets.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloTurrets);
 			}
 
 			/**
@@ -256,6 +499,60 @@ public class SummonerStatsFragment extends Fragment
 				tbHead.setText("Team Builder");
 				tbHead.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(tbHead);
+				
+				TextView soloWins = new TextView(mContext);
+				soloWins.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloWins.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloWins.setGravity(Gravity.CENTER);
+				soloWins.setTextSize(20);
+				soloWins.setText("Wins: " + summary.get(i).getWins());
+				soloWins.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloWins);
+				
+				TextView soloKills = new TextView(mContext);
+				soloKills.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloKills.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloKills.setGravity(Gravity.CENTER);
+				soloKills.setTextSize(20);
+				soloKills.setText("Kills: " + summary.get(i).getAggregatedStats().getTotalChampionKills());
+				soloKills.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloKills);
+				
+				TextView soloAssists = new TextView(mContext);
+				soloAssists.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloAssists.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloAssists.setGravity(Gravity.CENTER);
+				soloAssists.setTextSize(20);
+				soloAssists.setText("Assists: " + summary.get(i).getAggregatedStats().getTotalAssists());
+				soloAssists.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloAssists);
+				
+				TextView soloMinions = new TextView(mContext);
+				soloMinions.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloMinions.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloMinions.setGravity(Gravity.CENTER);
+				soloMinions.setTextSize(20);
+				soloMinions.setText("Minion Kills: " + summary.get(i).getAggregatedStats().getTotalMinionKills());
+				soloMinions.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloMinions);
+				
+				TextView soloNeutrals = new TextView(mContext);
+				soloNeutrals.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloNeutrals.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloNeutrals.setGravity(Gravity.CENTER);
+				soloNeutrals.setTextSize(20);
+				soloNeutrals.setText("Neutral Monster Kills: " + summary.get(i).getAggregatedStats().getTotalNeutralMinionsKilled());
+				soloNeutrals.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloNeutrals);
+				
+				TextView soloTurrets = new TextView(mContext);
+				soloTurrets.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloTurrets.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloTurrets.setGravity(Gravity.CENTER);
+				soloTurrets.setTextSize(20);
+				soloTurrets.setText("Turret Kills: " + summary.get(i).getAggregatedStats().getTotalTurretsKilled());
+				soloTurrets.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloTurrets);
 			}
 
 			/**
@@ -272,6 +569,42 @@ public class SummonerStatsFragment extends Fragment
 				aramHead.setText("ARAM");
 				aramHead.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(aramHead);
+				
+				TextView soloWins = new TextView(mContext);
+				soloWins.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloWins.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloWins.setGravity(Gravity.CENTER);
+				soloWins.setTextSize(20);
+				soloWins.setText("Wins: " + summary.get(i).getWins());
+				soloWins.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloWins);
+				
+				TextView soloKills = new TextView(mContext);
+				soloKills.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloKills.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloKills.setGravity(Gravity.CENTER);
+				soloKills.setTextSize(20);
+				soloKills.setText("Kills: " + summary.get(i).getAggregatedStats().getTotalChampionKills());
+				soloKills.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloKills);
+				
+				TextView soloAssists = new TextView(mContext);
+				soloAssists.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloAssists.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloAssists.setGravity(Gravity.CENTER);
+				soloAssists.setTextSize(20);
+				soloAssists.setText("Assists: " + summary.get(i).getAggregatedStats().getTotalAssists());
+				soloAssists.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloAssists);
+				
+				TextView soloTurrets = new TextView(mContext);
+				soloTurrets.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloTurrets.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloTurrets.setGravity(Gravity.CENTER);
+				soloTurrets.setTextSize(20);
+				soloTurrets.setText("Turret Kills: " + summary.get(i).getAggregatedStats().getTotalTurretsKilled());
+				soloTurrets.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloTurrets);
 			}
 
 			/**
@@ -288,6 +621,60 @@ public class SummonerStatsFragment extends Fragment
 				coopHead.setText("Co-op vs AI");
 				coopHead.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				statsLayout.addView(coopHead);
+				
+				TextView soloWins = new TextView(mContext);
+				soloWins.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloWins.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloWins.setGravity(Gravity.CENTER);
+				soloWins.setTextSize(20);
+				soloWins.setText("Wins: " + summary.get(i).getWins());
+				soloWins.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloWins);
+
+				TextView soloKills = new TextView(mContext);
+				soloKills.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloKills.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloKills.setGravity(Gravity.CENTER);
+				soloKills.setTextSize(20);
+				soloKills.setText("Kills: " + summary.get(i).getAggregatedStats().getTotalChampionKills());
+				soloKills.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloKills);
+				
+				TextView soloAssists = new TextView(mContext);
+				soloAssists.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloAssists.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloAssists.setGravity(Gravity.CENTER);
+				soloAssists.setTextSize(20);
+				soloAssists.setText("Assists: " + summary.get(i).getAggregatedStats().getTotalAssists());
+				soloAssists.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloAssists);
+				
+				TextView soloMinions = new TextView(mContext);
+				soloMinions.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloMinions.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloMinions.setGravity(Gravity.CENTER);
+				soloMinions.setTextSize(20);
+				soloMinions.setText("Minion Kills: " + summary.get(i).getAggregatedStats().getTotalMinionKills());
+				soloMinions.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloMinions);
+				
+				TextView soloNeutrals = new TextView(mContext);
+				soloNeutrals.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloNeutrals.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloNeutrals.setGravity(Gravity.CENTER);
+				soloNeutrals.setTextSize(20);
+				soloNeutrals.setText("Neutral Monster Kills: " + summary.get(i).getAggregatedStats().getTotalNeutralMinionsKilled());
+				soloNeutrals.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloNeutrals);
+				
+				TextView soloTurrets = new TextView(mContext);
+				soloTurrets.setBackgroundColor(Color.parseColor("#CC151515"));
+				soloTurrets.setTextColor(Color.parseColor("#FFFFFFFF"));
+				soloTurrets.setGravity(Gravity.CENTER);
+				soloTurrets.setTextSize(20);
+				soloTurrets.setText("Turret Kills: " + summary.get(i).getAggregatedStats().getTotalTurretsKilled());
+				soloTurrets.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				statsLayout.addView(soloTurrets);
 			}
 		}
 	}
