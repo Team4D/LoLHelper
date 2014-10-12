@@ -413,7 +413,7 @@ public class ChampionViewFragment extends Fragment
 				}
 				else
 				{
-					layout = Popup.popupChampionSpell(activity, champ, i - 1);
+					layout = Popup.popupChampionSpell(activity, champ, i);
 				}
 
 				PopupWindow popup = new PopupWindow(activity);

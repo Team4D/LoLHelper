@@ -1,6 +1,7 @@
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawer_layout"
+    android:background="@drawable/bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     
@@ -14,10 +15,24 @@
 	    sothree:shadowHeight="4dp">
 	    
 	    <!-- The main content view -->
-	    <FrameLayout
-	        android:id="@+id/content_frame"
+	    <LinearLayout
+	        android:orientation="vertical"
 	        android:layout_width="match_parent"
-	        android:layout_height="match_parent" />
+	        android:layout_height="match_parent">
+		    <FrameLayout
+		        android:id="@+id/content_frame"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"/>
+	        <LinearLayout
+		        android:orientation="vertical"
+		        android:layout_width="match_parent"
+		        android:layout_height="50dp"
+		        android:layout_weight="0"
+		        android:layout_alignParentBottom="true"
+		        android:gravity="bottom"
+		        android:id="@+id/adcontainer" />
+	    </LinearLayout>  
 	
 	    <!-- The Slide Up Panel Layout (Jungle Timers) -->
        <RelativeLayout

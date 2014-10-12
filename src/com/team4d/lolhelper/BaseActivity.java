@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -21,6 +22,8 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,8 +34,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout.LayoutParams;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.nineoldandroids.view.animation.AnimatorProxy;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -71,7 +77,7 @@ public class BaseActivity extends FragmentActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_base);
 
-		new DatabaseAsyncTask(this).execute();
+		new DatabaseAsyncTask(this, this).execute();
 
 		mTitle = mDrawerTitle = getTitle();
 		mPageTitles = getResources().getStringArray(R.array.page_array);
@@ -174,6 +180,26 @@ public class BaseActivity extends FragmentActivity
 
 		notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 		ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
+		
+		// Create an ad.
+		LinearLayout adlayout = (LinearLayout) findViewById(R.id.adcontainer);
+		adView = new AdView(this);
+		adView.setAdSize(AdSize.SMART_BANNER);
+		adView.setAdUnitId(AD_UNIT_ID);
+
+		// Add the AdView to the view hierarchy. The view will have no size
+		// until the ad is loaded.
+		adlayout.addView(adView);
+
+		// Create an ad request. Check logcat output for the hashed device ID to
+		// get test ads on a physical device.
+		AdRequest adRequest = new AdRequest.Builder()
+				.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+				// .addTestDevice("INSERT_YOUR_HASHED_DEVICE_ID_HERE")
+				.build();
+
+		// Start loading the ad in the background.
+		adView.loadAd(adRequest);
 	}
 
 	private int getActionBarHeight()
@@ -300,35 +326,51 @@ public class BaseActivity extends FragmentActivity
 		case 0:
 			HomeFragment fragment0 = new HomeFragment();
 			// Insert the fragment by replacing any existing fragment
-			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment0).commit();
+			FragmentTransaction transaction0 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment0);
+			transaction0.addToBackStack(null);
+			transaction0.commit();
 			break;
 		case 1:
 			TeamBuilderFragment fragment1 = new TeamBuilderFragment();
-			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment1).commit();
+			FragmentTransaction transaction1 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment1);
+			transaction1.addToBackStack(null);
+			transaction1.commit();
 			break;
 		case 2:
 			BuildRouletteFragment fragment2 = new BuildRouletteFragment();
-			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment2).commit();
+			FragmentTransaction transaction2 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment2);
+			transaction2.addToBackStack(null);
+			transaction2.commit();
 			break;
 		case 3:
 			SummonerStatsFragment fragment3 = new SummonerStatsFragment();
-			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment3).commit();
+			FragmentTransaction transaction3 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment3);
+			transaction3.addToBackStack(null);
+			transaction3.commit();
 			break;
 		case 4:
 			ChampionListFragment fragment4 = new ChampionListFragment();
-			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment4).commit();
+			FragmentTransaction transaction4 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment4);
+			transaction4.addToBackStack(null);
+			transaction4.commit();
 			break;
 		case 5:
 			ItemListFragment fragment5 = new ItemListFragment();
-			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment5).commit();
+			FragmentTransaction transaction5 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment5);
+			transaction5.addToBackStack(null);
+			transaction5.commit();
 			break;
 		case 6:
 			SummonerSpellListFragment fragment6 = new SummonerSpellListFragment();
-			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment6).commit();
+			FragmentTransaction transaction6 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment6);
+			transaction6.addToBackStack(null);
+			transaction6.commit();
 			break;
 		case 7:
 			AboutFragment fragment7 = new AboutFragment();
-			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment7).commit();
+			FragmentTransaction transaction7 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment7);
+			transaction7.addToBackStack(null);
+			transaction7.commit();
 			break;
 		default:
 			Fragment fragment = new Fragment();
@@ -375,15 +417,32 @@ public class BaseActivity extends FragmentActivity
 	private class DatabaseAsyncTask extends AsyncTask<Void, String, Void>
 	{
 		private final Context mContext;
+		private final Activity activity;
+		private final PopupWindow popup;
 
-		public DatabaseAsyncTask(Context c)
+		public DatabaseAsyncTask(Context c, Activity a)
 		{
 			mContext = c;
+			activity = a;
+			popup = new PopupWindow(activity);
 		}
 
 		@Override
 		protected void onPreExecute()
 		{
+			LinearLayout view = (LinearLayout) activity.findViewById(R.id.loadingpopup);
+			LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			View layout = inflater.inflate(R.layout.fragment_loading_popup, view);
+
+
+			PopupWindow popup = new PopupWindow(activity);
+/*			popup.setContentView(layout);
+			popup.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
+			popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+			popup.setOutsideTouchable(true);
+			popup.setFocusable(true);
+			popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
+			*/
 		}
 
 		@Override
@@ -402,6 +461,8 @@ public class BaseActivity extends FragmentActivity
 		@Override
 		protected void onPostExecute(Void empty)
 		{
+			popup.dismiss();
+			
 			// Create a new fragment and specify the planet to show based on
 			// position
 			HomeFragment fragment = new HomeFragment();

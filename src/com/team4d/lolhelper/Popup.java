@@ -101,7 +101,7 @@ public class Popup
 		TextView rangeText = (TextView) layout.findViewById(R.id.rangeDis);
 
 		// Setting Text for TextViews
-		ChampionSpell spell = champion.getSpells().get(id);
+		ChampionSpell spell = champion.getSpells().get(id-1);
 		nameText.setText(spell.getName());
 		effectText.setText("Effect: \n" + spell.getDescription());
 		String cd = "Cooldown: ";
