@@ -3,6 +3,7 @@ package com.team4d.lolhelper.fragments;
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -147,12 +148,12 @@ public class TeamBuilderFragment extends Fragment {
 						}
 						
 						TableRow.LayoutParams tableLayoutParams = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
+						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20 px right-margin
 
 						// New Cell
 						LinearLayout cell = new LinearLayout(v.getContext());
 						cell.setBackgroundColor(Color.TRANSPARENT);
-						cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
+						cell.setLayoutParams(tableLayoutParams);	// 20 px border on the right for the cell
 						cell.addView(newButton);
 						
 						scroll1.addView(cell);
@@ -190,12 +191,12 @@ public class TeamBuilderFragment extends Fragment {
 						}
 						
 						TableRow.LayoutParams tableLayoutParams = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
+						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20 px right-margin
 
 						// New Cell
 						LinearLayout cell = new LinearLayout(v.getContext());
 						cell.setBackgroundColor(Color.TRANSPARENT);
-						cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
+						cell.setLayoutParams(tableLayoutParams);	// 20 px border on the right for the cell
 						cell.addView(newButton);
 						
 						scroll2.addView(cell);
@@ -233,12 +234,12 @@ public class TeamBuilderFragment extends Fragment {
 						}
 						
 						TableRow.LayoutParams tableLayoutParams = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
+						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20 px right-margin
 
 						// New Cell
 						LinearLayout cell = new LinearLayout(v.getContext());
 						cell.setBackgroundColor(Color.TRANSPARENT);
-						cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
+						cell.setLayoutParams(tableLayoutParams);	// 20 px border on the right for the cell
 						cell.addView(newButton);
 						
 						scroll3.addView(cell);
@@ -276,12 +277,12 @@ public class TeamBuilderFragment extends Fragment {
 						}
 						
 						TableRow.LayoutParams tableLayoutParams = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
+						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20 px right-margin
 
 						// New Cell
 						LinearLayout cell = new LinearLayout(v.getContext());
 						cell.setBackgroundColor(Color.TRANSPARENT);
-						cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
+						cell.setLayoutParams(tableLayoutParams);	// 20 px border on the right for the cell
 						cell.addView(newButton);
 						
 						scroll4.addView(cell);
@@ -319,12 +320,12 @@ public class TeamBuilderFragment extends Fragment {
 						}
 						
 						TableRow.LayoutParams tableLayoutParams = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
+						tableLayoutParams.setMargins(0, 0, 20, 0);	// 20 px right-margin
 
 						// New Cell
 						LinearLayout cell = new LinearLayout(v.getContext());
 						cell.setBackgroundColor(Color.TRANSPARENT);
-						cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
+						cell.setLayoutParams(tableLayoutParams);	// 20 px border on the right for the cell
 						cell.addView(newButton);
 						
 						scroll5.addView(cell);
@@ -358,27 +359,12 @@ public class TeamBuilderFragment extends Fragment {
 						TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
 				tableRowParams.setMargins(3, 3, 2, 10);
 				
-				// Calculate the screen diagonal in inches to identify it's a tablet or a phone.
-				DisplayMetrics dm = new DisplayMetrics();
-				((Activity)(v.getContext())).getWindowManager().getDefaultDisplay().getMetrics(dm);
-				int width=dm.widthPixels;
-				int height=dm.heightPixels;
-				int dens=dm.densityDpi;
-				double wi=(double)width/(double)dens;
-				double hi=(double)height/(double)dens;
-				double x = Math.pow(wi,2);
-				double y = Math.pow(hi,2);
-				double screenInches = Math.sqrt(x+y);
-				
 				// Set the max num of buttons in a row according to the device size.
-				int maxButtonInRow;
-				if (screenInches < 6)
-					maxButtonInRow = 5;		// A phone is less than 6 inches.
-				else if (screenInches < 9)
-					maxButtonInRow = 8;		// Small tablets are considered between 6 to 9 inches.
-				else
-					maxButtonInRow = 11;		// For big tablets (larger than 9 inches).
-				
+				DisplayMetrics dm = v.getContext().getResources().getDisplayMetrics();
+				float dpScreenWidth = dm.widthPixels / dm.density;
+				float dpBorderWidth = 20 / (dm.densityDpi / 160);	// dp = px / (dpi / 160)
+				int maxButtonInRow = (int) (dpScreenWidth / (60 + dpBorderWidth));	// 60 dp is button width, 20 px is border width.
+		
 				// Fill the rows with buttons
 				int buttonInRow = maxButtonInRow;
 				TableRow currentRow = null;
@@ -406,12 +392,12 @@ public class TeamBuilderFragment extends Fragment {
 					newButton.setPadding(0, 0, 20, 20);
 					
 					TableRow.LayoutParams tableLayoutParams = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-					tableLayoutParams.setMargins(0, 0, 20, 0);	// 20px right-margin
+					tableLayoutParams.setMargins(0, 0, 20, 0);	// 20 px right-margin
 
 					// New Cell
 					LinearLayout cell = new LinearLayout(v.getContext());
 					cell.setBackgroundColor(Color.TRANSPARENT);
-					cell.setLayoutParams(tableLayoutParams);	// 20px border on the right for the cell
+					cell.setLayoutParams(tableLayoutParams);	// 20 px border on the right for the cell
 					cell.addView(newButton);
 					currentRow.addView(cell);
 					
@@ -580,10 +566,9 @@ public class TeamBuilderFragment extends Fragment {
     
 	// Initialization method for automatically generated imagebuttons.
     private ImageButton initializeButton(ImageButton icon, ChampionAttributes champion){
-    	// First calculate how many pixels is 60 dip, which is the size of all imagebuttons.
+    	// First calculate how many pixels is 60 dp, which is the size of all imagebuttons.
         DisplayMetrics dm = getResources().getDisplayMetrics();
         float dpInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, dm);
-        float dpInPx_w = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, dm);
         
     	String message = champion.getName();
     	icon.setImageResource(getResources().getIdentifier(
@@ -602,7 +587,7 @@ public class TeamBuilderFragment extends Fragment {
     	return icon;
     }
     
-    //Help Popup
+    // Help Popup
     public void popup(){
 		Activity activity = this.getActivity();		
 		View layout = Popup.popupTeamBuilder(activity);
