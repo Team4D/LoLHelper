@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:background="#111"
     android:padding="10dp"
-    android:id="@+id/championspellpopup" >
+    android:id="@+id/championpassivepopup" >
     
     <LinearLayout
         android:id="@+id/header"
@@ -42,28 +42,6 @@
 		android:layout_marginLeft="15dp"
 		android:textColor="#FFFFFF"
         android:text="effect"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/cooldownDis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/effectDis"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:textColor="#FFFFFF"
-        android:text="cooldown"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-    
-    <TextView
-        android:id="@+id/rangeDis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cooldownDis"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:textColor="#FFFFFF"
-        android:text="range"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </LinearLayout>

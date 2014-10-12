@@ -32,7 +32,6 @@ import com.team4d.lolhelper.Popup;
 import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.api.dto.staticdata.champion.Champion;
-import com.team4d.lolhelper.api.dto.staticdata.champion.ChampionSpell;
 import com.team4d.lolhelper.api.dto.staticdata.champion.Stats;
 
 public class ChampionViewFragment extends Fragment
@@ -248,14 +247,7 @@ public class ChampionViewFragment extends Fragment
 					LayoutParams params = new LayoutParams((int) (btnImg.getIntrinsicWidth() * 1.2),
 							(int) (btnImg.getIntrinsicHeight() * 1.2));
 					button.setLayoutParams(params);
-					if (i == 0)
-					{
-						// button.setOnClickListener(new ChampionSpellOnClickListener(champ.getSpells().get(i)));
-					}
-					else
-					{
-						button.setOnClickListener(new ChampionSpellOnClickListener(champ.getSpells().get(i - 1)));
-					}
+					button.setOnClickListener(new ChampionSpellOnClickListener(champ, i));
 					abilities.addView(button);
 				}
 				break;
@@ -401,18 +393,28 @@ public class ChampionViewFragment extends Fragment
 
 		public class ChampionSpellOnClickListener implements OnClickListener
 		{
-			ChampionSpell spell;
+			Champion champ;
+			int i;
 
-			public ChampionSpellOnClickListener(ChampionSpell spell)
+			public ChampionSpellOnClickListener(Champion champ, int i)
 			{
-				this.spell = spell;
+				this.champ = champ;
+				this.i = i;
 			}
 
 			@Override
 			public void onClick(View v)
 			{
 				Activity activity = (Activity) context;
-				View layout = Popup.popupChampionSpell(activity, spell);
+				View layout;
+				if (i == 0)
+				{
+					layout = Popup.popupChampionPassive(activity, champ);
+				}
+				else
+				{
+					layout = Popup.popupChampionSpell(activity, champ, i - 1);
+				}
 
 				PopupWindow popup = new PopupWindow(activity);
 				popup.setContentView(layout);
