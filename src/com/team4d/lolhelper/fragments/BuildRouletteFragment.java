@@ -80,6 +80,10 @@ public class BuildRouletteFragment extends Fragment
 		}
 		
 		protected void onPostExecute(String[] result){
+			if (view == null || view.isShown() == false)
+			{
+				return;
+			}
 			final TextView textView12 = (TextView) view.findViewById(R.id.text_spell_name);
 			textView12.setText(champion.getSpells().get(spellIndex).getName());
 		}
@@ -108,6 +112,10 @@ public class BuildRouletteFragment extends Fragment
 		
 		@Override
 		protected void onPostExecute(String[] result){
+			if (view == null || view.isShown() == false)
+			{
+				return;
+			}
 
 			FrameLayout layout = (FrameLayout) view.findViewById(R.id.container);
 			layout.setBackgroundResource(R.drawable.bg);

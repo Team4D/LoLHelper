@@ -68,7 +68,7 @@ public class SummonerStatsFragment extends Fragment
 						return false;
 					}
 
-					new SummonerStatsAsyncTask(c, activity, summonername).execute(summonername);
+					new SummonerStatsAsyncTask(c, v, activity, summonername).execute(summonername);
 					return true;
 				}
 
@@ -90,7 +90,7 @@ public class SummonerStatsFragment extends Fragment
 				{
 					return;
 				}
-				new SummonerStatsAsyncTask(c, activity, summonername).execute(summonername);
+				new SummonerStatsAsyncTask(c, v, activity, summonername).execute(summonername);
 			};
 
 		});
@@ -114,11 +114,13 @@ public class SummonerStatsFragment extends Fragment
 		Context mContext;
 		Activity activity;
 		String name;
+		View mView;
 
-		public SummonerStatsAsyncTask(Context c, Activity a, String name)
+		public SummonerStatsAsyncTask(Context c, View v, Activity a, String name)
 		{
 			mContext = c;
 			activity = a;
+			mView = v;
 			this.name = name;
 		}
 
@@ -147,6 +149,10 @@ public class SummonerStatsFragment extends Fragment
 		@Override
 		protected void onPostExecute(JsonObject results)
 		{
+			if (mView == null || mView.isShown() == false)
+			{
+				return;
+			}
 			Gson gson = new Gson();
 			Summoner summoner = gson.fromJson(results.get("summoner"), Summoner.class);
 			PlayerStatsSummaryList summonerSummary = gson.fromJson(results.get("summonerSummary"),

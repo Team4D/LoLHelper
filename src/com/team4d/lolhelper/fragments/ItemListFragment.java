@@ -88,6 +88,10 @@ public class ItemListFragment extends Fragment
 		@Override
 		protected void onPostExecute(String[] result)
 		{
+			if (mView == null || mView.isShown() == false)
+			{
+				return;
+			}
 			GridLayout mGridView = (GridLayout) mView.findViewById(R.id.ItemListGrid);
 
 			DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
@@ -173,7 +177,7 @@ public class ItemListFragment extends Fragment
 				"drawable", "com.team4d.lolhelper");
 		icon.setImageResource(resID);
 
-		new grabItem().execute(name);
+		new grabItem(this.getView()).execute(name);
 
 		popup.setOutsideTouchable(true);
 		popup.setFocusable(true);
@@ -182,6 +186,12 @@ public class ItemListFragment extends Fragment
 
 	private class grabItem extends AsyncTask<String, Void, Item>
 	{
+		private final View mView;
+
+		public grabItem(View v)
+		{
+			mView = v;
+		}
 		@Override
 		protected Item doInBackground(String... name)
 		{
@@ -193,6 +203,10 @@ public class ItemListFragment extends Fragment
 		@Override
 		protected void onPostExecute(Item item)
 		{
+			if (mView == null || mView.isShown() == false)
+			{
+				return;
+			}
 			TextView nameText = (TextView) layout.findViewById(R.id.name);
 			TextView mapsText = (TextView) layout.findViewById(R.id.maps);
 			TextView descriptionText = (TextView) layout.findViewById(R.id.description);

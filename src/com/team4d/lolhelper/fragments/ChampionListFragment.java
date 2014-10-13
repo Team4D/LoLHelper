@@ -76,6 +76,10 @@ public class ChampionListFragment extends Fragment
 		@Override
 		protected void onPostExecute(String[] result)
 		{
+			if (mView == null || mView.isShown() == false)
+			{
+				return;
+			}
 			GridLayout mGridView = (GridLayout) mView.findViewById(R.id.ChampionListGrid);
 
 			DisplayMetrics dm = mContext.getResources().getDisplayMetrics();

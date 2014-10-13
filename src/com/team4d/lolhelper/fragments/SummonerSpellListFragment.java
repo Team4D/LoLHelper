@@ -80,6 +80,10 @@ public class SummonerSpellListFragment extends Fragment
 		@Override
 		protected void onPostExecute(String[] result)
 		{
+			if (mView == null || mView.isShown() == false)
+			{
+				return;
+			}
 			GridLayout mGridView = (GridLayout) mView.findViewById(R.id.SummonerSpellListGrid);
 
 			DisplayMetrics dm = mContext.getResources().getDisplayMetrics();

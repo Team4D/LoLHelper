@@ -221,6 +221,10 @@ public class ChampionViewFragment extends Fragment
 		@Override
 		protected void onPostExecute(Champion champ)
 		{
+			if (view == null || view.isShown() == false)
+			{
+				return;
+			}
 			switch (n)
 			{
 			case 0: // Overview
