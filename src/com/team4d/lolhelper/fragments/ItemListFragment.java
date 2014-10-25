@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -168,7 +169,7 @@ public class ItemListFragment extends Fragment
 		LayoutInflater inflater = (LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		layout = inflater.inflate(R.layout.fragment_item_popup, view);
 
-		PopupWindow popup = new PopupWindow(this.getActivity());
+		final PopupWindow popup = new PopupWindow(this.getActivity());
 		popup.setContentView(layout);
 		popup.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
 		popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -180,6 +181,14 @@ public class ItemListFragment extends Fragment
 		new grabItem(this.getView()).execute(name);
 
 		popup.setOutsideTouchable(true);
+		popup.setTouchable(true);
+		popup.setTouchInterceptor(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+            	popup.dismiss();
+                return true;
+            }
+        });
 		popup.setFocusable(true);
 		popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
 	}

@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -124,11 +125,19 @@ public class SummonerSpellListFragment extends Fragment
 		Activity activity = this.getActivity();
 		layout = Popup.popupSummonerSpell(activity, name);
 
-		PopupWindow popup = new PopupWindow(this.getActivity());
+		final PopupWindow popup = new PopupWindow(this.getActivity());
 		popup.setContentView(layout);
 		popup.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
 		popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
 		popup.setOutsideTouchable(true);
+		popup.setTouchable(true);
+		popup.setTouchInterceptor(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+            	popup.dismiss();
+                return true;
+            }
+        });
 		popup.setFocusable(true);
 		popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
 	}

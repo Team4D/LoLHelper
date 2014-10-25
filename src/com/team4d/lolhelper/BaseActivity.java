@@ -59,7 +59,10 @@ public class BaseActivity extends FragmentActivity
 	/** The view to show the ad. */
 	private AdView adView;
 	/* Your ad unit id. Replace with your actual ad unit id. */
-	private static final String AD_UNIT_ID = "ca-app-pub-9973141875464346/2397347111";
+	//Test ads:
+	private static final String AD_UNIT_ID = "ca-app-pub-3940256099942544/6300978111";
+	//Our ads:
+//	private static final String AD_UNIT_ID = "ca-app-pub-9973141875464346/2397347111";
 
 	// Jungle Timer things
 	Button GR, GB, LR, LB, DR, BA;
@@ -184,7 +187,8 @@ public class BaseActivity extends FragmentActivity
 		// Create an ad.
 		LinearLayout adlayout = (LinearLayout) findViewById(R.id.adcontainer);
 		adView = new AdView(this);
-		adView.setAdSize(AdSize.SMART_BANNER);
+		AdSize adSize = new AdSize(AdSize.FULL_WIDTH, AdSize.AUTO_HEIGHT);
+		adView.setAdSize(adSize);
 		adView.setAdUnitId(AD_UNIT_ID);
 
 		// Add the AdView to the view hierarchy. The view will have no size
