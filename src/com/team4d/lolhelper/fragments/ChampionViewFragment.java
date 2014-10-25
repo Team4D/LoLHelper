@@ -17,6 +17,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class ChampionViewFragment extends Fragment
 	View mLayout; // used for popup
 	static String name;
 	static final int NUM_ITEMS = 4;
-	private ViewPager mPager;
+	private ViewPager mPager = null;
 	private PagerAdapter mPagerAdapter;
 
 	@Override
@@ -52,10 +53,9 @@ public class ChampionViewFragment extends Fragment
 	@Override
 	public void onDetach()
 	{
-		System.out.println("Detached");
 		mPager.setAdapter(null);
 	}
-
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
@@ -68,17 +68,25 @@ public class ChampionViewFragment extends Fragment
 	public void onStart()
 	{
 		super.onStart();
-		// ViewPager
-		mPager = (ViewPager) getActivity().findViewById(R.id.pager);
-		mPagerAdapter = new MyAdapter(name, getActivity().getSupportFragmentManager());
-		mPager.setAdapter(mPagerAdapter);
-
-		ImageView icon = (ImageView) getView().findViewById(R.id.icon);
-		int resID = getResources().getIdentifier(name.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
-				"drawable", getActivity().getPackageName());
-		icon.setImageResource(resID);
-		new grabChampion(name).execute();
-
+		if(mPager==null){
+			// ViewPager
+			mPager = (ViewPager) getActivity().findViewById(R.id.pager);
+			mPagerAdapter = new MyAdapter(name, getActivity().getSupportFragmentManager());
+			mPager.setAdapter(mPagerAdapter);
+	
+			ImageView icon = (ImageView) getView().findViewById(R.id.icon);
+			int resID = getResources().getIdentifier(name.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
+					"drawable", getActivity().getPackageName());
+			icon.setImageResource(resID);
+			new grabChampion(name).execute();
+		}
+	}
+	
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+	//	mPager.setAdapter(null);
 	}
 
 	public class MyAdapter extends FragmentStatePagerAdapter
@@ -420,11 +428,19 @@ public class ChampionViewFragment extends Fragment
 					layout = Popup.popupChampionSpell(activity, champ, i);
 				}
 
-				PopupWindow popup = new PopupWindow(activity);
+				final PopupWindow popup = new PopupWindow(activity);
 				popup.setContentView(layout);
 				popup.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
 				popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
 				popup.setOutsideTouchable(true);
+				popup.setTouchable(true);
+				popup.setTouchInterceptor(new View.OnTouchListener() {
+		            @Override
+		            public boolean onTouch(View v, MotionEvent event) {
+		            	popup.dismiss();
+		                return true;
+		            }
+		        });
 				popup.setFocusable(true);
 				popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
 			}

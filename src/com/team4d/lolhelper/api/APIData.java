@@ -377,7 +377,7 @@ public class APIData
 
 	public static String parse(ChampionSpell spell)
 	{
-		String base = spell.getTooltip();
+		String base = spell.getDescription() + "\n\n" + spell.getTooltip();
 		List<String> e = spell.getEffectBurn();
 		List<SpellVars> vars = spell.getVars();
 		// Remove HTML formatting
@@ -412,75 +412,80 @@ public class APIData
 			base = base.replace("{{ f1 }} ", "");
 			base = base.replace("{{ f2 }} ", "");
 			base = base.replace("restores {{ f3 }} Health", "heals 33% of normal amount");
+		} else if (name.equals("Winter's Bite"))
+		{
+			base = base.replace("{{ f1 }} ", "");
 		}
 		// Replace a's and f's
-		n = vars.size();
-		SpellVars v;
-		String addition = "";
-		for (int i = 0; i < n; i++)
-		{
-			v = vars.get(i);
-			String k = v.getKey();
-			String s = v.getLink();
-			// Special cases (THANKS RITO)
-			if (s.equals("@special.BraumWArmor") || s.equals("@special.BraumWMR") || s.equals("@special.jaxrarmor")
-					|| s.equals("@special.jaxrmr"))
+		if(vars!=null){
+			n = vars.size();
+			SpellVars v;
+			String addition = "";
+			for (int i = 0; i < n; i++)
 			{
-				base = base.replace("{{ " + k + " }} ", "");
-			} else if (s.equals("@special.nautilusq"))
-			{
-				base = base.replace("({{ " + k + " }}) ", "");
-			} else if (s.equals("@cooldownchampion") || s.equals("@text") || s.equals("@special.dariusr3")
-					|| s.equals("@cooldownchampion"))
-			{
-				base = base.replace("{{ " + k + " }}", list(v.getCoeff()));
-			} else if (s.equals("@special.viw"))
-			{
-				base = base.replace("{{ " + k + " }}", "1% per " + list(v.getCoeff()) + " bonus Attack Damage");
-			} else if (s.equals("@stacks"))
-			{
-				base = base.replace("{{ " + k + " }}", list(v.getCoeff()) + " per stack");
-			} else if (s.equals("@dynamic.attackdamage"))
-			{
-				if (spell.getName().equals("Savagery"))
+				v = vars.get(i);
+				String k = v.getKey();
+				String s = v.getLink();
+				// Special cases (THANKS RITO)
+				if (s.equals("@special.BraumWArmor") || s.equals("@special.BraumWMR") || s.equals("@special.jaxrarmor")
+						|| s.equals("@special.jaxrmr"))
+				{
+					base = base.replace("{{ " + k + " }} ", "");
+				} else if (s.equals("@special.nautilusq"))
 				{
 					base = base.replace("({{ " + k + " }}) ", "");
+				} else if (s.equals("@cooldownchampion") || s.equals("@text") || s.equals("@special.dariusr3")
+						|| s.equals("@cooldownchampion"))
+				{
+					base = base.replace("{{ " + k + " }}", list(v.getCoeff()));
+				} else if (s.equals("@special.viw"))
+				{
+					base = base.replace("{{ " + k + " }}", "1% per " + list(v.getCoeff()) + " bonus Attack Damage");
+				} else if (s.equals("@stacks"))
+				{
+					base = base.replace("{{ " + k + " }}", list(v.getCoeff()) + " per stack");
+				} else if (s.equals("@dynamic.attackdamage"))
+				{
+					if (spell.getName().equals("Savagery"))
+					{
+						base = base.replace("({{ " + k + " }}) ", "");
+					} else
+					{
+						base = base.replace("{{ " + k + " }}", "(+" + listPercent(v.getCoeff()) + "% Attack Damage)");
+					}
+				} else if (s.equals("@dynamic.abilitypower"))
+				{
+					base = base.replace("{{ " + k + " }}", "(+" + listPercent(v.getCoeff()) + "% Ability Power)");
 				} else
-				{
-					base = base.replace("{{ " + k + " }}", "(+" + listPercent(v.getCoeff()) + "% Attack Damage)");
+				{ // normal cases
+					if (s.equals("spelldamage"))
+					{
+						addition = "% Ability Power";
+					} else if (s.equals("attackdamage"))
+					{
+						addition = "% Attack Damage";
+					} else if (s.equals("bonusattackdamage"))
+					{
+						addition = "% bonus Attack Damage";
+					} else if (s.equals("bonushealth"))
+					{
+						addition = "% bonus Health";
+					} else if (s.equals("bonusspellblock"))
+					{
+						addition = "% bonus Magic Resist";
+					} else if (s.equals("bonusarmor"))
+					{
+						addition = "% bonus Armor";
+					} else if (s.equals("armor"))
+					{
+						addition = "% Armor";
+					} else if (s.equals("mana"))
+					{
+						addition = "% maximum Mana";
+					}
+					base = base.replace("{{ " + k + " }}", listPercent(v.getCoeff()) + addition);
 				}
-			} else if (s.equals("@dynamic.abilitypower"))
-			{
-				base = base.replace("{{ " + k + " }}", "(+" + listPercent(v.getCoeff()) + "% Ability Power)");
-			} else
-			{ // normal cases
-				if (s.equals("spelldamage"))
-				{
-					addition = "% Ability Power";
-				} else if (s.equals("attackdamage"))
-				{
-					addition = "% Attack Damage";
-				} else if (s.equals("bonusattackdamage"))
-				{
-					addition = "% bonus Attack Damage";
-				} else if (s.equals("bonushealth"))
-				{
-					addition = "% bonus Health";
-				} else if (s.equals("bonusspellblock"))
-				{
-					addition = "% bonus Magic Resist";
-				} else if (s.equals("bonusarmor"))
-				{
-					addition = "% bonus Armor";
-				} else if (s.equals("armor"))
-				{
-					addition = "% Armor";
-				} else if (s.equals("mana"))
-				{
-					addition = "% maximum Mana";
-				}
-				base = base.replace("{{ " + k + " }}", listPercent(v.getCoeff()) + addition);
-			}
+			}			
 		}
 		return base;
 	}

@@ -103,8 +103,10 @@ public class Popup
 		// Setting Text for TextViews
 		ChampionSpell spell = champion.getSpells().get(id-1);
 		nameText.setText(spell.getName());
-		effectText.setText("Effect: \n" + spell.getDescription());
-		String cd = "Cooldown: ";
+		effectText.setText("Effect: \n" + APIData.parse(spell));
+		cooldownText.setText("Cooldown: " + spell.getCooldownBurn());
+		rangeText.setText("Range: " + spell.getRangeBurn());
+/*		String cd = "Cooldown: ";
 		List<Float> cds = spell.getCooldown();
 		for (int i = 0; i < cds.size(); i++)
 		{
@@ -139,7 +141,7 @@ public class Popup
 			r += "?";
 		}
 		rangeText.setText(r);
-		return layout;
+*/		return layout;
 	}
 
 	/*
