@@ -40,12 +40,18 @@ public class ItemListFragment extends Fragment
 	View layout; // used for popup
 
 	// For item filter use.
+	private CheckBox SummonersRift, TwistedTreeline, HowlingAbyss, CrystalScar;
 	private CheckBox armor, health, healthRegen, magicResist, tenacity;
 	private CheckBox attackSpeed, armorPenetration, criticalStrike, damage, lifeSteal;
 	private CheckBox abilityPower, cooldownReduction, magicPenetration, mana, manaRegen, spellVamp;
 	private CheckBox boots, otherMovement;
 	private CheckBox consumable, goldIncome, visionAndTrinkets;
-	private CheckBox active, jungleHelper;
+	private CheckBox active, onHitEffects;
+	
+	protected boolean SummonersRiftChecked = false;
+	protected boolean TwistedTreelineChecked = false;
+	protected boolean HowlingAbyssChecked = false;
+	protected boolean CrystalScarChecked = false;
 	
 	protected boolean armorChecked = false;
 	protected boolean healthChecked = false;
@@ -74,10 +80,11 @@ public class ItemListFragment extends Fragment
 	protected boolean visionAndTrinketsChecked = false;
 	
 	protected boolean activeChecked = false;
-	protected boolean jungleHelperChecked = false;
+	protected boolean onHitEffectsChecked = false;
 	
 	protected String[] itemList;
 	protected List<List<String>> allItemTags;
+	protected List<Map<String, Boolean>> allItemMaps;
 	
 	
 	@Override
@@ -102,6 +109,60 @@ public class ItemListFragment extends Fragment
 		if (this.getActivity() == null || this.getView().isShown() == false){
 			return;
 		}
+		
+		// Checkboxes for Maps
+		SummonersRift = (CheckBox) this.getView().findViewById(R.id.SummonersRift);
+		TwistedTreeline = (CheckBox) this.getView().findViewById(R.id.TwistedTreeline);
+		HowlingAbyss = (CheckBox) this.getView().findViewById(R.id.HowlingAbyss);
+		CrystalScar = (CheckBox) this.getView().findViewById(R.id.CrystalScar);
+		
+		SummonersRift.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(SummonersRift.isChecked()){
+                    SummonersRiftChecked = true;
+                }else{
+                	SummonersRiftChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		TwistedTreeline.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(TwistedTreeline.isChecked()){
+                    TwistedTreelineChecked = true;
+                }else{
+                	TwistedTreelineChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		HowlingAbyss.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(HowlingAbyss.isChecked()){
+                    HowlingAbyssChecked = true;
+                }else{
+                	HowlingAbyssChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		CrystalScar.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(CrystalScar.isChecked()){
+                    CrystalScarChecked = true;
+                }else{
+                	CrystalScarChecked = false;
+                }
+                updateItems();
+            }
+        });
 		
 		// Checkboxes for Defense category
 		armor = (CheckBox) this.getView().findViewById(R.id.Armor);
@@ -387,7 +448,7 @@ public class ItemListFragment extends Fragment
         });
 		// Checkboxes for Special category
 		active = (CheckBox) this.getView().findViewById(R.id.Active);
-		jungleHelper = (CheckBox) this.getView().findViewById(R.id.JungleHelper);
+		onHitEffects = (CheckBox) this.getView().findViewById(R.id.OnHitEffects);
 		
 		active.setOnClickListener(new OnClickListener() {
             @Override
@@ -401,13 +462,13 @@ public class ItemListFragment extends Fragment
             }
         });
 		
-		jungleHelper.setOnClickListener(new OnClickListener() {
+		onHitEffects.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(jungleHelper.isChecked()){
-                    jungleHelperChecked = true;
+                if(onHitEffects.isChecked()){
+                    onHitEffectsChecked = true;
                 }else{
-                	jungleHelperChecked = false;
+                	onHitEffectsChecked = false;
                 }
                 updateItems();
             }
@@ -429,14 +490,24 @@ public class ItemListFragment extends Fragment
 		{			
 			itemList = APIData.getItemList();
 			allItemTags = new ArrayList<List<String>>();
-			for (int i = 0; i< itemList.length; i++){
+			allItemMaps = new ArrayList<Map<String, Boolean>>();
+			
+			for (int i = 0; i < itemList.length; i++){
 				try{
 					allItemTags.add(i, APIData.getItemByName(itemList[i]).getTags());
 				}
 				catch (NullPointerException e){
 					allItemTags.add(i, null);
 				}
+				
+				try{
+					allItemMaps.add(i, APIData.getItemByName(itemList[i]).getMaps());
+				}
+				catch (NullPointerException e){
+					allItemMaps.add(i, null);
+				}
 			}
+			
 			return null;
 		}
 
@@ -466,128 +537,105 @@ public class ItemListFragment extends Fragment
 				|| lifeStealChecked || abilityPowerChecked || cooldownReductionChecked || magicPenetrationChecked
 				|| manaChecked || manaRegenChecked || spellVampChecked || bootsChecked || otherMovementChecked
 				|| consumableChecked || goldIncomeChecked || visionAndTrinketsChecked || activeChecked
-				|| jungleHelperChecked){
+				|| onHitEffectsChecked || SummonersRiftChecked || TwistedTreelineChecked || HowlingAbyssChecked
+				|| CrystalScarChecked){
 			for (int i = 0; i < itemList.length; i++){
 				List<String> itemTags = allItemTags.get(i);
-				boolean inserted = false;
-				for (int j = 0; (itemTags != null) && (j < itemTags.size()) && (!inserted); j++){
-					if ((armorChecked) && (itemTags.get(j) == "Armor")){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+				Map<String, Boolean> itemMaps = allItemMaps.get(i);
+				
+				boolean qualified = false;
+				if (itemTags != null){
+					qualified = true;
+					
+					if ((itemMaps != null) && (SummonersRiftChecked) && 
+							((itemMaps.containsKey("1")) || (itemMaps.containsKey("2")))){
+						qualified = false;
 					}
-					else if ((healthChecked) && (itemTags.get(j).equals("Health"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((itemMaps != null) && (TwistedTreelineChecked) &&
+							((itemMaps.containsKey("4")) || (itemMaps.containsKey("10")))){
+						qualified = false;
 					}
-					else if ((healthRegenChecked) && (itemTags.get(j).equals("HealthRegen"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((itemMaps != null) && (HowlingAbyssChecked) && (itemMaps.containsKey("12"))){
+						qualified = false;
 					}
-					else if ((magicResistChecked) && (itemTags.get(j).equals("SpellBlock"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((itemMaps != null) && (CrystalScarChecked) && (itemMaps.containsKey("8"))){
+						qualified = false;
 					}
-					else if ((tenacityChecked) && (itemTags.get(j).equals("Tenacity"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((armorChecked) && !(itemTags.contains("Armor"))){
+						qualified = false;
 					}
-					else if ((attackSpeedChecked) && (itemTags.get(j).equals("AttackSpeed"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((healthChecked) && !(itemTags.contains("Health"))){
+						qualified = false;
 					}
-					else if ((armorPenetrationChecked) && (itemTags.get(j).equals("ArmorPenetration"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((healthRegenChecked) && !(itemTags.contains("HealthRegen"))){
+						qualified = false;
 					}
-					else if ((criticalStrikeChecked) && (itemTags.get(j).equals("CriticalStrike"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((magicResistChecked) && !(itemTags.contains("SpellBlock"))){
+						qualified = false;
 					}
-					else if ((damageChecked) && (itemTags.get(j).equals("Damage"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((tenacityChecked) && !(itemTags.contains("Tenacity"))){
+						qualified = false;
 					}
-					else if ((lifeStealChecked) && (itemTags.get(j).equals("LifeSteal"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((attackSpeedChecked) && !(itemTags.contains("AttackSpeed"))){
+						qualified = false;
 					}
-					else if ((abilityPowerChecked) && (itemTags.get(j).equals("AbilityPower"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((armorPenetrationChecked) && !(itemTags.contains("ArmorPenetration"))){
+						qualified = false;
 					}
-					else if ((cooldownReductionChecked) && (itemTags.get(j).equals("CooldownReduction"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((criticalStrikeChecked) && !(itemTags.contains("CriticalStrike"))){
+						qualified = false;
 					}
-					else if ((magicPenetrationChecked) && (itemTags.get(j).equals("MagicPenetration"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((damageChecked) && !(itemTags.contains("Damage"))){
+						qualified = false;
 					}
-					else if ((manaChecked) && (itemTags.get(j).equals("Mana"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((lifeStealChecked) && !(itemTags.contains("LifeSteal"))){
+						qualified = false;
 					}
-					else if ((manaRegenChecked) && (itemTags.get(j).equals("ManaRegen"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((abilityPowerChecked) && !(itemTags.contains("SpellDamage"))){
+						qualified = false;
 					}
-					else if ((spellVampChecked) && (itemTags.get(j).equals("SpellVamp"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((cooldownReductionChecked) && !(itemTags.contains("CooldownReduction"))){
+						qualified = false;
 					}
-					else if ((bootsChecked) && (itemTags.get(j).equals("Boots"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((magicPenetrationChecked) && !(itemTags.contains("MagicPenetration"))){
+						qualified = false;
 					}
-					else if ((otherMovementChecked) && (itemTags.get(j).equals("NonbootsMovement"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((manaChecked) && !(itemTags.contains("Mana"))){
+						qualified = false;
 					}
-					else if ((consumableChecked) && (itemTags.get(j).equals("Consumable"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((manaRegenChecked) && !(itemTags.contains("ManaRegen"))){
+						qualified = false;
 					}
-					else if ((goldIncomeChecked) && (itemTags.get(j).equals("GoldPer"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((spellVampChecked) && !(itemTags.contains("SpellVamp"))){
+						qualified = false;
+					}
+					else if ((bootsChecked) && !(itemTags.contains("Boots"))){
+						qualified = false;
+					}
+					else if ((otherMovementChecked) && !(itemTags.contains("NonbootsMovement"))){
+						qualified = false;
+					}
+					else if ((consumableChecked) && !(itemTags.contains("Consumable"))){
+						qualified = false;
+					}
+					else if ((goldIncomeChecked) && !(itemTags.contains("GoldPer"))){
+						qualified = false;
 					}
 					else if ((visionAndTrinketsChecked) && 
-							((itemTags.get(j).equals("Vision")) || (itemTags.get(j).equals("Trinket")))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+							!(itemTags.contains("Vision")) && !(itemTags.contains("Trinket"))){
+						qualified = false;
 					}
-					else if ((activeChecked) && (itemTags.get(j).equals("Active"))
-							&& !((itemTags.get(j).equals("Vision")) || (itemTags.get(j).equals("Trinket")))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((activeChecked) && (!(itemTags.contains("Active"))
+							|| (itemTags.contains("Vision")) || (itemTags.contains("Trinket")))){
+						qualified = false;
 					}
-					else if ((jungleHelperChecked) && (itemTags.get(j).equals("OnHit"))){
-						tempResult[itemCount] = itemTags.get(j);
-						itemCount += 1;
-						inserted = true;
+					else if ((onHitEffectsChecked) && !(itemTags.contains("OnHit"))){
+						qualified = false;
 					}
+				}
+				if (qualified){
+					tempResult[itemCount] = itemList[i];
+					itemCount += 1;					
 				}
 			}
 			
@@ -621,7 +669,7 @@ public class ItemListFragment extends Fragment
 
 			ImageButton button = (ImageButton) inflater.inflate(R.layout.free_champion_image_button, null);
 			String n = result[i].replaceAll("[^a-zA-Z0-9]+", "").toLowerCase().replaceAll("showdown", "");
-			// Workaround for now,all different shoes with the same enchantment share the same name. Will need
+			// Workaround for now, all different shoes with the same enchantment share the same name. Will need
 			// careful consideration later.
 			if (n.contains("enchantment"))
 			{

@@ -283,12 +283,12 @@
             android:textColor="#FFFFFF" />
 
         <CheckBox
-            android:id="@+id/JungleHelper"
+            android:id="@+id/OnHitEffects"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textView5"
             android:layout_below="@+id/Active"
-            android:text="Jungle Helper"
+            android:text="On Hit Effects"
             android:textSize="10dp"
             android:textColor="#FFFFFF" />
 
