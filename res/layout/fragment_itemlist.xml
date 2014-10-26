@@ -5,14 +5,391 @@
     android:background="@drawable/bg" >
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true" >
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp" >
+        
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="8dp"
+            android:text="Item Filter"
+            android:textSize="16dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/SummonersRift"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView2"
+            android:layout_below="@+id/textView2"
+            android:text="Summoner&apos;s Rift"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/TwistedTreeline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/SummonersRift"
+            android:layout_below="@+id/SummonersRift"
+            android:text="Twisted Treeline"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/HowlingAbyss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/TwistedTreeline"
+            android:layout_below="@+id/TwistedTreeline"
+            android:text="Howling Abyss"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/CrystalScar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/HowlingAbyss"
+            android:layout_below="@+id/HowlingAbyss"
+            android:text="Crystal Scar"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView2"
+            android:layout_below="@+id/CrystalScar"
+            android:layout_marginTop="10dp"
+            android:textSize="12dp"
+            android:text="Defense:"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/Armor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/CrystalScar"
+            android:layout_below="@+id/textView3"
+            android:text="Armor"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/Health"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/Armor"
+            android:layout_below="@+id/Armor"
+            android:text="Health"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/HealthRegen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/Health"
+            android:layout_below="@+id/Health"
+            android:text="Health Regen"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/MagicResist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/HealthRegen"
+            android:layout_below="@+id/HealthRegen"
+            android:text="MagicResist"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/Tenacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/MagicResist"
+            android:layout_below="@+id/MagicResist"
+            android:text="Tenacity"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView3"
+            android:layout_below="@+id/Tenacity"
+            android:layout_marginTop="10dp"
+            android:text="Attack:"
+            android:textSize="12dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/AttackSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/Tenacity"
+            android:layout_below="@+id/textView4"
+            android:text="Attack Speed"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/ArmorPenetration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/AttackSpeed"
+            android:layout_below="@+id/AttackSpeed"
+            android:text="Armor Penetration"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/CriticalStrike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ArmorPenetration"
+            android:layout_below="@+id/ArmorPenetration"
+            android:text="Critical Strike"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/Damage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/CriticalStrike"
+            android:layout_below="@+id/CriticalStrike"
+            android:text="Damage"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/LifeSteal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/Damage"
+            android:layout_below="@+id/Damage"
+            android:text="Life Steal"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_below="@+id/LifeSteal"
+            android:layout_marginTop="10dp"
+            android:textSize="12dp"
+            android:text="Magic:"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/AbilityPower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/LifeSteal"
+            android:layout_below="@+id/textView5"
+            android:text="Ability Power"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/CooldownReduction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/AbilityPower"
+            android:layout_below="@+id/AbilityPower"
+            android:text="Cooldown Reduction"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/MagicPenetration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/CooldownReduction"
+            android:layout_below="@+id/CooldownReduction"
+            android:text="Magic Penetration"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/Mana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/MagicPenetration"
+            android:layout_below="@+id/MagicPenetration"
+            android:text="Mana"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/ManaRegen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/Mana"
+            android:layout_below="@+id/Mana"
+            android:text="Mana Regen"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/SpellVamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ManaRegen"
+            android:layout_below="@+id/ManaRegen"
+            android:text="Spell Vamp"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView5"
+            android:layout_below="@+id/SpellVamp"
+            android:layout_marginTop="10dp"
+            android:textSize="12dp"
+            android:text="Movement:"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/Boots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView5"
+            android:layout_below="@+id/textView6"
+            android:text="Boots"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/JungleHelper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView5"
+            android:layout_below="@+id/Active"
+            android:text="Jungle Helper"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/Active"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView5"
+            android:layout_below="@+id/textView8"
+            android:text="Active"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/VisionAndTrinkets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView5"
+            android:layout_below="@+id/GoldIncome"
+            android:textSize="10dp"
+            android:text="Vision &amp; Trinkets"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/GoldIncome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView5"
+            android:layout_below="@+id/Consumable"
+            android:text="Gold Income"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/Consumable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView5"
+            android:layout_below="@+id/textView7"
+            android:text="Consumable"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView6"
+            android:layout_below="@+id/OtherMovement"
+            android:layout_marginTop="10dp"
+            android:textSize="12dp"
+            android:text="Misc:"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView7"
+            android:layout_below="@+id/VisionAndTrinkets"
+            android:layout_marginTop="10dp"
+            android:textSize="12dp"
+            android:text="Special:"
+            android:textColor="#FFFFFF" />
+
+        <CheckBox
+            android:id="@+id/OtherMovement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/VisionAndTrinkets"
+            android:layout_below="@+id/Boots"
+            android:text="Other Movement"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_below="@+id/textView1"
+            android:layout_marginTop="10dp"
+            android:textSize="12dp"
+            android:text="Map:"
+            android:textColor="#FFFFFF" />
+
+    </RelativeLayout>
+
+    </ScrollView>
+    
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/scrollView" >
 
         <GridLayout
             android:id="@+id/ItemListGrid"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alignmentMode="alignBounds"
             android:background="#00000000"

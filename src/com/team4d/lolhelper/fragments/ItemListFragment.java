@@ -1,8 +1,11 @@
 package com.team4d.lolhelper.fragments;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
+import android.content.res.Resources.NotFoundException;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,8 +15,10 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -34,6 +39,47 @@ public class ItemListFragment extends Fragment
 {
 	View layout; // used for popup
 
+	// For item filter use.
+	private CheckBox armor, health, healthRegen, magicResist, tenacity;
+	private CheckBox attackSpeed, armorPenetration, criticalStrike, damage, lifeSteal;
+	private CheckBox abilityPower, cooldownReduction, magicPenetration, mana, manaRegen, spellVamp;
+	private CheckBox boots, otherMovement;
+	private CheckBox consumable, goldIncome, visionAndTrinkets;
+	private CheckBox active, jungleHelper;
+	
+	protected boolean armorChecked = false;
+	protected boolean healthChecked = false;
+	protected boolean healthRegenChecked = false;
+	protected boolean magicResistChecked = false;
+	protected boolean tenacityChecked = false;
+	
+	protected boolean attackSpeedChecked = false;
+	protected boolean armorPenetrationChecked = false;
+	protected boolean criticalStrikeChecked = false;
+	protected boolean damageChecked = false;
+	protected boolean lifeStealChecked = false;
+	
+	protected boolean abilityPowerChecked = false;
+	protected boolean cooldownReductionChecked = false;
+	protected boolean magicPenetrationChecked = false;
+	protected boolean manaChecked = false;
+	protected boolean manaRegenChecked = false;
+	protected boolean spellVampChecked = false;
+	
+	protected boolean bootsChecked = false;
+	protected boolean otherMovementChecked = false;
+	
+	protected boolean consumableChecked = false;
+	protected boolean goldIncomeChecked = false;
+	protected boolean visionAndTrinketsChecked = false;
+	
+	protected boolean activeChecked = false;
+	protected boolean jungleHelperChecked = false;
+	
+	protected String[] itemList;
+	protected List<List<String>> allItemTags;
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -52,21 +98,326 @@ public class ItemListFragment extends Fragment
 	public void onActivityCreated(Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-		new ChampionListAsyncTask(this.getActivity(), this.getView()).execute();
+		
+		if (this.getActivity() == null || this.getView().isShown() == false){
+			return;
+		}
+		
+		// Checkboxes for Defense category
+		armor = (CheckBox) this.getView().findViewById(R.id.Armor);
+		health = (CheckBox) this.getView().findViewById(R.id.Health);
+		healthRegen = (CheckBox) this.getView().findViewById(R.id.HealthRegen);
+		magicResist = (CheckBox) this.getView().findViewById(R.id.MagicResist);
+		tenacity = (CheckBox) this.getView().findViewById(R.id.Tenacity);
+		
+		armor.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(armor.isChecked()){
+                    armorChecked = true;
+                }else{
+                	armorChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		health.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(health.isChecked()){
+                    healthChecked = true;
+                }else{
+                	healthChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		healthRegen.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(healthRegen.isChecked()){
+                    healthRegenChecked = true;
+                }else{
+                	healthRegenChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		magicResist.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(magicResist.isChecked()){
+                    magicResistChecked = true;
+                }else{
+                	magicResistChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		tenacity.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(tenacity.isChecked()){
+                    tenacityChecked = true;
+                }else{
+                	tenacityChecked = false;
+                }
+                updateItems();
+            }
+        });
+					
+		// Checkboxes for Attack category
+		attackSpeed = (CheckBox) this.getView().findViewById(R.id.AttackSpeed);
+		armorPenetration = (CheckBox) this.getView().findViewById(R.id.ArmorPenetration);
+		criticalStrike = (CheckBox) this.getView().findViewById(R.id.CriticalStrike);
+		damage = (CheckBox) this.getView().findViewById(R.id.Damage);
+		lifeSteal = (CheckBox) this.getView().findViewById(R.id.LifeSteal);
+		
+		attackSpeed.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(attackSpeed.isChecked()){
+                    attackSpeedChecked = true;
+                }else{
+                	attackSpeedChecked = false;
+                }
+                updateItems();
+            }
+        });
+
+		armorPenetration.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(armorPenetration.isChecked()){
+                    armorPenetrationChecked = true;
+                }else{
+                	armorPenetrationChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		criticalStrike.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(criticalStrike.isChecked()){
+                    criticalStrikeChecked = true;
+                }else{
+                	criticalStrikeChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		damage.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(damage.isChecked()){
+                    damageChecked = true;
+                }else{
+                	damageChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		lifeSteal.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(lifeSteal.isChecked()){
+                    lifeStealChecked = true;
+                }else{
+                	lifeStealChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		// Chenckboxes for Magic category
+		abilityPower = (CheckBox) this.getView().findViewById(R.id.AbilityPower);
+		cooldownReduction = (CheckBox) this.getView().findViewById(R.id.CooldownReduction);
+		magicPenetration = (CheckBox) this.getView().findViewById(R.id.MagicPenetration);
+		mana = (CheckBox) this.getView().findViewById(R.id.Mana);
+		manaRegen = (CheckBox) this.getView().findViewById(R.id.ManaRegen);
+		spellVamp = (CheckBox) this.getView().findViewById(R.id.SpellVamp);
+		
+		abilityPower.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(abilityPower.isChecked()){
+                    abilityPowerChecked = true;
+                }else{
+                	abilityPowerChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		cooldownReduction.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(cooldownReduction.isChecked()){
+                    cooldownReductionChecked = true;
+                }else{
+                	cooldownReductionChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		magicPenetration.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(magicPenetration.isChecked()){
+                    magicPenetrationChecked = true;
+                }else{
+                	magicPenetrationChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		mana.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mana.isChecked()){
+                    manaChecked = true;
+                }else{
+                	manaChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		manaRegen.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(manaRegen.isChecked()){
+                    manaRegenChecked = true;
+                }else{
+                	manaRegenChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		spellVamp.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(spellVamp.isChecked()){
+                    spellVampChecked = true;
+                }else{
+                	spellVampChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		// Checkboxes for Movement category
+		boots = (CheckBox) this.getView().findViewById(R.id.Boots);
+		otherMovement = (CheckBox) this.getView().findViewById(R.id.OtherMovement);
+		
+		boots.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(boots.isChecked()){
+                    bootsChecked = true;
+                }else{
+                	bootsChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		otherMovement.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(otherMovement.isChecked()){
+                    otherMovementChecked = true;
+                }else{
+                	otherMovementChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		// Checkboxes for Misc category
+		consumable = (CheckBox) this.getView().findViewById(R.id.Consumable);
+		goldIncome = (CheckBox) this.getView().findViewById(R.id.GoldIncome);
+		visionAndTrinkets = (CheckBox) this.getView().findViewById(R.id.VisionAndTrinkets);
+		
+		consumable.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(consumable.isChecked()){
+                    consumableChecked = true;
+                }else{
+                	consumableChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		goldIncome.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(goldIncome.isChecked()){
+                    goldIncomeChecked = true;
+                }else{
+                	goldIncomeChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		visionAndTrinkets.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(visionAndTrinkets.isChecked()){
+                    visionAndTrinketsChecked = true;
+                }else{
+                	visionAndTrinketsChecked = false;
+                }
+                updateItems();
+            }
+        });
+		// Checkboxes for Special category
+		active = (CheckBox) this.getView().findViewById(R.id.Active);
+		jungleHelper = (CheckBox) this.getView().findViewById(R.id.JungleHelper);
+		
+		active.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(active.isChecked()){
+                    activeChecked = true;
+                }else{
+                	activeChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		jungleHelper.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(jungleHelper.isChecked()){
+                    jungleHelperChecked = true;
+                }else{
+                	jungleHelperChecked = false;
+                }
+                updateItems();
+            }
+        });
+		
+		new ItemListAsyncTask().execute();
 	}
 
-	private class ChampionListAsyncTask extends AsyncTask<Void, String, String[]>
+	private class ItemListAsyncTask extends AsyncTask<Void, String, String[]>
 	{
-
-		private final Context mContext;
-		private final View mView;
-
-		public ChampionListAsyncTask(Context c, View v)
-		{
-			mContext = c;
-			mView = v;
-		}
-
 		@Override
 		protected void onPreExecute()
 		{
@@ -75,9 +426,18 @@ public class ItemListFragment extends Fragment
 
 		@Override
 		protected String[] doInBackground(Void... params)
-		{
-			String[] items = APIData.getItemList();
-			return items;
+		{			
+			itemList = APIData.getItemList();
+			allItemTags = new ArrayList<List<String>>();
+			for (int i = 0; i< itemList.length; i++){
+				try{
+					allItemTags.add(i, APIData.getItemByName(itemList[i]).getTags());
+				}
+				catch (NullPointerException e){
+					allItemTags.add(i, null);
+				}
+			}
+			return null;
 		}
 
 		@Override
@@ -89,80 +449,228 @@ public class ItemListFragment extends Fragment
 		@Override
 		protected void onPostExecute(String[] result)
 		{
-			if (mView == null || mView.isShown() == false)
-			{
-				return;
+			updateItems();
+		}	
+
+	}
+	
+	// Update the displayed item field
+	public void updateItems(){
+		int itemCount = 0;
+		String[] tempResult = new String[itemList.length];
+		String[] result;
+		
+		// If one or more checkbox has been selected, apply the filter, or all items are displayed.
+		if (armorChecked || healthChecked || healthRegenChecked || magicResistChecked || tenacityChecked
+				|| attackSpeedChecked || armorPenetrationChecked || criticalStrikeChecked || damageChecked
+				|| lifeStealChecked || abilityPowerChecked || cooldownReductionChecked || magicPenetrationChecked
+				|| manaChecked || manaRegenChecked || spellVampChecked || bootsChecked || otherMovementChecked
+				|| consumableChecked || goldIncomeChecked || visionAndTrinketsChecked || activeChecked
+				|| jungleHelperChecked){
+			for (int i = 0; i < itemList.length; i++){
+				List<String> itemTags = allItemTags.get(i);
+				boolean inserted = false;
+				for (int j = 0; (itemTags != null) && (j < itemTags.size()) && (!inserted); j++){
+					if ((armorChecked) && (itemTags.get(j) == "Armor")){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((healthChecked) && (itemTags.get(j).equals("Health"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((healthRegenChecked) && (itemTags.get(j).equals("HealthRegen"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((magicResistChecked) && (itemTags.get(j).equals("SpellBlock"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((tenacityChecked) && (itemTags.get(j).equals("Tenacity"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((attackSpeedChecked) && (itemTags.get(j).equals("AttackSpeed"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((armorPenetrationChecked) && (itemTags.get(j).equals("ArmorPenetration"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((criticalStrikeChecked) && (itemTags.get(j).equals("CriticalStrike"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((damageChecked) && (itemTags.get(j).equals("Damage"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((lifeStealChecked) && (itemTags.get(j).equals("LifeSteal"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((abilityPowerChecked) && (itemTags.get(j).equals("AbilityPower"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((cooldownReductionChecked) && (itemTags.get(j).equals("CooldownReduction"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((magicPenetrationChecked) && (itemTags.get(j).equals("MagicPenetration"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((manaChecked) && (itemTags.get(j).equals("Mana"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((manaRegenChecked) && (itemTags.get(j).equals("ManaRegen"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((spellVampChecked) && (itemTags.get(j).equals("SpellVamp"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((bootsChecked) && (itemTags.get(j).equals("Boots"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((otherMovementChecked) && (itemTags.get(j).equals("NonbootsMovement"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((consumableChecked) && (itemTags.get(j).equals("Consumable"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((goldIncomeChecked) && (itemTags.get(j).equals("GoldPer"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((visionAndTrinketsChecked) && 
+							((itemTags.get(j).equals("Vision")) || (itemTags.get(j).equals("Trinket")))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((activeChecked) && (itemTags.get(j).equals("Active"))
+							&& !((itemTags.get(j).equals("Vision")) || (itemTags.get(j).equals("Trinket")))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+					else if ((jungleHelperChecked) && (itemTags.get(j).equals("OnHit"))){
+						tempResult[itemCount] = itemTags.get(j);
+						itemCount += 1;
+						inserted = true;
+					}
+				}
 			}
-			GridLayout mGridView = (GridLayout) mView.findViewById(R.id.ItemListGrid);
+			
+			result = new String[itemCount];
+			for (int i = 0; i < itemCount; i++){
+				result[i] = tempResult[i];
+			}
+		}
+		else{
+			result = itemList;
+		}
 
-			DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
-			float dpWidth = dm.widthPixels / dm.density;
+		GridLayout mGridView = (GridLayout) this.getView().findViewById(R.id.ItemListGrid);
+		mGridView.removeAllViews();
+		
+		DisplayMetrics dm = getResources().getDisplayMetrics();
+		float dpWidth = dm.widthPixels / dm.density;
 
-			Drawable imgsize = getResources().getDrawable(R.drawable.defaultitemsize);
-			float dpImgWidth = imgsize.getIntrinsicWidth() / dm.density;
+		Drawable imgsize = getResources().getDrawable(R.drawable.defaultitemsize);
+		float dpImgWidth = imgsize.getIntrinsicWidth() / dm.density;
 
-			int columns = (int) (dpWidth / (dpImgWidth + 10));
-			mGridView.setColumnCount(columns);
+		int columns = (int) ((dpWidth - 130) / (dpImgWidth + 10));
+		mGridView.setColumnCount(columns);
 
-			boolean bonetoothonce = false;
-			boolean headkhaonce = false;
+		boolean bonetoothonce = false;
+		boolean headkhaonce = false;
 
-			for (int i = 0; i < result.length; i++)
+		for (int i = 0; i < result.length; i++)
+		{
+			LayoutInflater inflater = (LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+			ImageButton button = (ImageButton) inflater.inflate(R.layout.free_champion_image_button, null);
+			String n = result[i].replaceAll("[^a-zA-Z0-9]+", "").toLowerCase().replaceAll("showdown", "");
+			// Workaround for now,all different shoes with the same enchantment share the same name. Will need
+			// careful consideration later.
+			if (n.contains("enchantment"))
 			{
-				LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-				ImageButton button = (ImageButton) inflater.inflate(R.layout.free_champion_image_button, null);
-				String n = result[i].replaceAll("[^a-zA-Z0-9]+", "").toLowerCase().replaceAll("showdown", "");
-				// Workaround for now,all different shoes with the same enchantment share the same name. Will need
-				// careful consideration later.
-				if (n.contains("enchantment"))
+				continue;
+			}
+			if (n.contains("bonetooth"))
+			{
+				if (bonetoothonce)
 				{
 					continue;
 				}
-				if (n.contains("bonetooth"))
+				else
 				{
-					if (bonetoothonce)
-					{
-						continue;
-					}
-					else
-					{
-						bonetoothonce = true;
-					}
+					bonetoothonce = true;
 				}
-				if (n.contains("headofkhazix"))
-				{
-					if (headkhaonce)
-					{
-						continue;
-					}
-					else
-					{
-						headkhaonce = true;
-					}
-				}
-				// Should update this to grab the image out of the dto object.
-				// Along the same lines, should just add the dragontail directories as resources to our project.
-				Drawable btnImg = getResources().getDrawable(getResources().getIdentifier(
-						n, "drawable", mContext.getPackageName()));
-				button.setImageDrawable(btnImg);
-				LayoutParams params = new LayoutParams((int) (btnImg.getIntrinsicWidth() * 1.2),
-						(int) (btnImg.getIntrinsicHeight() * 1.2));
-				button.setLayoutParams(params);
-				button.setTag(result[i]);
-				button.setOnClickListener(new View.OnClickListener()
-				{
-					@Override
-					public void onClick(View v)
-					{
-						showPopup((String) v.getTag());
-					}
-				});
-				mGridView.addView(button);
 			}
+			if (n.contains("headofkhazix"))
+			{
+				if (headkhaonce)
+				{
+					continue;
+				}
+				else
+				{
+					headkhaonce = true;
+				}
+			}
+			// Should update this to grab the image out of the dto object.
+			// Along the same lines, should just add the dragontail directories as resources to our project.
+			Drawable btnImg = getResources().getDrawable(getResources().getIdentifier(
+					n, "drawable", this.getActivity().getPackageName()));
+			button.setImageDrawable(btnImg);
+			LayoutParams params = new LayoutParams((int) (btnImg.getIntrinsicWidth() * 1.2),
+					(int) (btnImg.getIntrinsicHeight() * 1.2));
+			button.setLayoutParams(params);
+			button.setTag(result[i]);
+			button.setOnClickListener(new View.OnClickListener()
+			{
+				@Override
+				public void onClick(View v)
+				{
+					showPopup((String) v.getTag());
+				}
+			});
+			mGridView.addView(button);
 		}
 	}
 
+	// Popup
 	public void showPopup(String name)
 	{
 		LinearLayout view = (LinearLayout) this.getActivity().findViewById(R.id.itempopup);

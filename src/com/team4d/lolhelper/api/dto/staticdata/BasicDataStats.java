@@ -71,6 +71,7 @@ public class BasicDataStats {
 	private double rPercentMovementSpeedModPerLevel;
 	private double rPercentTimeDeadMod;
 	private double rPercentTimeDeadModPerLevel;
+	
 	public double getFlatArmorMod() {
 		return FlatArmorMod;
 	}
