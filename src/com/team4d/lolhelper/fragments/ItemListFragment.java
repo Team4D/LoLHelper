@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
@@ -31,9 +32,9 @@ import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.api.dto.staticdata.item.Item;
 
 /**
- * TODO: Implement sorting and shop style browsing
+ * TODO: Implement sorting
  * 
- * @author KaosuRyoko
+ * @author KaosuRyoko, Su
  */
 public class ItemListFragment extends Fragment
 {
@@ -47,6 +48,8 @@ public class ItemListFragment extends Fragment
 	private CheckBox boots, otherMovement;
 	private CheckBox consumable, goldIncome, visionAndTrinkets;
 	private CheckBox active, onHitEffects;
+	
+	private Button clear;
 	
 	protected boolean SummonersRiftChecked = false;
 	protected boolean TwistedTreelineChecked = false;
@@ -447,6 +450,7 @@ public class ItemListFragment extends Fragment
                 updateItems();
             }
         });
+		
 		// Checkboxes for Special category
 		active = (CheckBox) this.getView().findViewById(R.id.Active);
 		onHitEffects = (CheckBox) this.getView().findViewById(R.id.OnHitEffects);
@@ -474,6 +478,85 @@ public class ItemListFragment extends Fragment
                 updateItems();
             }
         });
+		
+		// Button Clear
+		clear = (Button) this.getView().findViewById(R.id.btnClear);
+		clear.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				// Set all checkboxes to uncheck
+				SummonersRift.setChecked(false);
+				TwistedTreeline.setChecked(false);
+				HowlingAbyss.setChecked(false); 
+				CrystalScar.setChecked(false);
+				
+				armor.setChecked(false);
+				health.setChecked(false); 
+				healthRegen.setChecked(false);
+				magicResist.setChecked(false);
+				tenacity.setChecked(false);
+				
+				attackSpeed.setChecked(false);
+				armorPenetration.setChecked(false);
+				criticalStrike.setChecked(false);
+				damage.setChecked(false); 
+				lifeSteal.setChecked(false);
+				
+				abilityPower.setChecked(false);
+				cooldownReduction.setChecked(false);
+				magicPenetration.setChecked(false);
+				mana.setChecked(false);
+				manaRegen.setChecked(false);
+				spellVamp.setChecked(false);
+				
+				boots.setChecked(false);
+				otherMovement.setChecked(false);
+				
+				consumable.setChecked(false);
+				goldIncome.setChecked(false); 
+				visionAndTrinkets.setChecked(false);
+				active.setChecked(false);
+				onHitEffects.setChecked(false);
+				
+				// Set all flags to false.
+				SummonersRiftChecked = false;
+				TwistedTreelineChecked = false;
+				HowlingAbyssChecked = false;
+				CrystalScarChecked = false;
+				
+				armorChecked = false;
+				healthChecked = false;
+				healthRegenChecked = false;
+				magicResistChecked = false;
+				tenacityChecked = false;
+				
+				attackSpeedChecked = false;
+				armorPenetrationChecked = false;
+				criticalStrikeChecked = false;
+				damageChecked = false;
+				lifeStealChecked = false;
+				
+				abilityPowerChecked = false;
+				cooldownReductionChecked = false;
+				magicPenetrationChecked = false;
+				manaChecked = false;
+				manaRegenChecked = false;
+				spellVampChecked = false;
+				
+				bootsChecked = false;
+				otherMovementChecked = false;
+				
+				consumableChecked = false;
+				goldIncomeChecked = false;
+				visionAndTrinketsChecked = false;
+				
+				activeChecked = false;
+				onHitEffectsChecked = false;
+				
+				// Update the display field.
+				updateItems();
+			}
+		});	
 		
 		new ItemListAsyncTask().execute();
 	}
@@ -748,8 +831,11 @@ public class ItemListFragment extends Fragment
 		popup.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
 		popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
 		ImageView icon = (ImageView) layout.findViewById(R.id.icon);
-		int resID = getResources().getIdentifier(itemList[index].replaceAll("showdown", "").replaceAll("[^a-zA-Z]+", "").toLowerCase(),
-				"drawable", "com.team4d.lolhelper");
+		String itemName = itemList[index].replaceAll("showdown", "").replaceAll("[^a-zA-Z0-9]+", "").toLowerCase();
+		if (itemName.endsWith("showdown")){	// get rid of "showdown"
+			itemName = itemName.substring(0, itemName.length() - 8);
+		}
+		int resID = getResources().getIdentifier(itemName, "drawable", "com.team4d.lolhelper");
 		icon.setImageResource(resID);
 
 		new grabItem(this.getView()).execute(itemIDList[index]);

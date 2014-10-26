@@ -4,11 +4,132 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg" >
 
+        <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp" >
+        
+	    <RelativeLayout
+	        android:id="@+id/relativeLayout"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" >
+
+	        <TextView
+	            android:id="@+id/textView1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentLeft="true"
+	            android:layout_alignParentTop="true"
+	            android:layout_marginLeft="8dp"
+	            android:layout_marginTop="6dp"
+	            android:text="Champion Filter"
+	            android:textColor="#FFFFFF"
+	            android:textSize="12dp" />
+
+	        <CheckBox
+	            android:id="@+id/Mage"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignLeft="@+id/Fighter"
+	            android:layout_below="@+id/Fighter"
+	            android:layout_marginTop="10dp"
+	            android:text="Mage"
+	            android:textColor="#FFFFFF"
+	            android:textSize="10dp" />
+
+	        <CheckBox
+	            android:id="@+id/Marksman"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignLeft="@+id/Mage"
+	            android:layout_below="@+id/Mage"
+	            android:text="Marksman"
+	            android:layout_marginTop="10dp"
+	            android:textColor="#FFFFFF"
+	            android:textSize="10dp" />
+
+	        <CheckBox
+	            android:id="@+id/Tank"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignLeft="@+id/Support"
+	            android:layout_below="@+id/Support"
+	            android:text="Tank"
+	            android:layout_marginTop="10dp"
+	            android:textColor="#FFFFFF"
+	            android:textSize="10dp" />
+
+	        <CheckBox
+	            android:id="@+id/Support"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignLeft="@+id/Marksman"
+	            android:layout_below="@+id/Marksman"
+	            android:text="Support"
+	            android:layout_marginTop="10dp"
+	            android:textColor="#FFFFFF"
+	            android:textSize="10dp" />
+
+	        <CheckBox
+	            android:id="@+id/Assassin"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignLeft="@+id/textView1"
+	            android:layout_below="@+id/btnClear"
+	            android:layout_marginTop="10dp"
+	            android:text="Assassin"
+	            android:textColor="#FFFFFF"
+	            android:textSize="10dp" />
+
+	        <Button
+	            android:id="@+id/btnClear"
+	            style="?android:attr/buttonStyleSmall"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignLeft="@+id/Assassin"
+	            android:layout_below="@+id/textView1"
+	            android:layout_marginTop="14dp"
+	            android:minHeight="0dp"
+	            android:text="Clear"
+	            android:textColor="#FFFFFF"
+	            android:textSize="10dp" />
+
+	        <CheckBox
+	            android:id="@+id/Fighter"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignLeft="@+id/Assassin"
+	            android:layout_below="@+id/Assassin"
+	            android:layout_marginTop="10dp"
+	            android:text="Fighter"
+	            android:textColor="#FFFFFF"
+	            android:textSize="10dp" />
+
+	        <TextView
+	            android:id="@+id/textView2"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignLeft="@+id/btnClear"
+	            android:layout_below="@+id/Tank"
+	            android:layout_marginTop="35dp"
+	            android:text="Note:\nAt most select\ntwo filters."
+	            android:textAppearance="?android:attr/textAppearanceSmall"
+	            android:textColor="#FFFFFF"
+	            android:textSize="10dp" />
+
+	    </RelativeLayout>
+
+    </ScrollView>
+    
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true" >
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/scrollView" >
 
         <GridLayout
             android:id="@+id/ChampionListGrid"
