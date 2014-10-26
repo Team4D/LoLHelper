@@ -1,11 +1,11 @@
 package com.team4d.lolhelper.fragments;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
-import android.content.res.Resources.NotFoundException;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -83,6 +83,7 @@ public class ItemListFragment extends Fragment
 	protected boolean onHitEffectsChecked = false;
 	
 	protected String[] itemList;
+	protected int[] itemIDList;
 	protected List<List<String>> allItemTags;
 	protected List<Map<String, Boolean>> allItemMaps;
 	
@@ -477,7 +478,7 @@ public class ItemListFragment extends Fragment
 		new ItemListAsyncTask().execute();
 	}
 
-	private class ItemListAsyncTask extends AsyncTask<Void, String, String[]>
+	private class ItemListAsyncTask extends AsyncTask<Void, String, int[]>
 	{
 		@Override
 		protected void onPreExecute()
@@ -486,28 +487,31 @@ public class ItemListFragment extends Fragment
 		}
 
 		@Override
-		protected String[] doInBackground(Void... params)
+		protected int[] doInBackground(Void... params)
 		{			
 			itemList = APIData.getItemList();
+			itemIDList = APIData.getItemIDList();		
+			sortItemList();
+			
 			allItemTags = new ArrayList<List<String>>();
 			allItemMaps = new ArrayList<Map<String, Boolean>>();
 			
-			for (int i = 0; i < itemList.length; i++){
+			for (int i = 0; i < itemIDList.length; i++){
 				try{
-					allItemTags.add(i, APIData.getItemByName(itemList[i]).getTags());
+					allItemTags.add(i, APIData.getItemByID(itemIDList[i]).getTags());
 				}
 				catch (NullPointerException e){
 					allItemTags.add(i, null);
 				}
 				
 				try{
-					allItemMaps.add(i, APIData.getItemByName(itemList[i]).getMaps());
+					allItemMaps.add(i, APIData.getItemByID(itemIDList[i]).getMaps());
 				}
 				catch (NullPointerException e){
 					allItemMaps.add(i, null);
 				}
 			}
-			
+
 			return null;
 		}
 
@@ -518,7 +522,7 @@ public class ItemListFragment extends Fragment
 		}
 
 		@Override
-		protected void onPostExecute(String[] result)
+		protected void onPostExecute(int[] result)
 		{
 			updateItems();
 		}	
@@ -528,8 +532,8 @@ public class ItemListFragment extends Fragment
 	// Update the displayed item field
 	public void updateItems(){
 		int itemCount = 0;
-		String[] tempResult = new String[itemList.length];
-		String[] result;
+		int[] tempResult = new int[itemIDList.length];
+		int[] result;
 		
 		// If one or more checkbox has been selected, apply the filter, or all items are displayed.
 		if (armorChecked || healthChecked || healthRegenChecked || magicResistChecked || tenacityChecked
@@ -539,7 +543,7 @@ public class ItemListFragment extends Fragment
 				|| consumableChecked || goldIncomeChecked || visionAndTrinketsChecked || activeChecked
 				|| onHitEffectsChecked || SummonersRiftChecked || TwistedTreelineChecked || HowlingAbyssChecked
 				|| CrystalScarChecked){
-			for (int i = 0; i < itemList.length; i++){
+			for (int i = 0; i < itemIDList.length; i++){
 				List<String> itemTags = allItemTags.get(i);
 				Map<String, Boolean> itemMaps = allItemMaps.get(i);
 				
@@ -634,18 +638,21 @@ public class ItemListFragment extends Fragment
 					}
 				}
 				if (qualified){
-					tempResult[itemCount] = itemList[i];
+					tempResult[itemCount] = i;
 					itemCount += 1;					
 				}
 			}
 			
-			result = new String[itemCount];
+			result = new int[itemCount];
 			for (int i = 0; i < itemCount; i++){
 				result[i] = tempResult[i];
 			}
 		}
 		else{
-			result = itemList;
+			result = new int[itemList.length];
+			for (int i = 0; i < result.length; i++){
+				result[i] = i;
+			}
 		}
 
 		GridLayout mGridView = (GridLayout) this.getView().findViewById(R.id.ItemListGrid);
@@ -668,7 +675,7 @@ public class ItemListFragment extends Fragment
 			LayoutInflater inflater = (LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 			ImageButton button = (ImageButton) inflater.inflate(R.layout.free_champion_image_button, null);
-			String n = result[i].replaceAll("[^a-zA-Z0-9]+", "").toLowerCase().replaceAll("showdown", "");
+			String n = itemList[result[i]].replaceAll("[^a-zA-Z0-9]+", "").toLowerCase().replaceAll("showdown", "");
 			// Workaround for now, all different shoes with the same enchantment share the same name. Will need
 			// careful consideration later.
 			if (n.contains("enchantment"))
@@ -711,15 +718,26 @@ public class ItemListFragment extends Fragment
 				@Override
 				public void onClick(View v)
 				{
-					showPopup((String) v.getTag());
+					showPopup((Integer)v.getTag());
 				}
 			});
 			mGridView.addView(button);
 		}
 	}
+	
+	public void sortItemList(){
+		for (int i = 0; i < itemList.length; i++){
+			itemList[i] += new Integer(itemIDList[i]).toString();
+		}
+		Arrays.sort(itemList);
+		for (int i = 0; i < itemIDList.length; i++){	// All IDs are 4-digit number.
+			itemIDList[i] = Integer.parseInt(itemList[i].substring(itemList[i].length() - 4));
+			itemList[i] = itemList[i].substring(0, itemList[i].length() - 4);
+		}
+	}
 
 	// Popup
-	public void showPopup(String name)
+	public void showPopup(int index)
 	{
 		LinearLayout view = (LinearLayout) this.getActivity().findViewById(R.id.itempopup);
 		LayoutInflater inflater = (LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -730,11 +748,11 @@ public class ItemListFragment extends Fragment
 		popup.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
 		popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
 		ImageView icon = (ImageView) layout.findViewById(R.id.icon);
-		int resID = getResources().getIdentifier(name.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
+		int resID = getResources().getIdentifier(itemList[index].replaceAll("showdown", "").replaceAll("[^a-zA-Z]+", "").toLowerCase(),
 				"drawable", "com.team4d.lolhelper");
 		icon.setImageResource(resID);
 
-		new grabItem(this.getView()).execute(name);
+		new grabItem(this.getView()).execute(itemIDList[index]);
 
 		popup.setOutsideTouchable(true);
 		popup.setTouchable(true);
@@ -749,7 +767,7 @@ public class ItemListFragment extends Fragment
 		popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
 	}
 
-	private class grabItem extends AsyncTask<String, Void, Item>
+	private class grabItem extends AsyncTask<Integer, Void, Item>
 	{
 		private final View mView;
 
@@ -758,9 +776,9 @@ public class ItemListFragment extends Fragment
 			mView = v;
 		}
 		@Override
-		protected Item doInBackground(String... name)
+		protected Item doInBackground(Integer... id)
 		{
-			Item c = APIData.getItemByName(name[0]);
+			Item c = APIData.getItemByID(id[0]);
 			// Note: This return value is passed as a parameter to onPostExecute
 			return c;
 		}

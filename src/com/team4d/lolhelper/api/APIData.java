@@ -179,8 +179,25 @@ public class APIData
 			System.out.println(s[i]);
 			dbcursor.moveToNext();
 		}
-		Arrays.sort(s);
 		return s;
+	}
+	
+	public static int[] getItemIDList()
+	{
+		// Get all names
+		Cursor dbcursor = myDB.rawQuery("select _id from items", null);
+		int n = dbcursor.getCount(); // number of entries
+		int m = dbcursor.getColumnIndex("_id"); // index of id column
+		int[] ids = new int[n];
+		dbcursor.moveToFirst();
+		// Put each entry id into s
+		for (int i = 0; i < n; i++)
+		{
+			ids[i] = dbcursor.getInt(m);
+			System.out.println(ids[i]);
+			dbcursor.moveToNext();
+		}
+		return ids;
 	}
 
 	public static int getNumberItems()
