@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,10 +27,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.GridLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.team4d.lolhelper.DBcounters;
@@ -249,6 +252,16 @@ public class ChampionViewFragment extends Fragment
 			switch (n)
 			{
 			case 0: // Overview
+				//Roles
+				TextView roles = (TextView) view.findViewById(R.id.roles);
+				if(champ.getTags().size()>1){
+					roles.setText("Primary: " + champ.getTags().get(0) + "\n"
+							+ "Secondary: " + champ.getTags().get(1));
+				} else {
+					roles.setText("Primary: " + champ.getTags().get(0));
+				}
+				
+				//Info / ratings
 				TextView info = (TextView) view.findViewById(R.id.info);
 				info.setText("Difficulty: " + champ.getInfo().getDifficulty() + "/10\n"
 						+ "Attack: " + champ.getInfo().getAttack() + "/10\n"
@@ -426,6 +439,8 @@ public class ChampionViewFragment extends Fragment
 					name = db[id][i].getName();
 					TextView nameview = new TextView(context);
 					nameview.setText(name);
+					nameview.setTextAppearance(context, android.R.style.TextAppearance_Medium);
+					nameview.setTypeface(Typeface.DEFAULT_BOLD);
 					nameview.setTextColor(Color.WHITE);
 					layout.addView(nameview);
 					
@@ -449,6 +464,49 @@ public class ChampionViewFragment extends Fragment
 					layout.addView(mGridView);
 				
 					//Add skill order
+					HorizontalScrollView sview = new HorizontalScrollView(context);
+					LinearLayout skillorder = new LinearLayout(context);
+					LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+					params.setLayoutDirection(LinearLayout.HORIZONTAL);
+					skillorder.setLayoutParams(params);
+					
+					int height = 300;
+					int width = 70;
+					
+					//Left edge
+					ImageView iview1 = new ImageView(context);
+					iview1.setScaleType(ImageView.ScaleType.FIT_XY);
+					iview1.setLayoutParams(new LayoutParams(width/10, height));
+					iview1.setImageResource(R.drawable.skillorderedge);
+					skillorder.addView(iview1);
+					
+					//Q W E R label
+					ImageView iview2 = new ImageView(context);
+					iview2.setScaleType(ImageView.ScaleType.FIT_XY);
+					iview2.setLayoutParams(new LayoutParams(width, height));
+					iview2.setImageResource(R.drawable.skillorderlabel);
+					skillorder.addView(iview2);			
+										
+					//Skill order
+					String[] order = db[id][i].getSkillOrder();
+					for(int j=0; j<18; j++){
+						ImageView iv = new ImageView(context);
+						iv.setScaleType(ImageView.ScaleType.FIT_XY);
+						iv.setLayoutParams(new LayoutParams(width, height));
+						int resID = view.getResources().getIdentifier("skillorder" + order[j], "drawable", "com.team4d.lolhelper");
+						iv.setImageResource(resID);
+						skillorder.addView(iv);
+					}
+					
+					//Right edge
+					ImageView iview3 = new ImageView(context);
+					iview3.setScaleType(ImageView.ScaleType.FIT_XY);
+					iview3.setLayoutParams(new LayoutParams(width/10, height));
+					iview3.setImageResource(R.drawable.skillorderedge);
+					skillorder.addView(iview3);
+					
+					sview.addView(skillorder);
+					layout.addView(sview);
 				}
 				break;
 			default:
