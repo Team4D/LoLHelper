@@ -37,7 +37,7 @@ public class Popup
 	{
 		LinearLayout view = (LinearLayout) activity.findViewById(R.id.loadingpopup);
 		LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		layout = inflater.inflate(R.layout.fragment_loading_popup, view);
+		layout = inflater.inflate(R.layout.popup_loading, view);
 		return layout;
 	}
 
@@ -50,7 +50,7 @@ public class Popup
 	{
 		LinearLayout view = (LinearLayout) activity.findViewById(R.id.teambuilderpopup);
 		LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		layout = inflater.inflate(R.layout.fragment_team_builder_popup, view);
+		layout = inflater.inflate(R.layout.popup_team_builder, view);
 		return layout;
 	}
 
@@ -63,7 +63,7 @@ public class Popup
 	{
 		LinearLayout view = (LinearLayout) activity.findViewById(R.id.championpassivepopup);
 		LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		layout = inflater.inflate(R.layout.fragment_champion_passive_popup, view);
+		layout = inflater.inflate(R.layout.popup_champion_passive, view);
 		ImageView icon = (ImageView) layout.findViewById(R.id.icon);
 		icon.setImageResource(activity.getResources().getIdentifier(
 				champion.getName().replaceAll("[^a-zA-Z]+", "").toLowerCase() + 0,
@@ -89,7 +89,7 @@ public class Popup
 	{
 		LinearLayout view = (LinearLayout) activity.findViewById(R.id.championspellpopup);
 		LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		layout = inflater.inflate(R.layout.fragment_champion_spell_popup, view);
+		layout = inflater.inflate(R.layout.popup_champion_spell, view);
 		ImageView icon = (ImageView) layout.findViewById(R.id.icon);
 		icon.setImageResource(activity.getResources().getIdentifier(
 				champion.getName().replaceAll("[^a-zA-Z]+", "").toLowerCase() + id,
@@ -106,42 +106,7 @@ public class Popup
 		effectText.setText("Effect: \n" + APIData.parse(spell));
 		cooldownText.setText("Cooldown: " + spell.getCooldownBurn());
 		rangeText.setText("Range: " + spell.getRangeBurn());
-/*		String cd = "Cooldown: ";
-		List<Float> cds = spell.getCooldown();
-		for (int i = 0; i < cds.size(); i++)
-		{
-			cd += cds.get(i);
-			if (i < cds.size() - 1)
-			{
-				cd += "/";
-			}
-		}
-		cooldownText.setText(cd);
-		String r = "Range: ";
-		Object or = spell.getRange();
-		if (or instanceof String)
-		{
-			r += or;
-		}
-		else if (or instanceof List<?>)
-		{
-			List<Integer> lr = (List<Integer>) or;
-			for (int i = 0; i < lr.size(); i++)
-			{
-				r += lr.get(i);
-
-				if (i < lr.size() - 1)
-				{
-					r += "/";
-				}
-			}
-		}
-		else
-		{
-			r += "?";
-		}
-		rangeText.setText(r);
-*/		return layout;
+		return layout;
 	}
 
 	/*
@@ -153,7 +118,7 @@ public class Popup
 	{
 		LinearLayout view = (LinearLayout) activity.findViewById(R.id.summonerspellpopup);
 		LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		layout = inflater.inflate(R.layout.fragment_summoner_spell_popup, view);
+		layout = inflater.inflate(R.layout.popup_summoner_spell, view);
 		ImageView icon = (ImageView) layout.findViewById(R.id.icon);
 		int resID = activity.getResources().getIdentifier(name.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
 				"drawable", "com.team4d.lolhelper");
@@ -200,7 +165,7 @@ public class Popup
 	{
 		LinearLayout view = (LinearLayout) activity.findViewById(R.id.itempopup);
 		LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		layout = inflater.inflate(R.layout.fragment_item_popup, view);
+		layout = inflater.inflate(R.layout.popup_item, view);
 		ImageView icon = (ImageView) layout.findViewById(R.id.icon);
 		int resID = activity.getResources().getIdentifier(name.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
 				"drawable", "com.team4d.lolhelper");
@@ -215,6 +180,7 @@ public class Popup
 		@Override
 		protected Item doInBackground(String... name)
 		{
+			System.out.println(name[0]);
 			Item c = APIData.getItemByName(name[0]);
 			// Note: This return value is passed as a parameter to onPostExecute
 			return c;

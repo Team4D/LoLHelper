@@ -32,130 +32,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.team4d.lolhelper.InGame"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_in_game" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.ChampionSelect"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_champion_select" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.PostGame"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_post_game" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.GeneralInfo"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_general_info" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.Options"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateUnchanged"
-            android:label="@string/title_activity_options" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.buildguides.BuildGuides"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_build_guides" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.MatchInfo"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_match_info" >
-        </activity>
-        <activity
             android:name="com.team4d.lolhelper.fragments.TeamBuilderFragment"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_team_builder" >
         </activity>
         <activity
-            android:name="com.team4d.lolhelper.Counters"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_counters" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.Leaguecounters"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_counters" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.Build"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_build" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.buildguides.BuildAdditional"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_buildadditional" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.PlayerStats"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_player_stats" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.PlayerStatsAdvanced"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_player_stats_advanced" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.Champions"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_champions" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.ViewChampions"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_viewchampions" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.Items"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_items" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.buildguides.BuildScreen"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_build_screen" >
-        </activity>
-        <activity
             android:name="com.team4d.lolhelper.fragments.BuildRouletteFragment"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_build_roulette" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.ViewSummonerSpells"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_viewsummonerspells" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.JungleTimer"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_jungle_timer" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.ChampionInfo"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_champion_info" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.ItemInfo"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_item_info" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.SummonerSpellInfo"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_summoner_spell_info" >
-        </activity>
-        <activity
-            android:name="com.team4d.lolhelper.SummonerSpells"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_summoner_spells" >
         </activity>
         <activity
             android:name="com.team4d.lolhelper.fragments.AboutFragment"

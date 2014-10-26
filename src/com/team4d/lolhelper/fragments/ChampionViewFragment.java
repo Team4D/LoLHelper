@@ -4,9 +4,11 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -22,6 +25,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,12 +38,15 @@ import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.api.dto.staticdata.champion.Champion;
 import com.team4d.lolhelper.api.dto.staticdata.champion.Stats;
+import com.team4d.lolhelper.api.dto.staticdata.item.Item;
+import com.team4d.lolhelper.buildguides.BuildDatabase;
+import com.team4d.lolhelper.buildguides.BuildInfo;
 
 public class ChampionViewFragment extends Fragment
 {
 	View mLayout; // used for popup
 	static String name;
-	static final int NUM_ITEMS = 4;
+	static final int NUM_ITEMS = 5;
 	private ViewPager mPager = null;
 	private PagerAdapter mPagerAdapter;
 
@@ -96,7 +103,8 @@ public class ChampionViewFragment extends Fragment
 				"Overview",
 				"Stats",
 				"Lore",
-				"Counters"
+				"Counters",
+				"Build Guides"
 		};
 
 		public MyAdapter(String name, FragmentManager fm)
@@ -191,11 +199,16 @@ public class ChampionViewFragment extends Fragment
 				new makeView(name, this.getActivity(), view2, mNum).execute();
 				break;
 			case 3: // Counters
-				View view4 = inflater.inflate(R.layout.fragment_champion_counters, null);
+				View view3 = inflater.inflate(R.layout.fragment_champion_counters, null);
+				layout.addView(view3);
+				new makeView(name, this.getActivity(), view3, mNum).execute();
+				break;
+			case 4: //Build Guides
+				View view4 = inflater.inflate(R.layout.fragment_champion_builds, null);
 				layout.addView(view4);
 				new makeView(name, this.getActivity(), view4, mNum).execute();
 				break;
-			default:
+			default: //Should never be reached anyway
 				break;
 			}
 			return v;
@@ -398,10 +411,52 @@ public class ChampionViewFragment extends Fragment
 				result.close();
 
 				break;
+			case 4: //Build Guides
+				LinearLayout layout = (LinearLayout) view.findViewById(R.id.layout);
+				//Get database info
+				BuildDatabase database = new BuildDatabase();
+				int id = Integer.parseInt(champ.getId());
+				BuildInfo[][] db = database.getDatabase();
+				int numBuilds = database.getNumBuilds(id);
+				String name;
+				String[] items;
+				Context context = view.getContext();
+				for(int i=0; i<numBuilds; i++){
+					//Add name
+					name = db[id][i].getName();
+					TextView nameview = new TextView(context);
+					nameview.setText(name);
+					nameview.setTextColor(Color.WHITE);
+					layout.addView(nameview);
+					
+					//Add items
+					items = db[id][i].getItems();
+					//Add item grid
+					GridLayout mGridView = new GridLayout(context);
+					
+					DisplayMetrics dm = context.getResources().getDisplayMetrics();
+					float dpWidth = dm.widthPixels / dm.density;
+
+					Drawable imgsize = context.getResources().getDrawable(R.drawable.defaultitemsize);
+					float dpImgWidth = imgsize.getIntrinsicWidth() / dm.density;
+
+					int columns = (int) (dpWidth / (dpImgWidth + 10));
+					mGridView.setColumnCount(columns);
+					for(int j=0; j<db[id][i].getNumItems(); j++){
+						String itemid = items[j];
+						new grabItem(context, mGridView, itemid).execute();
+					}
+					layout.addView(mGridView);
+				
+					//Add skill order
+				}
+				break;
 			default:
 				break;
 			}
 		}
+
+		
 
 		public class ChampionSpellOnClickListener implements OnClickListener
 		{
@@ -471,5 +526,88 @@ public class ChampionViewFragment extends Fragment
 			nameText.setText(name + "\n" + champ.getTitle());
 		}
 
+	}
+	
+	private static class grabItem extends AsyncTask<String, Void, Item>
+	{
+		private final Context context;
+		private final GridLayout mGridView;
+		private final String itemid;
+
+		public grabItem(Context context, GridLayout mGridView, String itemid)
+		{
+			this.context = context;
+			this.mGridView = mGridView;
+			this.itemid = itemid;
+		}
+
+		@Override
+		protected Item doInBackground(String... args)
+		{
+			Item c = APIData.getItemByID(Integer.parseInt(itemid));
+			// Note: This return value is passed as a parameter to onPostExecute
+			return c;
+		}
+
+		@Override
+		protected void onPostExecute(Item item)
+		{
+			String itemname = item.getName();
+			itemname = itemname.replace(" (Showdown)", "");
+			
+			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+			ImageButton button = (ImageButton) inflater.inflate(R.layout.free_champion_image_button, null);
+			Drawable btnImg;
+			try{
+				btnImg = context.getResources().getDrawable(context.getResources().getIdentifier(
+					itemname.replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable", context.getPackageName()));
+			}
+			catch(Resources.NotFoundException e){
+				return;
+			}
+			button.setImageDrawable(btnImg);
+			LayoutParams params = new LayoutParams((int) (btnImg.getIntrinsicWidth() * 1.2),
+					(int) (btnImg.getIntrinsicHeight() * 1.2));
+			button.setLayoutParams(params);
+			button.setOnClickListener(new ItemOnClickListener(context, itemname));
+			mGridView.addView(button);
+		}
+
+	}
+	
+	public static class ItemOnClickListener implements OnClickListener
+	{
+		Context context;
+		String item;
+
+		public ItemOnClickListener(Context context, String item)
+		{
+			this.context = context;
+			this.item = item.replace("'", "''");
+		}
+
+		@Override
+		public void onClick(View v)
+		{
+			Activity activity = (Activity) context;
+			View layout;
+			layout = Popup.popupItem(activity, item);
+			final PopupWindow popup = new PopupWindow(activity);
+			popup.setContentView(layout);
+			popup.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
+			popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+			popup.setOutsideTouchable(true);
+			popup.setTouchable(true);
+			popup.setTouchInterceptor(new View.OnTouchListener() {
+	            @Override
+	            public boolean onTouch(View v, MotionEvent event) {
+	            	popup.dismiss();
+	                return true;
+	            }
+	        });
+			popup.setFocusable(true);
+			popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
+		}
 	}
 }

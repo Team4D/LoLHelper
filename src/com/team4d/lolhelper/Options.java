@@ -46,15 +46,11 @@ public class Options extends Activity
 		TextView language = (TextView) findViewById(R.id.textView2);
 		TextView skin = (TextView) findViewById(R.id.textView3);
 		Button enter = (Button) findViewById(R.id.enter);
-		Button beta = (Button) findViewById(R.id.button6);
-		Button release = (Button) findViewById(R.id.button7);
 
 		summonerName.setText(summonerNameString);
 		language.setText(languageString);
 		skin.setText(skinString);
 		enter.setText(enterString);
-		beta.setText(betaString);
-		release.setText(releaseString);
 
 	}
 

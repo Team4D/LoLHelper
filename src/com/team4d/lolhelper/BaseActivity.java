@@ -436,7 +436,7 @@ public class BaseActivity extends FragmentActivity
 		{
 			LinearLayout view = (LinearLayout) activity.findViewById(R.id.loadingpopup);
 			LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			View layout = inflater.inflate(R.layout.fragment_loading_popup, view);
+			View layout = inflater.inflate(R.layout.popup_loading, view);
 
 
 			PopupWindow popup = new PopupWindow(activity);

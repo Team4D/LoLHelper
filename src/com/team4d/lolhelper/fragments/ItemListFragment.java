@@ -167,7 +167,7 @@ public class ItemListFragment extends Fragment
 	{
 		LinearLayout view = (LinearLayout) this.getActivity().findViewById(R.id.itempopup);
 		LayoutInflater inflater = (LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		layout = inflater.inflate(R.layout.fragment_item_popup, view);
+		layout = inflater.inflate(R.layout.popup_item, view);
 
 		final PopupWindow popup = new PopupWindow(this.getActivity());
 		popup.setContentView(layout);
