@@ -99,6 +99,11 @@ public class ChampionViewFragment extends Fragment
 	//	mPager.setAdapter(null);
 	}
 
+	/**
+	 * The adapter for the champion view ViewPager.
+	 * 
+	 * @author Alexa
+	 */
 	public class MyAdapter extends FragmentStatePagerAdapter
 	{
 		String name;
@@ -141,6 +146,12 @@ public class ChampionViewFragment extends Fragment
 		}
 	}
 
+	/**
+	 * Handles the views inside of the champion view ViewPager.
+	 * Sets the UI based on which screen the ViewPager is on.
+	 * 
+	 * @author Alexa
+	 */
 	public static class SlideScreenFragment extends Fragment
 	{
 		int mNum;
@@ -219,6 +230,12 @@ public class ChampionViewFragment extends Fragment
 
 	}
 
+	/**
+	 * Gets API-dependent information required in the champion view ViewPager
+	 * and displays the information.
+	 * 
+	 * @author Alexa
+	 */
 	private static class makeView extends AsyncTask<String, Void, Champion>
 	{
 		private final String name;
@@ -515,7 +532,12 @@ public class ChampionViewFragment extends Fragment
 		}
 
 		
-
+		/**
+		 * The OnClickListener for champion abilities. Opens a popup containing
+		 * the information for that champion ability.
+		 * 
+		 * @author Greg
+		 */
 		public class ChampionSpellOnClickListener implements OnClickListener
 		{
 			Champion champ;
@@ -560,6 +582,12 @@ public class ChampionViewFragment extends Fragment
 		}
 	}
 
+	/**
+	 * Grabs the champion name and title from the API and
+	 * displays it on the top of the champion view page.
+	 * 
+	 * @author Alexa
+	 */
 	private class grabChampion extends AsyncTask<String, Void, Champion>
 	{
 		private final String name;
@@ -586,6 +614,12 @@ public class ChampionViewFragment extends Fragment
 
 	}
 	
+	/**
+	 * Gets the item name from the item ID and uses that to set the icon / button and
+	 * its OnClickListener.
+	 * 
+	 * @author Alexa
+	 */
 	private static class grabItem extends AsyncTask<String, Void, Item>
 	{
 		private final Context context;
@@ -634,6 +668,11 @@ public class ChampionViewFragment extends Fragment
 
 	}
 	
+	/**
+	 * The OnClickListener for items. Opens a popup containing that item's information.
+	 * 
+	 * @author Alexa
+	 */
 	public static class ItemOnClickListener implements OnClickListener
 	{
 		Context context;

@@ -8,6 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * The fragment to show the About page.
+ * 
+ * @author Alexa
+ */
 public class AboutFragment extends Fragment
 {
 	@Override

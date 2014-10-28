@@ -2,6 +2,12 @@ package com.team4d.lolhelper.buildguides;
 
 import com.team4d.lolhelper.api.APIData;
 
+/**
+ * The database of build guides.
+ * This is where the actual build guides are populated.
+ * 
+ * @author Alexa
+ */
 public class BuildDatabase
 {
 	private final BuildInfo database[][];
@@ -9,6 +15,11 @@ public class BuildDatabase
 	private final int numChamps = 500;
 	private final int maxBuilds = 4;
 
+	/**
+	 * Constructor.
+	 * <p>
+	 * Initializes all variables and sets all of the builds.
+	 */
 	public BuildDatabase()
 	{
 		numBuilds = new int[numChamps];
@@ -4854,11 +4865,25 @@ public class BuildDatabase
 
 	}
 
-	public int getNumBuilds(int i)
+	/**
+	 * Returns the number of builds in the database for a
+	 * given champion by ID.
+	 * 
+	 * @param ID the ID of a champion
+	 * @return the number of builds associated with the given champion
+	 */
+	public int getNumBuilds(int ID)
 	{
-		return numBuilds[i];
+		return numBuilds[ID];
 	}
 
+	/**
+	 * Returns the complete database of build guides.
+	 * The first array index is the champion ID, and the
+	 * second array index is the number of the build.
+	 * 
+	 * @return the complete database of build guides
+	 */
 	public BuildInfo[][] getDatabase()
 	{
 		return database;

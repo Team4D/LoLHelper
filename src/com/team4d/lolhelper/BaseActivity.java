@@ -480,6 +480,11 @@ public class BaseActivity extends FragmentActivity
 	//
 	// All the timer methods
 	//
+	/**
+	 * The timer for Blue Golem.
+	 * 
+	 * @author Alexa
+	 */
 	private void TimerMethod0()
 	{
 		runOnUiThread(new Runnable()
@@ -514,6 +519,11 @@ public class BaseActivity extends FragmentActivity
 		});
 	}
 
+	/**
+	 * The timer for Blue Lizard.
+	 * 
+	 * @author Alexa
+	 */
 	private void TimerMethod1()
 	{
 		runOnUiThread(new Runnable()
@@ -549,6 +559,11 @@ public class BaseActivity extends FragmentActivity
 		});
 	}
 
+	/**
+	 * The timer for Baron.
+	 * 
+	 * @author Alexa
+	 */
 	private void TimerMethod2()
 	{
 		runOnUiThread(new Runnable()
@@ -587,6 +602,11 @@ public class BaseActivity extends FragmentActivity
 		});
 	}
 
+	/**
+	 * The timer for Dragon.
+	 * 
+	 * @author Alexa
+	 */
 	private void TimerMethod3()
 	{
 		runOnUiThread(new Runnable()
@@ -622,6 +642,11 @@ public class BaseActivity extends FragmentActivity
 		});
 	}
 
+	/**
+	 * The timer for Red Lizard.
+	 * 
+	 * @author Alexa
+	 */
 	private void TimerMethod4()
 	{
 		runOnUiThread(new Runnable()
@@ -657,6 +682,11 @@ public class BaseActivity extends FragmentActivity
 		});
 	}
 
+	/**
+	 * The timer for Red Golem.
+	 * 
+	 * @author Alexa
+	 */
 	private void TimerMethod5()
 	{
 		runOnUiThread(new Runnable()
@@ -695,6 +725,13 @@ public class BaseActivity extends FragmentActivity
 	//
 	// Called when each of these buttons is clicked
 	//
+	/**
+	 * The OnClickListener for Blue Golem.
+	 * Starts or cancels the timer accordingly.
+	 * 
+	 * @author Alexa
+	 * @param view
+	 */
 	public void BlueGolem(View view)
 	{
 		TimeLeft[0] = 300000;
@@ -722,6 +759,13 @@ public class BaseActivity extends FragmentActivity
 		}
 	}
 
+	/**
+	 * The OnClickListener for Blue Lizard.
+	 * Starts or cancels the timer accordingly.
+	 * 
+	 * @author Alexa
+	 * @param view
+	 */
 	public void BlueLizard(View view)
 	{
 		TimeLeft[1] = 300000;
@@ -748,6 +792,13 @@ public class BaseActivity extends FragmentActivity
 		}
 	}
 
+	/**
+	 * The OnClickListener for Baron.
+	 * Starts or cancels the timer accordingly.
+	 * 
+	 * @author Alexa
+	 * @param view
+	 */
 	public void Baron(View view)
 	{
 		TimeLeft[2] = 420000;
@@ -774,6 +825,13 @@ public class BaseActivity extends FragmentActivity
 		}
 	}
 
+	/**
+	 * The OnClickListener for Dragon.
+	 * Starts or cancels the timer accordingly.
+	 * 
+	 * @author Alexa
+	 * @param view
+	 */
 	public void Dragon(View view)
 	{
 		TimeLeft[3] = 360000;
@@ -801,6 +859,13 @@ public class BaseActivity extends FragmentActivity
 
 	}
 
+	/**
+	 * The OnClickListener for Red Lizard.
+	 * Starts or cancels the timer accordingly.
+	 * 
+	 * @author Alexa
+	 * @param view
+	 */
 	public void RedLizard(View view)
 	{
 		TimeLeft[4] = 300000;
@@ -828,6 +893,13 @@ public class BaseActivity extends FragmentActivity
 
 	}
 
+	/**
+	 * The OnClickListener for Red Golem.
+	 * Starts or cancels the timer accordingly.
+	 * 
+	 * @author Alexa
+	 * @param view
+	 */
 	public void RedGolem(View view)
 	{
 		TimeLeft[5] = 300000;

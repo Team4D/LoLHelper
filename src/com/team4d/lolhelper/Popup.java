@@ -19,6 +19,11 @@ import com.team4d.lolhelper.api.dto.staticdata.champion.Passive;
 import com.team4d.lolhelper.api.dto.staticdata.item.Item;
 import com.team4d.lolhelper.api.dto.staticdata.summonerspell.SummonerSpell;
 
+/**
+ * Popup class. Handles popups of all types.
+ * 
+ * @author Alexa
+ */
 public class Popup
 {
 	static View layout;
@@ -33,6 +38,13 @@ public class Popup
 	 * Loading Popup
 	 * ********************************
 	 */
+	/**
+	 * Returns a View for a popup with a loading spinner.
+	 * 
+	 * @author Alexa
+	 * @param activity the current activity
+	 * @return a View for a loading popup
+	 */
 	public static View popupLoading(Activity activity)
 	{
 		LinearLayout view = (LinearLayout) activity.findViewById(R.id.loadingpopup);
@@ -46,6 +58,14 @@ public class Popup
 	 * Team Builder
 	 * ********************************
 	 */
+	/**
+	 * Returns a View for the Team Builder help popup. This is an
+	 * instructional popup for how to use Team Builder.
+	 * 
+	 * @author Alexa
+	 * @param activity the current activity
+	 * @return a View for the Team Builder help popup.
+	 */
 	public static View popupTeamBuilder(Activity activity)
 	{
 		LinearLayout view = (LinearLayout) activity.findViewById(R.id.teambuilderpopup);
@@ -58,6 +78,15 @@ public class Popup
 	 * ********************************
 	 * Champion Passive
 	 * ********************************
+	 */
+	/**
+	 * Given a champion, creates a View of information for that champion's
+	 * passive ability popup.
+	 * 
+	 * @author Greg
+	 * @param activity the current activity
+	 * @param champion a Champion
+	 * @return a View containing information on the given Champion's passive ability
 	 */
 	public static View popupChampionPassive(Activity activity, Champion champion)
 	{
@@ -84,6 +113,18 @@ public class Popup
 	 * ********************************
 	 * Champion Spells
 	 * ********************************
+	 */
+	/**
+	 * Given a champion and an ability number, creates a View of information for
+	 * that champion's ability popup.
+	 * <p>
+	 * 1 = Q, 2 = W, 3 = E, 4 = R
+	 * 
+	 * @author Alexa
+	 * @param activity the current activity
+	 * @param champion a Champion
+	 * @param id the ability number
+	 * @return a View containing information on the given Champion's specified ability
 	 */
 	public static View popupChampionSpell(Activity activity, Champion champion, int id)
 	{
@@ -114,6 +155,14 @@ public class Popup
 	 * Summoner Spells
 	 * ********************************
 	 */
+	/**
+	 * Given the name of a summoner spell, creates a View of information for that spell's popup.
+	 * 
+	 * @author Alexa
+	 * @param activity the current activity
+	 * @param name a String of a summoner spell name
+	 * @return a View containing information on the specified summoner spell
+	 */
 	public static View popupSummonerSpell(Activity activity, String name)
 	{
 		LinearLayout view = (LinearLayout) activity.findViewById(R.id.summonerspellpopup);
@@ -128,6 +177,12 @@ public class Popup
 		return layout;
 	}
 
+	/**
+	 * Grabs summoner spell info from the API in order to populate the
+	 * summoner spell info View.
+	 * 
+	 * @author Alexa
+	 */
 	private static class grabSpell extends AsyncTask<String, Void, SummonerSpell>
 	{
 		@Override
@@ -161,6 +216,14 @@ public class Popup
 	 * Items
 	 * ********************************
 	 */
+	/**
+	 * Given the name of an item, creates a View of information for that item's popup.
+	 * 
+	 * @author Alexa
+	 * @param activity the current activity
+	 * @param name a String of an item name
+	 * @return a View containing information on the specified item
+	 */
 	public static View popupItem(Activity activity, String name)
 	{
 		LinearLayout view = (LinearLayout) activity.findViewById(R.id.itempopup);
@@ -175,6 +238,12 @@ public class Popup
 		return layout;
 	}
 
+	/**
+	 * Grabs item info from the API in order to populate the
+	 * item info View.
+	 * 
+	 * @author Alexa
+	 */
 	private static class grabItem extends AsyncTask<String, Void, Item>
 	{
 		@Override

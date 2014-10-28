@@ -22,6 +22,11 @@ import com.team4d.lolhelper.Popup;
 import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.api.APIData;
 
+/**
+ * The fragment to show the grid of summoner spells.
+ * 
+ * @author Alexa
+ */
 public class SummonerSpellListFragment extends Fragment
 {
 	View layout; // used for popup
@@ -47,6 +52,12 @@ public class SummonerSpellListFragment extends Fragment
 		new SummonerSpellListAsyncTask(this.getActivity(), this.getView()).execute();
 	}
 
+	/**
+	 * Displays all of the summoner spell icons in a grid and
+	 * sets their OnClickListeners to display popups.
+	 * 
+	 * @author Alexa
+	 */
 	private class SummonerSpellListAsyncTask extends AsyncTask<Void, String, String[]>
 	{
 
@@ -120,6 +131,12 @@ public class SummonerSpellListFragment extends Fragment
 		}
 	}
 
+	/**
+	 * Displays a popup with information about the given summoner spell.
+	 * 
+	 * @author Alexa
+	 * @param name the name of the summoner spell
+	 */
 	public void showPopup(String name)
 	{
 		Activity activity = this.getActivity();

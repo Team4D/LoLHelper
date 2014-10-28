@@ -39,6 +39,13 @@ public class APIData
 	 * Start of Static API Data
 	 * ********************************
 	 */
+	/**
+	 * Finds a champion in the database by ID.
+	 * If no champion has that ID, returns null.
+	 * 
+	 * @param ID the ID of the champion needed
+	 * @return the Champion object associated with the specified ID
+	 */
 	public static Champion getChampionByID(int ID)
 	{
 		Cursor dbcursor = myDB.query("champions", new String[] { "json" }, "_id = " + ID, null, null, null, null, null);
@@ -58,6 +65,13 @@ public class APIData
 		return null;
 	}
 
+	/**
+	 * Finds a champion in the database by name.
+	 * If no champion has that name, returns null.
+	 * 
+	 * @param name the name of the champion needed
+	 * @return the Champion object associated with the specified name
+	 */
 	public static Champion getChampionByName(String name)
 	{
 		Cursor dbcursor = myDB.rawQuery("select json from champions where name = ?", new String[] { name });
@@ -77,6 +91,13 @@ public class APIData
 		return null;
 	}
 
+	/**
+	 * Finds a champion in the database by key.
+	 * If no champion has that key, returns null.
+	 * 
+	 * @param key the key of the champion needed
+	 * @return the Champion object associated with the specified key
+	 */
 	public static Champion getChampionByKey(String key)
 	{
 		Cursor dbcursor = myDB.rawQuery("select json from champions where key = ?", new String[] { key });
@@ -96,12 +117,25 @@ public class APIData
 		return null;
 	}
 
+	/**
+	 * Takes the ID of a champion and finds the name of the
+	 * champion with that ID.
+	 * 
+	 * @param ID the ID of the champion needed
+	 * @return the name of the champion associated with the specified ID
+	 */
 	public static String getChampionNameByID(int ID)
 	{
 		Champion theChamp = getChampionByID(ID);
 		return theChamp.getName();
 	}
 
+	/**
+	 * Returns an array of all champion names as Strings.
+	 * The array is sorted in alphabetical order.
+	 * 
+	 * @return a String array of all champion names, sorted alphabetically
+	 */
 	public static String[] getChampionList()
 	{
 		// Get all names
@@ -121,11 +155,23 @@ public class APIData
 		return s;
 	}
 
+	/**
+	 * Returns the number of champions in the database.
+	 * 
+	 * @return the number of champions in the database
+	 */
 	public static int getNumberChampions()
 	{
 		return (int) DatabaseUtils.queryNumEntries(myDB, "champions");
 	}
 
+	/**
+	 * Finds an item in the database by ID.
+	 * If no item has that ID, returns null.
+	 * 
+	 * @param ID the ID of the item needed
+	 * @return the Item object associated with the specified ID
+	 */
 	public static Item getItemByID(int ID)
 	{
 		Cursor dbcursor = myDB.query("items", new String[] { "json" }, "_id = " + ID, null, null, null, null, null);
@@ -145,6 +191,13 @@ public class APIData
 		return null;
 	}
 
+	/**
+	 * Finds an item in the database by name.
+	 * If no item has that name, returns null.
+	 * 
+	 * @param name the name of the item needed
+	 * @return the Item object associated with the specified name
+	 */
 	public static Item getItemByName(String name)
 	{
 		Cursor dbcursor = myDB.rawQuery("select json from items where name = ?", new String[] { name });
@@ -164,6 +217,12 @@ public class APIData
 		return null;
 	}
 
+	/**
+	 * Returns an array of all item names as Strings.
+	 * The array is sorted in the order they appear in the database.
+	 * 
+	 * @return a String array of all item names
+	 */
 	public static String[] getItemList()
 	{
 		// Get all names
@@ -182,6 +241,12 @@ public class APIData
 		return s;
 	}
 	
+	/**
+	 * Returns an array of all item IDs.
+	 * The array is sorted in the order they appear in the database.
+	 * 
+	 * @return an integer array of all item IDs
+	 */
 	public static int[] getItemIDList()
 	{
 		// Get all names
@@ -200,11 +265,23 @@ public class APIData
 		return ids;
 	}
 
+	/**
+	 * Returns the number of items in the database.
+	 * 
+	 * @return the number of items in the database
+	 */
 	public static int getNumberItems()
 	{
 		return (int) DatabaseUtils.queryNumEntries(myDB, "items");
 	}
 
+	/**
+	 * Finds a mastery in the database by ID.
+	 * If no mastery has that ID, returns null.
+	 * 
+	 * @param ID the ID of the mastery needed
+	 * @return the Mastery object associated with the specified ID
+	 */
 	public static Mastery getMasteryByID(int ID)
 	{
 		Cursor dbcursor = myDB.query("masteries", new String[] { "json" }, "_id = " + ID, null, null, null, null, null);
@@ -224,6 +301,13 @@ public class APIData
 		return null;
 	}
 
+	/**
+	 * Finds a mastery in the database by name.
+	 * If no mastery has that name, returns null.
+	 * 
+	 * @param name the name of the mastery needed
+	 * @return the Mastery object associated with the specified name
+	 */
 	public static Mastery getMasteryByName(String name)
 	{
 		Cursor dbcursor = myDB.rawQuery("select json from masteries where name = ?", new String[] { name });
@@ -243,6 +327,12 @@ public class APIData
 		return null;
 	}
 
+	/**
+	 * Returns an array of all mastery names as Strings.
+	 * The array is sorted in alphabetical order.
+	 * 
+	 * @return a String array of all mastery names, sorted alphabetically
+	 */
 	public static String[] getMasteryList()
 	{
 		// Get all names
@@ -262,11 +352,23 @@ public class APIData
 		return s;
 	}
 
+	/**
+	 * Returns the number of masteries in the database.
+	 * 
+	 * @return the number of masteries in the database
+	 */
 	public static int getNumberMasteries()
 	{
 		return (int) DatabaseUtils.queryNumEntries(myDB, "masteries");
 	}
 
+	/**
+	 * Finds a rune in the database by ID.
+	 * If no rune has that ID, returns null.
+	 * 
+	 * @param ID the ID of the rune needed
+	 * @return the Rune object associated with the specified ID
+	 */
 	public static Rune getRuneByID(int ID)
 	{
 		Cursor dbcursor = myDB.query("runes", new String[] { "json" }, "_id = " + ID, null, null, null, null, null);
@@ -286,6 +388,13 @@ public class APIData
 		return null;
 	}
 
+	/**
+	 * Finds a rune in the database by name.
+	 * If no rune has that name, returns null.
+	 * 
+	 * @param name the name of the rune needed
+	 * @return the Rune object associated with the specified name
+	 */
 	public static Rune getRuneByName(String name)
 	{
 		Cursor dbcursor = myDB.rawQuery("select json from runess where name = ?", new String[] { name });
@@ -305,6 +414,12 @@ public class APIData
 		return null;
 	}
 
+	/**
+	 * Returns an array of all rune names as Strings.
+	 * The array is sorted in alphabetical order.
+	 * 
+	 * @return a String array of all rune names, sorted alphabetically
+	 */
 	public static String[] getRuneList()
 	{
 		// Get all names
@@ -324,11 +439,23 @@ public class APIData
 		return s;
 	}
 
+	/**
+	 * Returns the number of runes in the database.
+	 * 
+	 * @return the number of runes in the database
+	 */
 	public static int getNumberRunes()
 	{
 		return (int) DatabaseUtils.queryNumEntries(myDB, "runes");
 	}
 
+	/**
+	 * Finds a summoner spell in the database by ID.
+	 * If no summoner spell has that ID, returns null.
+	 * 
+	 * @param ID the ID of the summoner spell needed
+	 * @return the SummonerSpell object associated with the specified ID
+	 */
 	public static SummonerSpell getSummonerSpellByID(int ID)
 	{
 		Cursor dbcursor = myDB.query("summonerspells", new String[] { "json" }, "_id = " + ID, null, null, null, null,
@@ -348,7 +475,14 @@ public class APIData
 		}
 		return null;
 	}
-
+	
+	/**
+	 * Finds a summoner spell in the database by name.
+	 * If no summoner spell has that name, returns null.
+	 * 
+	 * @param name the name of the summoner spell needed
+	 * @return the SummonerSpell object associated with the specified name
+	 */
 	public static SummonerSpell getSummonerSpellByName(String name)
 	{
 		Cursor dbcursor = myDB.rawQuery("select json from summonerspells where name = ?", new String[] { name });
@@ -368,6 +502,12 @@ public class APIData
 		return null;
 	}
 
+	/**
+	 * Returns an array of all summoner spell names as Strings.
+	 * The array is sorted in alphabetical order.
+	 * 
+	 * @return a String array of all summoner spell names, sorted alphabetically
+	 */
 	public static String[] getSummonerSpellList()
 	{
 		// Get all names
@@ -387,11 +527,41 @@ public class APIData
 		return s;
 	}
 
+	/**
+	 * Returns the number of summoner spells in the database.
+	 * 
+	 * @return the number of summoner spells in the database
+	 */
 	public static int getNumberSummonerSpells()
 	{
 		return (int) DatabaseUtils.queryNumEntries(myDB, "summonerspells");
 	}
 
+	/*
+	 * ********************************
+	 * End of Static API Data
+	 * ********************************
+	 */
+	/*
+	 * ********************************
+	 * Start of Utility Functions
+	 * ********************************
+	 */
+	
+	/**
+	 * Takes a champion spell and parses the description in the following way:
+	 * Turns HTML breaks into newlines,
+	 * removes and disregards other HTML formatting,
+	 * replaces all variables in the spell description with corresponding numbers from the API, and
+	 * handles special cases in which the variables need to be edited or removed completely, such as
+	 * when they depend on in-game information that does not apply in general.
+	 * <p>
+	 * The returned String is clean and ready to be displayed.
+	 * 
+	 * @author Alexa
+	 * @param spell the ChampionSpell object from which to parse the description
+	 * @return a String of the parsed description
+	 */
 	public static String parse(ChampionSpell spell)
 	{
 		String base = spell.getDescription() + "\n\n" + spell.getTooltip();
@@ -506,16 +676,18 @@ public class APIData
 		}
 		return base;
 	}
-
-	/*
-	 * ********************************
-	 * End of Static API Data
-	 * ********************************
-	 */
-	/*
-	 * ********************************
-	 * Start of Utility Functions
-	 * ********************************
+	
+	/**
+	 * Takes a summoner spell and parses the tooltip in the following way:
+	 * Turns HTML breaks into newlines,
+	 * removes and disregards other HTML formatting, and
+	 * replaces all variables in the spell tooltip with corresponding numbers from the API.
+	 * <p>
+	 * The returned String is clean and ready to be displayed.
+	 * 
+	 * @author Alexa
+	 * @param spell the SummonerSpell object from which to parse the tooltip
+	 * @return a String of the parsed tooltip
 	 */
 	public static String parse(SummonerSpell spell)
 	{
@@ -533,6 +705,14 @@ public class APIData
 		return base;
 	}
 
+	/**
+	 * Takes a list from the API of the form [a, b, c, ...]
+	 * (typically a, b, c, ... are numbers) and turns it into
+	 * the form a/b/c/...
+	 * 
+	 * @param o the list from the API to format
+	 * @return the formatted list with slashes in between numbers
+	 */
 	private static String list(Object o)
 	{
 		String str = o.toString();
@@ -542,6 +722,17 @@ public class APIData
 		return str;
 	}
 
+	/**
+	 * Takes a list from the API of the form [a, b, c, ...]
+	 * where a, b, and c are decimal representations of percentages
+	 * and turns it into x/y/z/... where x, y, and z are the percentage
+	 * representations.
+	 * <p>
+	 * For example, turns [0.1, 0.15, 0.2] into 10/15/20
+	 * 
+	 * @param o the decimal list from the API to format
+	 * @return the formatted list in percentages with slashes in between numbers
+	 */
 	private static String listPercent(Object o)
 	{
 		// Need to turn decimals to percentages
@@ -569,6 +760,13 @@ public class APIData
 		return result;
 	}
 
+	/**
+	 * Turns HTML breaks into newlines.
+	 * Removes and disregards other HTML formatting.
+	 * 
+	 * @param str the string to parse
+	 * @return the given string without HTML formatting
+	 */
 	public static String parseOutHtml(String str)
 	{
 		str = str.replaceAll("<br>", "\n");
@@ -576,6 +774,15 @@ public class APIData
 		return str;
 	}
 
+	/**
+	 * Returns the cost and resource of a champion spell using the cost
+	 * variable given in the API.
+	 * 
+	 * Example: 10/20/25 Mana
+	 * 
+	 * @param spell a champion spell
+	 * @return the cost and resource of the given spell
+	 */
 	public static String parseResource(ChampionSpell spell)
 	{
 		String str = spell.getResource();
