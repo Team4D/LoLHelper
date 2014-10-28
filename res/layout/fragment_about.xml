@@ -40,17 +40,8 @@
 
 				            
 			    <TextView
+			        android:id="@+id/titles"
 			        android:layout_weight="1"
-			        android:text="Project Managers:\n\n\n
-			        Team Builder:\n\n\n\n
-			        Build Roulette:\n\n\n
-			        Ranked Stats:\n\n\n\n\n
-			        General Info:\n\n\n\n\n\n
-			        Jungle Timers:\n\n\n\n
-			        Build Guides:\n\n\n
-			        Layout:\n\n\n\n
-			        \n
-			        Executive Producer:\n\n"
 			        android:layout_width="0dp"
 		            android:layout_height="wrap_content"
 		            android:gravity="right"
@@ -59,8 +50,8 @@
 		            android:textStyle="bold" />
 			    
 			    <TextView
+			        android:id="@+id/names"
 			        android:layout_weight="4"
-			        android:text="Greg Ervin\nAlexa Varady\n\nThomas Ford\nJosh Werner\nSu Yan\n\nAustin Hofmann\nSu Yan\n\nGreg Ervin\nBrice Thrower\nPatrick Walter\nDavid Young\n\nGreg Ervin\nSean Hannah\nMegan Teahan\nAlexa Varady\nMurl Westheffer\n\nEvan Bissell\nQin Chen\nAlexa Varady\n\nEric Chanthorabout\nAlexa Varady\n\nGreg Ervin\nSean Stout\nSu Yan\n\n\nPaul Steffens"
 			        android:layout_width="0dp"
 			        android:layout_height="wrap_content"
 			        android:textColor="#FFFFFF"

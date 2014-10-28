@@ -2,62 +2,101 @@
     xmlns:tools="http://schemas.android.com/tools"
 	        android:id="@+id/scrollView1"
 	        android:layout_width="match_parent"
-	        android:layout_height="fill_parent"
+	        android:layout_height="match_parent"
 	        android:background="@drawable/bg"
 		    android:layout_marginTop="0dp"
-	        android:layout_alignParentBottom="true"
-	        android:scrollbars="none" >
+		    android:padding="5dp" >
 	
-		<RelativeLayout 
+		<LinearLayout 
+		    android:orientation="vertical"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:scrollbars="vertical"
-		    android:visibility="visible"
-		    tools:context="com.team4d.lolhelper.Options"
 		    tools:ignore="MergeRootFrame" >
 		    
+		    <!-- Summoner Name Options -->
 		    <TextView
 		        android:id="@+id/textView1"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:layout_centerHorizontal="true"
+		        android:layout_gravity="center"
 		        android:textSize="20sp"
-		        android:layout_alignParentTop="true"
-		        android:layout_marginTop="10dp"
 		        android:textColor="#ffffff"
 		        android:text="Summoner Name:" />
-		   
-		
-		        <EditText
-		        android:id="@+id/editText1"
+		    	
+		    <LinearLayout 
+			    android:orientation="horizontal"
+			    android:layout_marginTop="5dp"
+			    android:layout_width="match_parent"
+			    android:layout_height="25dp"
+			    tools:ignore="MergeRootFrame" >		    
+		        <Space
+		            android:layout_width="0dp"
+			        android:layout_height="match_parent"
+				    android:layout_weight="2" />
+			    <EditText
+			        android:id="@+id/editText1"
+			        android:layout_weight="4"
+			        android:layout_width="0dp"
+			        android:layout_height="match_parent"
+			        android:background="#99999D"
+			        android:ems="10"
+			        android:imeActionLabel="Enter"
+			        android:hint="@string/Summoner_Name"
+			        android:singleLine="true"
+			        android:inputType="textNoSuggestions"
+			        android:textColor="#ffffff" >
+			    </EditText>			
+			    <Space
+				    android:layout_width="0dp"
+			        android:layout_height="match_parent"
+				    android:layout_weight="0.5" />
+				<Button
+			        android:id="@+id/enter"
+			        style="?android:attr/buttonStyleSmall"
+			        android:layout_weight="1"
+			        android:layout_width="0dp"
+			        android:layout_height="match_parent"
+			        android:layout_alignTop="@+id/editText1"
+			        android:layout_toRightOf="@+id/editText1"
+			        android:background="#ffffff"
+			        android:text="Save" />				
+				<Space
+				    android:layout_width="0dp"
+			        android:layout_height="match_parent"
+				    android:layout_weight="2" />
+				
+			   </LinearLayout>
+			   
+		    <!-- Region Options -->
+		    <TextView
+		        android:id="@+id/textView1"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:layout_alignParentTop="true"
-		        android:layout_centerHorizontal="true"
-		        android:layout_marginTop="39dp"
-		        android:background="#99999D"
-		        android:ems="10"
-		        android:imeActionLabel="Enter"
-		        android:hint="@string/Summoner_Name"
-		        android:singleLine="true"
-		        android:inputType="textNoSuggestions"
-		        android:textColor="#ffffff" >
-		    </EditText>
-		
-			    <Button
-	        android:id="@+id/enter"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignTop="@+id/editText1"
-	        android:layout_toRightOf="@+id/editText1"
-	        android:background="#ffffff"
-	        android:onClick="summonerName"
-	        android:text="@string/Button_Enter" />
-			    
+		        android:layout_gravity="center"
+		        android:layout_marginTop="20dp"
+		        android:textSize="20sp"
+		        android:textColor="#ffffff"
+		        android:text="Region:" />
 		    
-
-		    
-		</RelativeLayout>
-	
+		    <LinearLayout 
+			    android:orientation="horizontal"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    tools:ignore="MergeRootFrame" >
+		        <Space
+		            android:layout_width="0dp"
+			        android:layout_height="match_parent"
+				    android:layout_weight="2" />
+			    <Spinner
+		            android:id="@+id/spinner1"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_alignParentLeft="true"
+		            tools:listitem="@android:layout/simple_spinner_dropdown_item" />
+			    <Space
+				    android:layout_width="0dp"
+			        android:layout_height="match_parent"
+				    android:layout_weight="2" />
+			   </LinearLayout>
+		</LinearLayout>
 </ScrollView>

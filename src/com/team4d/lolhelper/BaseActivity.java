@@ -327,54 +327,62 @@ public class BaseActivity extends FragmentActivity
 		// Create appropriate fragment
 		switch (position)
 		{
-		case 0:
+		case 1:
 			HomeFragment fragment0 = new HomeFragment();
 			// Insert the fragment by replacing any existing fragment
 			FragmentTransaction transaction0 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment0);
 			transaction0.addToBackStack(null);
 			transaction0.commit();
 			break;
-		case 1:
+		case 2:
 			TeamBuilderFragment fragment1 = new TeamBuilderFragment();
 			FragmentTransaction transaction1 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment1);
 			transaction1.addToBackStack(null);
 			transaction1.commit();
 			break;
-		case 2:
+		case 3:
 			BuildRouletteFragment fragment2 = new BuildRouletteFragment();
 			FragmentTransaction transaction2 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment2);
 			transaction2.addToBackStack(null);
 			transaction2.commit();
 			break;
-		case 3:
+		case 4:
 			SummonerStatsFragment fragment3 = new SummonerStatsFragment();
 			FragmentTransaction transaction3 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment3);
 			transaction3.addToBackStack(null);
 			transaction3.commit();
 			break;
-		case 4:
+//		case 5:
+//			break;
+		case 5:
 			ChampionListFragment fragment4 = new ChampionListFragment();
 			FragmentTransaction transaction4 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment4);
 			transaction4.addToBackStack(null);
 			transaction4.commit();
 			break;
-		case 5:
+		case 6:
 			ItemListFragment fragment5 = new ItemListFragment();
 			FragmentTransaction transaction5 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment5);
 			transaction5.addToBackStack(null);
 			transaction5.commit();
 			break;
-		case 6:
+		case 7:
 			SummonerSpellListFragment fragment6 = new SummonerSpellListFragment();
 			FragmentTransaction transaction6 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment6);
 			transaction6.addToBackStack(null);
 			transaction6.commit();
 			break;
-		case 7:
+		case 8:
 			AboutFragment fragment7 = new AboutFragment();
 			FragmentTransaction transaction7 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment7);
 			transaction7.addToBackStack(null);
 			transaction7.commit();
+			break;
+		case 9:
+			OptionsFragment fragment8 = new OptionsFragment();
+			FragmentTransaction transaction8 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment8);
+			transaction8.addToBackStack(null);
+			transaction8.commit();
 			break;
 		default:
 			Fragment fragment = new Fragment();
