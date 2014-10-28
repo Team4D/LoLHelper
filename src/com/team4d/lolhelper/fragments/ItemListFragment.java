@@ -114,6 +114,8 @@ public class ItemListFragment extends Fragment
 			return;
 		}
 		
+		new ItemListAsyncTask().execute();
+		
 		// Checkboxes for Maps
 		SummonersRift = (CheckBox) this.getView().findViewById(R.id.SummonersRift);
 		TwistedTreeline = (CheckBox) this.getView().findViewById(R.id.TwistedTreeline);
@@ -557,8 +559,7 @@ public class ItemListFragment extends Fragment
 				updateItems();
 			}
 		});	
-		
-		new ItemListAsyncTask().execute();
+
 	}
 
 	private class ItemListAsyncTask extends AsyncTask<Void, String, int[]>

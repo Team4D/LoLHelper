@@ -62,6 +62,8 @@ public class ChampionListFragment extends Fragment
 		}
 		
 		final Fragment fragment = this;
+		new ChampionListAsyncTask(this).execute();
+		
 		// Checkboxes
 		assassin = (CheckBox) this.getView().findViewById(R.id.Assassin);
 		fighter = (CheckBox) this.getView().findViewById(R.id.Fighter);
@@ -168,7 +170,6 @@ public class ChampionListFragment extends Fragment
 			}
 		});	
 		
-		new ChampionListAsyncTask(this).execute();
 	}
 
 	private class ChampionListAsyncTask extends AsyncTask<Void, String, String[]>
