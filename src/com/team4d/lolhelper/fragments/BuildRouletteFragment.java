@@ -126,6 +126,7 @@ public class BuildRouletteFragment extends Fragment
 			final TextView textView4 = (TextView) view.findViewById(R.id.item4);
 			final TextView textView5 = (TextView) view.findViewById(R.id.item5);
 			final TextView textView6 = (TextView) view.findViewById(R.id.item6); // Items 1-6
+			final TextView textView12 = (TextView) view.findViewById(R.id.item7);	// Trinket
 			final TextView textView7 = (TextView) view.findViewById(R.id.champname); // Champ Name
 			final TextView textView8 = (TextView) view.findViewById(R.id.mastery); // Masteries
 			final TextView textView9 = (TextView) view.findViewById(R.id.summspell1);
@@ -138,6 +139,7 @@ public class BuildRouletteFragment extends Fragment
 			final ImageView imageView4 = (ImageView) view.findViewById(R.id.iitem4);
 			final ImageView imageView5 = (ImageView) view.findViewById(R.id.iitem5);
 			final ImageView imageView6 = (ImageView) view.findViewById(R.id.iitem6);
+			final ImageView imageView12 = (ImageView) view.findViewById(R.id.iitem7);	// Trinket
 			final ImageView imageView7 = (ImageView) view.findViewById(R.id.ichampname);
 			final ImageView imageView8 = (ImageView) view.findViewById(R.id.ispell);
 			final ImageView imageView9 = (ImageView) view.findViewById(R.id.isummspell1);
@@ -154,7 +156,7 @@ public class BuildRouletteFragment extends Fragment
 					 * Initialize all variables
 					 */
 					final String champIcon;
-					String item1, item2, item3, item4, item5, item6, mastery;
+					String item1, item2, item3, item4, item5, item6, item7, mastery;
 					int placeholderItem;
 					int[] itemArray = new int[61];
 					int iconID;
@@ -267,7 +269,9 @@ public class BuildRouletteFragment extends Fragment
 					}
 					itemArray[placeholderItem] = 1;
 					item6 = getItemName(placeholderItem);
-
+					
+					item7 = getTrinket(getRandom(0, 4));
+					
 					/*
 					 * Set names for all items and champion
 					 */
@@ -278,6 +282,7 @@ public class BuildRouletteFragment extends Fragment
 					textView5.setText(item5);
 					textView6.setText(item6);
 					textView7.setText(champIcon);
+					textView12.setText(item7);
 
 					/*
 					 * Set images for all items, champion
@@ -382,6 +387,9 @@ public class BuildRouletteFragment extends Fragment
 							"drawable", v.getContext().getPackageName());
 					imageView10.setImageResource(iconID);
 
+					iconID = getResources().getIdentifier(item7.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
+							"drawable", v.getContext().getPackageName());
+					imageView12.setImageResource(iconID);
 				}
 			});
 
@@ -566,282 +574,11 @@ public class BuildRouletteFragment extends Fragment
 		public String getChampionName(int champ)
 		{
 			return championList[champ];
-/*
-			switch (champ)
-			{
-			case 0:
-				return "Aatrox";
-			case 1:
-				return "Ahri";
-			case 2:
-				return "Akali";
-			case 3:
-				return "Alistar";
-			case 4:
-				return "Amumu";
-			case 5:
-				return "Anivia";
-			case 6:
-				return "Annie";
-			case 7:
-				return "Ashe";
-			case 8:
-				return "Blitzcrank";
-			case 9:
-				return "Brand";
-			case 10:
-				return "Caitlyn";
-			case 11:
-				return "Cassiopeia";
-			case 12:
-				return "Chogath";
-			case 13:
-				return "Corki";
-			case 14:
-				return "Darius";
-			case 15:
-				return "Diana";
-			case 16:
-				return "Dr. Mundo";
-			case 17:
-				return "Draven";
-			case 18:
-				return "Elise";
-			case 19:
-				return "Evelynn";
-			case 20:
-				return "Ezreal";
-			case 21:
-				return "Fiddlesticks";
-			case 22:
-				return "Fiora";
-			case 23:
-				return "Fizz";
-			case 24:
-				return "Galio";
-			case 25:
-				return "Gangplank";
-			case 26:
-				return "Garen";
-			case 27:
-				return "Gragas";
-			case 28:
-				return "Graves";
-			case 29:
-				return "Hecarim";
-			case 30:
-				return "Heimerdinger";
-			case 31:
-				return "Irelia";
-			case 32:
-				return "Janna";
-			case 33:
-				return "Jarvan IV";
-			case 34:
-				return "Jax";
-			case 35:
-				return "Jayce";
-			case 36:
-				return "Jinx";
-			case 37:
-				return "Karma";
-			case 38:
-				return "Karthus";
-			case 39:
-				return "Kassadin";
-			case 40:
-				return "Katarina";
-			case 41:
-				return "Kayle";
-			case 42:
-				return "Kennen";
-			case 43:
-				return "Kha'Zix";
-			case 44:
-				return "Kog'Maw";
-			case 45:
-				return "LeBlanc";
-			case 46:
-				return "Lee Sin";
-			case 47:
-				return "Leona";
-			case 48:
-				return "Lissandra";
-			case 49:
-				return "Lucian";
-			case 50:
-				return "Lulu";
-			case 51:
-				return "Lux";
-			case 52:
-				return "Malphite";
-			case 53:
-				return "Malzahar";
-			case 54:
-				return "Maokai";
-			case 55:
-				return "Master Yi";
-			case 56:
-				return "Miss Fortune";
-			case 57:
-				return "Mordekaiser";
-			case 58:
-				return "Morgana";
-			case 59:
-				return "Nami";
-			case 60:
-				return "Nasus";
-			case 61:
-				return "Nautilus";
-			case 62:
-				return "Nidalee";
-			case 63:
-				return "Nocturne";
-			case 64:
-				return "Nunu";
-			case 65:
-				return "Olaf";
-			case 66:
-				return "Orianna";
-			case 67:
-				return "Pantheon";
-			case 68:
-				return "Poppy";
-			case 69:
-				return "Quinn";
-			case 70:
-				return "Rammus";
-			case 71:
-				return "Renekton";
-			case 72:
-				return "Rengar";
-			case 73:
-				return "Riven";
-			case 74:
-				return "Rumble";
-			case 75:
-				return "Ryze";
-			case 76:
-				return "Sejuani";
-			case 77:
-				return "Shaco";
-			case 78:
-				return "Shen";
-			case 79:
-				return "Shyvana";
-			case 80:
-				return "Singed";
-			case 81:
-				return "Sion";
-			case 82:
-				return "Sivir";
-			case 83:
-				return "Skarner";
-			case 84:
-				return "Sona";
-			case 85:
-				return "Soraka";
-			case 86:
-				return "Swain";
-			case 87:
-				return "Syndra";
-			case 88:
-				return "Talon";
-			case 89:
-				return "Taric";
-			case 90:
-				return "Teemo";
-			case 91:
-				return "Thresh";
-			case 92:
-				return "Tristana";
-			case 93:
-				return "Trundle";
-			case 94:
-				return "Tryndamere";
-			case 95:
-				return "Twisted Fate";
-			case 96:
-				return "Twitch";
-			case 97:
-				return "Udyr";
-			case 98:
-				return "Urgot";
-			case 99:
-				return "Varus";
-			case 100:
-				return "Vayne";
-			case 101:
-				return "Veigar";
-			case 102:
-				return "Vel'Koz";
-			case 103:
-				return "Vi";
-			case 104:
-				return "Viktor";
-			case 105:
-				return "Vladimir";
-			case 106:
-				return "Volibear";
-			case 107:
-				return "Warwick";
-			case 108:
-				return "Wukong";
-			case 109:
-				return "Xerath";
-			case 110:
-				return "Xin Zhao";
-			case 111:
-				return "Yasuo";
-			case 112:
-				return "Yorick";
-			case 113:
-				return "Zac";
-			case 114:
-				return "Zed";
-			case 115:
-				return "Ziggs";
-			case 116:
-				return "Zilean";
-			case 117:
-				return "Zyra";
-			default:
-				return "Aatrox";
-			}
-*/
 		}
 
 		public String getSummonerSpellName(int sumSpell)
 		{
 			return summonerSpellList[sumSpell];
-/*			switch (sumSpell)
-			{
-			case 0:
-				return "Barrier";
-			case 1:
-				return "Clairvoyance";
-			case 2:
-				return "Clarity";
-			case 3:
-				return "Cleanse";
-			case 4:
-				return "Exhaust";
-			case 5:
-				return "Flash";
-			case 6:
-				return "Ghost";
-			case 7:
-				return "Heal";
-			case 8:
-				return "Ignite";
-			case 9:
-				return "Revive";
-			case 10:
-				return "Smite";
-			default:
-				return "Teleport";
-			}
-*/
 		}
 
 		public int getRandom(int low, int high)
@@ -852,6 +589,21 @@ public class BuildRouletteFragment extends Fragment
 			int R = r.nextInt(High - Low) + Low;
 			return R;
 
+		}
+		
+		public String getTrinket(int trinket){
+			switch (trinket){
+			case 0:
+				return "Farsight Orb (trinket)";
+			case 1:
+				return "Greater Stealth Totem (trinket)";
+			case 2:
+				return "Greater Vision Totem (trinket)";
+			case 3:
+				return "Oracle's Lens (trinket)";
+			default:
+				return "headofkhazix";
+			}		
 		}
 
 		public int[] getMasteries()
