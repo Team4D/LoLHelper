@@ -197,7 +197,7 @@ public class TeamBuilderData
 		int[] EvelynnPositions = { 0, 1, 1, 0, 0 };
 		int[] EzrealPositions = { 0, 0, 1, 1, 0 };
 		int[] FiddlesticksPositions = { 0, 1, 1, 0, 0 };
-		int[] FioraPositions = { 1, 0, 0, 0, 0 };
+		int[] FioraPositions = { 1, 0, 1, 0, 0 };
 		int[] FizzPositions = { 0, 0, 1, 0, 0 };
 		int[] GalioPositions = { 0, 0, 1, 0, 1 };
 		int[] GangplankPositions = { 1, 0, 0, 0, 0 };
@@ -205,8 +205,8 @@ public class TeamBuilderData
 		int[] GnarPositions = { 1, 0, 0, 0, 0 };
 		int[] GragasPositions = { 0, 1, 1, 0, 0 };
 		int[] GravesPositions = { 0, 0, 0, 1, 0 };
-		int[] HecarimPositions = { 0, 1, 0, 0, 0 };
-		int[] HeimerdingerPositions = { 0, 0, 1, 0, 0 };
+		int[] HecarimPositions = { 1, 1, 0, 0, 0 };
+		int[] HeimerdingerPositions = { 1, 0, 1, 0, 0 };
 		int[] IreliaPositions = { 1, 0, 0, 0, 0 };
 		int[] JannaPositions = { 0, 0, 0, 0, 1 };
 		int[] JarvanIVPositions = { 1, 1, 0, 0, 0 };
@@ -257,7 +257,7 @@ public class TeamBuilderData
 		int[] ShenPositions = { 1, 1, 0, 0, 0 };
 		int[] ShyvanaPositions = { 1, 1, 0, 0, 0 };
 		int[] SingedPositions = { 1, 0, 0, 0, 0 };
-		int[] SionPositions = { 1, 0, 0, 0, 0 };
+		int[] SionPositions = { 1, 1, 0, 0, 0 };
 		int[] SivirPositions = { 0, 0, 0, 1, 0 };
 		int[] SkarnerPositions = { 0, 1, 0, 0, 0 };
 		int[] SonaPositions = { 0, 0, 0, 0, 1 };
