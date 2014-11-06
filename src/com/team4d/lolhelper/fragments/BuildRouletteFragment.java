@@ -161,7 +161,7 @@ public class BuildRouletteFragment extends Fragment
 					int[] itemArray = new int[61];
 					int iconID;
 					int[] masteryArray = { 0, 0, 0 };
-					int viktorItem = getRandom(0, 3);
+//					int viktorItem = getRandom(0, 3);
 					
 					/*
 					 * Set champion, items
@@ -175,18 +175,7 @@ public class BuildRouletteFragment extends Fragment
 					 */
 					if (champIcon.equals("Viktor"))
 					{
-						switch (viktorItem)
-						{
-						case 0:
-							item2 = "Hexcore: Death";
-							break;
-						case 1:
-							item2 = "Hexcore: Gravity";
-							break;
-						default:
-							item2 = "Hexcore: Power";
-
-						}
+						item2 = "Perfect Hex Core";
 					} else
 					{
 						placeholderItem = getItem();
