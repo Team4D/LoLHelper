@@ -47,17 +47,40 @@ public class OptionsFragment extends Fragment
 	{
 		super.onStart();
 		
-		listen();
-
-		//Summoner name
+		/*
+		 * Summoner Name
+		 */
 		EditText edit1 = (EditText) getActivity().findViewById(R.id.editText1);
-		
+		final Button enter = (Button) getActivity().findViewById(R.id.enter);
+		enter.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                summonerName(v);
+            }
+        });
+		View.OnKeyListener myOnKeyListener = new View.OnKeyListener()
+		{
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event)
+			{
+				if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER))
+				{
+					enter.performClick();
+				}
+				return false;
+			}
+		};
+		edit1.setOnKeyListener(myOnKeyListener);
+	
+		//Set text to the saved summoner name, if it exists
 		SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Prefs", Context.MODE_PRIVATE);
 		if(sharedpreferences.contains("summonerName")){
 			edit1.setText(sharedpreferences.getString("summonerName", ""));
 		}
 		
-		//Region spinner
+		/*
+		 * Region Spinner
+		 */
         final Spinner spinner1 = (Spinner)this.getView().findViewById(R.id.spinner1);
         final String[] regions = {"NA", "BR", "EUNE", "EUW", "KR", "LAN", "LAS", "OCE", "RU", "TR"};
 		ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, regions);
@@ -88,33 +111,6 @@ public class OptionsFragment extends Fragment
         	spinner1.setSelection(i);
         }
 	}	
-	
-	public void listen()
-	{
-		EditText edit1;
-		final Button enter = (Button) getActivity().findViewById(R.id.enter);
-		enter.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                summonerName(v);
-            }
-        });
-		edit1 = (EditText) getActivity().findViewById(R.id.editText1);
-		View.OnKeyListener myOnKeyListener = new View.OnKeyListener()
-		{
-			@Override
-			public boolean onKey(View v, int keyCode, KeyEvent event)
-			{
-				if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER))
-				{
-					enter.performClick();
-				}
-				return false;
-			}
-		};
-
-		edit1.setOnKeyListener(myOnKeyListener);
-	}
 
 	public void summonerName(View view)
 	{
