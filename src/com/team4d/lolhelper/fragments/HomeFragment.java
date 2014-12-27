@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment
 				freeChampLayout.addView(button);
 			}
 			ImageButton latest = (ImageButton) mView.findViewById(R.id.latest);
-			latest.setTag("Azir");
+			latest.setTag("Rek'Sai");
 			latest.setOnClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View v){
