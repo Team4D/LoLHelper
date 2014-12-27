@@ -8,7 +8,7 @@ import com.team4d.lolhelper.generalinfo.ChampionAttributes;
 public class TeamBuilderData
 {
 
-	public static final int numOfChampions = 121;
+	public static final int numOfChampions = 123;
 
 	// numbers of champions who are good in some positions, i.e. top, mid......
 	private final int[] numOfPosition;
@@ -90,6 +90,7 @@ public class TeamBuilderData
 		int[] JaxAttributes = { 20, 20, 0, 20, 0, 20, 0, 0, 0, 20 };
 		int[] JayceAttributes = { 10, 10, 20, 10, 0, 20, 0, 0, 20, 10 };
 		int[] JinxAttributes = { 10, 0, 20, 20, 10, 0, 0, 0, 10, 10 };
+		int[] KalistaAttributes = { 10, 0, 20, 20, 10, 0, 0, 0, 10, 10 };
 		int[] KarmaAttributes = { 10, 20, 20, 10, 10, 0, 0, 0, 10, 10 };
 		int[] KarthusAttributes = { 10, 10, 20, 0, 20, 0, 0, 20, 0, 20 };
 		int[] KassadinAttributes = { 10, 0, 0, 20, 0, 0, 0, 0, 0, 20 };
@@ -124,6 +125,7 @@ public class TeamBuilderData
 		int[] PoppyAttributes = { 20, 10, 0, 10, 0, 0, 20, 0, 10, 20 };
 		int[] QuinnAttributes = { 20, 10, 20, 10, 10, 0, 0, 0, 10, 10 };
 		int[] RammusAttributes = { 20, 0, 0, 20, 10, 0, 0, 0, 10, 10 };
+		int[] RekSaiAttributes = { 20, 0, 0, 20, 10, 0, 0, 0, 10, 10 };
 		int[] RenektonAttributes = { 20, 10, 0, 20, 10, 0, 0, 0, 20, 10 };
 		int[] RengarAttributes = { 10, 10, 10, 20, 0, 20, 0, 0, 10, 10 };
 		int[] RivenAttributes = { 20, 0, 0, 20, 10, 20, 0, 0, 20, 10 };
@@ -213,6 +215,7 @@ public class TeamBuilderData
 		int[] JaxPositions = { 1, 1, 0, 0, 0 };
 		int[] JaycePositions = { 1, 0, 1, 0, 0 };
 		int[] JinxPositions = { 0, 0, 0, 1, 0 };
+		int[] KalistaPositions = {0, 0, 0, 1, 0 };
 		int[] KarmaPositions = { 0, 0, 1, 0, 1 };
 		int[] KarthusPositions = { 0, 0, 1, 0, 0 };
 		int[] KassadinPositions = { 0, 0, 1, 0, 0 };
@@ -247,6 +250,7 @@ public class TeamBuilderData
 		int[] PoppyPositions = { 1, 1, 0, 0, 0 };
 		int[] QuinnPositions = { 0, 0, 0, 1, 0 };
 		int[] RammusPositions = { 0, 1, 0, 0, 0 };
+		int[] RekSaiPositions = { 1, 1, 0, 0, 0 };
 		int[] RenektonPositions = { 1, 0, 0, 0, 0 };
 		int[] RengarPositions = { 1, 1, 0, 0, 0 };
 		int[] RivenPositions = { 1, 0, 1, 0, 0 };
@@ -417,6 +421,8 @@ public class TeamBuilderData
 		allChampions[118] = (new ChampionAttributes("Ziggs", ZiggsAttributes, ZiggsPositions));
 		allChampions[119] = (new ChampionAttributes("Zilean", ZileanAttributes, ZileanPositions));
 		allChampions[120] = (new ChampionAttributes("Zyra", ZyraAttributes, ZyraPositions));
+		allChampions[121] = (new ChampionAttributes("Kalista", KalistaAttributes, KalistaPositions));
+		allChampions[122] = (new ChampionAttributes("Rek'Sai", RekSaiAttributes, RekSaiPositions));
 
 		// For all 5 positions, find how many champions are good at it.
 		findNumOfPositions();
