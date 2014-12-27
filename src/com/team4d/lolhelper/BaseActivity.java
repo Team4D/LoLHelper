@@ -461,8 +461,7 @@ public class BaseActivity extends FragmentActivity
 		protected Void doInBackground(Void... params)
 		{
 			Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND + Process.THREAD_PRIORITY_MORE_FAVORABLE);
-			APIData.getNumberChampions();
-			//LOLSQLiteHelper.getInstance(mContext).getWritableDatabase();
+			LOLSQLiteHelper.getInstance(mContext).getWritableDatabase();
 			return null;
 		}
 
