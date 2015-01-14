@@ -32,7 +32,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.team4d.lolhelper.DBcounters;
@@ -65,7 +64,7 @@ public class ChampionViewFragment extends Fragment
 	{
 		mPager.setAdapter(null);
 	}
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
@@ -78,12 +77,13 @@ public class ChampionViewFragment extends Fragment
 	public void onStart()
 	{
 		super.onStart();
-		if(mPager==null){
+		if (mPager == null)
+		{
 			// ViewPager
 			mPager = (ViewPager) getActivity().findViewById(R.id.pager);
 			mPagerAdapter = new MyAdapter(name, getActivity().getSupportFragmentManager());
 			mPager.setAdapter(mPagerAdapter);
-	
+
 			ImageView icon = (ImageView) getView().findViewById(R.id.icon);
 			int resID = getResources().getIdentifier(name.replaceAll("[^a-zA-Z]+", "").toLowerCase(),
 					"drawable", getActivity().getPackageName());
@@ -91,12 +91,12 @@ public class ChampionViewFragment extends Fragment
 			new grabChampion(name).execute();
 		}
 	}
-	
+
 	@Override
 	public void onPause()
 	{
 		super.onPause();
-	//	mPager.setAdapter(null);
+		// mPager.setAdapter(null);
 	}
 
 	/**
@@ -217,12 +217,12 @@ public class ChampionViewFragment extends Fragment
 				layout.addView(view3);
 				new makeView(name, this.getActivity(), view3, mNum).execute();
 				break;
-			case 4: //Build Guides
+			case 4: // Build Guides
 				View view4 = inflater.inflate(R.layout.fragment_champion_builds, null);
 				layout.addView(view4);
 				new makeView(name, this.getActivity(), view4, mNum).execute();
 				break;
-			default: //Should never be reached anyway
+			default: // Should never be reached anyway
 				break;
 			}
 			return v;
@@ -269,16 +269,18 @@ public class ChampionViewFragment extends Fragment
 			switch (n)
 			{
 			case 0: // Overview
-				//Roles
+				// Roles
 				TextView roles = (TextView) view.findViewById(R.id.roles);
-				if(champ.getTags().size()>1){
+				if (champ.getTags().size() > 1)
+				{
 					roles.setText("Primary: " + champ.getTags().get(0) + "\n"
 							+ "Secondary: " + champ.getTags().get(1));
-				} else {
+				} else
+				{
 					roles.setText("Primary: " + champ.getTags().get(0));
 				}
-				
-				//Info / ratings
+
+				// Info / ratings
 				TextView info = (TextView) view.findViewById(R.id.info);
 				info.setText("Difficulty: " + champ.getInfo().getDifficulty() + "/10\n"
 						+ "Attack: " + champ.getInfo().getAttack() + "/10\n"
@@ -441,9 +443,9 @@ public class ChampionViewFragment extends Fragment
 				result.close();
 
 				break;
-			case 4: //Build Guides
+			case 4: // Build Guides
 				LinearLayout layout = (LinearLayout) view.findViewById(R.id.layout);
-				//Get database info
+				// Get database info
 				BuildDatabase database = new BuildDatabase();
 				int id = Integer.parseInt(champ.getId());
 				BuildInfo[][] db = database.getDatabase();
@@ -451,8 +453,9 @@ public class ChampionViewFragment extends Fragment
 				String name;
 				String[] items;
 				Context context = view.getContext();
-				for(int i=0; i<numBuilds; i++){
-					//Add name
+				for (int i = 0; i < numBuilds; i++)
+				{
+					// Add name
 					name = db[id][i].getName();
 					TextView nameview = new TextView(context);
 					nameview.setText(name);
@@ -460,12 +463,12 @@ public class ChampionViewFragment extends Fragment
 					nameview.setTypeface(Typeface.DEFAULT_BOLD);
 					nameview.setTextColor(Color.WHITE);
 					layout.addView(nameview);
-					
-					//Add items
+
+					// Add items
 					items = db[id][i].getItems();
-					//Add item grid
+					// Add item grid
 					GridLayout mGridView = new GridLayout(context);
-					
+
 					DisplayMetrics dm = context.getResources().getDisplayMetrics();
 					float dpWidth = dm.widthPixels / dm.density;
 
@@ -474,54 +477,58 @@ public class ChampionViewFragment extends Fragment
 
 					int columns = (int) (dpWidth / (dpImgWidth + 10));
 					mGridView.setColumnCount(columns);
-					for(int j=0; j<db[id][i].getNumItems(); j++){
+					for (int j = 0; j < db[id][i].getNumItems(); j++)
+					{
 						String itemid = items[j];
 						new grabItem(context, mGridView, itemid).execute();
 					}
 					layout.addView(mGridView);
-				
-					//Add skill order
+
+					// Add skill order
 					HorizontalScrollView sview = new HorizontalScrollView(context);
 					LinearLayout skillorder = new LinearLayout(context);
-					LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-					params.setLayoutDirection(LinearLayout.HORIZONTAL);
+					skillorder.setOrientation(LinearLayout.HORIZONTAL);
+					LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
+							LayoutParams.WRAP_CONTENT);
 					skillorder.setLayoutParams(params);
-					
+
 					int height = 300;
 					int width = 70;
-					
-					//Left edge
+
+					// Left edge
 					ImageView iview1 = new ImageView(context);
 					iview1.setScaleType(ImageView.ScaleType.FIT_XY);
-					iview1.setLayoutParams(new LayoutParams(width/10, height));
+					iview1.setLayoutParams(new LayoutParams(width / 10, height));
 					iview1.setImageResource(R.drawable.skillorderedge);
 					skillorder.addView(iview1);
-					
-					//Q W E R label
+
+					// Q W E R label
 					ImageView iview2 = new ImageView(context);
 					iview2.setScaleType(ImageView.ScaleType.FIT_XY);
 					iview2.setLayoutParams(new LayoutParams(width, height));
 					iview2.setImageResource(R.drawable.skillorderlabel);
-					skillorder.addView(iview2);			
-										
-					//Skill order
+					skillorder.addView(iview2);
+
+					// Skill order
 					String[] order = db[id][i].getSkillOrder();
-					for(int j=0; j<18; j++){
+					for (int j = 0; j < 18; j++)
+					{
 						ImageView iv = new ImageView(context);
 						iv.setScaleType(ImageView.ScaleType.FIT_XY);
 						iv.setLayoutParams(new LayoutParams(width, height));
-						int resID = view.getResources().getIdentifier("skillorder" + order[j], "drawable", "com.team4d.lolhelper");
+						int resID = view.getResources().getIdentifier("skillorder" + order[j], "drawable",
+								"com.team4d.lolhelper");
 						iv.setImageResource(resID);
 						skillorder.addView(iv);
 					}
-					
-					//Right edge
+
+					// Right edge
 					ImageView iview3 = new ImageView(context);
 					iview3.setScaleType(ImageView.ScaleType.FIT_XY);
-					iview3.setLayoutParams(new LayoutParams(width/10, height));
+					iview3.setLayoutParams(new LayoutParams(width / 10, height));
 					iview3.setImageResource(R.drawable.skillorderedge);
 					skillorder.addView(iview3);
-					
+
 					sview.addView(skillorder);
 					layout.addView(sview);
 				}
@@ -531,7 +538,6 @@ public class ChampionViewFragment extends Fragment
 			}
 		}
 
-		
 		/**
 		 * The OnClickListener for champion abilities. Opens a popup containing
 		 * the information for that champion ability.
@@ -569,13 +575,15 @@ public class ChampionViewFragment extends Fragment
 				popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
 				popup.setOutsideTouchable(true);
 				popup.setTouchable(true);
-				popup.setTouchInterceptor(new View.OnTouchListener() {
-		            @Override
-		            public boolean onTouch(View v, MotionEvent event) {
-		            	popup.dismiss();
-		                return true;
-		            }
-		        });
+				popup.setTouchInterceptor(new View.OnTouchListener()
+				{
+					@Override
+					public boolean onTouch(View v, MotionEvent event)
+					{
+						popup.dismiss();
+						return true;
+					}
+				});
 				popup.setFocusable(true);
 				popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
 			}
@@ -613,7 +621,7 @@ public class ChampionViewFragment extends Fragment
 		}
 
 	}
-	
+
 	/**
 	 * Gets the item name from the item ID and uses that to set the icon / button and
 	 * its OnClickListener.
@@ -646,16 +654,17 @@ public class ChampionViewFragment extends Fragment
 		{
 			String itemname = item.getName();
 			itemname = itemname.replace(" (Showdown)", "");
-			
+
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 			ImageButton button = (ImageButton) inflater.inflate(R.layout.free_champion_image_button, null);
 			Drawable btnImg;
-			try{
+			try
+			{
 				btnImg = context.getResources().getDrawable(context.getResources().getIdentifier(
-					itemname.replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable", context.getPackageName()));
-			}
-			catch(Resources.NotFoundException e){
+						itemname.replaceAll("[^a-zA-Z]+", "").toLowerCase(), "drawable", context.getPackageName()));
+			} catch (Resources.NotFoundException e)
+			{
 				return;
 			}
 			button.setImageDrawable(btnImg);
@@ -667,7 +676,7 @@ public class ChampionViewFragment extends Fragment
 		}
 
 	}
-	
+
 	/**
 	 * The OnClickListener for items. Opens a popup containing that item's information.
 	 * 
@@ -696,13 +705,15 @@ public class ChampionViewFragment extends Fragment
 			popup.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
 			popup.setOutsideTouchable(true);
 			popup.setTouchable(true);
-			popup.setTouchInterceptor(new View.OnTouchListener() {
-	            @Override
-	            public boolean onTouch(View v, MotionEvent event) {
-	            	popup.dismiss();
-	                return true;
-	            }
-	        });
+			popup.setTouchInterceptor(new View.OnTouchListener()
+			{
+				@Override
+				public boolean onTouch(View v, MotionEvent event)
+				{
+					popup.dismiss();
+					return true;
+				}
+			});
 			popup.setFocusable(true);
 			popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
 		}
