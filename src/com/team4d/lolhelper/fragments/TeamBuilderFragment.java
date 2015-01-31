@@ -1,8 +1,6 @@
 package com.team4d.lolhelper.fragments;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -18,7 +16,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Process;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -35,13 +32,13 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
-import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+import com.google.gson.JsonElement;
 import com.team4d.lolhelper.Popup;
 import com.team4d.lolhelper.R;
 import com.team4d.lolhelper.TeamBuilderData;
@@ -49,6 +46,7 @@ import com.team4d.lolhelper.R.drawable;
 import com.team4d.lolhelper.R.id;
 import com.team4d.lolhelper.R.layout;
 import com.team4d.lolhelper.api.APIData;
+import com.team4d.lolhelper.api.RiotAPI;
 import com.team4d.lolhelper.api.database.LOLSQLiteHelper;
 import com.team4d.lolhelper.generalinfo.ChampionAttributes;
 
@@ -598,7 +596,6 @@ public class TeamBuilderFragment extends Fragment {
     	if (champion.getName() != "NONAME")
     		new LoadChampionImage(baseContext, this.getActivity(), icon, champion.getName()).execute();
 
-
     	return icon;
     }
     
@@ -618,6 +615,9 @@ public class TeamBuilderFragment extends Fragment {
     
 	private class LoadChampionImage extends AsyncTask<Void, String, Void>
 	{
+		RiotAPI api = new RiotAPI("na");
+		private JsonElement v = api.GetVersions();
+		private String VERSION = v.getAsJsonArray().get(0).toString().replaceAll("'", "''");
 		private final Context mContext;
 		private final Activity mActivity;
 		private ImageButton button;
@@ -641,17 +641,9 @@ public class TeamBuilderFragment extends Fragment {
 		{
 			System.out.println("Loading " + name);
 			String fileName = APIData.getChampionByName(name).getImage().getFull();
-			FileInputStream input = null;
-			boolean imageFound = true;
 			
-			try {
-				input = new FileInputStream(mContext.getFilesDir() + "/" + fileName);
-			} catch (FileNotFoundException e) {
-				Log.e("LoadingImageError", fileName + " not found");
-				imageFound = false;
-			}
-			
-			if (imageFound){
+			File png = new File(mContext.getFilesDir() + "/" + fileName);
+			if (png.exists()){
 				final Drawable d = Drawable.createFromPath(mContext.getFilesDir() + "/" + fileName);
 				mActivity.runOnUiThread(new Runnable() {
 		            @Override
@@ -676,7 +668,7 @@ public class TeamBuilderFragment extends Fragment {
 			else{	// load image from ddragon and download it
 				try {
 					// Download the image
-					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + "5.2.2" + "/img/champion/" + fileName.replaceAll(" ", "%20"));
+					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + VERSION + "/img/champion/" + fileName.replaceAll(" ", "%20"));
 					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			        connection.setDoInput(true);
 			        connection.connect();

@@ -976,7 +976,8 @@ public class BaseActivity extends FragmentActivity
 
 		@Override
 		protected Boolean doInBackground(Void... params)
-		{			
+		{	
+			String VERSION = RiotAPI.GetVersions().getAsJsonArray().get(0).toString().replaceAll("'", "''");
 			String[] itemList = APIData.getItemList();
 			String[] championList = APIData.getChampionList();		
 			String[] summonerSpellList = APIData.getSummonerSpellList();
@@ -986,7 +987,7 @@ public class BaseActivity extends FragmentActivity
 				try {
 					// Download the image
 					String fileName = APIData.getChampionByName(championList[i]).getImage().getFull().replaceAll(" ", "%20");
-					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + "5.2.2" + "/img/champion/" + fileName);
+					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + VERSION + "/img/champion/" + fileName);
 					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			        connection.setDoInput(true);
 			        connection.connect();
@@ -1016,7 +1017,7 @@ public class BaseActivity extends FragmentActivity
 				try {
 					// Download the image
 					String fileName = APIData.getItemByName(itemList[i]).getImage().getFull().replaceAll(" ", "%20");
-					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + "5.2.2" + "/img/item/" + fileName); 
+					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + VERSION + "/img/item/" + fileName); 
 			        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			        connection.setDoInput(true);
 			        connection.connect();
@@ -1046,7 +1047,7 @@ public class BaseActivity extends FragmentActivity
 				try {
 					// Download the image
 					String fileName = APIData.getSummonerSpellByName(summonerSpellList[i]).getImage().getFull().replaceAll(" ", "%20");
-					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + "5.2.2" + "/img/spell/" + fileName); 
+					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + VERSION + "/img/spell/" + fileName); 
 			        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			        connection.setDoInput(true);
 			        connection.connect();
@@ -1076,7 +1077,7 @@ public class BaseActivity extends FragmentActivity
 				try {
 					// Download the image
 					String fileName = APIData.getChampionByName(championList[i]).getPassive().getImage().getFull().replaceAll(" ", "%20");
-					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + "5.2.2" + "/img/passive/" + fileName); 
+					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + VERSION + "/img/passive/" + fileName); 
 			        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			        connection.setDoInput(true);
 			        connection.connect();
@@ -1108,7 +1109,7 @@ public class BaseActivity extends FragmentActivity
 					try {
 						// Download the image
 						String fileName = spells.get(j).getImage().getFull().replaceAll(" ", "%20");
-						URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + "5.2.2" + "/img/spell/" + fileName); 
+						URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + VERSION + "/img/spell/" + fileName); 
 				        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 				        connection.setDoInput(true);
 				        connection.connect();
