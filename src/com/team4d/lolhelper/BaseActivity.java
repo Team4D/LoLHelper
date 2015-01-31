@@ -1,5 +1,11 @@
 package com.team4d.lolhelper;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,6 +15,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.Ringtone;
@@ -21,8 +28,8 @@ import android.os.Process;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +43,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout.LayoutParams;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -43,7 +51,9 @@ import com.google.android.gms.ads.AdView;
 import com.nineoldandroids.view.animation.AnimatorProxy;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
+import com.team4d.lolhelper.api.APIData;
 import com.team4d.lolhelper.api.database.LOLSQLiteHelper;
+import com.team4d.lolhelper.api.dto.staticdata.champion.ChampionSpell;
 import com.team4d.lolhelper.fragments.*;
 
 public class BaseActivity extends FragmentActivity
@@ -79,9 +89,19 @@ public class BaseActivity extends FragmentActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_base);
+		
+		final String PREFS_NAME = "FirstTimeTesting";
+
+		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+		if (settings.getBoolean("first_time", true)) {
+		    // The app is being launched for first time, download image resources.        
+			new DownloadResourceAsyncTask(this, this).execute();
+		    // record the app has been started at least once
+		    settings.edit().putBoolean("first_time", false).commit(); 
+		}
 
 		new DatabaseAsyncTask(this, this).execute();
-
+		
 		mTitle = mDrawerTitle = getTitle();
 		mPageTitles = getResources().getStringArray(R.array.page_array);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -932,5 +952,209 @@ public class BaseActivity extends FragmentActivity
 			GR.setText("--");
 			running[5] = false;
 		}
+	}
+	
+	private class DownloadResourceAsyncTask extends AsyncTask<Void, String, Boolean>
+	{
+		private final Context mContext;
+		private final Activity mActivity;
+		private int counter, failedCounter;
+
+		public DownloadResourceAsyncTask(Context c, Activity a)
+		{
+			mContext = c;
+			mActivity = a;
+			counter = 0;
+			failedCounter = 0;
+		}
+		
+		@Override
+		protected void onPreExecute()
+		{
+			Toast.makeText(getApplicationContext(), "Start to download required image resources...", Toast.LENGTH_LONG).show();
+		}
+
+		@Override
+		protected Boolean doInBackground(Void... params)
+		{			
+			String[] itemList = APIData.getItemList();
+			String[] championList = APIData.getChampionList();		
+			String[] summonerSpellList = APIData.getSummonerSpellList();
+			
+			// Download images for champions
+			for (int i = 0; i < championList.length; i++){
+				try {
+					// Download the image
+					String fileName = APIData.getChampionByName(championList[i]).getImage().getFull().replaceAll(" ", "%20");
+					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + "5.2.2" + "/img/champion/" + fileName); 
+			        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			        connection.setDoInput(true);
+			        connection.connect();
+			        InputStream input = connection.getInputStream();
+			        
+					// Save image to phone
+			        File file = new File(mContext.getFilesDir(), fileName);
+			        FileOutputStream output = new FileOutputStream(file);
+			        byte[] buffer = new byte[51200];
+		            int length = 0;
+		            while ((length = input.read(buffer)) > 0) {
+		                output.write(buffer,0, length);
+		            }
+		            output.close();
+		            counter += 1;
+		            System.out.println(fileName + " successfully downloaded");
+				}
+/*				catch (MalformedURLException e) {
+						Log.e("getBmpFromUrl error: ", e.getMessage().toString());
+		            } catch (ProtocolException e) {
+		            	Log.e("getBmpFromUrl error: ", e.getMessage().toString());
+		            } catch (FileNotFoundException e) {
+		            	Log.e("getBmpFromUrl error: ", e.getMessage().toString());
+		            } catch (IOException e) {
+		            	Log.e("getBmpFromUrl error: ", e.getMessage().toString());
+		        }*/
+				catch (Exception e) {
+					Log.e("DownloadingError", "Failed to download " + APIData.getChampionByName(championList[i]).getImage().getFull());
+					failedCounter += 1;
+					Toast.makeText(getApplicationContext(), counter + " downloaded, " + failedCounter + " failed...", Toast.LENGTH_SHORT).show();
+	            }
+			}
+			
+			// Download images for items
+			for (int i = 0; i < itemList.length; i++){
+				try {
+					// Download the image
+					String fileName = APIData.getItemByName(itemList[i]).getImage().getFull().replaceAll(" ", "%20");
+					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + "5.2.2" + "/img/item/" + fileName); 
+			        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			        connection.setDoInput(true);
+			        connection.connect();
+			        InputStream input = connection.getInputStream();
+			        
+					// Save image to phone
+			        File file = new File(mContext.getFilesDir(), fileName);
+			        FileOutputStream output = new FileOutputStream(file);
+			        byte[] buffer = new byte[51200];
+		            int length = 0;
+		            while ((length = input.read(buffer)) > 0) {
+		                output.write(buffer,0, length);
+		            }
+		            output.close();
+		            counter += 1;
+		            System.out.println(fileName + " successfully downloaded");
+				}
+				catch (Exception e) {
+					Log.e("DownloadingError", "Failed to download " + APIData.getItemByName(itemList[i]).getImage().getFull());
+					failedCounter += 1;
+					Toast.makeText(getApplicationContext(), counter + " downloaded, " + failedCounter + " failed...", Toast.LENGTH_SHORT).show();
+	            }
+			}
+			
+			// Download images for summoner spells
+			for (int i = 0; i < summonerSpellList.length; i++){
+				try {
+					// Download the image
+					String fileName = APIData.getSummonerSpellByName(summonerSpellList[i]).getImage().getFull().replaceAll(" ", "%20");
+					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + "5.2.2" + "/img/spell/" + fileName); 
+			        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			        connection.setDoInput(true);
+			        connection.connect();
+			        InputStream input = connection.getInputStream();
+			        
+					// Save image to phone
+			        File file = new File(mContext.getFilesDir(), fileName);
+			        FileOutputStream output = new FileOutputStream(file);
+			        byte[] buffer = new byte[51200];
+		            int length = 0;
+		            while ((length = input.read(buffer)) > 0) {
+		                output.write(buffer,0, length);
+		            }
+		            output.close();
+		            counter += 1;
+		            System.out.println(fileName + " successfully downloaded");
+				}
+				catch (Exception e) {
+					Log.e("DownloadingError", "Failed to download " + APIData.getSummonerSpellByName(summonerSpellList[i]).getImage().getFull());
+					failedCounter += 1;
+					Toast.makeText(getApplicationContext(), counter + " downloaded, " + failedCounter + " failed...", Toast.LENGTH_SHORT).show();
+	            }
+			}
+			
+			// Download images for passive champion spells
+			for (int i = 0; i < championList.length; i++){
+				try {
+					// Download the image
+					String fileName = APIData.getChampionByName(championList[i]).getPassive().getImage().getFull().replaceAll(" ", "%20");
+					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + "5.2.2" + "/img/passive/" + fileName); 
+			        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			        connection.setDoInput(true);
+			        connection.connect();
+			        InputStream input = connection.getInputStream();
+			        
+					// Save image to phone
+			        File file = new File(mContext.getFilesDir(), fileName);
+			        FileOutputStream output = new FileOutputStream(file);
+			        byte[] buffer = new byte[51200];
+		            int length = 0;
+		            while ((length = input.read(buffer)) > 0) {
+		                output.write(buffer,0, length);
+		            }
+		            output.close();
+		            counter += 1;
+		            System.out.println(fileName + " successfully downloaded");
+				}
+				catch (Exception e) {
+					Log.e("DownloadingError", "Failed to download " + APIData.getChampionByName(championList[i]).getPassive().getImage().getFull());
+					failedCounter += 1;
+					Toast.makeText(getApplicationContext(), counter + " downloaded, " + failedCounter + " failed...", Toast.LENGTH_SHORT).show();
+	            }
+			}
+			
+			// Download images for active champion spells
+			for (int i = 0; i < championList.length; i++){
+				List<ChampionSpell> spells = APIData.getChampionByName(championList[i]).getSpells();
+				for (int j = 0; j < spells.size(); j++){
+					try {
+						// Download the image
+						String fileName = spells.get(j).getImage().getFull().replaceAll(" ", "%20");
+						URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + "5.2.2" + "/img/spell/" + fileName); 
+				        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+				        connection.setDoInput(true);
+				        connection.connect();
+				        InputStream input = connection.getInputStream();
+				        
+						// Save image to phone
+				        File file = new File(mContext.getFilesDir(), fileName);
+				        FileOutputStream output = new FileOutputStream(file);
+				        byte[] buffer = new byte[51200];
+			            int length = 0;
+			            while ((length = input.read(buffer)) > 0) {
+			                output.write(buffer,0, length);
+			            }
+			            output.close();
+			            counter += 1;
+			            System.out.println(fileName + " successfully downloaded");
+					}
+					catch (Exception e) {
+						Log.e("DownloadingError", "Failed to download " + spells.get(j).getImage().getFull());
+						failedCounter += 1;
+						Toast.makeText(getApplicationContext(), counter + " downloaded, " + failedCounter + " failed...", Toast.LENGTH_SHORT).show();
+		            }
+				}	
+			}			
+			return true;
+		}
+
+		@Override
+		protected void onProgressUpdate(String... status)
+		{
+			Toast.makeText(getApplicationContext(), counter + " downloaded, " + failedCounter + " failed...", Toast.LENGTH_SHORT).show();
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result)
+		{
+			Toast.makeText(getApplicationContext(), "Download finished", Toast.LENGTH_LONG).show();
+		}	
 	}
 }

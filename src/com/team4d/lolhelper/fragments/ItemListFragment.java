@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -790,11 +791,15 @@ public class ItemListFragment extends Fragment
 			}
 			// Should update this to grab the image out of the dto object.
 			// Along the same lines, should just add the dragontail directories as resources to our project.
-			Drawable btnImg = getResources().getDrawable(getResources().getIdentifier(
+			try{
+				Drawable btnImg = getResources().getDrawable(getResources().getIdentifier(
 					n, "drawable", this.getActivity().getPackageName()));
-			button.setImageDrawable(btnImg);
-			LayoutParams params = new LayoutParams((int) (btnImg.getIntrinsicWidth() * 1.2),
-					(int) (btnImg.getIntrinsicHeight() * 1.2));
+				button.setImageDrawable(btnImg);
+			}
+			catch(Resources.NotFoundException e){
+				button.setImageResource(R.drawable.questionmark);
+			}
+			LayoutParams params = new LayoutParams((int) (120 * 1.2), (int) (120 * 1.2));
 			button.setLayoutParams(params);
 			button.setTag(result[i]);
 			button.setOnClickListener(new View.OnClickListener()
