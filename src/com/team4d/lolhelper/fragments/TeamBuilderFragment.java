@@ -1,11 +1,26 @@
 package com.team4d.lolhelper.fragments;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import android.app.Activity;
+import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Process;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,6 +35,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -32,11 +48,13 @@ import com.team4d.lolhelper.TeamBuilderData;
 import com.team4d.lolhelper.R.drawable;
 import com.team4d.lolhelper.R.id;
 import com.team4d.lolhelper.R.layout;
+import com.team4d.lolhelper.api.APIData;
+import com.team4d.lolhelper.api.database.LOLSQLiteHelper;
 import com.team4d.lolhelper.generalinfo.ChampionAttributes;
 
 // Description:
 // This is the main Team Builder class.
-// It deals with the user interface for the team builder page.
+// It deals with the user interface for the team builder page.getActivity
 
 public class TeamBuilderFragment extends Fragment {
     
@@ -47,6 +65,12 @@ public class TeamBuilderFragment extends Fragment {
 	// button is displaying a champion = 1, button is not displaying a champion = 0
     int[] buttonChangedFlags = {0, 0, 0, 0, 0};
     
+    Context baseContext;
+    
+	public TeamBuilderFragment(Context c) {
+		baseContext = c;
+	}
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -566,23 +590,14 @@ public class TeamBuilderFragment extends Fragment {
     
 	// Initialization method for automatically generated imagebuttons.
     private ImageButton initializeButton(ImageButton icon, ChampionAttributes champion){
-    	// First calculate how many pixels is 60 dp, which is the size of all imagebuttons.
-        DisplayMetrics dm = getResources().getDisplayMetrics();
-        float dpInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, dm);
-        
+/*        
     	String message = champion.getName();
     	icon.setImageResource(getResources().getIdentifier(
     			message.replaceAll("[^a-zA-Z]+","").toLowerCase(), "drawable", this.getActivity().getPackageName()));
-    	
-        icon.setAdjustViewBounds(true);
-    	icon.setMaxHeight((int)dpInPx);
-    	icon.setMaxWidth((int)dpInPx);
-    	icon.setMinimumHeight((int)dpInPx);
-    	icon.setMinimumWidth((int)dpInPx);
-    	icon.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
-    	icon.setScaleType(ScaleType.FIT_CENTER);
-    	icon.setPadding(0, 0, 0, 0);
-    	icon.setBackgroundColor(Color.TRANSPARENT);
+*/		
+    	if (champion.getName() != "NONAME")
+    		new LoadChampionImage(baseContext, this.getActivity(), icon, champion.getName()).execute();
+
 
     	return icon;
     }
@@ -599,6 +614,102 @@ public class TeamBuilderFragment extends Fragment {
 		popup.setOutsideTouchable(true);
 		popup.setFocusable(true);
 		popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
-		
     }
+    
+	private class LoadChampionImage extends AsyncTask<Void, String, Void>
+	{
+		private final Context mContext;
+		private final Activity mActivity;
+		private ImageButton button;
+		private String name;
+
+		public LoadChampionImage(Context c, Activity a, ImageButton b, String s)
+		{
+			mContext = c;
+			mActivity = a;
+			button = b;
+			name = s;
+		}
+
+		@Override
+		protected void onPreExecute()
+		{
+		}
+
+		@Override
+		protected Void doInBackground(Void... params)
+		{
+			System.out.println("Loading " + name);
+			String fileName = APIData.getChampionByName(name).getImage().getFull();
+			FileInputStream input = null;
+			boolean imageFound = true;
+			
+			try {
+				input = new FileInputStream(mContext.getFilesDir() + "/" + fileName);
+			} catch (FileNotFoundException e) {
+				Log.e("LoadingImageError", fileName + " not found");
+				imageFound = false;
+			}
+			
+			if (imageFound){
+				final Drawable d = Drawable.createFromPath(mContext.getFilesDir() + "/" + fileName);
+				mActivity.runOnUiThread(new Runnable() {
+		            @Override
+		            public void run() {
+		                DisplayMetrics dm = getResources().getDisplayMetrics();
+		                float dpInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, dm);
+		                Bitmap bm = ((BitmapDrawable) d).getBitmap();
+		                Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bm, (int)dpInPx, (int)dpInPx, true));
+		            	button.setImageDrawable(d);
+		                button.setAdjustViewBounds(true);
+		            	button.setMaxHeight((int)dpInPx);
+		            	button.setMaxWidth((int)dpInPx);
+		            	button.setMinimumHeight((int)dpInPx);
+		            	button.setMinimumWidth((int)dpInPx);
+		            	button.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
+		            	button.setScaleType(ScaleType.FIT_CENTER);
+		            	button.setPadding(0, 0, 0, 0);
+		            	button.setBackgroundColor(Color.TRANSPARENT);
+		            }
+		        });
+			}
+			else{	// load image from ddragon and download it
+				try {
+					// Download the image
+					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + "5.2.2" + "/img/champion/" + fileName.replaceAll(" ", "%20"));
+					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			        connection.setDoInput(true);
+			        connection.connect();
+			        InputStream in = connection.getInputStream();
+			        Bitmap bmp = BitmapFactory.decodeStream(in);
+			        button.setImageBitmap(bmp);
+			        
+					// Save image to phone
+			        File file = new File(mContext.getFilesDir(), fileName);
+			        FileOutputStream output = new FileOutputStream(file);
+			        byte[] buffer = new byte[51200];
+		            int length = 0;
+		            while ((length = in.read(buffer)) > 0) {
+		                output.write(buffer,0, length);
+		            }
+		            output.close();
+		            System.out.println(fileName + " successfully downloaded");
+				}
+				catch (Exception e) {
+					Log.e("DownloadingError", "Failed to download " + fileName);
+	            }
+			}
+			return null;
+		}
+
+		@Override
+		protected void onProgressUpdate(String... status)
+		{
+		}
+
+		@Override
+		protected void onPostExecute(Void empty)
+		{
+		}
+	}
 }

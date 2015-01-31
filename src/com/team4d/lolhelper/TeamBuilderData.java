@@ -314,7 +314,7 @@ public class TeamBuilderData
 		allChampions[11] = (new ChampionAttributes("Braum", BraumAttributes, BraumPositions));
 		allChampions[12] = (new ChampionAttributes("Caitlyn", CaitlynAttributes, CaitlynPositions));
 		allChampions[13] = (new ChampionAttributes("Cassiopeia", CassiopeiaAttributes, CassiopeiaPositions));
-		allChampions[14] = (new ChampionAttributes("Cho Gath", ChoGathAttributes, ChoGathPositions));
+		allChampions[14] = (new ChampionAttributes("Cho'Gath", ChoGathAttributes, ChoGathPositions));
 		allChampions[15] = (new ChampionAttributes("Corki", CorikiAttributes, CorikiPositions));
 		allChampions[16] = (new ChampionAttributes("Darius", DariusAttributes, DariusPositions));
 		allChampions[17] = (new ChampionAttributes("Diana", DianaAttributes, DianaPositions));
@@ -346,8 +346,8 @@ public class TeamBuilderData
 		allChampions[43] = (new ChampionAttributes("Katarina", KatarinaAttributes, KatarinaPositions));
 		allChampions[44] = (new ChampionAttributes("Kayle", KayleAttributes, KaylePositions));
 		allChampions[45] = (new ChampionAttributes("Kennen", KennenAttributes, KennenPositions));
-		allChampions[46] = (new ChampionAttributes("Kha Zix", KhaZixAttributes, KhaZixPositions));
-		allChampions[47] = (new ChampionAttributes("Kog Maw", KogMawAttributes, KogMawPositions));
+		allChampions[46] = (new ChampionAttributes("Kha'Zix", KhaZixAttributes, KhaZixPositions));
+		allChampions[47] = (new ChampionAttributes("Kog'Maw", KogMawAttributes, KogMawPositions));
 		allChampions[48] = (new ChampionAttributes("LeBlanc", LeBlancAttributes, LeBlancPositions));
 		allChampions[49] = (new ChampionAttributes("Lee Sin", LeeSinAttributes, LeeSinPositions));
 		allChampions[50] = (new ChampionAttributes("Leona", LeonaAttributes, LeonaPositions));
@@ -405,7 +405,7 @@ public class TeamBuilderData
 		allChampions[102] = (new ChampionAttributes("Varus", VarusAttributes, VarusPositions));
 		allChampions[103] = (new ChampionAttributes("Vayne", VayneAttributes, VaynePositions));
 		allChampions[104] = (new ChampionAttributes("Veigar", VeigarAttributes, VeigarPositions));
-		allChampions[105] = (new ChampionAttributes("Vel Koz", VelKozAttributes, VelkozPositions));
+		allChampions[105] = (new ChampionAttributes("Vel'Koz", VelKozAttributes, VelkozPositions));
 		allChampions[106] = (new ChampionAttributes("Vi", ViAttributes, ViPositions));
 		allChampions[107] = (new ChampionAttributes("Viktor", ViktorAttributes, ViktorPositions));
 		allChampions[108] = (new ChampionAttributes("Vladimir", VladimirAttributes, VladimirPositions));

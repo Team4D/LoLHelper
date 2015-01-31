@@ -132,7 +132,7 @@ public class RiotAPI
 		return CallAPI(APIQuery);
 	}
 
-	public JsonElement GetVersions()
+	public static JsonElement GetVersions()
 	{
 		String APIQuery = BaseAPIAddress + StaticDataAPIAddress + "versions?" + APIKey;
 		return CallAPI(APIQuery);

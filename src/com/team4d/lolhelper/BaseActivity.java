@@ -52,6 +52,7 @@ import com.nineoldandroids.view.animation.AnimatorProxy;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 import com.team4d.lolhelper.api.APIData;
+import com.team4d.lolhelper.api.RiotAPI;
 import com.team4d.lolhelper.api.database.LOLSQLiteHelper;
 import com.team4d.lolhelper.api.dto.staticdata.champion.ChampionSpell;
 import com.team4d.lolhelper.fragments.*;
@@ -97,6 +98,14 @@ public class BaseActivity extends FragmentActivity
 		if (settings.getBoolean("first_time", true)) {
 		    // The app is being launched for first time, download image resources.        
 			new DownloadResourceAsyncTask(this, this, settings).execute();
+		}
+		else{
+			// Create a new fragment and specify the planet to show based on position
+			HomeFragment fragment = new HomeFragment();
+
+			// Insert the fragment by replacing any existing fragment
+			FragmentManager fragmentManager = getSupportFragmentManager();
+			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 		}
 		
 		mTitle = mDrawerTitle = getTitle();
@@ -352,7 +361,7 @@ public class BaseActivity extends FragmentActivity
 			transaction0.commit();
 			break;
 		case 2:
-			TeamBuilderFragment fragment1 = new TeamBuilderFragment();
+			TeamBuilderFragment fragment1 = new TeamBuilderFragment(getApplicationContext());
 			FragmentTransaction transaction1 = fragmentManager.beginTransaction().replace(R.id.content_frame, fragment1);
 			transaction1.addToBackStack(null);
 			transaction1.commit();
@@ -491,14 +500,6 @@ public class BaseActivity extends FragmentActivity
 		protected void onPostExecute(Void empty)
 		{
 			popup.dismiss();
-			
-			// Create a new fragment and specify the planet to show based on
-			// position
-			HomeFragment fragment = new HomeFragment();
-
-			// Insert the fragment by replacing any existing fragment
-			FragmentManager fragmentManager = getSupportFragmentManager();
-			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 		}
 	}
 
@@ -985,8 +986,8 @@ public class BaseActivity extends FragmentActivity
 				try {
 					// Download the image
 					String fileName = APIData.getChampionByName(championList[i]).getImage().getFull().replaceAll(" ", "%20");
-					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + "5.2.2" + "/img/champion/" + fileName); 
-			        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+					URL url = new URL("http://ddragon.leagueoflegends.com/cdn/" + "5.2.2" + "/img/champion/" + fileName);
+					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			        connection.setDoInput(true);
 			        connection.connect();
 			        InputStream input = connection.getInputStream();
@@ -1001,7 +1002,7 @@ public class BaseActivity extends FragmentActivity
 		            }
 		            output.close();
 		            counter += 1;
-		            //System.out.println(fileName + " successfully downloaded");
+		            System.out.println(fileName + " successfully downloaded");
 				}
 				catch (Exception e) {
 					Log.e("DownloadingError", "Failed to download " + APIData.getChampionByName(championList[i]).getImage().getFull());
@@ -1031,7 +1032,7 @@ public class BaseActivity extends FragmentActivity
 		            }
 		            output.close();
 		            counter += 1;
-		            //System.out.println(fileName + " successfully downloaded");
+		            System.out.println(fileName + " successfully downloaded");
 				}
 				catch (Exception e) {
 					Log.e("DownloadingError", "Failed to download " + APIData.getItemByName(itemList[i]).getImage().getFull());
@@ -1061,7 +1062,7 @@ public class BaseActivity extends FragmentActivity
 		            }
 		            output.close();
 		            counter += 1;
-		            //System.out.println(fileName + " successfully downloaded");
+		            System.out.println(fileName + " successfully downloaded");
 				}
 				catch (Exception e) {
 					Log.e("DownloadingError", "Failed to download " + APIData.getSummonerSpellByName(summonerSpellList[i]).getImage().getFull());
@@ -1091,7 +1092,7 @@ public class BaseActivity extends FragmentActivity
 		            }
 		            output.close();
 		            counter += 1;
-		            //System.out.println(fileName + " successfully downloaded");
+		            System.out.println(fileName + " successfully downloaded");
 				}
 				catch (Exception e) {
 					Log.e("DownloadingError", "Failed to download " + APIData.getChampionByName(championList[i]).getPassive().getImage().getFull());
@@ -1123,7 +1124,7 @@ public class BaseActivity extends FragmentActivity
 			            }
 			            output.close();
 			            counter += 1;
-			            //System.out.println(fileName + " successfully downloaded");
+			            System.out.println(fileName + " successfully downloaded");
 					}
 					catch (Exception e) {
 						Log.e("DownloadingError", "Failed to download " + spells.get(j).getImage().getFull());
@@ -1148,6 +1149,14 @@ public class BaseActivity extends FragmentActivity
 		    // record the app has been started at least once
 		    settings.edit().putBoolean("first_time", false).commit(); 
 		    System.out.println("Download finished");
+			
+			// Create a new fragment and specify the planet to show based on
+			// position
+			HomeFragment fragment = new HomeFragment();
+
+			// Insert the fragment by replacing any existing fragment
+			FragmentManager fragmentManager = getSupportFragmentManager();
+			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 		}	
 	}
 }
