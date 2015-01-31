@@ -89,18 +89,15 @@ public class BaseActivity extends FragmentActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_base);
+
+		new DatabaseAsyncTask(this, this).execute();
 		
 		final String PREFS_NAME = "FirstTimeTesting";
-
 		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 		if (settings.getBoolean("first_time", true)) {
 		    // The app is being launched for first time, download image resources.        
-			new DownloadResourceAsyncTask(this, this).execute();
-		    // record the app has been started at least once
-		    settings.edit().putBoolean("first_time", false).commit(); 
+			new DownloadResourceAsyncTask(this, this, settings).execute();
 		}
-
-		new DatabaseAsyncTask(this, this).execute();
 		
 		mTitle = mDrawerTitle = getTitle();
 		mPageTitles = getResources().getStringArray(R.array.page_array);
@@ -959,11 +956,13 @@ public class BaseActivity extends FragmentActivity
 		private final Context mContext;
 		private final Activity mActivity;
 		private int counter, failedCounter;
+		private SharedPreferences settings;
 
-		public DownloadResourceAsyncTask(Context c, Activity a)
+		public DownloadResourceAsyncTask(Context c, Activity a, SharedPreferences s)
 		{
 			mContext = c;
 			mActivity = a;
+			settings = s;
 			counter = 0;
 			failedCounter = 0;
 		}
@@ -1002,17 +1001,8 @@ public class BaseActivity extends FragmentActivity
 		            }
 		            output.close();
 		            counter += 1;
-		            System.out.println(fileName + " successfully downloaded");
+		            //System.out.println(fileName + " successfully downloaded");
 				}
-/*				catch (MalformedURLException e) {
-						Log.e("getBmpFromUrl error: ", e.getMessage().toString());
-		            } catch (ProtocolException e) {
-		            	Log.e("getBmpFromUrl error: ", e.getMessage().toString());
-		            } catch (FileNotFoundException e) {
-		            	Log.e("getBmpFromUrl error: ", e.getMessage().toString());
-		            } catch (IOException e) {
-		            	Log.e("getBmpFromUrl error: ", e.getMessage().toString());
-		        }*/
 				catch (Exception e) {
 					Log.e("DownloadingError", "Failed to download " + APIData.getChampionByName(championList[i]).getImage().getFull());
 					failedCounter += 1;
@@ -1041,7 +1031,7 @@ public class BaseActivity extends FragmentActivity
 		            }
 		            output.close();
 		            counter += 1;
-		            System.out.println(fileName + " successfully downloaded");
+		            //System.out.println(fileName + " successfully downloaded");
 				}
 				catch (Exception e) {
 					Log.e("DownloadingError", "Failed to download " + APIData.getItemByName(itemList[i]).getImage().getFull());
@@ -1071,7 +1061,7 @@ public class BaseActivity extends FragmentActivity
 		            }
 		            output.close();
 		            counter += 1;
-		            System.out.println(fileName + " successfully downloaded");
+		            //System.out.println(fileName + " successfully downloaded");
 				}
 				catch (Exception e) {
 					Log.e("DownloadingError", "Failed to download " + APIData.getSummonerSpellByName(summonerSpellList[i]).getImage().getFull());
@@ -1101,7 +1091,7 @@ public class BaseActivity extends FragmentActivity
 		            }
 		            output.close();
 		            counter += 1;
-		            System.out.println(fileName + " successfully downloaded");
+		            //System.out.println(fileName + " successfully downloaded");
 				}
 				catch (Exception e) {
 					Log.e("DownloadingError", "Failed to download " + APIData.getChampionByName(championList[i]).getPassive().getImage().getFull());
@@ -1133,7 +1123,7 @@ public class BaseActivity extends FragmentActivity
 			            }
 			            output.close();
 			            counter += 1;
-			            System.out.println(fileName + " successfully downloaded");
+			            //System.out.println(fileName + " successfully downloaded");
 					}
 					catch (Exception e) {
 						Log.e("DownloadingError", "Failed to download " + spells.get(j).getImage().getFull());
@@ -1155,6 +1145,9 @@ public class BaseActivity extends FragmentActivity
 		protected void onPostExecute(Boolean result)
 		{
 			Toast.makeText(getApplicationContext(), "Download finished", Toast.LENGTH_LONG).show();
+		    // record the app has been started at least once
+		    settings.edit().putBoolean("first_time", false).commit(); 
+		    System.out.println("Download finished");
 		}	
 	}
 }
