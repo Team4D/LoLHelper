@@ -4863,6 +4863,73 @@ public class BuildDatabase
 		i++;
 		numBuilds[champ]++;
 
+		//Kalista
+		champ = 429;
+		i = 0;
+		database[champ][i].setName("Marksman");
+		database[champ][i].addItem("1055");
+		database[champ][i].addItem("2003");
+		database[champ][i].addItem("3340");
+		database[champ][i].addItem("3031");
+		database[champ][i].addItem("3252");
+		database[champ][i].addItem("3046");
+		database[champ][i].addItem("3072");
+		database[champ][i].addItem("3035");
+		database[champ][i].addItem("3026");
+		database[champ][i].addSkillOrder("e");
+		database[champ][i].addSkillOrder("q");
+		database[champ][i].addSkillOrder("w");
+		database[champ][i].addSkillOrder("e");
+		database[champ][i].addSkillOrder("e");
+		database[champ][i].addSkillOrder("r");
+		database[champ][i].addSkillOrder("e");
+		database[champ][i].addSkillOrder("q");
+		database[champ][i].addSkillOrder("e");
+		database[champ][i].addSkillOrder("q");
+		database[champ][i].addSkillOrder("r");
+		database[champ][i].addSkillOrder("q");
+		database[champ][i].addSkillOrder("q");
+		database[champ][i].addSkillOrder("w");
+		database[champ][i].addSkillOrder("w");
+		database[champ][i].addSkillOrder("r");
+		database[champ][i].addSkillOrder("w");
+		database[champ][i].addSkillOrder("w");
+		i++;
+		numBuilds[champ]++;
+		
+		//Rek'Sai
+		champ = 421;
+		i = 0;
+		database[champ][i].setName("Jungle");
+		database[champ][i].addItem("1039");
+		database[champ][i].addItem("2003");
+		database[champ][i].addItem("3340");
+		database[champ][i].addItem("3160");
+		database[champ][i].addItem("3269");
+		database[champ][i].addItem("3153");
+		database[champ][i].addItem("3143");
+		database[champ][i].addItem("3102");
+		database[champ][i].addItem("3156");
+		database[champ][i].addSkillOrder("q");
+		database[champ][i].addSkillOrder("w");
+		database[champ][i].addSkillOrder("e");
+		database[champ][i].addSkillOrder("q");
+		database[champ][i].addSkillOrder("q");
+		database[champ][i].addSkillOrder("r");
+		database[champ][i].addSkillOrder("q");
+		database[champ][i].addSkillOrder("e");
+		database[champ][i].addSkillOrder("q");
+		database[champ][i].addSkillOrder("e");
+		database[champ][i].addSkillOrder("r");
+		database[champ][i].addSkillOrder("e");
+		database[champ][i].addSkillOrder("e");
+		database[champ][i].addSkillOrder("w");
+		database[champ][i].addSkillOrder("w");
+		database[champ][i].addSkillOrder("r");
+		database[champ][i].addSkillOrder("w");
+		database[champ][i].addSkillOrder("w");
+		i++;
+		numBuilds[champ]++;
 	}
 
 	/**
