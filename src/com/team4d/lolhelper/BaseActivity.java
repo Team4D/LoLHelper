@@ -977,7 +977,8 @@ public class BaseActivity extends FragmentActivity
 		@Override
 		protected Boolean doInBackground(Void... params)
 		{	
-			String VERSION = RiotAPI.GetVersions().getAsJsonArray().get(0).toString().replaceAll("'", "''");
+			String VERSION = RiotAPI.GetVersions().getAsJsonArray().get(0).toString().replaceAll("\"", "");
+			System.out.println(VERSION);
 			String[] itemList = APIData.getItemList();
 			String[] championList = APIData.getChampionList();		
 			String[] summonerSpellList = APIData.getSummonerSpellList();
@@ -1008,7 +1009,6 @@ public class BaseActivity extends FragmentActivity
 				catch (Exception e) {
 					Log.e("DownloadingError", "Failed to download " + APIData.getChampionByName(championList[i]).getImage().getFull());
 					failedCounter += 1;
-					Toast.makeText(getApplicationContext(), counter + " downloaded, " + failedCounter + " failed...", Toast.LENGTH_SHORT).show();
 	            }
 			}
 			
@@ -1038,7 +1038,6 @@ public class BaseActivity extends FragmentActivity
 				catch (Exception e) {
 					Log.e("DownloadingError", "Failed to download " + APIData.getItemByName(itemList[i]).getImage().getFull());
 					failedCounter += 1;
-					Toast.makeText(getApplicationContext(), counter + " downloaded, " + failedCounter + " failed...", Toast.LENGTH_SHORT).show();
 	            }
 			}
 			

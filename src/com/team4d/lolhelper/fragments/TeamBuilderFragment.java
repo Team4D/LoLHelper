@@ -615,9 +615,6 @@ public class TeamBuilderFragment extends Fragment {
     
 	private class LoadChampionImage extends AsyncTask<Void, String, Void>
 	{
-		RiotAPI api = new RiotAPI("na");
-		private JsonElement v = api.GetVersions();
-		private String VERSION = v.getAsJsonArray().get(0).toString().replaceAll("'", "''");
 		private final Context mContext;
 		private final Activity mActivity;
 		private ImageButton button;
@@ -639,6 +636,7 @@ public class TeamBuilderFragment extends Fragment {
 		@Override
 		protected Void doInBackground(Void... params)
 		{
+			String VERSION = RiotAPI.GetVersions().getAsJsonArray().get(0).toString().replaceAll("\"", "");
 			System.out.println("Loading " + name);
 			String fileName = APIData.getChampionByName(name).getImage().getFull();
 			
